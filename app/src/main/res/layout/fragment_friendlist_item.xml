@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:paddingTop="@dimen/timeline_item_margin_vertical"
+    android:background="?android:attr/selectableItemBackground">
+
+    <ToggleButton
+        android:id="@+id/checkbox_is_picked"
+        android:layout_width="@dimen/timeline_fig_checkbox_size"
+        android:layout_height="@dimen/timeline_fig_checkbox_size"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/timeline_fig_raw_image_margin"
+        android:layout_marginEnd="@dimen/timeline_fig_raw_image_margin"
+        android:background="@drawable/checkmark_blue"
+        android:clickable="false"
+        android:focusable="false"
+        android:text="@null"
+        android:textOff="@null"
+        android:textOn="@null" />
+
+    <FrameLayout
+        android:id="@+id/icon_wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/checkbox_is_picked"
+        android:paddingEnd="@dimen/timeline_fig_icon_margin">
+
+        <ImageView
+            android:id="@+id/url_icon"
+            android:layout_width="@dimen/timeline_fig_raw_image_size"
+            android:layout_height="@dimen/timeline_fig_raw_image_size"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/item_privacy_icon"
+            android:layout_width="@dimen/timeline_fig_raw_image_size"
+            android:layout_height="@dimen/timeline_fig_raw_image_size"
+            android:scaleType="centerCrop"
+            android:src="@drawable/privacy_scope_list_gray" />
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/item_text_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/icon_wrapper">
+
+        <TextView
+            android:id="@+id/friendlist_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/item_title_color"
+            android:textSize="@dimen/text_size_medium" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/divider_fig"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/item_divider"
+        android:paddingTop="@dimen/timeline_item_margin_vertical"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="text_size_x_small">11.0sp</dimen>
+    <dimen name="text_size_small">12.0sp</dimen>
+    <dimen name="text_size_medium">14.0sp</dimen>
+    <dimen name="text_size_large">16.0sp</dimen>
+    <dimen name="text_size_x_large">24.0sp</dimen>
+
+    <dimen name="live_layout_margin">24.0dp</dimen>
+    <dimen name="live_layout_settings_margin_horizontal">24.0dp</dimen>
+    <dimen name="live_layout_settings_child_margin_horizontal">14.0dp</dimen>
+    <dimen name="live_layout_settings_child_margin_vertical">16.0dp</dimen>
+    <dimen name="live_layout_margin_vertical">8.0dp</dimen>
+    <dimen name="live_user_avatar_size">24.0dp</dimen>
+    <dimen name="live_user_avatar_size_big">36.0dp</dimen>
+    <dimen name="live_layout_input_margin_vertical">48.0dp</dimen>
+
+    <dimen name="live_layout_interact_margin_horizontal">24.0dp</dimen>
+    <dimen name="live_layout_interact_margin_top">8.0dp</dimen>
+    <dimen name="live_layout_interact_margin_bottom">16.0dp</dimen>
+    <dimen name="live_layout_interact_icon">24.0dp</dimen>
+
+    <dimen name="live_layout_privacy_margin_vertical">16.0dp</dimen>
+    <dimen name="live_layout_privacy_padding">8.0dp</dimen>
+
+    <dimen name="timeline_item_margin_start">10.0dp</dimen>
+    <dimen name="timeline_item_margin_end">8.0dp</dimen>
+    <dimen name="timeline_item_margin_vertical">22.0dp</dimen>
+    <dimen name="timeline_fig_checkbox_size">24dp</dimen>
+    <dimen name="timeline_fig_raw_image_size">24dp</dimen>
+    <dimen name="timeline_fig_raw_image_margin">14dp</dimen>
+    <dimen name="timeline_fig_icon_margin">14dp</dimen>
+    <dimen name="timeline_fig_text_margin_vertical">8.0dp</dimen>
+
+    <dimen name="live_layout_comment_height">280dp</dimen>
+    <dimen name="live_comment_item_height">48dp</dimen>
+    <dimen name="button_text_size_medium">13sp</dimen>
+    <dimen name="live_pure_icon_scale">24dp</dimen>
+    <dimen name="live_interact_margin_bottom">16dp</dimen>
+
+    <dimen name="text_icon_padding">8dp</dimen>
+
+    <dimen name="button_margin_top">48dp</dimen>
+    <dimen name="button_height">32dp</dimen>
+
+    <dimen name="text_line_space">10dp</dimen>
+
+    <dimen name="top_layout_margin">20dp</dimen>
+
+    <dimen name="button_size">40dp</dimen>
+</resources>
