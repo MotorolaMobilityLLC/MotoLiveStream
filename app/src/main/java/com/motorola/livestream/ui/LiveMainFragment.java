@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.facebook.Profile;
 import com.github.faucamp.simplertmp.RtmpHandler;
 import com.motorola.livestream.R;
@@ -84,6 +85,8 @@ public class LiveMainFragment extends Fragment
     }
 
     private SrsPublisher mPublisher = null;
+
+    private RequestOptions mRequestOptions;
 
     private View mLoadingLayout;
 
@@ -224,6 +227,26 @@ public class LiveMainFragment extends Fragment
         }
     };
 
+    private DialogInterface.OnClickListener mResumeDialogListener =
+            new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case DialogInterface.BUTTON_POSITIVE:
+                            mPublisher.startCamera();
+                            mPublisher.setSendVideoOnly(false);
+
+                            mLiveTimer.resumeCounting();
+                            startUpdateInteractInfo();
+                            break;
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            stopLive();
+                            mBtnGoLive.setSelected(false);
+                            break;
+                    }
+                }
+            };
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -267,54 +290,11 @@ public class LiveMainFragment extends Fragment
 
         if (mIsOnLive) {
             //Popup a dialog to indicate user whether to resume or stop the live
-            LiveDialogFragment dlg = new LiveDialogFragment(mBtnFinshListener,
-                    mBtnResumeListener);
-            dlg.show(getFragmentManager(), "resume dlg");
+            showResumeDialog();
         } else {
             mPublisher.startCamera();
 
             updateUI();
-        }
-    }
-
-    DialogInterface.OnClickListener mBtnFinshListener = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            dialog.dismiss();
-            stopLive();
-            mBtnGoLive.setSelected(false);
-        }
-    };
-
-    DialogInterface.OnClickListener mBtnResumeListener = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            dialog.dismiss();
-            mLiveTimer.resumeCounting();
-            mPublisher.startCamera();
-            startUpdateInteractInfo();
-        }
-    };
-
-    public static class LiveDialogFragment extends DialogFragment {
-        DialogInterface.OnClickListener mNegetiveListener;
-        DialogInterface.OnClickListener mPositiveListener;
-
-        LiveDialogFragment(DialogInterface.OnClickListener negetive, DialogInterface.OnClickListener positive) {
-            mNegetiveListener = negetive;
-            mPositiveListener = positive;
-        }
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle(R.string.live_popup_dlg_title)
-                    .setMessage(R.string.live_popup_dlg_content)
-                    .setNegativeButton(R.string.live_popup_dlg_btn_negetive,
-                            mNegetiveListener)
-                    .setPositiveButton(R.string.live_popup_dlg_btn_positive,
-                            mPositiveListener);
-            return builder.create();
         }
     }
 
@@ -328,7 +308,10 @@ public class LiveMainFragment extends Fragment
         if (mReactionView != null) {
             mReactionView.stop();
         }
-        mPublisher.stopCamera();
+        if (mPublisher != null) {
+            mPublisher.setSendVideoOnly(true);
+            mPublisher.stopCamera();
+        }
         stopUpdateInteractInfo();
     }
 
@@ -336,10 +319,15 @@ public class LiveMainFragment extends Fragment
     public void onDestroy() {
         super.onDestroy();
 
+        if (mPublisher != null) {
+            mPublisher.stopRecord();
+            mPublisher.stopCamera();
+        }
+
         mPrivacyCacheBean.clean();
         mLiveInfoCacheBean.clean();
 
-        mLiveTimer.stopCounting();;
+        mLiveTimer.stopCounting();
         mIsOnLive = false;
     }
 
@@ -440,11 +428,17 @@ public class LiveMainFragment extends Fragment
             return;
         }
 
+        if (mRequestOptions == null) {
+            mRequestOptions = new RequestOptions();
+            mRequestOptions.placeholder(R.drawable.ic_user_photo_default)
+                .circleCrop();
+        }
         if (TextUtils.isEmpty(currentUser.getUserPhotoUrl())) {
             String cachedUrl = SettingsPref.getUserPhotoUrl(getActivity());
             if (!TextUtils.isEmpty(cachedUrl)) {
                 Glide.with(getActivity())
                         .load(cachedUrl)
+                        .apply(mRequestOptions)
                         .into(mUserAvatar);
             }
 
@@ -472,6 +466,7 @@ public class LiveMainFragment extends Fragment
             }
             Glide.with(getActivity())
                     .load(newUrl)
+                    .apply(mRequestOptions)
                     .into(mUserAvatar);
         }
     }
@@ -500,6 +495,18 @@ public class LiveMainFragment extends Fragment
             mPublisher.stopRecord();
         } catch (Exception e1) {
         }
+    }
+
+    private void showResumeDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(R.string.live_popup_dlg_title)
+                .setMessage(R.string.live_popup_dlg_content)
+                .setNegativeButton(R.string.live_popup_dlg_btn_finish,
+                        mResumeDialogListener)
+                .setPositiveButton(R.string.live_popup_dlg_btn_resume,
+                        mResumeDialogListener)
+                .setCancelable(false)
+                .show();
     }
 
     public void startGoLive() {
@@ -600,6 +607,7 @@ public class LiveMainFragment extends Fragment
         mIsOnLive = false;
         mLoadingLayout.setVisibility(View.VISIBLE);
         stopUpdateInteractInfo();
+        mLiveTimer.stopCounting();
 
         FbUtil.stopLiveVideo(
                 new FbUtil.OnDataRetrievedListener<Boolean>() {
