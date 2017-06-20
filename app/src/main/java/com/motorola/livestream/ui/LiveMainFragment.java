@@ -826,7 +826,7 @@ public class LiveMainFragment extends Fragment
                                         refreshPreGoLiveUI();
                                     }
                                 });
-                dlg.show();
+               
             }
 
             @Override
