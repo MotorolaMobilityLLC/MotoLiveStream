@@ -64,7 +64,7 @@ public abstract class BaseRecyclerViewAdapter<T> extends
         mData.addAll(start, data);
     }
 
-    protected void clearData() {
+    public void clearData() {
         mData.clear();
     }
 
