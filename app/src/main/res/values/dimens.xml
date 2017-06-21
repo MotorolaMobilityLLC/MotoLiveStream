@@ -45,4 +45,5 @@
     <dimen name="top_layout_margin">20dp</dimen>
 
     <dimen name="button_size">40dp</dimen>
+    <dimen name="go_live_button_panel_height">60dp</dimen>
 </resources>
