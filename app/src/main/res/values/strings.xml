@@ -33,6 +33,9 @@
     <string name="live_popup_dlg_btn_resume">Resume</string>
     <string name="live_popup_dlg_btn_finish">Finish</string>
 
+    <string name="live_dlg_logout_message">"You are logged in as "</string>
+    <string name="live_dlg_btn_logout">Log out</string>
+
     <string name="live_deleted_message">Your video has been deleted</string>
     <string name="live_posted_message">Your video has been posted on your timeline.</string>
     <string name="live_posted_view">View on facebook</string>

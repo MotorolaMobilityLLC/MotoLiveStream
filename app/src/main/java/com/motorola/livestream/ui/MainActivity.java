@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -15,10 +14,13 @@ import com.facebook.login.DefaultAudience;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.motorola.livestream.util.FbPermission;
+import com.motorola.livestream.util.Log;
 
 import java.util.Arrays;
 
 public class MainActivity extends AbstractPermissionActivity {
+
+    private static final String TAG = "Login";
 
     private CallbackManager mCallbackManager;
     private Handler mHandler = new Handler() {
@@ -38,16 +40,6 @@ public class MainActivity extends AbstractPermissionActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (isPermissionGranted()) {
-            startActivity(new Intent(this, LiveDynamicActivity.class));
-            finish();
-        }
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -56,7 +48,7 @@ public class MainActivity extends AbstractPermissionActivity {
 
     @Override
     protected void onGetPermissionsSuccess() {
-        Log.d("Facebook", "Permission granted");
+        Log.d(TAG, "Permission granted");
         startActivity(new Intent(this, LiveDynamicActivity.class));
         finish();
     }
@@ -75,6 +67,9 @@ public class MainActivity extends AbstractPermissionActivity {
             loginToFacebook(FbPermission.PUBLISH_ACTION);
         } else {
             checkAppPermissionGranted();
+            if (isPermissionGranted()) {
+                onGetPermissionsSuccess();
+            }
         }
     }
 
@@ -88,20 +83,22 @@ public class MainActivity extends AbstractPermissionActivity {
         LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.d("Facebook", "Login onSuccess: " + loginResult.toString());
+                Log.d(TAG, "Login onSuccess: " + loginResult.toString());
                 mHandler.sendEmptyMessage(0);
             }
 
             @Override
             public void onCancel() {
-                Log.d("Facebook", "Login onCancel");
-                Toast.makeText(MainActivity.this, "Login canceled", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Login onCancel");
+                // Toast.makeText(MainActivity.this, "Login canceled", Toast.LENGTH_SHORT).show();
+                MainActivity.this.finish();
             }
 
             @Override
             public void onError(FacebookException error) {
-                Log.d("Facebook", "Login onError: " + error.toString());
-                Toast.makeText(MainActivity.this, "Login error", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Login onError: " + error.toString());
+                // Toast.makeText(MainActivity.this, "Login error", Toast.LENGTH_SHORT).show();
+                MainActivity.this.finish();
             }
         });
     }

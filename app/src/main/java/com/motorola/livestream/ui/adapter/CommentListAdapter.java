@@ -32,7 +32,8 @@ public class CommentListAdapter extends BaseRecyclerViewAdapter<Comment> {
         super(recyclerView, R.layout.live_comment_item, null);
 
         mRequestOptions = new RequestOptions();
-        mRequestOptions.placeholder(R.drawable.ic_user_photo_default);
+        mRequestOptions.placeholder(R.drawable.ic_user_photo_default)
+                .circleCrop();
     }
 
     @Override

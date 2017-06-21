@@ -318,4 +318,20 @@ public class FbUtil {
                 }
         ).executeAsync();
     }
+
+    public static void deAuthorize(OnDataRetrievedListener<Boolean> listener) {
+        new GraphRequest(
+                AccessToken.getCurrentAccessToken(),
+                FbGraphPathUtil.getPermissionPath("me", null),
+                null,
+                HttpMethod.DELETE,
+                (GraphResponse response) -> {
+                    if (response.getError() == null) {
+                        listener.onSuccess(true);
+                    } else {
+                        listener.onError(response.getError().getException());
+                    }
+                }
+        ).executeAsync();
+    }
 }

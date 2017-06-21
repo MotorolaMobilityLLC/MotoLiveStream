@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -12,10 +13,14 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +34,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.facebook.Profile;
+import com.facebook.ProfileTracker;
+import com.facebook.login.LoginManager;
 import com.github.faucamp.simplertmp.RtmpHandler;
 import com.motorola.livestream.R;
 import com.motorola.livestream.model.fb.Comment;
@@ -259,6 +266,16 @@ public class LiveMainFragment extends Fragment
             mLiveInfoCacheBean = (LiveInfoCacheBean) ViewCacheManager
                     .getCacheFromTag(ViewCacheManager.FB_LIVE_INFO);
         }
+
+        if (Profile.getCurrentProfile() == null) {
+            new ProfileTracker() {
+                @Override
+                protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
+                    stopTracking();
+                    updateUserInfo(currentProfile);
+                }
+            }.startTracking();
+        }
     }
 
     @Nullable
@@ -397,11 +414,15 @@ public class LiveMainFragment extends Fragment
     }
 
     private void updateUI() {
-        updateUserInfo();
+        updateUserInfo(Profile.getCurrentProfile());
         updateLivePrivacySettings();
     }
 
-    private void updateUserInfo() {
+    private void updateUserInfo(Profile profile) {
+        if (profile  == null) {
+            // Wait ProfileTracker to update the current profile
+            return;
+        }
         if (mLiveInfoCacheBean == null) {
             mLiveInfoCacheBean = (LiveInfoCacheBean) ViewCacheManager
                     .getCacheFromTag(ViewCacheManager.FB_LIVE_INFO);
@@ -410,17 +431,15 @@ public class LiveMainFragment extends Fragment
         User currentUser = mLiveInfoCacheBean.getUser();
         if (currentUser == null) {
             currentUser = new User();
-            currentUser.setId(Profile.getCurrentProfile().getId());
-            currentUser.setName(Profile.getCurrentProfile().getName());
+            currentUser.setId(profile.getId());
+            currentUser.setName(profile.getName());
             mLiveInfoCacheBean.setUser(currentUser);
         }
 
         if (getActivity() == null) {
-            return;
+            mUserName.setText(currentUser.getName());
+            updateUserPhoto(currentUser);
         }
-
-        mUserName.setText(currentUser.getName());
-        updateUserPhoto(currentUser);
     }
 
     private void updateUserPhoto(User currentUser) {
@@ -495,6 +514,23 @@ public class LiveMainFragment extends Fragment
             mPublisher.stopRecord();
         } catch (Exception e1) {
         }
+    }
+
+    private void showLogoutDialog() {
+        final FragmentActivity activity = getActivity();
+
+        SpannableStringBuilder ssb =
+                new SpannableStringBuilder(activity.getString(R.string.live_dlg_logout_message));
+        ssb.append(mLiveInfoCacheBean.getUser().getName(),
+                new StyleSpan(Typeface.BOLD), Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+            .append(".");
+        new AlertDialog.Builder(activity)
+                .setMessage(ssb)
+                .setPositiveButton(R.string.live_dlg_btn_logout,
+                        (DialogInterface dialog, int which) -> {
+                            logoutFromFacebook(false);
+                        })
+                .show();
     }
 
     private void showResumeDialog() {
@@ -888,12 +924,24 @@ public class LiveMainFragment extends Fragment
         }, mLiveInfoCacheBean.getLiveStreamId(), mPrivacyCacheBean.toJsonString());
     }
 
+    private void logoutFromFacebook(boolean switchAccount) {
+        if (getActivity() == null) {
+            return;
+        }
+
+        LoginManager.getInstance().logOut();
+        if (switchAccount) {
+            getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
+        }
+        getActivity().finish();
+    }
+
     // Implementation of View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.layout_user_info:
-                // TODO show the logout selection dialog
+                showLogoutDialog();
                 break;
             case R.id.layout_privacy_setting:
                 startActivityForResult(new Intent(getActivity(), TimelineActivity.class),
