@@ -295,7 +295,7 @@ public class LiveMainFragment extends Fragment
         mPublisher.setEncodeHandler(new SrsEncodeHandler(this));
         mPublisher.setRtmpHandler(new RtmpHandler(this));
         mPublisher.setRecordHandler(new SrsRecordHandler(this));
-        mPublisher.setPreviewResolution(640, 360);
+        mPublisher.setPreviewResolution(720, 1280);
         mPublisher.setOutputResolution(720, 1280);
         mPublisher.setVideoHDMode();
         mPublisher.switchCameraFace((mPublisher.getCamraId() + 1) % Camera.getNumberOfCameras());
@@ -419,7 +419,7 @@ public class LiveMainFragment extends Fragment
     }
 
     private void updateUserInfo(Profile profile) {
-        if (profile  == null) {
+        if (profile == null) {
             // Wait ProfileTracker to update the current profile
             return;
         }
@@ -436,7 +436,7 @@ public class LiveMainFragment extends Fragment
             mLiveInfoCacheBean.setUser(currentUser);
         }
 
-        if (getActivity() == null) {
+        if (getActivity() != null) {
             mUserName.setText(currentUser.getName());
             updateUserPhoto(currentUser);
         }
