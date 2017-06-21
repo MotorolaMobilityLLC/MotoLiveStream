@@ -101,6 +101,12 @@ public class LiveInfoCacheBean implements ViewCacheBean {
         nTotalComments = count;
     }
 
+    public void clearComments() {
+        mLiveComments.clear();
+        mLiveCommentCursor = null;
+        nTotalComments = 0;
+    }
+
     public LiveViews getLiveViews() {
         return mLiveViews;
     }
@@ -138,20 +144,22 @@ public class LiveInfoCacheBean implements ViewCacheBean {
         nTotalLikes += count;
     }
 
+    public void clearReactions() {
+        mLiveReactions.clear();
+        mLiveReactionCursor = null;
+        nTotalLikes = 0;
+    }
+
     @Override
     public void clean() {
         mLiveInfo = null;
         mUser = null;
 
-        mLiveComments.clear();
-        mLiveCommentCursor = null;
-        nTotalComments = 0;
+        clearComments();
 
         mLiveViews = null;
 
-        mLiveReactions.clear();;
-        mLiveReactionCursor = null;
-        nTotalLikes = 0;
+        clearReactions();
     }
 
     @Override

@@ -586,6 +586,10 @@ public class LiveMainFragment extends Fragment
         mLiveInfoCacheBean.setLiveInfo(liveInfo);
         Log.d(LOG_TAG, "onLiveStreamReady: " + mLiveInfoCacheBean.getLiveStreamUrl());
 
+        if (mCommentAdapter != null) {
+            mCommentAdapter.clearData();
+            mCommentAdapter.notifyDataSetChanged();
+        }
         if (mLiveCommentsTimer == null) {
             mLiveCommentsTimer = new Timer();
         }
@@ -597,24 +601,27 @@ public class LiveMainFragment extends Fragment
         }
 
         mLoadingLayout.setVisibility(View.GONE);
+
+        mHandler.sendEmptyMessage(MSG_START_LIVE);
         // TODO maybe need a countdown timer to indicate starting live
-        new CountDownTimer(3100, 1000) {
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-                Log.d(LOG_TAG, "onTick: " + millisUntilFinished);
-            }
-
-            @Override
-            public void onFinish() {
-                mHandler.sendEmptyMessage(MSG_START_LIVE);
-            }
-        }.start();
+//        new CountDownTimer(3100, 1000) {
+//
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//                Log.d(LOG_TAG, "onTick: " + millisUntilFinished);
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//                mHandler.sendEmptyMessage(MSG_START_LIVE);
+//            }
+//        }.start();
     }
 
     private void onLiveStart() {
         mTopLayout.setVisibility(View.VISIBLE);
         mLiveSettings.setVisibility(View.GONE);
+        mCommentLayout.setVisibility(View.VISIBLE);
         mLiveInteract.setVisibility(View.VISIBLE);
         mBtnGoLive.setSelected(true);
         mGoLiveLable.setVisibility(View.GONE);
@@ -654,7 +661,9 @@ public class LiveMainFragment extends Fragment
 
                     @Override
                     public void onError(Exception exp) {
-                        mLoadingLayout.setVisibility(View.GONE);
+                        exp.printStackTrace();
+
+                        mHandler.sendEmptyMessage(MSG_LIVE_STOPPED);
                     }
                 },
                 mLiveInfoCacheBean.getLiveStreamId());
@@ -708,7 +717,7 @@ public class LiveMainFragment extends Fragment
 
     private void updateLiveViewers() {
         LiveViews liveViews = mLiveInfoCacheBean.getLiveViews();
-        if (liveViews != null && liveViews.getLiveViews() > 0) {
+        if (liveViews != null) {
             mLiveViews.setText(Util.getFormattedNumber(liveViews.getLiveViews()));
         }
     }
@@ -811,6 +820,13 @@ public class LiveMainFragment extends Fragment
         updateTotalViewers();
         updateTotalComments();
         updateTotalLikes();
+        clearResultInfoCache();
+    }
+
+    private void hideResultInfo() {
+        mResultLayout.setVisibility(View.GONE);
+        refreshPreGoLiveUI();
+        clearResultViewCache();
     }
 
     private AlertDialog mDelDialog;
@@ -823,8 +839,6 @@ public class LiveMainFragment extends Fragment
                 mDelDialog.dismiss();
                 mDelDialog = null;
             }
-            mResultLayout.setVisibility(View.GONE);
-            refreshPreGoLiveUI();
         }
     };
 
@@ -836,9 +850,6 @@ public class LiveMainFragment extends Fragment
                 mPostDialog.dismiss();
                 mPostDialog = null;
             }
-            mResultLayout.setVisibility(View.GONE);
-            //updateUI();
-            refreshPreGoLiveUI();
 
             //TODO: goto facebook to view the live
         }
@@ -851,8 +862,6 @@ public class LiveMainFragment extends Fragment
                 mPostDialog.dismiss();
                 mPostDialog = null;
             }
-            mResultLayout.setVisibility(View.GONE);
-            refreshPreGoLiveUI();
         }
     };
 
@@ -884,6 +893,16 @@ public class LiveMainFragment extends Fragment
         return builder.create();
     }
 
+    private void clearResultInfoCache() {
+        mLiveInfoCacheBean.clearComments();
+        mLiveInfoCacheBean.clearReactions();
+    }
+
+    private void clearResultViewCache() {
+        mLiveComments.setText(null);
+        mLiveViews.setText(null);
+    }
+
     private void deleteLiveVideo() {
         mLoadingLayout.setVisibility(View.VISIBLE);
         FbUtil.deleteLive(new FbUtil.OnDataRetrievedListener<Boolean>() {
@@ -891,6 +910,7 @@ public class LiveMainFragment extends Fragment
             @Override
             public void onSuccess(Boolean data) {
                 mLoadingLayout.setVisibility(View.GONE);
+                hideResultInfo();
                 mDelDialog = createCustomDialog(R.string.live_deleted_message,
                         R.string.live_process_identify,
                         mDelDoneListener, -1, null, false);
@@ -900,6 +920,7 @@ public class LiveMainFragment extends Fragment
             @Override
             public void onError(Exception exp) {
                 mLoadingLayout.setVisibility(View.GONE);
+                hideResultInfo();
             }
         }, mLiveInfoCacheBean.getLiveStreamId());
     }
@@ -910,7 +931,7 @@ public class LiveMainFragment extends Fragment
             @Override
             public void onSuccess(Boolean data) {
                 mLoadingLayout.setVisibility(View.GONE);
-
+                hideResultInfo();
                 mPostDialog = createCustomDialog(R.string.live_posted_message,
                         R.string.live_posted_view, mGotoFbListener,
                         R.string.live_process_identify, mPostDoneListener, false);
@@ -920,6 +941,7 @@ public class LiveMainFragment extends Fragment
             @Override
             public void onError(Exception exp) {
                 mLoadingLayout.setVisibility(View.GONE);
+                hideResultInfo();
             }
         }, mLiveInfoCacheBean.getLiveStreamId(), mPrivacyCacheBean.toJsonString());
     }
