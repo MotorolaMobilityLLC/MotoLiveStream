@@ -777,6 +777,77 @@ public class LiveMainFragment extends Fragment
         updateTotalLikes();
     }
 
+    private AlertDialog mDelDialog;
+    private AlertDialog mPostDialog;
+
+    private View.OnClickListener mDelDoneListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (mDelDialog != null) {
+                mDelDialog.dismiss();
+                mDelDialog = null;
+            }
+            mResultLayout.setVisibility(View.GONE);
+            refreshPreGoLiveUI();
+        }
+    };
+
+    private View.OnClickListener mGotoFbListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            if (mPostDialog != null) {
+                mPostDialog.dismiss();
+                mPostDialog = null;
+            }
+            mResultLayout.setVisibility(View.GONE);
+            //updateUI();
+            refreshPreGoLiveUI();
+
+            //TODO: goto facebook to view the live
+        }
+    };
+
+    private View.OnClickListener mPostDoneListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (mPostDialog != null) {
+                mPostDialog.dismiss();
+                mPostDialog = null;
+            }
+            mResultLayout.setVisibility(View.GONE);
+            refreshPreGoLiveUI();
+        }
+    };
+
+    private AlertDialog createCustomDialog(int message, int str1, View.OnClickListener l1,
+                                           int str2, View.OnClickListener l2, boolean cancelable) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        View v = LayoutInflater.from(getActivity()).inflate(R.layout.custom_live_dialog, null);
+
+        Button btn1 = (Button)v.findViewById(R.id.btn1);
+        if (str1 > 0 && l1 != null) {
+            btn1.setText(getString(str1));
+            btn1.setOnClickListener(l1);
+        } else {
+            btn1.setVisibility(View.GONE);
+        }
+
+        Button btn2 = (Button)v.findViewById(R.id.btn2);
+        if (str2 > 0 && l2 != null) {
+            btn2.setText(getString(str2));
+            btn2.setOnClickListener(l2);
+        } else {
+            btn2.setVisibility(View.GONE);
+        }
+
+        builder.setView(v)
+        .setMessage(message)
+        .setCancelable(cancelable);
+
+        return builder.create();
+    }
+
     private void deleteLiveVideo() {
         mLoadingLayout.setVisibility(View.VISIBLE);
         FbUtil.deleteLive(new FbUtil.OnDataRetrievedListener<Boolean>() {
@@ -784,18 +855,10 @@ public class LiveMainFragment extends Fragment
             @Override
             public void onSuccess(Boolean data) {
                 mLoadingLayout.setVisibility(View.GONE);
-                CustomDialogFragment dlg =
-                        new CustomDialogFragment(R.string.live_deleted_message,
-                                R.string.live_process_identify,
-                                new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        mResultLayout.setVisibility(View.GONE);
-                                        //updateUI();
-                                        refreshPreGoLiveUI();
-                                    }
-                                },
-                                -1, null);
+                mDelDialog = createCustomDialog(R.string.live_deleted_message,
+                        R.string.live_process_identify,
+                        mDelDoneListener, -1, null, false);
+                mDelDialog.show();
             }
 
             @Override
@@ -811,30 +874,11 @@ public class LiveMainFragment extends Fragment
             @Override
             public void onSuccess(Boolean data) {
                 mLoadingLayout.setVisibility(View.GONE);
-                CustomDialogFragment dlg =
-                        new CustomDialogFragment(R.string.live_posted_message,
-                                R.string.live_posted_view,
-                                new View.OnClickListener() {
 
-                                    @Override
-                                    public void onClick(View v) {
-                                        mResultLayout.setVisibility(View.GONE);
-                                        //updateUI();
-                                        refreshPreGoLiveUI();
-
-                                        //TODO: goto facebook to view the live
-                                    }
-                                },
-                                R.string.live_process_identify,
-                                new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        mResultLayout.setVisibility(View.GONE);
-                                        //updateUI();
-                                        refreshPreGoLiveUI();
-                                    }
-                                });
-               
+                mPostDialog = createCustomDialog(R.string.live_posted_message,
+                        R.string.live_posted_view, mGotoFbListener,
+                        R.string.live_process_identify, mPostDoneListener, false);
+                mPostDialog.show();
             }
 
             @Override
