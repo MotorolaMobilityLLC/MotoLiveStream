@@ -1,17 +1,14 @@
 package com.motorola.livestream.ui;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.hardware.Camera;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
@@ -78,7 +75,7 @@ public class LiveMainFragment extends Fragment
     private static final String LOG_TAG = "LiveMainFragment";
 
     private static final int REQUEST_LIVE_PRIVACY = 0x199;
-    private static final int MAX_LIVE_TIME = 2*3600*1000; //2hours
+
     private static final int LIVE_INFO_REFRESH_INTERVAL = 3000; //3sec
 
     private static final int MSG_START_LIVE = 0x101;
@@ -107,9 +104,9 @@ public class LiveMainFragment extends Fragment
     private TextView mPrivacyTitle;
     private EditText mLiveInfoInput;
 
-    private View mGoLive;
+    private View mGoLiveLayout;
     private ImageButton mBtnGoLive;
-    private TextView mGoLiveLable;
+    private TextView mGoLiveLabel;
 
     private View mLiveInteract;
     private TextView mLiveComments;
@@ -133,7 +130,6 @@ public class LiveMainFragment extends Fragment
     private Timer mLiveCommentsTimer;
     private OnPagedListRetrievedListener<Comment> mLiveCommentListener =
             new OnPagedListRetrievedListener<Comment>() {
-
                 @Override
                 public void onSuccess(List<Comment> dataList, Cursors cursors, int totalCount) {
                     if (dataList.size() > 0) {
@@ -196,7 +192,6 @@ public class LiveMainFragment extends Fragment
                         mLiveInfoCacheBean.setLiveReactionCursor(cursors);
                         mLiveInfoCacheBean.setTotalLikes(totalCount);
                         // Delay 500 millis seconds, make sure comment list could be refreshed first
-                        // mHandler.sendEmptyMessage(MSG_UPDATE_LIVE_REACTIONS);
                         mHandler.sendEmptyMessageDelayed(MSG_UPDATE_LIVE_REACTIONS, 500L);
                     }
                     LiveMainFragment.this.startToGetReaction();
@@ -235,24 +230,23 @@ public class LiveMainFragment extends Fragment
     };
 
     private DialogInterface.OnClickListener mResumeDialogListener =
-            new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    switch (which) {
-                        case DialogInterface.BUTTON_POSITIVE:
-                            mPublisher.startCamera();
-                            mPublisher.setSendVideoOnly(false);
+            (DialogInterface dialog, int which) -> {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        mPublisher.startCamera();
+                        mPublisher.setSendVideoOnly(false);
 
-                            mLiveTimer.resumeCounting();
-                            startUpdateInteractInfo();
-                            break;
-                        case DialogInterface.BUTTON_NEGATIVE:
-                            stopLive();
-                            mBtnGoLive.setSelected(false);
-                            break;
-                    }
+                        mLiveTimer.resumeCounting();
+                        startUpdateInteractInfo();
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        stopLive();
+                        mBtnGoLive.setSelected(false);
+                        break;
                 }
             };
+
+    private AlertDialog mPostDialog = null;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -382,15 +376,15 @@ public class LiveMainFragment extends Fragment
         // Live description input
         mLiveInfoInput = (EditText) mLiveSettings.findViewById(R.id.live_description_input);
 
-        mGoLive = view.findViewById(R.id.layout_go_live);
-        mBtnGoLive = (ImageButton) mGoLive.findViewById(R.id.btn_go_live);
+        mGoLiveLayout = view.findViewById(R.id.layout_go_live);
+        mBtnGoLive = (ImageButton) mGoLiveLayout.findViewById(R.id.btn_go_live);
         mBtnGoLive.setOnClickListener(this);
-        mGoLive.findViewById(R.id.btn_capture).setOnClickListener(this);
-        mGoLive.findViewById(R.id.btn_switch_camera).setOnClickListener(this);
-        mGoLive.findViewById(R.id.btn_select_camera).setOnClickListener(this);
-        mGoLive.findViewById(R.id.btn_camera_mode).setOnClickListener(this);
-        mGoLiveLable = (TextView) mGoLive.findViewById(R.id.label_golive);
-        mGoLiveLable.setVisibility(View.VISIBLE);
+        mGoLiveLayout.findViewById(R.id.btn_capture).setOnClickListener(this);
+        mGoLiveLayout.findViewById(R.id.btn_switch_camera).setOnClickListener(this);
+        mGoLiveLayout.findViewById(R.id.btn_select_camera).setOnClickListener(this);
+        mGoLiveLayout.findViewById(R.id.btn_camera_mode).setOnClickListener(this);
+        mGoLiveLabel = (TextView) mGoLiveLayout.findViewById(R.id.label_golive);
+        mGoLiveLabel.setVisibility(View.VISIBLE);
 
         mLiveInteract = view.findViewById(R.id.layout_live_interact);
         mLiveComments = (TextView) mLiveInteract.findViewById(R.id.live_comments_view);
@@ -522,8 +516,7 @@ public class LiveMainFragment extends Fragment
         SpannableStringBuilder ssb =
                 new SpannableStringBuilder(activity.getString(R.string.live_dlg_logout_message));
         ssb.append(mLiveInfoCacheBean.getUser().getName(),
-                new StyleSpan(Typeface.BOLD), Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
-            .append(".");
+                new StyleSpan(Typeface.BOLD), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
         new AlertDialog.Builder(activity)
                 .setMessage(ssb)
                 .setPositiveButton(R.string.live_dlg_btn_logout,
@@ -534,8 +527,12 @@ public class LiveMainFragment extends Fragment
     }
 
     private void showResumeDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.live_popup_dlg_title)
+        if (getActivity() == null) {
+            return;
+        }
+
+        new AlertDialog.Builder(getActivity())
+                .setTitle(R.string.live_popup_dlg_title)
                 .setMessage(R.string.live_popup_dlg_content)
                 .setNegativeButton(R.string.live_popup_dlg_btn_finish,
                         mResumeDialogListener)
@@ -543,6 +540,62 @@ public class LiveMainFragment extends Fragment
                         mResumeDialogListener)
                 .setCancelable(false)
                 .show();
+    }
+
+    private void showLiveDeletedDialog() {
+        if (getActivity() == null) {
+            return;
+        }
+
+        new AlertDialog.Builder(getActivity())
+                .setMessage(R.string.live_deleted_message)
+                .setPositiveButton(R.string.live_process_identify,
+                        (DialogInterface dialog, int which) -> {
+                            mResultLayout.setVisibility(View.GONE);
+                            refreshPreGoLiveUI();
+                        })
+                .setCancelable(false)
+                .show();
+    }
+
+    private void showLivePostedDialog() {
+        if (getActivity() == null) {
+            return;
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.custom_live_dialog, null);
+        Button btnPositive = (Button) view.findViewById(R.id.btn_positive);
+        if (btnPositive != null) {
+            btnPositive.setText(R.string.live_posted_view);
+            btnPositive.setOnClickListener(this);
+        }
+        Button btnNegative = (Button) view.findViewById(R.id.btn_negative);
+        if (btnNegative != null) {
+            btnNegative.setText(R.string.live_process_identify);
+            btnNegative.setOnClickListener(this);
+        }
+
+        builder.setView(view)
+                .setMessage(R.string.live_posted_message)
+                .setCancelable(false);
+
+        mPostDialog = builder.show();
+    }
+
+    private void handleLivePostedDialogOnClick(int id) {
+        if (mPostDialog != null) {
+            mPostDialog.dismiss();
+            mPostDialog = null;
+        }
+        mResultLayout.setVisibility(View.GONE);
+        refreshPreGoLiveUI();
+
+        if (R.id.btn_positive == id) {
+            Util.jumpToFacebook(getActivity().getApplicationContext(),
+                    mLiveInfoCacheBean.getUser());
+        }
     }
 
     public void startGoLive() {
@@ -568,7 +621,7 @@ public class LiveMainFragment extends Fragment
 
                     @Override
                     public void onError(Exception exp) {
-                        Log.w(LOG_TAG, "Create live video failed!");
+                        Log.e(LOG_TAG, "Create live video failed!");
                         exp.printStackTrace();
 
                         mLoadingLayout.setVisibility(View.GONE);
@@ -622,9 +675,14 @@ public class LiveMainFragment extends Fragment
         mTopLayout.setVisibility(View.VISIBLE);
         mLiveSettings.setVisibility(View.GONE);
         mCommentLayout.setVisibility(View.VISIBLE);
+
+        // Clear the input text and remove focus
+        mLiveInfoInput.setText(null);
+        mLiveInfoInput.clearFocus();
+
         mLiveInteract.setVisibility(View.VISIBLE);
         mBtnGoLive.setSelected(true);
-        mGoLiveLable.setVisibility(View.GONE);
+        mGoLiveLabel.setVisibility(View.GONE);
 
         mPublisher.startPublish(mLiveInfoCacheBean.getLiveStreamUrl());
         mPublisher.startCamera();
@@ -675,10 +733,13 @@ public class LiveMainFragment extends Fragment
     private void showLiveStreamResult() {
         // Hide go live controller layout
         mTopLayout.setVisibility(View.GONE);
-        mGoLive.setVisibility(View.GONE);
+        mGoLiveLayout.setVisibility(View.GONE);
         mBtnGoLive.setSelected(false);
         mLiveInteract.setVisibility(View.GONE);
+
+        // Stop reaction animation and clear reactions
         mReactionView.stop();
+        mReactionView.clear();
         mCommentLayout.setVisibility(View.GONE);
 
         // Show live result dialog
@@ -688,8 +749,8 @@ public class LiveMainFragment extends Fragment
     }
 
     private void refreshPreGoLiveUI() {
-        mGoLive.setVisibility(View.VISIBLE);
-        mGoLiveLable.setVisibility(View.VISIBLE);
+        mGoLiveLayout.setVisibility(View.VISIBLE);
+        mGoLiveLabel.setVisibility(View.VISIBLE);
         mLiveSettings.setVisibility(View.VISIBLE);
     }
 
@@ -759,15 +820,12 @@ public class LiveMainFragment extends Fragment
         mLiveComments.setText(Util.getFormattedNumber(mLiveInfoCacheBean.getTotalComments()));
 
         // Update comment list
-        // mCommentsLayout.setVisibility(View.VISIBLE);
         mCommentAdapter.setCommentData(mLiveInfoCacheBean.getLiveComments());
         mCommentAdapter.notifyDataSetChanged();
     }
 
     private void updateTotalComments() {
         //Just show the number of comments
-        FbUtil.getLiveComments(mLiveCommentListener, mLiveInfoCacheBean.getLiveStreamId(),
-                0, mLiveInfoCacheBean.getLiveCommentCursor());
         TextView totalComments = (TextView) mResultLayout.findViewById(R.id.total_comments);
         totalComments.setText(Util.getFormattedNumber(mLiveInfoCacheBean.getTotalComments()));
     }
@@ -806,7 +864,9 @@ public class LiveMainFragment extends Fragment
     }
 
     private void updateTotalLikes() {
-        //Show number of likes
+        //Just show the number of likes
+        TextView totalLikes = (TextView) mResultLayout.findViewById(R.id.total_likes);
+        totalLikes.setText(Util.getFormattedNumber(mLiveInfoCacheBean.getTotalLikes()));
     }
 
     private void showLiveDuration() {
@@ -829,70 +889,6 @@ public class LiveMainFragment extends Fragment
         clearResultViewCache();
     }
 
-    private AlertDialog mDelDialog;
-    private AlertDialog mPostDialog;
-
-    private View.OnClickListener mDelDoneListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (mDelDialog != null) {
-                mDelDialog.dismiss();
-                mDelDialog = null;
-            }
-        }
-    };
-
-    private View.OnClickListener mGotoFbListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            if (mPostDialog != null) {
-                mPostDialog.dismiss();
-                mPostDialog = null;
-            }
-
-            //TODO: goto facebook to view the live
-        }
-    };
-
-    private View.OnClickListener mPostDoneListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (mPostDialog != null) {
-                mPostDialog.dismiss();
-                mPostDialog = null;
-            }
-        }
-    };
-
-    private AlertDialog createCustomDialog(int message, int str1, View.OnClickListener l1,
-                                           int str2, View.OnClickListener l2, boolean cancelable) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        View v = LayoutInflater.from(getActivity()).inflate(R.layout.custom_live_dialog, null);
-
-        Button btn1 = (Button)v.findViewById(R.id.btn1);
-        if (str1 > 0 && l1 != null) {
-            btn1.setText(getString(str1));
-            btn1.setOnClickListener(l1);
-        } else {
-            btn1.setVisibility(View.GONE);
-        }
-
-        Button btn2 = (Button)v.findViewById(R.id.btn2);
-        if (str2 > 0 && l2 != null) {
-            btn2.setText(getString(str2));
-            btn2.setOnClickListener(l2);
-        } else {
-            btn2.setVisibility(View.GONE);
-        }
-
-        builder.setView(v)
-        .setMessage(message)
-        .setCancelable(cancelable);
-
-        return builder.create();
-    }
-
     private void clearResultInfoCache() {
         mLiveInfoCacheBean.clearComments();
         mLiveInfoCacheBean.clearReactions();
@@ -905,21 +901,21 @@ public class LiveMainFragment extends Fragment
 
     private void deleteLiveVideo() {
         mLoadingLayout.setVisibility(View.VISIBLE);
+
         FbUtil.deleteLive(new FbUtil.OnDataRetrievedListener<Boolean>() {
 
             @Override
             public void onSuccess(Boolean data) {
                 mLoadingLayout.setVisibility(View.GONE);
                 hideResultInfo();
-                mDelDialog = createCustomDialog(R.string.live_deleted_message,
-                        R.string.live_process_identify,
-                        mDelDoneListener, -1, null, false);
-                mDelDialog.show();
+                showLiveDeletedDialog();
             }
 
             @Override
             public void onError(Exception exp) {
                 mLoadingLayout.setVisibility(View.GONE);
+                Log.e(LOG_TAG, "Delete video failed!");
+                exp.printStackTrace();
                 hideResultInfo();
             }
         }, mLiveInfoCacheBean.getLiveStreamId());
@@ -927,20 +923,20 @@ public class LiveMainFragment extends Fragment
 
     private void postLiveVideo() {
         mLoadingLayout.setVisibility(View.VISIBLE);
+
         FbUtil.updateLive(new FbUtil.OnDataRetrievedListener<Boolean>() {
             @Override
             public void onSuccess(Boolean data) {
                 mLoadingLayout.setVisibility(View.GONE);
                 hideResultInfo();
-                mPostDialog = createCustomDialog(R.string.live_posted_message,
-                        R.string.live_posted_view, mGotoFbListener,
-                        R.string.live_process_identify, mPostDoneListener, false);
-                mPostDialog.show();
+                showLivePostedDialog();
             }
 
             @Override
             public void onError(Exception exp) {
                 mLoadingLayout.setVisibility(View.GONE);
+                Log.e(LOG_TAG, "Post video failed!");
+                exp.printStackTrace();
                 hideResultInfo();
             }
         }, mLiveInfoCacheBean.getLiveStreamId(), mPrivacyCacheBean.toJsonString());
@@ -1003,6 +999,10 @@ public class LiveMainFragment extends Fragment
                 break;
             case R.id.btn_delete_live:
                 deleteLiveVideo();
+                break;
+            case R.id.btn_positive:
+            case R.id.btn_negative:
+                handleLivePostedDialogOnClick(v.getId());
                 break;
             default:
                 break;

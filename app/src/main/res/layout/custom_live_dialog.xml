@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <Button
-        android:id="@+id/btn1"
+        android:id="@+id/btn_positive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
@@ -14,7 +14,7 @@
         style="@android:style/Holo.Light.ButtonBar.AlertDialog"/>
 
     <Button
-        android:id="@+id/btn2"
+        android:id="@+id/btn_negative"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"

@@ -21,7 +21,7 @@ import java.util.List;
 public class ReactionView extends SurfaceView implements SurfaceHolder.Callback {
 
     private static final String LOG_TAG = "ReactionView";
-    private static final int MAX_REACTION_ANIMATE_SIZE = 20;
+
     private static final int MSG_ADD_REACTION_ANIM = 0x101;
 
     private SurfaceHolder mSurfaceHolder;
@@ -112,6 +112,11 @@ public class ReactionView extends SurfaceView implements SurfaceHolder.Callback 
         }
     }
 
+    public void clear() {
+        mSrcReactions.clear();
+        mReactions.clear();
+    }
+
     public void stop() {
         if (mDrawThread != null) {
             for (ReactionBean reactionBean : mReactions) {
@@ -119,6 +124,14 @@ public class ReactionView extends SurfaceView implements SurfaceHolder.Callback 
             }
             mDrawThread.isRun = false;
             mDrawThread = null;
+
+            // Be sure clear all reactions on the surface view when stop
+            if (mSurfaceHolder != null) {
+                Canvas canvas = mSurfaceHolder.lockCanvas();
+                // Clear canvas first
+                canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+                mSurfaceHolder.unlockCanvasAndPost(canvas);
+            }
         }
     }
 
