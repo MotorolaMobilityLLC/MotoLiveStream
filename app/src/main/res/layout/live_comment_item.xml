@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/live_comment_item_height"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/live_comment_item_height"
     android:paddingStart="24dp"
     android:paddingBottom="10dp"
     android:orientation="horizontal">
@@ -15,7 +16,7 @@
     <RelativeLayout
         android:id="@+id/layout_viewer_details"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:orientation="vertical"
         android:layout_marginStart="8dp">
@@ -24,14 +25,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            style="@style/CommentTextAppearance"/>
+            style="@style/CommentTextAppearance"
+            android:maxLines="1"
+            android:ellipsize="marquee"/>
 
         <TextView
             android:id="@+id/viewer_comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/viewer_name"
-            style="@style/CommentTextAppearance"/>
+            style="@style/CommentTextAppearance"
+            android:maxLines="3"
+            android:ellipsize="end"/>
     </RelativeLayout>
 
 </LinearLayout>
