@@ -116,6 +116,7 @@ public class LiveMainFragment extends Fragment
     private Button mBtnPostLive;
     private Button mBtnDelLive;
     private TextView mLiveResultPrivacy;
+    private ImageView mResultPrivacyIcon;
 
     private View mCommentLayout;
     private ReactionView mReactionView;
@@ -382,22 +383,26 @@ public class LiveMainFragment extends Fragment
         mGoLiveLayout.findViewById(R.id.btn_capture).setOnClickListener(this);
         mGoLiveLayout.findViewById(R.id.btn_switch_camera).setOnClickListener(this);
         mGoLiveLayout.findViewById(R.id.btn_select_camera).setOnClickListener(this);
-        mGoLiveLayout.findViewById(R.id.btn_camera_mode).setOnClickListener(this);
+        mGoLiveLayout.findViewById(R.id.btn_exit).setOnClickListener(this);
         mGoLiveLabel = (TextView) mGoLiveLayout.findViewById(R.id.label_golive);
         mGoLiveLabel.setVisibility(View.VISIBLE);
 
         mLiveInteract = view.findViewById(R.id.layout_live_interact);
         mLiveComments = (TextView) mLiveInteract.findViewById(R.id.live_comments_view);
+        mLiveComments.setText(Util.getFormattedNumber(0));
         mLiveComments.setOnClickListener(this);
         mLiveViews = (TextView) mLiveInteract.findViewById(R.id.live_views_view);
+        mLiveViews.setText(Util.getFormattedNumber(0));
 
         mResultLayout = view.findViewById(R.id.layout_live_result);
         mBtnPostLive = (Button) mResultLayout.findViewById(R.id.btn_post_live);
         mBtnPostLive.setOnClickListener(this);
         mBtnDelLive = (Button) mResultLayout.findViewById(R.id.btn_delete_live);
         mBtnDelLive.setOnClickListener(this);
+        View resultPrivacyView = view.findViewById(R.id.result_privacy_setting);
+        resultPrivacyView.setOnClickListener(this);
         mLiveResultPrivacy = (TextView) mResultLayout.findViewById(R.id.privacy_view);
-        mLiveResultPrivacy.setOnClickListener(this);
+        mResultPrivacyIcon = (ImageView) mResultLayout.findViewById(R.id.result_privacy_icon);
 
         mCommentLayout = view.findViewById(R.id.layout_live_comments);
         mReactionView = (ReactionView) mCommentLayout.findViewById(R.id.reaction_view);
@@ -491,6 +496,7 @@ public class LiveMainFragment extends Fragment
         }
 
         mPrivacyIcon.setImageResource(mPrivacyCacheBean.getProvacyIcon(false));
+        mResultPrivacyIcon.setImageResource(mPrivacyCacheBean.getProvacyIcon(false));
         switch (mPrivacyCacheBean.getPrivacy()) {
             case CUSTOM:
                 mPrivacyTitle.setText(mPrivacyCacheBean.getPrivacyCustomFriendlistDisplay());
@@ -895,8 +901,8 @@ public class LiveMainFragment extends Fragment
     }
 
     private void clearResultViewCache() {
-        mLiveComments.setText(null);
-        mLiveViews.setText(null);
+        mLiveComments.setText(Util.getFormattedNumber(0));
+        mLiveViews.setText(Util.getFormattedNumber(0));
     }
 
     private void deleteLiveVideo() {
@@ -973,7 +979,8 @@ public class LiveMainFragment extends Fragment
                 break;
             case R.id.btn_select_camera:
                 break;
-            case R.id.btn_camera_mode:
+            case R.id.btn_exit:
+                getActivity().finish();
                 break;
             case R.id.btn_record_mute:
                 mPublisher.setSendVideoOnly(!v.isSelected());
@@ -990,7 +997,7 @@ public class LiveMainFragment extends Fragment
             case R.id.live_comments_view:
                 updateLiveComments();
                 break;
-            case R.id.privacy_view:
+            case R.id.result_privacy_setting:
                 startActivityForResult(new Intent(getActivity(), TimelineActivity.class),
                         REQUEST_LIVE_PRIVACY);
                 break;

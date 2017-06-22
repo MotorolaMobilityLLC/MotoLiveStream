@@ -44,7 +44,7 @@
             android:background="@drawable/btn_bg"/>
 
         <ImageButton
-            android:id="@+id/btn_camera_mode"
+            android:id="@+id/btn_exit"
             android:layout_width="@dimen/button_size"
             android:layout_height="@dimen/button_size"
             android:layout_alignParentEnd="true"

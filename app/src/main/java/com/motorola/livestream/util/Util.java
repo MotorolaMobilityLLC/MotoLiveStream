@@ -47,8 +47,10 @@ public class Util {
             e.printStackTrace();
         }
         if (intent == null) {
+//            intent = new Intent(Intent.ACTION_VIEW,
+//                    Uri.parse("http://www.facebook.com/" + currentUser.getName()));
             intent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("http://www.facebook.com/" + currentUser.getName()));
+                    Uri.parse("http://www.facebook.com/"));
         }
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
