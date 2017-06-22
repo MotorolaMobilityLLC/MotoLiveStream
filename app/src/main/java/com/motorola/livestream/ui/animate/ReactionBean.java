@@ -16,8 +16,6 @@ import java.util.Random;
 
 public class ReactionBean {
 
-    private static final String LOG_TAG = "ReactionBean";
-
     private static final SparseArray<Bitmap> mReactionBitmapCache = new SparseArray<>();
     private static int lastReactionHeight = 0;
 
