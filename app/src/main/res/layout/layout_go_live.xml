@@ -40,7 +40,7 @@
             android:drawablePadding="@dimen/live_layout_margin_vertical"
             android:layout_toLeftOf="@id/btn_go_live"
             android:layout_marginEnd="@dimen/live_layout_margin"
-            android:src="@drawable/btn_camera"
+
             android:background="@drawable/btn_bg"/>
 
         <ImageButton
@@ -50,7 +50,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:drawablePadding="@dimen/live_layout_margin_vertical"
-            android:src="@drawable/btn_camera_mode"
+            android:src="@drawable/btn_close"
             android:background="@drawable/btn_bg"/>
     </RelativeLayout>
 

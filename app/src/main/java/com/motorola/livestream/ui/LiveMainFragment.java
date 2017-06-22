@@ -107,6 +107,8 @@ public class LiveMainFragment extends Fragment
     private View mGoLiveLayout;
     private ImageButton mBtnGoLive;
     private TextView mGoLiveLabel;
+    private ImageButton mBtnExit;
+    private ImageButton mBtnCapture;
 
     private View mLiveInteract;
     private TextView mLiveComments;
@@ -380,10 +382,12 @@ public class LiveMainFragment extends Fragment
         mGoLiveLayout = view.findViewById(R.id.layout_go_live);
         mBtnGoLive = (ImageButton) mGoLiveLayout.findViewById(R.id.btn_go_live);
         mBtnGoLive.setOnClickListener(this);
-        mGoLiveLayout.findViewById(R.id.btn_capture).setOnClickListener(this);
+        mBtnCapture = (ImageButton) mGoLiveLayout.findViewById(R.id.btn_capture);
+        mBtnCapture.setOnClickListener(this);
         mGoLiveLayout.findViewById(R.id.btn_switch_camera).setOnClickListener(this);
         mGoLiveLayout.findViewById(R.id.btn_select_camera).setOnClickListener(this);
-        mGoLiveLayout.findViewById(R.id.btn_exit).setOnClickListener(this);
+        mBtnExit = (ImageButton) mGoLiveLayout.findViewById(R.id.btn_exit);
+        mBtnExit.setOnClickListener(this);
         mGoLiveLabel = (TextView) mGoLiveLayout.findViewById(R.id.label_golive);
         mGoLiveLabel.setVisibility(View.VISIBLE);
 
@@ -690,6 +694,9 @@ public class LiveMainFragment extends Fragment
         mBtnGoLive.setSelected(true);
         mGoLiveLabel.setVisibility(View.GONE);
 
+        mBtnCapture.setVisibility(View.GONE);
+        mBtnExit.setVisibility(View.GONE);
+
         mPublisher.startPublish(mLiveInfoCacheBean.getLiveStreamUrl());
         mPublisher.startCamera();
 
@@ -758,9 +765,14 @@ public class LiveMainFragment extends Fragment
         mGoLiveLayout.setVisibility(View.VISIBLE);
         mGoLiveLabel.setVisibility(View.VISIBLE);
         mLiveSettings.setVisibility(View.VISIBLE);
+        mBtnCapture.setVisibility(View.VISIBLE);
+        mBtnExit.setVisibility(View.VISIBLE);
     }
 
     private void startToGetViews() {
+        if (mLiveViewsTimer == null) {
+            mLiveViewsTimer = new Timer();
+        }
         if (mLiveViewsTimer != null) {
             mLiveViewsTimer.schedule(
                     new TimerTask() {
@@ -800,6 +812,9 @@ public class LiveMainFragment extends Fragment
     }
 
     private void startToGetComment() {
+        if (mLiveCommentsTimer == null) {
+            mLiveCommentsTimer = new Timer();
+        }
         if (mLiveCommentsTimer != null) {
             mLiveCommentsTimer.schedule(
                     new TimerTask() {
@@ -837,6 +852,9 @@ public class LiveMainFragment extends Fragment
     }
 
     private void startToGetReaction() {
+        if (mLiveReactionsTimer == null) {
+            mLiveReactionsTimer = new Timer();
+        }
         if (mLiveReactionsTimer != null) {
             mLiveReactionsTimer.schedule(
                     new TimerTask() {
