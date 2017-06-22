@@ -1,6 +1,6 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Moto Live Stream</string>
-    <string name="facebook_app_id" translatable="false">1855903138009935</string>
+    <string name="facebook_app_id" translatable="false">1933762443579662</string>
 
     <string name="label_activity_timeline_privacy">Select Privacy</string>
     <string name="label_activity_custom_friends">Specific Friends</string>

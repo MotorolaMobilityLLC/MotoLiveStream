@@ -61,17 +61,32 @@
             android:lineSpacingExtra="@dimen/text_line_space"
             android:layout_marginTop="@dimen/live_layout_margin"
             style="@style/TextAppearance.AppCompat.Medium.Inverse"/>
-        <TextView
-            android:id="@+id/privacy_view"
+
+        <LinearLayout
+            android:id="@+id/result_privacy_setting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/live_layout_margin"
-            android:drawableStart="@drawable/privacy_scope_only_me_white"
-            android:drawableEnd="@drawable/item_row_chevron_white"
-            android:drawablePadding="@dimen/live_layout_privacy_padding"
-            android:text="@string/privacy_self"
-            android:lineSpacingExtra="@dimen/text_line_space"
-            style="@style/TextAppearance.AppCompat.Medium.Inverse"/>
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/live_layout_margin">
+
+            <ImageView
+                android:id="@+id/result_privacy_icon"
+                android:layout_width="@dimen/live_user_avatar_size"
+                android:layout_height="@dimen/live_user_avatar_size"
+                android:scaleType="centerInside" />
+            <TextView
+                android:id="@+id/privacy_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/live_layout_settings_child_margin_horizontal"
+                android:textSize="@dimen/text_size_medium"
+                android:textColor="@android:color/white" />
+            <ImageView
+                android:layout_width="@dimen/live_user_avatar_size"
+                android:layout_height="@dimen/live_user_avatar_size"
+                android:src="@drawable/item_row_chevron_white" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
