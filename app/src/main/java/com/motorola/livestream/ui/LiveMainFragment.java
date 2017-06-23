@@ -74,7 +74,8 @@ public class LiveMainFragment extends Fragment
 
     private static final String LOG_TAG = "LiveMainFragment";
 
-    private static final int REQUEST_LIVE_PRIVACY = 0x199;
+    private static final int REQUEST_LIVE_PRIVACY = 0x198;
+    private static final int REQUEST_LIVE_RESULT_PRIVACY = 0x199;
 
     private static final int LIVE_INFO_REFRESH_INTERVAL = 3000; //3sec
 
@@ -308,7 +309,8 @@ public class LiveMainFragment extends Fragment
         } else {
             mPublisher.startCamera();
 
-            updateUI();
+            updateUserInfo(Profile.getCurrentProfile());
+            updateLivePrivacySettings();
         }
     }
 
@@ -320,7 +322,9 @@ public class LiveMainFragment extends Fragment
             mLiveTimer.pauseCounting();
         }
         if (mReactionView != null) {
+            // Stop reaction animation and clear reactions
             mReactionView.stop();
+            mReactionView.clear();
         }
         if (mPublisher != null) {
             mPublisher.setSendVideoOnly(true);
@@ -350,6 +354,10 @@ public class LiveMainFragment extends Fragment
         if (requestCode == REQUEST_LIVE_PRIVACY) {
             if (resultCode == RESULT_OK) {
                 updateLivePrivacySettings();
+            }
+        } else if (requestCode == REQUEST_LIVE_RESULT_PRIVACY) {
+            if (resultCode ==RESULT_OK) {
+                updateLiveResultPrivacySettings();
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
@@ -393,10 +401,7 @@ public class LiveMainFragment extends Fragment
 
         mLiveInteract = view.findViewById(R.id.layout_live_interact);
         mLiveComments = (TextView) mLiveInteract.findViewById(R.id.live_comments_view);
-        mLiveComments.setText(Util.getFormattedNumber(0));
-        mLiveComments.setOnClickListener(this);
         mLiveViews = (TextView) mLiveInteract.findViewById(R.id.live_views_view);
-        mLiveViews.setText(Util.getFormattedNumber(0));
 
         mResultLayout = view.findViewById(R.id.layout_live_result);
         mBtnPostLive = (Button) mResultLayout.findViewById(R.id.btn_post_live);
@@ -414,11 +419,6 @@ public class LiveMainFragment extends Fragment
         mCommentListView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         mCommentAdapter = new CommentListAdapter(mCommentListView);
         mCommentListView.setAdapter(mCommentAdapter);
-    }
-
-    private void updateUI() {
-        updateUserInfo(Profile.getCurrentProfile());
-        updateLivePrivacySettings();
     }
 
     private void updateUserInfo(Profile profile) {
@@ -500,14 +500,28 @@ public class LiveMainFragment extends Fragment
         }
 
         mPrivacyIcon.setImageResource(mPrivacyCacheBean.getProvacyIcon(false));
-        mResultPrivacyIcon.setImageResource(mPrivacyCacheBean.getProvacyIcon(false));
         switch (mPrivacyCacheBean.getPrivacy()) {
             case CUSTOM:
                 mPrivacyTitle.setText(mPrivacyCacheBean.getPrivacyCustomFriendlistDisplay());
-                mLiveResultPrivacy.setText(mPrivacyCacheBean.getPrivacyCustomFriendlistDisplay());
                 break;
             default:
                 mPrivacyTitle.setText(mPrivacyCacheBean.getProvacyTitle());
+        }
+    }
+
+    private void updateLiveResultPrivacySettings() {
+        if (mPrivacyCacheBean == null) {
+            mPrivacyCacheBean = (TimelinePrivacyCacheBean) ViewCacheManager
+                    .getCacheFromTag(ViewCacheManager.FB_TIMELINE_PRIVACY);
+        }
+
+        mResultPrivacyIcon.setImageResource(mPrivacyCacheBean.getProvacyIcon(false));
+        switch (mPrivacyCacheBean.getPrivacy()) {
+            case CUSTOM:
+                mLiveResultPrivacy.setText(
+                        mPrivacyCacheBean.getPrivacyCustomFriendlistDisplay());
+                break;
+            default:
                 mLiveResultPrivacy.setText(mPrivacyCacheBean.getProvacyTitle());
         }
     }
@@ -523,10 +537,13 @@ public class LiveMainFragment extends Fragment
     private void showLogoutDialog() {
         final FragmentActivity activity = getActivity();
 
-        SpannableStringBuilder ssb =
-                new SpannableStringBuilder(activity.getString(R.string.live_dlg_logout_message));
-        ssb.append(mLiveInfoCacheBean.getUser().getName(),
-                new StyleSpan(Typeface.BOLD), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+        String userName = mLiveInfoCacheBean.getUser().getName();
+        String message = activity.getString(R.string.live_dlg_logout_message, userName);
+        int startIndex = message.indexOf(userName);
+        SpannableStringBuilder ssb = new SpannableStringBuilder(message);
+        ssb.setSpan(new StyleSpan(Typeface.BOLD), startIndex, startIndex + userName.length(),
+                Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+
         new AlertDialog.Builder(activity)
                 .setMessage(ssb)
                 .setPositiveButton(R.string.live_dlg_btn_logout,
@@ -690,7 +707,11 @@ public class LiveMainFragment extends Fragment
         mLiveInfoInput.setText(null);
         mLiveInfoInput.clearFocus();
 
+        // Reset comment/live viewer view
+        mLiveComments.setText(Util.getFormattedNumber(0));
+        mLiveViews.setText(Util.getFormattedNumber(0));
         mLiveInteract.setVisibility(View.VISIBLE);
+
         mBtnGoLive.setSelected(true);
         mGoLiveLabel.setVisibility(View.GONE);
 
@@ -712,9 +733,20 @@ public class LiveMainFragment extends Fragment
     }
 
     private void stopUpdateInteractInfo() {
-        stopGetComment();
-        stopGetViews();
-        stopGetReaction();
+        if (mLiveCommentsTimer != null) {
+            mLiveCommentsTimer.cancel();
+            mLiveCommentsTimer = null;
+        }
+
+        if (mLiveViewsTimer != null) {
+            mLiveViewsTimer.cancel();;
+            mLiveViewsTimer = null;
+        }
+
+        if (mLiveReactionsTimer != null) {
+            mLiveReactionsTimer.cancel();
+            mLiveReactionsTimer = null;
+        }
     }
 
     private void stopLive() {
@@ -722,6 +754,9 @@ public class LiveMainFragment extends Fragment
         mLoadingLayout.setVisibility(View.VISIBLE);
         stopUpdateInteractInfo();
         mLiveTimer.stopCounting();
+        // Stop reaction animation and clear reactions
+        mReactionView.stop();
+        mReactionView.clear();
 
         FbUtil.stopLiveVideo(
                 new FbUtil.OnDataRetrievedListener<Boolean>() {
@@ -748,17 +783,17 @@ public class LiveMainFragment extends Fragment
         mTopLayout.setVisibility(View.GONE);
         mGoLiveLayout.setVisibility(View.GONE);
         mBtnGoLive.setSelected(false);
+
+        // Hide the interact layout
         mLiveInteract.setVisibility(View.GONE);
 
-        // Stop reaction animation and clear reactions
-        mReactionView.stop();
-        mReactionView.clear();
+        // Hide the comment layout
         mCommentLayout.setVisibility(View.GONE);
 
         // Show live result dialog
         mResultLayout.setVisibility(View.VISIBLE);
 
-        showLiveResultStatistics();
+        showLiveResultInfo();
     }
 
     private void refreshPreGoLiveUI() {
@@ -787,27 +822,10 @@ public class LiveMainFragment extends Fragment
         FbUtil.getLiveViews(mLiveViewsListener, mLiveInfoCacheBean.getLiveStreamId());
     }
 
-    private void stopGetViews() {
-        if (mLiveViewsTimer != null) {
-            mLiveViewsTimer.cancel();;
-            mLiveViewsTimer = null;
-        }
-    }
-
     private void updateLiveViewers() {
         LiveViews liveViews = mLiveInfoCacheBean.getLiveViews();
         if (liveViews != null) {
             mLiveViews.setText(Util.getFormattedNumber(liveViews.getLiveViews()));
-        }
-    }
-
-    private void updateTotalViewers() {
-        TextView totalViewers = (TextView) mResultLayout.findViewById(R.id.total_viewers);
-        LiveViews liveViews = mLiveInfoCacheBean.getLiveViews();
-        if (liveViews != null) {
-            totalViewers.setText(Util.getFormattedNumber(liveViews.getTotalViews()));
-        } else {
-            totalViewers.setText(Util.getFormattedNumber(0));
         }
     }
 
@@ -830,25 +848,12 @@ public class LiveMainFragment extends Fragment
                 FbUtil.PAGE_SIZE, mLiveInfoCacheBean.getLiveCommentCursor());
     }
 
-    private void stopGetComment() {
-        if (mLiveCommentsTimer != null) {
-            mLiveCommentsTimer.cancel();
-            mLiveCommentsTimer = null;
-        }
-    }
-
     private void updateLiveComments() {
         mLiveComments.setText(Util.getFormattedNumber(mLiveInfoCacheBean.getTotalComments()));
 
         // Update comment list
         mCommentAdapter.setCommentData(mLiveInfoCacheBean.getLiveComments());
         mCommentAdapter.notifyDataSetChanged();
-    }
-
-    private void updateTotalComments() {
-        //Just show the number of comments
-        TextView totalComments = (TextView) mResultLayout.findViewById(R.id.total_comments);
-        totalComments.setText(Util.getFormattedNumber(mLiveInfoCacheBean.getTotalComments()));
     }
 
     private void startToGetReaction() {
@@ -871,13 +876,6 @@ public class LiveMainFragment extends Fragment
                 FbUtil.PAGE_SIZE, mLiveInfoCacheBean.getLiveReactionCursor());
     }
 
-    private void stopGetReaction() {
-        if (mLiveReactionsTimer != null) {
-            mLiveReactionsTimer.cancel();
-            mLiveReactionsTimer = null;
-        }
-    }
-
     private void updateLiveReactions() {
         if (mReactionView != null) {
             mReactionView.start();
@@ -887,40 +885,43 @@ public class LiveMainFragment extends Fragment
         }
     }
 
-    private void updateTotalLikes() {
-        //Just show the number of likes
-        TextView totalLikes = (TextView) mResultLayout.findViewById(R.id.total_likes);
-        totalLikes.setText(Util.getFormattedNumber(mLiveInfoCacheBean.getTotalLikes()));
-    }
-
-    private void showLiveDuration() {
+    private void showLiveResultInfo() {
+        // Show the live duration
         TextView duration = (TextView)mResultLayout.findViewById(R.id.live_duration);
         String time = getResources().getString(R.string.total_live_time, mLiveTimer.getTimeStr());
         duration.setText(time);
-    }
 
-    private void showLiveResultStatistics() {
-        showLiveDuration();
-        updateTotalViewers();
-        updateTotalComments();
-        updateTotalLikes();
+        // Show the total number of viewers
+        TextView totalViewers = (TextView) mResultLayout.findViewById(R.id.total_viewers);
+        LiveViews liveViews = mLiveInfoCacheBean.getLiveViews();
+        if (liveViews != null) {
+            totalViewers.setText(Util.getFormattedNumber(liveViews.getTotalViews()));
+        } else {
+            totalViewers.setText(Util.getFormattedNumber(0));
+        }
+
+        // Show the total number of comments
+        TextView totalComments = (TextView) mResultLayout.findViewById(R.id.total_comments);
+        totalComments.setText(Util.getFormattedNumber(mLiveInfoCacheBean.getTotalComments()));
+
+        // Show the total number of likes
+        TextView totalLikes = (TextView) mResultLayout.findViewById(R.id.total_likes);
+        totalLikes.setText(Util.getFormattedNumber(mLiveInfoCacheBean.getTotalLikes()));
+
+        // Show the current privacy settings
+        updateLiveResultPrivacySettings();
+
         clearResultInfoCache();
     }
 
     private void hideResultInfo() {
         mResultLayout.setVisibility(View.GONE);
         refreshPreGoLiveUI();
-        clearResultViewCache();
     }
 
     private void clearResultInfoCache() {
         mLiveInfoCacheBean.clearComments();
         mLiveInfoCacheBean.clearReactions();
-    }
-
-    private void clearResultViewCache() {
-        mLiveComments.setText(Util.getFormattedNumber(0));
-        mLiveViews.setText(Util.getFormattedNumber(0));
     }
 
     private void deleteLiveVideo() {
@@ -1017,7 +1018,7 @@ public class LiveMainFragment extends Fragment
                 break;
             case R.id.result_privacy_setting:
                 startActivityForResult(new Intent(getActivity(), TimelineActivity.class),
-                        REQUEST_LIVE_PRIVACY);
+                        REQUEST_LIVE_RESULT_PRIVACY);
                 break;
             case R.id.btn_post_live:
                 postLiveVideo();
