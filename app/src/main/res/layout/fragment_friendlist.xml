@@ -12,14 +12,14 @@
         android:visibility="gone">
 
         <TextView
-            android:id="@+id/empty_textview"
+            android:id="@+id/empty_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="76.0dip"
             android:layout_marginRight="76.0dip"
             android:layout_marginTop="33.0dip"
             android:gravity="center"
-            android:text="@string/failed_getting_friendlist"
+            android:text="@string/failed_getting_friend_list"
             android:textColor="@color/text_disable"
             android:textSize="13.0sp" />
     </LinearLayout>
@@ -36,7 +36,7 @@
     </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/listFriendlist"
+        android:id="@+id/listFriendList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone" />

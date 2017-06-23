@@ -9,9 +9,11 @@ import android.net.Uri;
 
 import com.motorola.livestream.model.fb.User;
 
+import java.util.Locale;
+
 public class Util {
 
-    private static final int HOUSAND = 1000;
+    private static final int THOUSAND = 1000;
     private static final int MEGA = 1000000;
 
     private static final String FACEBOOK_PACKAGE_NAME = "com.facebook.katana";
@@ -21,12 +23,12 @@ public class Util {
             // TBD with CXD, shall we display 0 or empty when the number is 0
             return String.valueOf(0);
             //return null;
-        } else if (number < HOUSAND) {
+        } else if (number < THOUSAND) {
             return String.valueOf(number);
         } else if (number < 1000000) {
-            return String.format("%.1fK", number / (HOUSAND * 1.0f));
+            return String.format(Locale.ENGLISH, "%.1fK", number / (THOUSAND * 1.0f));
         } else {
-            return String.format("%.1fM", number / (MEGA * 1.0f));
+            return String.format(Locale.ENGLISH, "%.1fM", number / (MEGA * 1.0f));
         }
     }
 
@@ -47,8 +49,6 @@ public class Util {
             e.printStackTrace();
         }
         if (intent == null) {
-//            intent = new Intent(Intent.ACTION_VIEW,
-//                    Uri.parse("http://www.facebook.com/" + currentUser.getName()));
             intent = new Intent(Intent.ACTION_VIEW,
                     Uri.parse("http://www.facebook.com/"));
         }

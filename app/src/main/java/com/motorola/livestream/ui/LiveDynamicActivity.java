@@ -19,7 +19,7 @@ import com.facebook.login.LoginResult;
 import com.motorola.livestream.R;
 import com.motorola.livestream.util.FbPermission;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 public class LiveDynamicActivity extends AppCompatActivity {
 
@@ -63,7 +63,7 @@ public class LiveDynamicActivity extends AppCompatActivity {
         mCallbackManager = CallbackManager.Factory.create();
 
         LoginManager.getInstance().logInWithPublishPermissions(this,
-                Arrays.asList(FbPermission.PUBLISH_ACTION));
+                Collections.singletonList(FbPermission.PUBLISH_ACTION));
         LoginManager.getInstance().registerCallback(mCallbackManager,
                 new FacebookCallback<LoginResult>() {
                     @Override

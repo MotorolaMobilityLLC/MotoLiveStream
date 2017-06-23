@@ -57,8 +57,8 @@ public class TimelinePrivacyCacheBean implements ViewCacheBean {
     private static final String EMPTY_VALUE = "";
 
     private TimelinePrivacy mPrivacy = TimelinePrivacy.FRIENDS;
-    private List<String> mCustomFriendlist = new ArrayList<>();
-    private String mCustomFriendlistDisplay = null;
+    private List<String> mCustomFriendList = new ArrayList<>();
+    private String mCustomFriendListDisplay = null;
 
     public TimelinePrivacy getPrivacy() {
         return mPrivacy;
@@ -72,34 +72,34 @@ public class TimelinePrivacyCacheBean implements ViewCacheBean {
         return PRIVACY_INDEX[mPrivacy.ordinal()];
     }
 
-    public int getProvacyTitle() {
+    public int getPrivacyTitle() {
         return PRIVACY_TITLE[mPrivacy.ordinal()];
     }
 
-    public int getProvacyDescription() {
+    public int getPrivacyDescription() {
         return PRIVACY_DESCRIPTION[mPrivacy.ordinal()];
     }
 
-    public int getProvacyIcon(boolean isForList) {
+    public int getPrivacyIcon(boolean isForList) {
         return isForList ? PRIVACY_ICON[mPrivacy.ordinal()]
                 : PRIVACY_ICON_WHITE[mPrivacy.ordinal()];
     }
 
-    public List<String> getPrivacyCustomFriendlist() {
-        return mCustomFriendlist;
+    public List<String> getCustomFriendList() {
+        return mCustomFriendList;
     }
 
-    public void setPrivacyCustomFriendlist(List<String> newList) {
-        mCustomFriendlist.clear();
-        mCustomFriendlist.addAll(newList);
+    public void setCustomFriendList(List<String> newList) {
+        mCustomFriendList.clear();
+        mCustomFriendList.addAll(newList);
     }
 
-    public String getPrivacyCustomFriendlistDisplay() {
-        return mCustomFriendlistDisplay;
+    public String getCustomFriendListDisplay() {
+        return mCustomFriendListDisplay;
     }
 
-    public void setPrivacyCustomFriendlistDisplay(String newValue) {
-        mCustomFriendlistDisplay = newValue;
+    public void setCustomFriendListDisplay(String newValue) {
+        mCustomFriendListDisplay = newValue;
     }
 
     public String toJsonString() {
@@ -107,7 +107,7 @@ public class TimelinePrivacyCacheBean implements ViewCacheBean {
         json.put("value", PRIVACY_VALUE[mPrivacy.ordinal()]);
         if (TimelinePrivacy.CUSTOM == mPrivacy) {
             json.put("friends", CUSTOM_FRIENDS_VALUE);
-            json.put("allow", getCustomFriendlist());
+            json.put("allow", generateCustomFriendList());
             json.put("deny", EMPTY_VALUE);
         } else {
             json.put("friends", EMPTY_VALUE);
@@ -120,31 +120,26 @@ public class TimelinePrivacyCacheBean implements ViewCacheBean {
     @Override
     public void clean() {
         mPrivacy = TimelinePrivacy.FRIENDS;
-        mCustomFriendlist.clear();
-        mCustomFriendlistDisplay = null;
+        mCustomFriendList.clear();
+        mCustomFriendListDisplay = null;
     }
 
-    @Override
-    public void save(String tag) {
-
-    }
-
-    public static int getProvacyTitle(TimelinePrivacy privacyValue) {
+    public static int getPrivacyTitle(TimelinePrivacy privacyValue) {
         return PRIVACY_TITLE[privacyValue.ordinal()];
     }
 
-    public static int getProvacyDescription(TimelinePrivacy privacyValue) {
+    public static int getPrivacyDescription(TimelinePrivacy privacyValue) {
         return PRIVACY_DESCRIPTION[privacyValue.ordinal()];
     }
 
-    public static int getProvacyIcon(TimelinePrivacy privacyValue) {
+    public static int getPrivacyIcon(TimelinePrivacy privacyValue) {
         return PRIVACY_ICON[privacyValue.ordinal()];
     }
 
-    private String getCustomFriendlist() {
+    private String generateCustomFriendList() {
         StringBuilder sb = new StringBuilder();
-        for (String friendlistId : mCustomFriendlist) {
-            sb.append(friendlistId).append(",");
+        for (String friendListId : mCustomFriendList) {
+            sb.append(friendListId).append(",");
         }
         sb.deleteCharAt(sb.length() - 1);
         return sb.toString();

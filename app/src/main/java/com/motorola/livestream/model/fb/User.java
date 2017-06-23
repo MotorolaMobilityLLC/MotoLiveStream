@@ -7,12 +7,13 @@ public class User {
     private String name;
     private String url;
 
-    private static LruCache<String, String> sUserPhotoCache = new LruCache<String, String>(1024) {
-        @Override
-        protected int sizeOf(String key, String value) {
-            return 1;
-        }
-    };
+    private static final LruCache<String, String> sUserPhotoCache =
+            new LruCache<String, String>(1024) {
+                @Override
+                protected int sizeOf(String key, String value) {
+                    return 1;
+                }
+            };
 
     public User() { }
 
@@ -43,7 +44,7 @@ public class User {
         }
     }
 
-    public static void cacheUserPhoto(String userId, String userPhotoUrl) {
+    private static void cacheUserPhoto(String userId, String userPhotoUrl) {
         synchronized (sUserPhotoCache) {
             sUserPhotoCache.put(userId, userPhotoUrl);
         }

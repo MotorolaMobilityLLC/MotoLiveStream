@@ -35,11 +35,11 @@ public class TimelineAdapter extends BaseRecyclerViewAdapter<TimelinePrivacy> {
 
         holder.getCheckableView(R.id.checkbox_is_picked).setChecked((mSelectedIndex == position));
         holder.getImageView(R.id.item_privacy_icon)
-                .setImageResource(TimelinePrivacyCacheBean.getProvacyIcon(item));
+                .setImageResource(TimelinePrivacyCacheBean.getPrivacyIcon(item));
         holder.getTextView(R.id.timeline_title)
-                .setText(TimelinePrivacyCacheBean.getProvacyTitle(item));
+                .setText(TimelinePrivacyCacheBean.getPrivacyTitle(item));
         holder.getTextView(R.id.timeline_subtitle)
-                .setText(TimelinePrivacyCacheBean.getProvacyDescription(item));
+                .setText(TimelinePrivacyCacheBean.getPrivacyDescription(item));
 
         ImageView rightArrow = holder.getImageView(R.id.right_arrow);
         rightArrow.setVisibility((TimelinePrivacy.CUSTOM == item)

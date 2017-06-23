@@ -13,13 +13,14 @@ import com.motorola.livestream.util.ClosableThread;
 
 public class LiveCountingTimer extends LinearLayout {
 
-    public static final long TIME_COUNTER_INTERVAL = 500L;
+    private static final long TIME_COUNTER_INTERVAL = 500L;
 
+    private String mTimerPreStr;
     private String mTimeStr;
     private TextView mLiveTime;
     private LiveCountingThread mCountingThread;
 
-    private Handler mHandler = new Handler() {
+    private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             setTime(msg.arg1);
@@ -30,6 +31,7 @@ public class LiveCountingTimer extends LinearLayout {
         super(context, attrs);
         View view = View.inflate(context, R.layout.live_tick_timer, this);
         mLiveTime = (TextView) view.findViewById(R.id.live_states);
+        mTimerPreStr = context.getString(R.string.live_label_count_timer);
     }
 
     private String formatTime(int timeInSeconds) {
@@ -48,17 +50,14 @@ public class LiveCountingTimer extends LinearLayout {
     private String formatTimePart(int timePart) {
         String timeStr = String.valueOf(timePart);
         if (timePart < 10) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("0").append(timeStr);
-            return sb.toString();
+            return "0" + timeStr;
         }
         return timeStr;
     }
 
     private void setTime(int timeInSeconds) {
         mTimeStr = formatTime(timeInSeconds);
-        mLiveTime.setText("LIVE ");
-        mLiveTime.append(mTimeStr);
+        mLiveTime.setText(String.format(mTimerPreStr, mTimeStr));
     }
 
     public String getTimeStr() {
@@ -98,7 +97,7 @@ public class LiveCountingTimer extends LinearLayout {
     private class LiveCountingThread extends ClosableThread {
 
         private boolean bIsPaused = false;
-        private Object mLock = new Object();
+        private final Object mLock = new Object();
         private long nRecordingTimeMillis;
 
         public void resumeRecorder() {
@@ -114,10 +113,6 @@ public class LiveCountingTimer extends LinearLayout {
 
         public void pauseRecorder() {
             bIsPaused = true;
-        }
-
-        public boolean isPaused() {
-            return bIsPaused;
         }
 
         @Override

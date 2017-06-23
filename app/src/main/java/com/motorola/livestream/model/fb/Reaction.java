@@ -5,7 +5,6 @@ import com.motorola.livestream.R;
 public class Reaction {
     private String id;
     private String name;
-    private String type;
     private ReactionType reactionType;
 
     public Reaction() { }
@@ -31,7 +30,6 @@ public class Reaction {
     }
 
     public void setType(String type) {
-        this.type = type;
         this.reactionType = ReactionType.valueOf(type);
     }
 

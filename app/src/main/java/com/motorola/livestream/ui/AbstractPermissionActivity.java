@@ -2,7 +2,7 @@ package com.motorola.livestream.ui;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -11,13 +11,13 @@ import java.util.ArrayList;
 
 public abstract class AbstractPermissionActivity extends AppCompatActivity {
 
-    public static final int PERMISSION_REQUEST_STORAGE = 1;
+    private static final int PERMISSION_REQUEST_STORAGE = 1;
     private boolean mIsPermissionGranted = false;
 
     protected abstract void onGetPermissionsSuccess();
     protected abstract void onGetPermissionsFailure();
 
-    protected void checkAppPermissionGranted() {
+    void checkAppPermissionGranted() {
         String[] permissions = {
                 Manifest.permission.CAMERA,
                 Manifest.permission.RECORD_AUDIO,
@@ -25,14 +25,9 @@ public abstract class AbstractPermissionActivity extends AppCompatActivity {
         requestPermission(permissions, PERMISSION_REQUEST_STORAGE);
     }
 
-    protected void requestPermission(String[] permissions, int requestCode) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            mIsPermissionGranted = true;
-            return;
-        }
-
+    private void requestPermission(String[] permissions, int requestCode) {
         boolean needRequest = false;
-        ArrayList<String> permissionList = new ArrayList<String>();
+        ArrayList<String> permissionList = new ArrayList<>();
         for (String permission : permissions) {
             if (ContextCompat.checkSelfPermission(this, permission)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -65,8 +60,8 @@ public abstract class AbstractPermissionActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                           int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         mIsPermissionGranted = checkPermissionGrantResults(grantResults);
         switch (requestCode) {
             case PERMISSION_REQUEST_STORAGE: {
@@ -79,7 +74,7 @@ public abstract class AbstractPermissionActivity extends AppCompatActivity {
         }
     }
 
-    protected boolean isPermissionGranted() {
+    boolean isPermissionGranted() {
         return mIsPermissionGranted;
     }
 }

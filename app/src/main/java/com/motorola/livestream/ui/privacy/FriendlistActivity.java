@@ -15,9 +15,9 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.motorola.livestream.util.FbPermission;
 
-import java.util.Arrays;
+import java.util.Collections;
 
-public class FriendlistActivity extends AppCompatActivity {
+public class FriendListActivity extends AppCompatActivity {
 
     private CallbackManager mCallbackManager;
 
@@ -25,10 +25,12 @@ public class FriendlistActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         //fbLogin();
-        showFriendlistFragment();
+        showFriendListFragment();
     }
 
     @Override
@@ -52,17 +54,17 @@ public class FriendlistActivity extends AppCompatActivity {
         mCallbackManager = CallbackManager.Factory.create();
 
         if (hasPermission()) {
-            showFriendlistFragment();
+            showFriendListFragment();
             return;
         }
 
         LoginManager.getInstance().logInWithReadPermissions(this,
-                Arrays.asList(FbPermission.READ_CUSTOM_FRIENDLIST));
+                Collections.singletonList(FbPermission.READ_CUSTOM_FRIEND_LIST));
         LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.d("Facebook", "Login onSuccess");
-                showFriendlistFragment();
+                showFriendListFragment();
             }
 
             @Override
@@ -78,12 +80,12 @@ public class FriendlistActivity extends AppCompatActivity {
     }
     private boolean hasPermission() {
         return AccessToken.getCurrentAccessToken()
-                .getPermissions().contains(FbPermission.READ_CUSTOM_FRIENDLIST);
+                .getPermissions().contains(FbPermission.READ_CUSTOM_FRIEND_LIST);
     }
 
-    private void showFriendlistFragment() {
+    private void showFriendListFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(android.R.id.content, FriendlistFragment.newInstance())
+        transaction.add(android.R.id.content, FriendListFragment.newInstance())
                 .commit();
     }
 }

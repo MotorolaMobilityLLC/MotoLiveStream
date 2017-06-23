@@ -20,7 +20,7 @@ import com.motorola.livestream.R;
 import com.motorola.livestream.model.fb.FriendList;
 import com.motorola.livestream.model.fb.TimelinePrivacy;
 import com.motorola.livestream.ui.adapter.BaseRecyclerViewAdapter;
-import com.motorola.livestream.ui.adapter.FriendlistAdapter;
+import com.motorola.livestream.ui.adapter.FriendListAdapter;
 import com.motorola.livestream.util.FbUtil;
 import com.motorola.livestream.util.Log;
 import com.motorola.livestream.viewcache.ViewCacheManager;
@@ -29,32 +29,30 @@ import com.motorola.livestream.viewcache.fb.TimelinePrivacyCacheBean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FriendlistFragment extends Fragment {
-    private static final String LOG_TAG = "FriendlistFragment";
+public class FriendListFragment extends Fragment {
+    private static final String LOG_TAG = "FriendListFragment";
 
     private View mLoadingLayout;
     private View mEmptyLayout;
     private TextView mEmptyText;
     private RecyclerView mRecyclerView;
-    private FriendlistAdapter mAdapter;
+    private FriendListAdapter mAdapter;
 
     private TimelinePrivacyCacheBean mPrivacyCacheBean = null;
-    private SparseArrayCompat<Boolean> mSelectedIndex = new SparseArrayCompat<>();
+    private final SparseArrayCompat<Boolean> mSelectedIndex = new SparseArrayCompat<>();
 
-    private BaseRecyclerViewAdapter.OnItemClickListener mOnItemClickListener =
-            (ViewGroup parent, View view, int position) -> {
-                onFriendlistItemSelected(position);
-            };
+    private final BaseRecyclerViewAdapter.OnItemClickListener mOnItemClickListener =
+            (ViewGroup parent, View view, int position) -> onFriendListItemSelected(position);
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public FriendlistFragment() {
+    public FriendListFragment() {
     }
 
-    public static FriendlistFragment newInstance() {
-        return new FriendlistFragment();
+    public static FriendListFragment newInstance() {
+        return new FriendListFragment();
     }
 
     @Override
@@ -66,11 +64,11 @@ public class FriendlistFragment extends Fragment {
 
         mLoadingLayout = view.findViewById(R.id.loading_data);
         mEmptyLayout = view.findViewById(R.id.empty_layout);
-        mEmptyText = (TextView) mEmptyLayout.findViewById(R.id.empty_textview);
+        mEmptyText = (TextView) mEmptyLayout.findViewById(R.id.empty_text_view);
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.listFriendlist);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.listFriendList);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        mAdapter = new FriendlistAdapter(mRecyclerView, mOnItemClickListener);
+        mAdapter = new FriendListAdapter(mRecyclerView, mOnItemClickListener);
         mRecyclerView.setAdapter(mAdapter);
 
         return view;
@@ -90,7 +88,7 @@ public class FriendlistFragment extends Fragment {
         FbUtil.getFriendList(new FbUtil.OnListRetrievedListener<FriendList>() {
             @Override
             public void onSuccess(List<FriendList> dataList) {
-                if (FriendlistFragment.this.getActivity() != null) {
+                if (FriendListFragment.this.getActivity() != null) {
                     mLoadingLayout.setVisibility(View.GONE);
                     if (dataList.size() > 0) {
                         mEmptyLayout.setVisibility(View.GONE);
@@ -99,7 +97,7 @@ public class FriendlistFragment extends Fragment {
                     } else {
                         mRecyclerView.setVisibility(View.GONE);
                         mEmptyLayout.setVisibility(View.VISIBLE);
-                        mEmptyText.setText(R.string.no_friendlist_warning);
+                        mEmptyText.setText(R.string.no_friend_list_warning);
                     }
                 }
             }
@@ -107,7 +105,7 @@ public class FriendlistFragment extends Fragment {
             @Override
             public void onError(Exception exp) {
                 Log.d(LOG_TAG, "on error: " + exp);
-                if (FriendlistFragment.this.getActivity() != null) {
+                if (FriendListFragment.this.getActivity() != null) {
                     mLoadingLayout.setVisibility(View.GONE);
                     mEmptyLayout.setVisibility(View.VISIBLE);
                 }
@@ -138,23 +136,23 @@ public class FriendlistFragment extends Fragment {
     }
 
     private void initRecyclerViewByData(List<FriendList> friendList) {
-        List<String> selectedFriendlistIds = mPrivacyCacheBean.getPrivacyCustomFriendlist();
+        List<String> selectedFriendListIds = mPrivacyCacheBean.getCustomFriendList();
         mSelectedIndex.clear();
-        for (String friendlisId : selectedFriendlistIds) {
+        for (String friendListId : selectedFriendListIds) {
             for (int i = 0, n = friendList.size(); i < n; i++) {
-                if (friendlisId.equals(friendList.get(i).getId())) {
+                if (friendListId.equals(friendList.get(i).getId())) {
                     mSelectedIndex.put(i, Boolean.TRUE);
                     break;
                 }
             }
         }
 
-        mAdapter.setFriendlists(friendList, mSelectedIndex);
+        mAdapter.setFriendLists(friendList, mSelectedIndex);
         // Disable menu item "Done" if no friend list found
         getActivity().invalidateOptionsMenu();
     }
 
-    private void onFriendlistItemSelected(int position) {
+    private void onFriendListItemSelected(int position) {
         if (mSelectedIndex.get(position, false)) {
             mSelectedIndex.remove(position);
         } else {
@@ -171,21 +169,21 @@ public class FriendlistFragment extends Fragment {
             return;
         }
 
-        List<String> friendlists = new ArrayList<>(mSelectedIndex.size());
+        List<String> friendLists = new ArrayList<>(mSelectedIndex.size());
         StringBuilder sb = new StringBuilder();
         boolean deleteLastChar = false;
         for (int i = 0; i < n; i++) {
-            FriendList tmpFriendlist = mAdapter.getItem(mSelectedIndex.keyAt(i));
-            friendlists.add(tmpFriendlist.getId());
-            sb.append(tmpFriendlist.getName()).append(",");
+            FriendList tmpFriendList = mAdapter.getItem(mSelectedIndex.keyAt(i));
+            friendLists.add(tmpFriendList.getId());
+            sb.append(tmpFriendList.getName()).append(",");
             deleteLastChar = true;
         }
         if (deleteLastChar) {
             sb.deleteCharAt(sb.length() - 1);
         }
         mPrivacyCacheBean.setPrivacy(TimelinePrivacy.CUSTOM);
-        mPrivacyCacheBean.setPrivacyCustomFriendlist(friendlists);
-        mPrivacyCacheBean.setPrivacyCustomFriendlistDisplay(sb.toString());
+        mPrivacyCacheBean.setCustomFriendList(friendLists);
+        mPrivacyCacheBean.setCustomFriendListDisplay(sb.toString());
 
         getActivity().setResult(Activity.RESULT_OK);
         getActivity().finish();

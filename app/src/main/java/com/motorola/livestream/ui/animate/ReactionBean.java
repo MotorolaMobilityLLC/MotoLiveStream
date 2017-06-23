@@ -14,15 +14,15 @@ import android.util.SparseArray;
 
 import java.util.Random;
 
-public class ReactionBean {
+class ReactionBean {
 
     private static final SparseArray<Bitmap> mReactionBitmapCache = new SparseArray<>();
     private static int lastReactionHeight = 0;
 
-    public Point mPoint;
+    private Point mPoint;
     private ValueAnimator mMoveAnim;
     private Bitmap mBitmap;
-    private Matrix mMatrix = new Matrix();
+    private final Matrix mMatrix = new Matrix();
     public boolean isAnimEnd = false;
 
     public ReactionBean(Context context, int resId, ReactionView reactionView) {
@@ -33,7 +33,7 @@ public class ReactionBean {
         }
 
         int bitmapHeight = mBitmap.getHeight();
-        int randomHeight = 0;
+        int randomHeight;
         while (true) {
             randomHeight = new Random().nextInt((reactionView.getHeight() - bitmapHeight));
             // Be sure the adjacent reaction won't cover each other
@@ -72,9 +72,10 @@ public class ReactionBean {
     private void init(Point startPoint, Point endPoint) {
         mMoveAnim = ValueAnimator.ofObject(new MoveEvaluator(), startPoint, endPoint);
         mMoveAnim.setDuration(3000L);
-        mMoveAnim.addUpdateListener((ValueAnimator animation) -> {
-            mPoint = (Point) animation.getAnimatedValue();
-        });
+
+        mMoveAnim.addUpdateListener((ValueAnimator animation) ->
+                mPoint = (Point) animation.getAnimatedValue());
+
         mMoveAnim.addListener(new ValueAnimator.AnimatorListener() {
 
             @Override

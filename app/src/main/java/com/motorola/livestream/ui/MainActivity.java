@@ -15,14 +15,14 @@ import com.facebook.login.LoginResult;
 import com.motorola.livestream.util.FbPermission;
 import com.motorola.livestream.util.Log;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 public class MainActivity extends AbstractPermissionActivity {
 
     private static final String TAG = "Login";
 
     private CallbackManager mCallbackManager;
-    private Handler mHandler = new Handler() {
+    private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             handleFbLoginProcedure();
@@ -60,8 +60,8 @@ public class MainActivity extends AbstractPermissionActivity {
     private void handleFbLoginProcedure() {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         if (accessToken == null || accessToken.isExpired()
-                || !accessToken.getPermissions().contains(FbPermission.READ_CUSTOM_FRIENDLIST)) {
-            loginToFacebook(FbPermission.READ_CUSTOM_FRIENDLIST);
+                || !accessToken.getPermissions().contains(FbPermission.READ_CUSTOM_FRIEND_LIST)) {
+            loginToFacebook(FbPermission.READ_CUSTOM_FRIEND_LIST);
         } else if (!accessToken.getPermissions().contains(FbPermission.PUBLISH_ACTION)) {
             loginToFacebook(FbPermission.PUBLISH_ACTION);
         } else {
@@ -74,10 +74,12 @@ public class MainActivity extends AbstractPermissionActivity {
 
     private void loginToFacebook(String permission) {
         if (FbPermission.PUBLISH_ACTION.equals(permission)) {
-            LoginManager.getInstance().logInWithPublishPermissions(this, Arrays.asList(permission));
+            LoginManager.getInstance().
+                    logInWithPublishPermissions(this, Collections.singletonList(permission));
             LoginManager.getInstance().setDefaultAudience(DefaultAudience.FRIENDS);
         } else {
-            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList(permission));
+            LoginManager.getInstance().
+                    logInWithReadPermissions(this, Collections.singletonList(permission));
         }
         LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override

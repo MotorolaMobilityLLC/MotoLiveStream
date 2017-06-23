@@ -5,7 +5,7 @@
     android:layout_alignParentBottom="true"
     android:paddingStart="@dimen/top_layout_margin"
     android:paddingEnd="@dimen/top_layout_margin"
-    android:background="#66000000">
+    android:background="@color/black_overlay">
 
     <TextView
         android:id="@+id/label_golive"
@@ -13,8 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/live_layout_settings_child_margin_vertical"
-        android:text="GO LIVE"
-        android:textSize="@dimen/text_size_medium"/>
+        android:text="@string/live_label_go_live"
+        android:textSize="@dimen/text_size_medium"
+        android:textAllCaps="true"/>
 
     <RelativeLayout
         android:id="@+id/live_btn"
@@ -38,7 +39,7 @@
             android:layout_height="@dimen/button_size"
             android:layout_centerVertical="true"
             android:drawablePadding="@dimen/live_layout_margin_vertical"
-            android:layout_toLeftOf="@id/btn_go_live"
+            android:layout_toStartOf="@id/btn_go_live"
             android:layout_marginEnd="@dimen/live_layout_margin"
 
             android:background="@drawable/btn_bg"/>
