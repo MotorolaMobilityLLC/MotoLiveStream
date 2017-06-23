@@ -24,15 +24,15 @@ public class ReactionView extends SurfaceView implements SurfaceHolder.Callback 
 
     private static final int MSG_ADD_REACTION_ANIM = 0x101;
 
-    private SurfaceHolder mSurfaceHolder;
-    private Paint mPaint;
-    private List<ReactionBean> mReactions;
-    private List<Reaction> mSrcReactions;
+    private final SurfaceHolder mSurfaceHolder;
+    private final Paint mPaint;
+    private final List<ReactionBean> mReactions;
+    private final List<Reaction> mSrcReactions;
 
     //private GetReactionThread mGetReactionThread;
     private DrawThread mDrawThread;
 
-    private Handler mHandler = new Handler() {
+    private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -119,9 +119,7 @@ public class ReactionView extends SurfaceView implements SurfaceHolder.Callback 
 
     public void stop() {
         if (mDrawThread != null) {
-            for (ReactionBean reactionBean : mReactions) {
-                reactionBean.pause();
-            }
+            mReactions.forEach(ReactionBean::pause);
             mDrawThread.isRun = false;
             mDrawThread = null;
 
@@ -161,9 +159,7 @@ public class ReactionView extends SurfaceView implements SurfaceHolder.Callback 
                                 needRemoveList.add(reactionBean);
                             }
                         }
-                        for (ReactionBean reactionBean : needRemoveList) {
-                            mReactions.remove(reactionBean);
-                        }
+                        needRemoveList.forEach(mReactions::remove);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

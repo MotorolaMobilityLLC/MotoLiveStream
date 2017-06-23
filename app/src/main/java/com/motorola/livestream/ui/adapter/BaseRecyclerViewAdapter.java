@@ -16,10 +16,10 @@ import java.util.List;
 public abstract class BaseRecyclerViewAdapter<T> extends
         RecyclerView.Adapter<BaseRecyclerViewAdapter.BaseRecyclerViewHolder> {
 
-    protected Context mContext;
-    protected List<T> mData;
-    protected int mItemLayoutId;
-    protected RecyclerView mRecyclerView;
+    final Context mContext;
+    private List<T> mData;
+    private int mItemLayoutId;
+    final RecyclerView mRecyclerView;
     private OnItemClickListener mOnItemClickListener;
 
     private BaseRecyclerViewAdapter(RecyclerView recyclerView) {
@@ -28,7 +28,7 @@ public abstract class BaseRecyclerViewAdapter<T> extends
         mData = new ArrayList<>();
     }
 
-    public BaseRecyclerViewAdapter(RecyclerView recyclerView, int layoutId, OnItemClickListener listener) {
+    BaseRecyclerViewAdapter(RecyclerView recyclerView, int layoutId, OnItemClickListener listener) {
         this(recyclerView);
         mItemLayoutId = layoutId;
         mOnItemClickListener = listener;
@@ -56,7 +56,7 @@ public abstract class BaseRecyclerViewAdapter<T> extends
         return mData.get(position);
     }
 
-    protected void addData(List<T> data){
+    void addData(List<T> data){
         if (data == null) {
             return;
         }
@@ -77,28 +77,28 @@ public abstract class BaseRecyclerViewAdapter<T> extends
     public static class BaseRecyclerViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
 
-        protected RecyclerView mRecyclerView;
-        protected final SparseArrayCompat<View> mViews = new SparseArrayCompat<View>();
-        protected OnItemClickListener mOnItemClickListener;
-        protected int mPosition;
+        final RecyclerView mRecyclerView;
+        final SparseArrayCompat<View> mViews = new SparseArrayCompat<>();
+        final OnItemClickListener mOnItemClickListener;
+        int mPosition;
 
-        public BaseRecyclerViewHolder(RecyclerView recylerView, View itemView, OnItemClickListener listener) {
+        public BaseRecyclerViewHolder(RecyclerView recyclerView, View itemView, OnItemClickListener listener) {
             super(itemView);
-            mRecyclerView = recylerView;
+            mRecyclerView = recyclerView;
             mOnItemClickListener = listener;
 
             itemView.setOnClickListener(this);
         }
 
-        protected ImageView getImageView(int viewId) {
+        ImageView getImageView(int viewId) {
             return (ImageView) getView(viewId);
         }
 
-        protected TextView getTextView(int viewId) {
+        TextView getTextView(int viewId) {
             return (TextView) getView(viewId);
         }
 
-        protected ToggleButton getCheckableView(int viewId) {
+        ToggleButton getCheckableView(int viewId) {
             return (ToggleButton) getView(viewId);
         }
 
@@ -111,7 +111,7 @@ public abstract class BaseRecyclerViewAdapter<T> extends
             return view;
         }
 
-        protected void setPosition(int position) {
+        void setPosition(int position) {
             mPosition = position;
         }
 

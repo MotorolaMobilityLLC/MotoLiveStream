@@ -81,8 +81,8 @@ public class FbUtil {
         getFriendList(listener, userId, true);
     }
 
-    public static void getFriendList(OnListRetrievedListener<FriendList> listener, String userId,
-                                     boolean onlyUserCreated) {
+    private static void getFriendList(OnListRetrievedListener<FriendList> listener, String userId,
+                                      boolean onlyUserCreated) {
         Bundle parameters = new Bundle();
         parameters.putString("fields", "id,name");
         if (onlyUserCreated) {

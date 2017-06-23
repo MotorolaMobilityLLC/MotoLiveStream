@@ -63,6 +63,7 @@ import net.ossrs.yasea.SrsRecordHandler;
 import java.io.IOException;
 import java.net.SocketException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -116,14 +117,11 @@ public class LiveMainFragment extends Fragment
     private TextView mLiveViews;
 
     private View mResultLayout;
-    private Button mBtnPostLive;
-    private Button mBtnDelLive;
     private TextView mLiveResultPrivacy;
     private ImageView mResultPrivacyIcon;
 
     private View mCommentLayout;
     private ReactionView mReactionView;
-    private RecyclerView mCommentListView;
     private CommentListAdapter mCommentAdapter;
 
     private TimelinePrivacyCacheBean mPrivacyCacheBean = null;
@@ -132,7 +130,7 @@ public class LiveMainFragment extends Fragment
     private boolean mIsOnLive = false;
 
     private Timer mLiveCommentsTimer;
-    private OnPagedListRetrievedListener<Comment> mLiveCommentListener =
+    private final OnPagedListRetrievedListener<Comment> mLiveCommentListener =
             new OnPagedListRetrievedListener<Comment>() {
                 @Override
                 public void onSuccess(List<Comment> dataList, Cursors cursors, int totalCount) {
@@ -169,7 +167,7 @@ public class LiveMainFragment extends Fragment
             };
 
     private Timer mLiveViewsTimer;
-    private OnDataRetrievedListener<LiveViews> mLiveViewsListener =
+    private final OnDataRetrievedListener<LiveViews> mLiveViewsListener =
             new OnDataRetrievedListener<LiveViews>() {
                 @Override
                 public void onSuccess(LiveViews data) {
@@ -187,7 +185,7 @@ public class LiveMainFragment extends Fragment
             };
 
     private Timer mLiveReactionsTimer;
-    private OnPagedListRetrievedListener<Reaction> mLiveReactionsListener =
+    private final OnPagedListRetrievedListener<Reaction> mLiveReactionsListener =
             new OnPagedListRetrievedListener<Reaction>() {
                 @Override
                 public void onSuccess(List<Reaction> dataList, Cursors cursors, int totalCount) {
@@ -209,7 +207,7 @@ public class LiveMainFragment extends Fragment
                 }
             };
 
-    private Handler mHandler = new Handler() {
+    private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -233,7 +231,7 @@ public class LiveMainFragment extends Fragment
         }
     };
 
-    private DialogInterface.OnClickListener mResumeDialogListener =
+    private final DialogInterface.OnClickListener mResumeDialogListener =
             (DialogInterface dialog, int which) -> {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
@@ -372,7 +370,7 @@ public class LiveMainFragment extends Fragment
         mTopLayout.findViewById(R.id.btn_record_mute).setOnClickListener(this);
 
         mLiveSettings = view.findViewById(R.id.layout_live_settings);
-        // User infos
+        // User information
         View userInfoLayout = mLiveSettings.findViewById(R.id.layout_user_info);
         userInfoLayout.setOnClickListener(this);
         mUserAvatar = (ImageView) userInfoLayout.findViewById(R.id.user_avatar);
@@ -404,10 +402,8 @@ public class LiveMainFragment extends Fragment
         mLiveViews = (TextView) mLiveInteract.findViewById(R.id.live_views_view);
 
         mResultLayout = view.findViewById(R.id.layout_live_result);
-        mBtnPostLive = (Button) mResultLayout.findViewById(R.id.btn_post_live);
-        mBtnPostLive.setOnClickListener(this);
-        mBtnDelLive = (Button) mResultLayout.findViewById(R.id.btn_delete_live);
-        mBtnDelLive.setOnClickListener(this);
+        mResultLayout.findViewById(R.id.btn_post_live).setOnClickListener(this);
+        mResultLayout.findViewById(R.id.btn_delete_live).setOnClickListener(this);
         View resultPrivacyView = view.findViewById(R.id.result_privacy_setting);
         resultPrivacyView.setOnClickListener(this);
         mLiveResultPrivacy = (TextView) mResultLayout.findViewById(R.id.privacy_view);
@@ -415,10 +411,10 @@ public class LiveMainFragment extends Fragment
 
         mCommentLayout = view.findViewById(R.id.layout_live_comments);
         mReactionView = (ReactionView) mCommentLayout.findViewById(R.id.reaction_view);
-        mCommentListView = (RecyclerView) mCommentLayout.findViewById(R.id.comment_list);
-        mCommentListView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        mCommentAdapter = new CommentListAdapter(mCommentListView);
-        mCommentListView.setAdapter(mCommentAdapter);
+        RecyclerView commentListView = (RecyclerView) mCommentLayout.findViewById(R.id.comment_list);
+        commentListView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        mCommentAdapter = new CommentListAdapter(commentListView);
+        commentListView.setAdapter(mCommentAdapter);
     }
 
     private void updateUserInfo(Profile profile) {
@@ -499,13 +495,13 @@ public class LiveMainFragment extends Fragment
                     .getCacheFromTag(ViewCacheManager.FB_TIMELINE_PRIVACY);
         }
 
-        mPrivacyIcon.setImageResource(mPrivacyCacheBean.getProvacyIcon(false));
+        mPrivacyIcon.setImageResource(mPrivacyCacheBean.getPrivacyIcon(false));
         switch (mPrivacyCacheBean.getPrivacy()) {
             case CUSTOM:
-                mPrivacyTitle.setText(mPrivacyCacheBean.getPrivacyCustomFriendlistDisplay());
+                mPrivacyTitle.setText(mPrivacyCacheBean.getCustomFriendListDisplay());
                 break;
             default:
-                mPrivacyTitle.setText(mPrivacyCacheBean.getProvacyTitle());
+                mPrivacyTitle.setText(mPrivacyCacheBean.getPrivacyTitle());
         }
     }
 
@@ -515,19 +511,21 @@ public class LiveMainFragment extends Fragment
                     .getCacheFromTag(ViewCacheManager.FB_TIMELINE_PRIVACY);
         }
 
-        mResultPrivacyIcon.setImageResource(mPrivacyCacheBean.getProvacyIcon(false));
+        mResultPrivacyIcon.setImageResource(mPrivacyCacheBean.getPrivacyIcon(false));
         switch (mPrivacyCacheBean.getPrivacy()) {
             case CUSTOM:
                 mLiveResultPrivacy.setText(
-                        mPrivacyCacheBean.getPrivacyCustomFriendlistDisplay());
+                        mPrivacyCacheBean.getCustomFriendListDisplay());
                 break;
             default:
-                mLiveResultPrivacy.setText(mPrivacyCacheBean.getProvacyTitle());
+                mLiveResultPrivacy.setText(mPrivacyCacheBean.getPrivacyTitle());
         }
     }
 
     private void handleException(Exception e) {
         try {
+            e.printStackTrace();
+
             mPublisher.stopPublish();
             mPublisher.stopRecord();
         } catch (Exception e1) {
@@ -547,9 +545,7 @@ public class LiveMainFragment extends Fragment
         new AlertDialog.Builder(activity)
                 .setMessage(ssb)
                 .setPositiveButton(R.string.live_dlg_btn_logout,
-                        (DialogInterface dialog, int which) -> {
-                            logoutFromFacebook(false);
-                        })
+                        (DialogInterface dialog, int which) -> logoutFromFacebook(false))
                 .show();
     }
 
@@ -670,15 +666,6 @@ public class LiveMainFragment extends Fragment
             mCommentAdapter.clearData();
             mCommentAdapter.notifyDataSetChanged();
         }
-        if (mLiveCommentsTimer == null) {
-            mLiveCommentsTimer = new Timer();
-        }
-        if (mLiveViewsTimer == null) {
-            mLiveViewsTimer = new Timer();
-        }
-        if (mLiveReactionsTimer == null) {
-            mLiveReactionsTimer = new Timer();
-        }
 
         mLoadingLayout.setVisibility(View.GONE);
 
@@ -739,7 +726,7 @@ public class LiveMainFragment extends Fragment
         }
 
         if (mLiveViewsTimer != null) {
-            mLiveViewsTimer.cancel();;
+            mLiveViewsTimer.cancel();
             mLiveViewsTimer = null;
         }
 
@@ -808,14 +795,13 @@ public class LiveMainFragment extends Fragment
         if (mLiveViewsTimer == null) {
             mLiveViewsTimer = new Timer();
         }
-        if (mLiveViewsTimer != null) {
-            mLiveViewsTimer.schedule(
-                    new TimerTask() {
-                        public void run() {
-                            LiveMainFragment.this.startGetViews();
-                        }
-                    }, LIVE_INFO_REFRESH_INTERVAL);
-        }
+
+        mLiveViewsTimer.schedule(
+                new TimerTask() {
+                    public void run() {
+                        LiveMainFragment.this.startGetViews();
+                    }
+                }, LIVE_INFO_REFRESH_INTERVAL);
     }
 
     private void startGetViews() {
@@ -833,14 +819,13 @@ public class LiveMainFragment extends Fragment
         if (mLiveCommentsTimer == null) {
             mLiveCommentsTimer = new Timer();
         }
-        if (mLiveCommentsTimer != null) {
-            mLiveCommentsTimer.schedule(
-                    new TimerTask() {
-                        public void run() {
-                            LiveMainFragment.this.startGetComment();
-                        }
-                    }, LIVE_INFO_REFRESH_INTERVAL);
-        }
+
+        mLiveCommentsTimer.schedule(
+                new TimerTask() {
+                    public void run() {
+                        LiveMainFragment.this.startGetComment();
+                    }
+                }, LIVE_INFO_REFRESH_INTERVAL);
     }
 
     private void startGetComment() {
@@ -860,15 +845,14 @@ public class LiveMainFragment extends Fragment
         if (mLiveReactionsTimer == null) {
             mLiveReactionsTimer = new Timer();
         }
-        if (mLiveReactionsTimer != null) {
-            mLiveReactionsTimer.schedule(
-                    new TimerTask() {
-                        @Override
-                        public void run() {
-                            LiveMainFragment.this.startGetReaction();
-                        }
-                    }, LIVE_INFO_REFRESH_INTERVAL);
-        }
+
+        mLiveReactionsTimer.schedule(
+                new TimerTask() {
+                    @Override
+                    public void run() {
+                        LiveMainFragment.this.startGetReaction();
+                    }
+                }, LIVE_INFO_REFRESH_INTERVAL);
     }
 
     private void startGetReaction() {
@@ -1066,16 +1050,16 @@ public class LiveMainFragment extends Fragment
 
     @Override
     public void onRtmpVideoFpsChanged(double fps) {
-        Log.d(LOG_TAG, String.format("RTMP output fps changed to %f", fps));
+        Log.d(LOG_TAG, String.format(Locale.ENGLISH, "RTMP output fps changed to %f", fps));
     }
 
     @Override
     public void onRtmpVideoBitrateChanged(double bitrate) {
         int rate = (int) bitrate;
         if (rate / 1000 > 0) {
-            Log.i(LOG_TAG, String.format("Video bitrate: %f kbps", bitrate / 1000));
+            Log.i(LOG_TAG, String.format(Locale.ENGLISH, "Video bitrate: %f kbps", bitrate / 1000));
         } else {
-            Log.i(LOG_TAG, String.format("Video bitrate: %d bps", rate));
+            Log.i(LOG_TAG, String.format(Locale.ENGLISH, "Video bitrate: %d bps", rate));
         }
     }
 
@@ -1083,9 +1067,9 @@ public class LiveMainFragment extends Fragment
     public void onRtmpAudioBitrateChanged(double bitrate) {
         int rate = (int) bitrate;
         if (rate / 1000 > 0) {
-            Log.i(LOG_TAG, String.format("Audio bitrate: %f kbps", bitrate / 1000));
+            Log.i(LOG_TAG, String.format(Locale.ENGLISH, "Audio bitrate: %f kbps", bitrate / 1000));
         } else {
-            Log.i(LOG_TAG, String.format("Audio bitrate: %d bps", rate));
+            Log.i(LOG_TAG, String.format(Locale.ENGLISH, "Audio bitrate: %d bps", rate));
         }
     }
 

@@ -161,9 +161,4 @@ public class LiveInfoCacheBean implements ViewCacheBean {
 
         clearReactions();
     }
-
-    @Override
-    public void save(String tag) {
-
-    }
 }

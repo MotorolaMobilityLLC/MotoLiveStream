@@ -19,14 +19,14 @@ import java.util.List;
 
 public class CommentListAdapter extends BaseRecyclerViewAdapter<Comment> {
 
-    private Handler mHandler = new Handler() {
+    private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             CommentListAdapter.this.notifyDataSetChanged();
         }
     };
 
-    private RequestOptions mRequestOptions;
+    private final RequestOptions mRequestOptions;
 
     public CommentListAdapter(RecyclerView recyclerView) {
         super(recyclerView, R.layout.live_comment_item, null);
@@ -80,8 +80,8 @@ public class CommentListAdapter extends BaseRecyclerViewAdapter<Comment> {
 
     private static class GetUserPhotoTask implements Runnable {
 
-        private Handler mHandler;
-        private User mUser;
+        private final Handler mHandler;
+        private final User mUser;
 
         public GetUserPhotoTask(Handler handler, User user) {
             mHandler = handler;

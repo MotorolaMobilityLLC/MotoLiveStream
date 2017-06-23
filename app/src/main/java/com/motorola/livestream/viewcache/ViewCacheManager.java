@@ -8,7 +8,7 @@ import com.motorola.livestream.viewcache.fb.TimelinePrivacyCacheBean;
 import java.util.HashMap;
 
 public class ViewCacheManager {
-    public static final String FB = "1";
+    private static final String FB = "1";
     public static final String FB_TIMELINE_PRIVACY = "11";
     public static final String FB_LIVE_INFO = "12";
 

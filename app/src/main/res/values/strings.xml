@@ -12,8 +12,8 @@
 
     <string name="live_description_hint">Description</string>
 
-    <string name="failed_getting_friendlist">Failed to get your friend list. Please try again later.</string>
-    <string name="no_friendlist_warning">You have not create any friend list yet.</string>
+    <string name="failed_getting_friend_list">Failed to get your friend list. Please try again later.</string>
+    <string name="no_friend_list_warning">You have not create any friend list yet.</string>
 
     <string name="post_live_privacy_description">Post your video replay on your facebook timeline so that people can watch it back.</string>
     <!-- Live stream duration -->
@@ -27,6 +27,9 @@
     <string name="privacy_self_description">Only me</string>
     <string name="privacy_custom">Specific friends</string>
     <string name="privacy_custom_description">Only show to some friends</string>
+
+    <string name="live_label_go_live">Go Live</string>
+    <string name="live_label_count_timer" translatable="false">"LIVE %s"</string>
 
     <string name="live_popup_dlg_title">Your live stream has been paused</string>
     <string name="live_popup_dlg_content">Do you want to continue your live stream?</string>

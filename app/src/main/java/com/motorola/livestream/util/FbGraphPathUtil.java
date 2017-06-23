@@ -2,7 +2,9 @@ package com.motorola.livestream.util;
 
 import android.text.TextUtils;
 
-public class FbGraphPathUtil {
+import java.util.Locale;
+
+class FbGraphPathUtil {
 
     private static final String USER_PHOTO_PATH = "/%1s/picture?width=%2d&height=%3d";
     private static final String FRIEND_LIST_PATH = "/%s/friendlists";
@@ -14,7 +16,7 @@ public class FbGraphPathUtil {
     private static final String PERMISSION_PATH = "/%1s/permissions/%2s";
 
     public static String getUserPhotoPath(String userId, int size) {
-        return String.format(USER_PHOTO_PATH, userId, size, size);
+        return String.format(Locale.ENGLISH, USER_PHOTO_PATH, userId, size, size);
     }
 
     public static String getFriendListsPath(String userId) {

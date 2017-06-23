@@ -31,14 +31,14 @@ public class TimelineFragment extends Fragment {
 
     private TimelineFragment.OnListFragmentDoneListener mListener;
 
-    private BaseRecyclerViewAdapter.OnItemClickListener mOnItemClickListener =
+    private final BaseRecyclerViewAdapter.OnItemClickListener mOnItemClickListener =
             (ViewGroup parent, View view, int position) -> {
 
                 mAdapter.setSelectedIndex(position);
 
                 TimelinePrivacy newPrivacy = mAdapter.getItem(position);
                 if (TimelinePrivacy.CUSTOM == newPrivacy) {
-                    startActivityForResult(new Intent(getActivity(), FriendlistActivity.class),
+                    startActivityForResult(new Intent(getActivity(), FriendListActivity.class),
                             REQUEST_CUSTOM_FRIEND_LIST);
                 } else {
                     mTimelinePrivacyCacheBean.setPrivacy(newPrivacy);
@@ -65,8 +65,10 @@ public class TimelineFragment extends Fragment {
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.listTimeline);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        mTimelinePrivacyCacheBean = (TimelinePrivacyCacheBean) ViewCacheManager.getCacheFromTag(
-                ViewCacheManager.FB_TIMELINE_PRIVACY);
+        if (mTimelinePrivacyCacheBean == null) {
+            mTimelinePrivacyCacheBean = (TimelinePrivacyCacheBean) ViewCacheManager
+                    .getCacheFromTag(ViewCacheManager.FB_TIMELINE_PRIVACY);
+        }
         mAdapter = new TimelineAdapter(mRecyclerView,
                 mTimelinePrivacyCacheBean.getCurrentPrivacyIndex(), mOnItemClickListener);
         mRecyclerView.setAdapter(mAdapter);
@@ -96,7 +98,7 @@ public class TimelineFragment extends Fragment {
         if (REQUEST_CUSTOM_FRIEND_LIST == requestCode) {
             if (resultCode == RESULT_OK) {
                 Log.d(LOG_TAG, "Custom friend list set to: "
-                        + mTimelinePrivacyCacheBean.getPrivacyCustomFriendlistDisplay());
+                        + mTimelinePrivacyCacheBean.getCustomFriendListDisplay());
                 mListener.onListFragmentDone();
             } else {
                 mAdapter.setSelectedIndex(mTimelinePrivacyCacheBean.getCurrentPrivacyIndex());
