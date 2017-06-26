@@ -34,7 +34,7 @@ public class SrsEncoder {
     public static int vOutHeight = 1280;  // Since Y component is quadruple size as U and V component, the stride must be set as 32x
     public static int vBitrate = 1200 * 1024;  // 1200 kbps
     public static final int VFPS = 24;
-    public static final int VGOP = 48;
+    public static final int VGOP = 96;
     public static final int ASAMPLERATE = 44100;
     public static int aChannelConfig = AudioFormat.CHANNEL_IN_STEREO;
     public static final int ABITRATE = 128 * 1024;  // 128 kbps
@@ -325,6 +325,7 @@ public class SrsEncoder {
         // Check video frame cache number to judge the networking situation.
         // Just cache GOP / FPS seconds data according to latency.
         AtomicInteger videoFrameCacheNumber = flvMuxer.getVideoFrameCacheNumber();
+        Log.d(TAG, "onGetRgbaFrame videoFrameCacheNumber = " + videoFrameCacheNumber);
         if (videoFrameCacheNumber != null && videoFrameCacheNumber.get() < VGOP) {
             long pts = System.nanoTime() / 1000 - mPresentTimeUs;
 

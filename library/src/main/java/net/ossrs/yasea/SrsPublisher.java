@@ -4,7 +4,7 @@ import android.media.AudioRecord;
 import android.media.audiofx.AcousticEchoCanceler;
 import android.media.audiofx.AutomaticGainControl;
 
-import com.github.faucamp.simplertmp.RtmpHandler;
+import com.mo.rtmp.RtmpHandler;
 import com.seu.magicfilter.utils.MagicFilterType;
 
 import java.io.File;
@@ -163,7 +163,7 @@ public class SrsPublisher {
     public void startPublish(String rtmpUrl) {
         if (mFlvMuxer != null) {
             mFlvMuxer.start(rtmpUrl);
-            mFlvMuxer.setVideoResolution(mEncoder.getOutputWidth(), mEncoder.getOutputHeight());
+            //mFlvMuxer.setVideoResolution(mEncoder.getOutputWidth(), mEncoder.getOutputHeight());
             startEncode();
         }
     }
