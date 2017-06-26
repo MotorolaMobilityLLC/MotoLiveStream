@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-public class FriendListActivity extends AppCompatActivity {
+public class FriendListsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +16,7 @@ public class FriendListActivity extends AppCompatActivity {
         }
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(android.R.id.content, FriendListFragment.newInstance())
+        transaction.add(android.R.id.content, FriendListsFragment.newInstance())
                 .commit();
     }
 

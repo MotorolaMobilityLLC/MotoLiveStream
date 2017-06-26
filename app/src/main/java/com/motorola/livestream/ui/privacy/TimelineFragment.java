@@ -29,7 +29,7 @@ public class TimelineFragment extends Fragment {
     private TimelinePrivacyCacheBean mTimelinePrivacyCacheBean;
     private TimelineAdapter mAdapter;
 
-    private TimelineFragment.OnListFragmentDoneListener mListener;
+    private OnListFragmentDoneListener mListener;
 
     private final BaseRecyclerViewAdapter.OnItemClickListener mOnItemClickListener =
             (ViewGroup parent, View view, int position) -> {
@@ -38,7 +38,7 @@ public class TimelineFragment extends Fragment {
 
                 TimelinePrivacy newPrivacy = mAdapter.getItem(position);
                 if (TimelinePrivacy.CUSTOM == newPrivacy) {
-                    startActivityForResult(new Intent(getActivity(), FriendListActivity.class),
+                    startActivityForResult(new Intent(getActivity(), FriendListsActivity.class),
                             REQUEST_CUSTOM_FRIEND_LIST);
                 } else {
                     mTimelinePrivacyCacheBean.setPrivacy(newPrivacy);
@@ -101,6 +101,11 @@ public class TimelineFragment extends Fragment {
                         + mTimelinePrivacyCacheBean.getCustomFriendListDisplay());
                 mListener.onListFragmentDone();
             } else {
+                // Reset the previously selected custom friend list
+                mTimelinePrivacyCacheBean.setCustomFriendList(null);
+                mTimelinePrivacyCacheBean.setCustomFriendListDisplay(null);
+
+                // Re-select to the previously selected privacy
                 mAdapter.setSelectedIndex(mTimelinePrivacyCacheBean.getCurrentPrivacyIndex());
             }
         } else {

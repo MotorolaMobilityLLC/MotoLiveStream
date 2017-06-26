@@ -91,7 +91,9 @@ public class TimelinePrivacyCacheBean implements ViewCacheBean {
 
     public void setCustomFriendList(List<String> newList) {
         mCustomFriendList.clear();
-        mCustomFriendList.addAll(newList);
+        if (newList != null) {
+            mCustomFriendList.addAll(newList);
+        }
     }
 
     public String getCustomFriendListDisplay() {

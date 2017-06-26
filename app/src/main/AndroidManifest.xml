@@ -60,7 +60,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/label_activity_timeline_privacy" />
         <activity
-            android:name=".ui.privacy.FriendListActivity"
+            android:name=".ui.privacy.FriendListsActivity"
             android:resizeableActivity="false"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/label_activity_custom_friends" />
