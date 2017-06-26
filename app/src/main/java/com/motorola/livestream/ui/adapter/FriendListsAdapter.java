@@ -8,11 +8,11 @@ import com.motorola.livestream.model.fb.FriendList;
 
 import java.util.List;
 
-public class FriendListAdapter extends BaseRecyclerViewAdapter<FriendList> {
+public class FriendListsAdapter extends BaseRecyclerViewAdapter<FriendList> {
 
     private SparseArrayCompat<Boolean> mSelectedIndex;
 
-    public FriendListAdapter(RecyclerView recyclerView, OnItemClickListener listener) {
+    public FriendListsAdapter(RecyclerView recyclerView, OnItemClickListener listener) {
         super(recyclerView, R.layout.fragment_friendlist_item, listener);
         mSelectedIndex = new SparseArrayCompat<>();
     }
