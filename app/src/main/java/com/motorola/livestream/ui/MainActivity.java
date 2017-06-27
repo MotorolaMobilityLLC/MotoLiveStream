@@ -90,15 +90,16 @@ public class MainActivity extends AbstractPermissionActivity {
 
             @Override
             public void onCancel() {
-                Log.d(TAG, "Login onCancel");
+                Log.w(TAG, "Login onCancel");
                 // Toast.makeText(MainActivity.this, "Login canceled", Toast.LENGTH_SHORT).show();
                 MainActivity.this.finish();
             }
 
             @Override
             public void onError(FacebookException error) {
-                Log.d(TAG, "Login onError: " + error.toString());
+                Log.e(TAG, "Login onError!");
                 // Toast.makeText(MainActivity.this, "Login error", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
                 MainActivity.this.finish();
             }
         });

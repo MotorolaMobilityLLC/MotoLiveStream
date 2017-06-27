@@ -25,7 +25,7 @@ public class Util {
             //return null;
         } else if (number < THOUSAND) {
             return String.valueOf(number);
-        } else if (number < 1000000) {
+        } else if (number < MEGA) {
             return String.format(Locale.ENGLISH, "%.1fK", number / (THOUSAND * 1.0f));
         } else {
             return String.format(Locale.ENGLISH, "%.1fM", number / (MEGA * 1.0f));

@@ -62,7 +62,7 @@ public class LiveInfoCacheBean implements ViewCacheBean {
         // so we need to add some empty comments to the head
         if (mLiveComments.size() < 4) {
             int emptyCommentCount = 4 - mLiveComments.size();
-            ArrayList<Comment> newLiveComments = new ArrayList<>(mLiveComments);
+            List<Comment> newLiveComments = new ArrayList<>(mLiveComments);
             for (int i = 0; i < emptyCommentCount; i++) {
                 newLiveComments.add(0, Comment.EMPTY);
             }

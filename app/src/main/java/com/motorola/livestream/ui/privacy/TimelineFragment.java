@@ -26,7 +26,7 @@ public class TimelineFragment extends Fragment {
 
     private static final int REQUEST_CUSTOM_FRIEND_LIST = 0x101;
 
-    private TimelinePrivacyCacheBean mTimelinePrivacyCacheBean;
+    private TimelinePrivacyCacheBean mPrivacyCacheBean;
     private TimelineAdapter mAdapter;
 
     private OnListFragmentDoneListener mListener;
@@ -41,7 +41,11 @@ public class TimelineFragment extends Fragment {
                     startActivityForResult(new Intent(getActivity(), FriendListsActivity.class),
                             REQUEST_CUSTOM_FRIEND_LIST);
                 } else {
-                    mTimelinePrivacyCacheBean.setPrivacy(newPrivacy);
+                    // Reset the previously selected custom friend list
+                    mPrivacyCacheBean.setCustomFriendList(null);
+                    mPrivacyCacheBean.setCustomFriendListDisplay(null);
+
+                    mPrivacyCacheBean.setPrivacy(newPrivacy);
                     mListener.onListFragmentDone();
                 }
             };
@@ -65,12 +69,12 @@ public class TimelineFragment extends Fragment {
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.listTimeline);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        if (mTimelinePrivacyCacheBean == null) {
-            mTimelinePrivacyCacheBean = (TimelinePrivacyCacheBean) ViewCacheManager
+        if (mPrivacyCacheBean == null) {
+            mPrivacyCacheBean = (TimelinePrivacyCacheBean) ViewCacheManager
                     .getCacheFromTag(ViewCacheManager.FB_TIMELINE_PRIVACY);
         }
         mAdapter = new TimelineAdapter(mRecyclerView,
-                mTimelinePrivacyCacheBean.getCurrentPrivacyIndex(), mOnItemClickListener);
+                mPrivacyCacheBean.getCurrentPrivacyIndex(), mOnItemClickListener);
         mRecyclerView.setAdapter(mAdapter);
 
         return view;
@@ -98,15 +102,15 @@ public class TimelineFragment extends Fragment {
         if (REQUEST_CUSTOM_FRIEND_LIST == requestCode) {
             if (resultCode == RESULT_OK) {
                 Log.d(LOG_TAG, "Custom friend list set to: "
-                        + mTimelinePrivacyCacheBean.getCustomFriendListDisplay());
+                        + mPrivacyCacheBean.getCustomFriendListDisplay());
                 mListener.onListFragmentDone();
             } else {
                 // Reset the previously selected custom friend list
-                mTimelinePrivacyCacheBean.setCustomFriendList(null);
-                mTimelinePrivacyCacheBean.setCustomFriendListDisplay(null);
+                mPrivacyCacheBean.setCustomFriendList(null);
+                mPrivacyCacheBean.setCustomFriendListDisplay(null);
 
                 // Re-select to the previously selected privacy
-                mAdapter.setSelectedIndex(mTimelinePrivacyCacheBean.getCurrentPrivacyIndex());
+                mAdapter.setSelectedIndex(mPrivacyCacheBean.getCurrentPrivacyIndex());
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

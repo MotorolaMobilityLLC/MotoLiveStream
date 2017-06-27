@@ -41,8 +41,8 @@
             android:drawablePadding="@dimen/live_layout_margin_vertical"
             android:layout_toStartOf="@id/btn_go_live"
             android:layout_marginEnd="@dimen/live_layout_margin"
-
-            android:background="@drawable/btn_bg"/>
+            android:background="@drawable/btn_bg"
+            android:visibility="gone"/>
 
         <ImageButton
             android:id="@+id/btn_exit"
