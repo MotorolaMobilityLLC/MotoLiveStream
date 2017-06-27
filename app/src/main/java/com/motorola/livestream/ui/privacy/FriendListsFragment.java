@@ -122,7 +122,7 @@ public class FriendListsFragment extends Fragment {
     public void onPrepareOptionsMenu(Menu menu) {
         MenuItem menuItem = menu.findItem(R.id.done);
         if (menuItem != null) {
-            menuItem.setEnabled((mSelectedIndex.size() > 0));
+            menuItem.setEnabled((mAdapter.getItemCount() > 0));
         }
     }
 
@@ -159,8 +159,6 @@ public class FriendListsFragment extends Fragment {
             mSelectedIndex.put(position, Boolean.TRUE);
         }
         mAdapter.notifyDataSetChanged();
-        // Refresh the option menu item
-        getActivity().invalidateOptionsMenu();
     }
 
     private void saveSelectedFriendList() {

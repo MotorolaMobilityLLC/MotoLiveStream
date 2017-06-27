@@ -110,7 +110,6 @@ public class LiveMainFragment extends Fragment
     private ImageButton mBtnGoLive;
     private TextView mGoLiveLabel;
     private ImageButton mBtnExit;
-    private ImageButton mBtnCapture;
 
     private View mLiveInteract;
     private TextView mLiveComments;
@@ -365,6 +364,7 @@ public class LiveMainFragment extends Fragment
     private void initWidgets(View view) {
         mLoadingLayout = view.findViewById(R.id.create_live_loading);
 
+        // Live top layout
         mTopLayout = view.findViewById(R.id.layout_top);
         mLiveTimer = (LiveCountingTimer) mTopLayout.findViewById(R.id.live_timer_view);
         mTopLayout.findViewById(R.id.btn_record_mute).setOnClickListener(this);
@@ -385,11 +385,10 @@ public class LiveMainFragment extends Fragment
         // Live description input
         mLiveInfoInput = (EditText) mLiveSettings.findViewById(R.id.live_description_input);
 
+        // Go live controller layout
         mGoLiveLayout = view.findViewById(R.id.layout_go_live);
         mBtnGoLive = (ImageButton) mGoLiveLayout.findViewById(R.id.btn_go_live);
         mBtnGoLive.setOnClickListener(this);
-        mBtnCapture = (ImageButton) mGoLiveLayout.findViewById(R.id.btn_capture);
-        mBtnCapture.setOnClickListener(this);
         mGoLiveLayout.findViewById(R.id.btn_switch_camera).setOnClickListener(this);
         mGoLiveLayout.findViewById(R.id.btn_select_camera).setOnClickListener(this);
         mBtnExit = (ImageButton) mGoLiveLayout.findViewById(R.id.btn_exit);
@@ -397,10 +396,12 @@ public class LiveMainFragment extends Fragment
         mGoLiveLabel = (TextView) mGoLiveLayout.findViewById(R.id.label_golive);
         mGoLiveLabel.setVisibility(View.VISIBLE);
 
+        // Live interact layout
         mLiveInteract = view.findViewById(R.id.layout_live_interact);
         mLiveComments = (TextView) mLiveInteract.findViewById(R.id.live_comments_view);
         mLiveViews = (TextView) mLiveInteract.findViewById(R.id.live_views_view);
 
+        // Live result layout
         mResultLayout = view.findViewById(R.id.layout_live_result);
         mResultLayout.findViewById(R.id.btn_post_live).setOnClickListener(this);
         mResultLayout.findViewById(R.id.btn_delete_live).setOnClickListener(this);
@@ -409,6 +410,7 @@ public class LiveMainFragment extends Fragment
         mLiveResultPrivacy = (TextView) mResultLayout.findViewById(R.id.privacy_view);
         mResultPrivacyIcon = (ImageView) mResultLayout.findViewById(R.id.result_privacy_icon);
 
+        // Live comment and reaction layout
         mCommentLayout = view.findViewById(R.id.layout_live_comments);
         mReactionView = (ReactionView) mCommentLayout.findViewById(R.id.reaction_view);
         RecyclerView commentListView = (RecyclerView) mCommentLayout.findViewById(R.id.comment_list);
@@ -557,10 +559,8 @@ public class LiveMainFragment extends Fragment
         new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.live_popup_dlg_title)
                 .setMessage(R.string.live_popup_dlg_content)
-                .setNegativeButton(R.string.live_popup_dlg_btn_finish,
-                        mResumeDialogListener)
-                .setPositiveButton(R.string.live_popup_dlg_btn_resume,
-                        mResumeDialogListener)
+                .setNegativeButton(R.string.live_popup_dlg_btn_finish, mResumeDialogListener)
+                .setPositiveButton(R.string.live_popup_dlg_btn_resume, mResumeDialogListener)
                 .setCancelable(false)
                 .show();
     }
@@ -618,6 +618,9 @@ public class LiveMainFragment extends Fragment
         if (R.id.btn_positive == id) {
             Util.jumpToFacebook(getActivity().getApplicationContext(),
                     mLiveInfoCacheBean.getUser());
+        } else {
+            // If not jump to facebook, resume the camera preview
+            mPublisher.startCamera();
         }
     }
 
@@ -628,6 +631,7 @@ public class LiveMainFragment extends Fragment
 //            return;
 //        }
 
+        // Hide the soft input panel
         InputMethodManager imm =
                 (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(mLiveInfoInput.getWindowToken(), 0);
@@ -660,7 +664,6 @@ public class LiveMainFragment extends Fragment
                     .getCacheFromTag(ViewCacheManager.FB_LIVE_INFO);
         }
         mLiveInfoCacheBean.setLiveInfo(liveInfo);
-        Log.d(LOG_TAG, "onLiveStreamReady: " + mLiveInfoCacheBean.getLiveStreamUrl());
 
         if (mCommentAdapter != null) {
             mCommentAdapter.clearData();
@@ -702,7 +705,6 @@ public class LiveMainFragment extends Fragment
         mBtnGoLive.setSelected(true);
         mGoLiveLabel.setVisibility(View.GONE);
 
-        mBtnCapture.setVisibility(View.GONE);
         mBtnExit.setVisibility(View.GONE);
 
         mPublisher.startPublish(mLiveInfoCacheBean.getLiveStreamUrl());
@@ -787,7 +789,6 @@ public class LiveMainFragment extends Fragment
         mGoLiveLayout.setVisibility(View.VISIBLE);
         mGoLiveLabel.setVisibility(View.VISIBLE);
         mLiveSettings.setVisibility(View.VISIBLE);
-        mBtnCapture.setVisibility(View.VISIBLE);
         mBtnExit.setVisibility(View.VISIBLE);
     }
 
@@ -956,11 +957,24 @@ public class LiveMainFragment extends Fragment
             return;
         }
 
-        LoginManager.getInstance().logOut();
-        if (switchAccount) {
-            getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
-        }
-        getActivity().finish();
+        mLoadingLayout.setVisibility(View.VISIBLE);
+
+        FbUtil.deAuthorize(new OnDataRetrievedListener<Boolean>() {
+            @Override
+            public void onSuccess(Boolean data) {
+                LoginManager.getInstance().logOut();
+                if (switchAccount) {
+                    getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
+                }
+                getActivity().finish();
+            }
+
+            @Override
+            public void onError(Exception exp) {
+                LoginManager.getInstance().logOut();
+                getActivity().finish();
+            }
+        });
     }
 
     // Implementation of View.OnClickListener
@@ -977,9 +991,6 @@ public class LiveMainFragment extends Fragment
             case R.id.btn_switch_camera:
                 mPublisher.switchCameraFace(
                         (mPublisher.getCamraId() + 1) % Camera.getNumberOfCameras());
-                break;
-            case R.id.btn_capture:
-                break;
             case R.id.btn_select_camera:
                 break;
             case R.id.btn_exit:
