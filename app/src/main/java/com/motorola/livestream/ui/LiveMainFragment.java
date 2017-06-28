@@ -3,6 +3,7 @@ package com.motorola.livestream.ui;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Point;
 import android.graphics.Typeface;
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -293,10 +294,11 @@ public class LiveMainFragment extends Fragment
         mPublisher.setEncodeHandler(new SrsEncodeHandler(this));
         mPublisher.setRtmpHandler(new RtmpHandler(this));
         mPublisher.setRecordHandler(new SrsRecordHandler(this));
+        // Get the real screen size and set as preview resolution
         WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-        int width = wm.getDefaultDisplay().getWidth();
-        int height = wm.getDefaultDisplay().getHeight();
-        mPublisher.setPreviewResolution(height, width);
+        Point screenSize = new Point();
+        wm.getDefaultDisplay().getRealSize(screenSize);
+        mPublisher.setPreviewResolution(screenSize.y, screenSize.x);
         mPublisher.setOutputResolution(720, 1280);
         mPublisher.setVideoHDMode();
         mPublisher.switchCameraFace((mPublisher.getCamraId() + 1) % Camera.getNumberOfCameras());
