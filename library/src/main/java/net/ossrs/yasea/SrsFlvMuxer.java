@@ -3,13 +3,14 @@ package net.ossrs.yasea;
 import android.media.MediaCodec;
 import android.media.MediaFormat;
 import android.util.Log;
+
+import com.github.faucamp.simplertmp.DefaultRtmpPublisher;
+import com.github.faucamp.simplertmp.RtmpHandler;
+
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import com.mo.rtmp.RtmpHandler;
-import com.mo.rtmp.RtmpPublisher;
 
 /**
  * Created by winlin on 5/2/15.
@@ -23,8 +24,9 @@ public class SrsFlvMuxer {
     private static final int AUDIO_ALLOC_SIZE = 4 * 1024;
 
     private volatile boolean connected = false;
+    private DefaultRtmpPublisher publisher;
     private RtmpHandler mHandler;
-    private RtmpPublisher moPublisher;
+
     private Thread worker;
     private final Object txFrameLock = new Object();
 
@@ -39,21 +41,21 @@ public class SrsFlvMuxer {
     private static final int VIDEO_TRACK = 100;
     private static final int AUDIO_TRACK = 101;
     private static final String TAG = "SrsFlvMuxer";
-    private AtomicInteger videoFrameNumber = new AtomicInteger(0);
+
     /**
      * constructor.
      * @param handler the rtmp event handler.
      */
     public SrsFlvMuxer(RtmpHandler handler) {
         mHandler = handler;
-        moPublisher = new RtmpPublisher();   //use srs-librtmp to do rtmp push
+        publisher = new DefaultRtmpPublisher(handler);
     }
 
     /**
      * get cached video frame number in publisher
      */
     public AtomicInteger getVideoFrameCacheNumber() {
-        return videoFrameNumber;
+        return publisher == null ? null : publisher.getVideoFrameCacheNumber();
     }
 
     /**
@@ -61,11 +63,11 @@ public class SrsFlvMuxer {
      * @param width width
      * @param height height
      */
-/*    public void setVideoResolution(int width, int height) {
+    public void setVideoResolution(int width, int height) {
         if (publisher != null) {
             publisher.setVideoResolution(width, height);
         }
-    }*/
+    }
 
     /**
      * Adds a track with the specified format.
@@ -84,7 +86,7 @@ public class SrsFlvMuxer {
 
     private void disconnect() {
         try {
-            //publisher.close();
+            publisher.close();
         } catch (IllegalStateException e) {
             // Ignore illegal state.
         }
@@ -97,12 +99,8 @@ public class SrsFlvMuxer {
     private boolean connect(String url) {
         if (!connected) {
             Log.i(TAG, String.format("worker: connecting to RTMP server by url=%s\n", url));
-/*            if (publisher.connect(url)) {
+            if (publisher.connect(url)) {
                 connected = publisher.publish("live");
-            }*/
-            int i = moPublisher.startRtmp(url);
-            if(i == 3) {
-                connected = true;
             }
             mVideoSequenceHeader = null;
             mAudioSequenceHeader = null;
@@ -120,14 +118,10 @@ public class SrsFlvMuxer {
                 Log.i(TAG, String.format("worker: send frame type=%d, dts=%d, size=%dB",
                     frame.type, frame.dts, frame.flvTag.array().length));
             }
-            //publisher.publishVideoData(frame.flvTag.array(), frame.flvTag.size(), frame.dts);
-            moPublisher.sendRtmpData(moPublisher.TYPE_VIDEO, frame.dts, frame.flvTag.array(), frame.flvTag.size());  //use srs-librtmp to send data
+            publisher.publishVideoData(frame.flvTag.array(), frame.flvTag.size(), frame.dts);
             mVideoAllocator.release(frame.flvTag);
-            videoFrameNumber.decrementAndGet();
-            Log.i(TAG, "decrementAndGet() videoFrameNumber = " + videoFrameNumber);
         } else if (frame.isAudio()) {
-            //publisher.publishAudioData(frame.flvTag.array(), frame.flvTag.size(), frame.dts);
-            moPublisher.sendRtmpData(moPublisher.TYPE_AUDIO, frame.dts, frame.flvTag.array(), frame.flvTag.size());  //use srs-librtmp to send data
+            publisher.publishAudioData(frame.flvTag.array(), frame.flvTag.size(), frame.dts);
             mAudioAllocator.release(frame.flvTag);
         }
     }
@@ -649,9 +643,8 @@ public class SrsFlvMuxer {
                 SrsAnnexbSearch tbbsc = searchAnnexb(bb, bi);
                 if (!tbbsc.match || tbbsc.nb_start_code < 3) {
                     Log.e(TAG, "annexb not match.");
-                    mHandler.annexbNotMatchException(new IllegalArgumentException(
+                    mHandler.notifyRtmpIllegalArgumentException(new IllegalArgumentException(
                         String.format("annexb not match for %dB, pos=%d", bi.size, bb.position())));
-
                 }
 
                 // the start codes.
@@ -983,9 +976,7 @@ public class SrsFlvMuxer {
         private void flvTagCacheAdd(SrsFlvFrame frame) {
             mFlvTagCache.add(frame);
             if (frame.isVideo()) {
-                //getVideoFrameCacheNumber().incrementAndGet();
-                videoFrameNumber.incrementAndGet();
-                Log.i(TAG, "incrementAndGet() videoFrameNumber = " + videoFrameNumber);
+                getVideoFrameCacheNumber().incrementAndGet();
             }
             synchronized (txFrameLock) {
                 txFrameLock.notifyAll();

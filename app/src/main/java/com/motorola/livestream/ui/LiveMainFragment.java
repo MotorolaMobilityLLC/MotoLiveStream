@@ -33,7 +33,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
-import com.mo.rtmp.RtmpHandler;
+import com.github.faucamp.simplertmp.RtmpHandler;
 import com.motorola.livestream.R;
 import com.motorola.livestream.model.fb.Comment;
 import com.motorola.livestream.model.fb.Cursors;
@@ -1031,9 +1031,76 @@ public class LiveMainFragment extends Fragment
     }
 
     // Implementation of SrsRtmpListener
+    @Override
+    public void onRtmpConnecting(String msg) {
+        Log.d(LOG_TAG, msg);
+    }
 
     @Override
-    public void onAnnexbNotMatchException(IllegalArgumentException e) {
+    public void onRtmpConnected(String msg) {
+        Log.d(LOG_TAG, msg);
+    }
+
+    @Override
+    public void onRtmpVideoStreaming() {
+    }
+
+    @Override
+    public void onRtmpAudioStreaming() {
+    }
+
+    @Override
+    public void onRtmpStopped() {
+        Log.d(LOG_TAG, "RTMP stopped");
+    }
+
+    @Override
+    public void onRtmpDisconnected() {
+        Log.d(LOG_TAG, "RTMP disconnected");
+    }
+
+    @Override
+    public void onRtmpVideoFpsChanged(double fps) {
+        Log.d(LOG_TAG, String.format(Locale.ENGLISH, "RTMP output fps changed to %f", fps));
+    }
+
+    @Override
+    public void onRtmpVideoBitrateChanged(double bitrate) {
+        int rate = (int) bitrate;
+        if (rate / 1000 > 0) {
+            Log.i(LOG_TAG, String.format(Locale.ENGLISH, "Video bitrate: %f kbps", bitrate / 1000));
+        } else {
+            Log.i(LOG_TAG, String.format(Locale.ENGLISH, "Video bitrate: %d bps", rate));
+        }
+    }
+
+    @Override
+    public void onRtmpAudioBitrateChanged(double bitrate) {
+        int rate = (int) bitrate;
+        if (rate / 1000 > 0) {
+            Log.i(LOG_TAG, String.format(Locale.ENGLISH, "Audio bitrate: %f kbps", bitrate / 1000));
+        } else {
+            Log.i(LOG_TAG, String.format(Locale.ENGLISH, "Audio bitrate: %d bps", rate));
+        }
+    }
+
+    @Override
+    public void onRtmpSocketException(SocketException e) {
+        handleException(e);
+    }
+
+    @Override
+    public void onRtmpIOException(IOException e) {
+        handleException(e);
+    }
+
+    @Override
+    public void onRtmpIllegalArgumentException(IllegalArgumentException e) {
+        handleException(e);
+    }
+
+    @Override
+    public void onRtmpIllegalStateException(IllegalStateException e) {
         handleException(e);
     }
 
