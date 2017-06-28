@@ -235,8 +235,10 @@ public class LiveMainFragment extends Fragment
             (DialogInterface dialog, int which) -> {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
-                        mPublisher.startCamera();
                         mPublisher.setSendVideoOnly(false);
+                        // Cause the camera is closed when onPause(), and the encoding also stopped
+                        // So we have to start the camera preview, and resume encoding work
+                        mPublisher.startCameraAndResumeEnc();
 
                         mLiveTimer.resumeCounting();
                         startUpdateInteractInfo();
@@ -580,6 +582,7 @@ public class LiveMainFragment extends Fragment
                         (DialogInterface dialog, int which) -> {
                             mResultLayout.setVisibility(View.GONE);
                             refreshPreGoLiveUI();
+                            mPublisher.startCamera();
                         })
                 .setCancelable(false)
                 .show();
@@ -710,6 +713,10 @@ public class LiveMainFragment extends Fragment
         mGoLiveLabel.setVisibility(View.GONE);
 
         mBtnExit.setVisibility(View.GONE);
+
+        // Reset send audio/video only mode
+        mPublisher.setSendAudioOnly(false);
+        mPublisher.setSendVideoOnly(false);
 
         mPublisher.startPublish(mLiveInfoCacheBean.getLiveStreamUrl());
         mPublisher.startCamera();

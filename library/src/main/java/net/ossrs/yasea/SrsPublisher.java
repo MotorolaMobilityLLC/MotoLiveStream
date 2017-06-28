@@ -63,6 +63,11 @@ public class SrsPublisher {
         mCameraView.startCamera();
     }
 
+    public void startCameraAndResumeEnc() {
+        mCameraView.startCamera();
+        mCameraView.enableEncoding();
+    }
+
     public void stopCamera() {
         mCameraView.stopCamera();
     }
