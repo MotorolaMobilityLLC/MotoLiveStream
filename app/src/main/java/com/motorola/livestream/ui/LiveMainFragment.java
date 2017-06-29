@@ -29,6 +29,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -102,6 +103,7 @@ public class LiveMainFragment extends Fragment
     private LiveCountingTimer mLiveTimer;
 
     private View mLiveSettings;
+    private View mUserInfoLayout;
     private ImageView mUserAvatar;
     private TextView mUserName;
     private ImageView mPrivacyIcon;
@@ -161,8 +163,8 @@ public class LiveMainFragment extends Fragment
 
                 @Override
                 public void onError(Exception exp) {
-                    Log.e(LOG_TAG, "get live comments failed, wait to re-get");
-                    exp.printStackTrace();
+                    Log.w(LOG_TAG, "Get live comments failed: "
+                            + exp.getMessage() + ", wait to re-get");
                     LiveMainFragment.this.startToGetComment();
                 }
             };
@@ -179,8 +181,8 @@ public class LiveMainFragment extends Fragment
 
                 @Override
                 public void onError(Exception exp) {
-                    Log.e(LOG_TAG, "get live views failed, wait to re-get");
-                    exp.printStackTrace();
+                    Log.w(LOG_TAG, "Get live views failed: "
+                            + exp.getMessage() + ", wait to re-get");
                     LiveMainFragment.this.startToGetViews();
                 }
             };
@@ -202,8 +204,8 @@ public class LiveMainFragment extends Fragment
 
                 @Override
                 public void onError(Exception exp) {
-                    Log.e(LOG_TAG, "get live reactions failed, wait to re-get");
-                    exp.printStackTrace();
+                    Log.w(LOG_TAG, "Get live reactions failed: "
+                            + exp.getMessage() + ", wait to re-get");
                     startToGetReaction();
                 }
             };
@@ -271,7 +273,13 @@ public class LiveMainFragment extends Fragment
                 @Override
                 protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
                     stopTracking();
-                    updateUserInfo(currentProfile);
+                    if (currentProfile == null) {
+                        Toast.makeText(getActivity(),
+                                R.string.label_profile_not_available, Toast.LENGTH_SHORT).show();
+                        mUserInfoLayout.setVisibility(View.GONE);
+                    } else {
+                        updateUserInfo(currentProfile);
+                    }
                 }
             }.startTracking();
         }
@@ -379,10 +387,10 @@ public class LiveMainFragment extends Fragment
 
         mLiveSettings = view.findViewById(R.id.layout_live_settings);
         // User information
-        View userInfoLayout = mLiveSettings.findViewById(R.id.layout_user_info);
-        userInfoLayout.setOnClickListener(this);
-        mUserAvatar = (ImageView) userInfoLayout.findViewById(R.id.user_avatar);
-        mUserName = (TextView) userInfoLayout.findViewById(R.id.user_name);
+        mUserInfoLayout = mLiveSettings.findViewById(R.id.layout_user_info);
+        mUserInfoLayout.setOnClickListener(this);
+        mUserAvatar = (ImageView) mUserInfoLayout.findViewById(R.id.user_avatar);
+        mUserName = (TextView) mUserInfoLayout.findViewById(R.id.user_name);
 
         // Privacy settings
         View privacyLayout = mLiveSettings.findViewById(R.id.layout_privacy_setting);
@@ -415,8 +423,8 @@ public class LiveMainFragment extends Fragment
         mResultLayout.findViewById(R.id.btn_delete_live).setOnClickListener(this);
         View resultPrivacyView = view.findViewById(R.id.result_privacy_setting);
         resultPrivacyView.setOnClickListener(this);
-        mLiveResultPrivacy = (TextView) mResultLayout.findViewById(R.id.privacy_view);
-        mResultPrivacyIcon = (ImageView) mResultLayout.findViewById(R.id.result_privacy_icon);
+        mLiveResultPrivacy = (TextView) resultPrivacyView.findViewById(R.id.result_privacy_view);
+        mResultPrivacyIcon = (ImageView) resultPrivacyView.findViewById(R.id.result_privacy_icon);
 
         // Live comment and reaction layout
         mCommentLayout = view.findViewById(R.id.layout_live_comments);
@@ -430,6 +438,8 @@ public class LiveMainFragment extends Fragment
     private void updateUserInfo(Profile profile) {
         if (profile == null) {
             // Wait ProfileTracker to update the current profile
+            Log.w(LOG_TAG, "Current profile is null, wait ProfileTracker to update");
+            mUserInfoLayout.setVisibility(View.GONE);
             return;
         }
         if (mLiveInfoCacheBean == null) {
@@ -446,6 +456,7 @@ public class LiveMainFragment extends Fragment
         }
 
         if (getActivity() != null) {
+            mUserInfoLayout.setVisibility(View.VISIBLE);
             mUserName.setText(currentUser.getName());
             updateUserPhoto(currentUser);
         }
@@ -479,19 +490,17 @@ public class LiveMainFragment extends Fragment
 
                         @Override
                         public void onError(Exception exp) {
-                            Log.w(LOG_TAG, "Get user photo failed");
-                            exp.printStackTrace();
+                            Log.w(LOG_TAG, "Get user photo failed: " + exp.getMessage());
                         }
                     }, currentUser);
         } else {
             String newUrl = currentUser.getUserPhotoUrl();
-            Log.d(LOG_TAG, newUrl);
-
             String cachedUrl = SettingsPref.getUserPhotoUrl(getActivity());
             if (cachedUrl == null
                     || !cachedUrl.equals(newUrl)) {
                 SettingsPref.saveUserPhotoUrl(getActivity(), newUrl);
             }
+
             Glide.with(getActivity())
                     .load(newUrl)
                     .apply(mRequestOptions)
@@ -543,9 +552,14 @@ public class LiveMainFragment extends Fragment
     }
 
     private void showLogoutDialog() {
+        User currentUser = mLiveInfoCacheBean.getUser();
+        if (currentUser == null) {
+            return;
+        }
+
         final FragmentActivity activity = getActivity();
 
-        String userName = mLiveInfoCacheBean.getUser().getName();
+        String userName = currentUser.getName();
         String message = activity.getString(R.string.live_dlg_logout_message, userName);
         int startIndex = message.indexOf(userName);
         SpannableStringBuilder ssb = new SpannableStringBuilder(message);
@@ -634,6 +648,13 @@ public class LiveMainFragment extends Fragment
     }
 
     public void startGoLive() {
+        User currentUser = mLiveInfoCacheBean.getUser();
+        if (currentUser == null) {
+            Toast.makeText(getActivity(),
+                    R.string.label_profile_not_available, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 //        if (!((LiveDynamicActivity) getActivity()).checkIfNeedToRequestPermission()) {
 //            // The checkIfNeedToRequestPermission function will handle the login procedure
 //            // So just return here
@@ -663,7 +684,7 @@ public class LiveMainFragment extends Fragment
                         mLoadingLayout.setVisibility(View.GONE);
                     }
                 },
-                mLiveInfoCacheBean.getUser().getId(), mLiveInfoInput.getText().toString(),
+                currentUser.getId(), mLiveInfoInput.getText().toString(),
                 mPrivacyCacheBean.toJsonString(), false);
     }
 
@@ -769,6 +790,7 @@ public class LiveMainFragment extends Fragment
 
                     @Override
                     public void onError(Exception exp) {
+                        Log.w(LOG_TAG, "Stop live video failed: " + exp.getMessage());
                         exp.printStackTrace();
 
                         mHandler.sendEmptyMessage(MSG_LIVE_STOPPED);
@@ -913,6 +935,8 @@ public class LiveMainFragment extends Fragment
     }
 
     private void hideResultInfo() {
+        mLoadingLayout.setVisibility(View.GONE);
+
         mResultLayout.setVisibility(View.GONE);
         refreshPreGoLiveUI();
     }
@@ -929,16 +953,15 @@ public class LiveMainFragment extends Fragment
 
             @Override
             public void onSuccess(Boolean data) {
-                mLoadingLayout.setVisibility(View.GONE);
                 hideResultInfo();
                 showLiveDeletedDialog();
             }
 
             @Override
             public void onError(Exception exp) {
-                mLoadingLayout.setVisibility(View.GONE);
-                Log.e(LOG_TAG, "Delete video failed!");
+                Log.w(LOG_TAG, "Delete video failed: " + exp.getMessage());
                 exp.printStackTrace();
+
                 hideResultInfo();
             }
         }, mLiveInfoCacheBean.getLiveStreamId());
@@ -950,15 +973,13 @@ public class LiveMainFragment extends Fragment
         FbUtil.updateLive(new FbUtil.OnDataRetrievedListener<Boolean>() {
             @Override
             public void onSuccess(Boolean data) {
-                mLoadingLayout.setVisibility(View.GONE);
                 hideResultInfo();
                 showLivePostedDialog();
             }
 
             @Override
             public void onError(Exception exp) {
-                mLoadingLayout.setVisibility(View.GONE);
-                Log.e(LOG_TAG, "Post video failed!");
+                Log.e(LOG_TAG, "Post video failed: " + exp.getMessage());
                 exp.printStackTrace();
                 hideResultInfo();
             }
@@ -984,6 +1005,7 @@ public class LiveMainFragment extends Fragment
 
             @Override
             public void onError(Exception exp) {
+                Log.w(LOG_TAG, "Delete user permission failed: " + exp.getMessage());
                 LoginManager.getInstance().logOut();
                 getActivity().finish();
             }

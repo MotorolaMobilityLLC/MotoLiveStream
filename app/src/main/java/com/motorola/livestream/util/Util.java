@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 
 import com.motorola.livestream.model.fb.User;
@@ -17,6 +19,18 @@ public class Util {
     private static final int MEGA = 1000000;
 
     private static final String FACEBOOK_PACKAGE_NAME = "com.facebook.katana";
+
+    public static boolean isNetworkConnected(Context context) {
+        if (context != null) {
+            ConnectivityManager manager =
+                    (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+            if (networkInfo != null) {
+                return networkInfo.isConnected();
+            }
+        }
+        return false;
+    }
 
     public static String getFormattedNumber(int number) {
         if (number <= 0) {
