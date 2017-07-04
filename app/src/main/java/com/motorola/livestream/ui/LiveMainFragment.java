@@ -303,13 +303,18 @@ public class LiveMainFragment extends Fragment
         mPublisher.setRtmpHandler(new RtmpHandler(this));
         mPublisher.setRecordHandler(new SrsRecordHandler(this));
         // Get the real screen size and set as preview resolution
-        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-        Point screenSize = new Point();
-        wm.getDefaultDisplay().getRealSize(screenSize);
-        mPublisher.setPreviewResolution(screenSize.y, screenSize.x);
-        mPublisher.setOutputResolution(720, 1280);
+        if (mPublisher.getCamraId() != 2) {
+            WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+            Point screenSize = new Point();
+            wm.getDefaultDisplay().getRealSize(screenSize);
+            mPublisher.setPreviewResolution(screenSize.y, screenSize.x);
+            mPublisher.setOutputResolution(720, 1280);
+            mPublisher.switchCameraFace((mPublisher.getCamraId() + 1) % 2);
+        } else {
+            mPublisher.setPreviewResolution(2160, 1080);
+            mPublisher.setOutputResolution(640, 1280);
+        }
         mPublisher.setVideoHDMode();
-        mPublisher.switchCameraFace((mPublisher.getCamraId() + 1) % Camera.getNumberOfCameras());
     }
 
     @Override
@@ -668,6 +673,11 @@ public class LiveMainFragment extends Fragment
 
         mLoadingLayout.setVisibility(View.VISIBLE);
 
+        Boolean pano = false;
+        if (mPublisher.getCamraId() == 2) {
+            pano = true;
+        }
+
         FbUtil.createUserLive(
                 new FbUtil.OnDataRetrievedListener<LiveInfo>() {
                     @Override
@@ -685,7 +695,7 @@ public class LiveMainFragment extends Fragment
                     }
                 },
                 currentUser.getId(), mLiveInfoInput.getText().toString(),
-                mPrivacyCacheBean.toJsonString(), false);
+                mPrivacyCacheBean.toJsonString(), pano);
     }
 
     private void onLiveStreamReady(LiveInfo liveInfo) {
@@ -1024,8 +1034,12 @@ public class LiveMainFragment extends Fragment
                         REQUEST_LIVE_PRIVACY);
                 break;
             case R.id.btn_switch_camera:
-                mPublisher.switchCameraFace(
-                        (mPublisher.getCamraId() + 1) % Camera.getNumberOfCameras());
+                if (mPublisher.getCamraId() < 2) {
+//                    mPublisher.switchCameraFace(
+//                            (mPublisher.getCamraId() + 1) % Camera.getNumberOfCameras());
+                    mPublisher.switchCameraFace(
+                            (mPublisher.getCamraId() + 1) % 2);
+                }
             case R.id.btn_select_camera:
                 break;
             case R.id.btn_exit:
