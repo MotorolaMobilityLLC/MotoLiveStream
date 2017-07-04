@@ -16,6 +16,8 @@ import com.seu.magicfilter.utils.MagicFilterType;
 import com.seu.magicfilter.utils.OpenGLUtils;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.util.List;
@@ -141,10 +143,12 @@ public class SrsCameraView extends GLSurfaceView implements GLSurfaceView.Render
         mCamera = openCamera();
         mPreviewWidth = width;
         mPreviewHeight = height;
-        Camera.Size rs = adaptPreviewResolution(mCamera.new Size(width, height));
-        if (rs != null) {
-            mPreviewWidth = rs.width;
-            mPreviewHeight = rs.height;
+        if (mCamId != 2) {
+            Camera.Size rs = adaptPreviewResolution(mCamera.new Size(width, height));
+            if (rs != null) {
+                mPreviewWidth = rs.width;
+                mPreviewHeight = rs.height;
+            }
         }
         mCamera.getParameters().setPreviewSize(mPreviewWidth, mPreviewHeight);
 
@@ -271,41 +275,46 @@ public class SrsCameraView extends GLSurfaceView implements GLSurfaceView.Render
         }
 
         Camera.Parameters params = mCamera.getParameters();
-        params.setPictureSize(mPreviewWidth, mPreviewHeight);
-        params.setPreviewSize(mPreviewWidth, mPreviewHeight);
-        int[] range = adaptFpsRange(SrsEncoder.VFPS, params.getSupportedPreviewFpsRange());
-        params.setPreviewFpsRange(range[0], range[1]);
-        params.setPreviewFormat(ImageFormat.NV21);
-        params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
-        params.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_AUTO);
-        params.setSceneMode(Camera.Parameters.SCENE_MODE_AUTO);
+        if (mCamId < 2) {
+            params.setPictureSize(mPreviewWidth, mPreviewHeight);
+            params.setPreviewSize(mPreviewWidth, mPreviewHeight);
+            int[] range = adaptFpsRange(SrsEncoder.VFPS, params.getSupportedPreviewFpsRange());
+            params.setPreviewFpsRange(range[0], range[1]);
+            params.setPreviewFormat(ImageFormat.NV21);
+            params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+            params.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_AUTO);
+            params.setSceneMode(Camera.Parameters.SCENE_MODE_AUTO);
 
-        List<String> supportedFocusModes = params.getSupportedFocusModes();
-        if (supportedFocusModes != null && !supportedFocusModes.isEmpty()) {
-            if (supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
-                params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
-            } else if (supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
-                params.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
-                mCamera.autoFocus(null);
-            } else {
-                params.setFocusMode(supportedFocusModes.get(0));
-            }
-        }
-
-        List<String> supportedFlashModes = params.getSupportedFlashModes();
-        if (supportedFlashModes != null && !supportedFlashModes.isEmpty()) {
-            if (supportedFlashModes.contains(Camera.Parameters.FLASH_MODE_TORCH)) {
-                if (mIsTorchOn) {
-                    params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+            List<String> supportedFocusModes = params.getSupportedFocusModes();
+            if (supportedFocusModes != null && !supportedFocusModes.isEmpty()) {
+                if (supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
+                    params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+                } else if (supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
+                    params.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+                    mCamera.autoFocus(null);
+                } else {
+                    params.setFocusMode(supportedFocusModes.get(0));
                 }
-            } else {
-                params.setFlashMode(supportedFlashModes.get(0));
             }
+
+            List<String> supportedFlashModes = params.getSupportedFlashModes();
+            if (supportedFlashModes != null && !supportedFlashModes.isEmpty()) {
+                if (supportedFlashModes.contains(Camera.Parameters.FLASH_MODE_TORCH)) {
+                    if (mIsTorchOn) {
+                        params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                    }
+                } else {
+                    params.setFlashMode(supportedFlashModes.get(0));
+                }
+            }
+        } else if (mCamId == 2){
+            params.set("mot-app", "true");
         }
 
         mCamera.setParameters(params);
-
-        mCamera.setDisplayOrientation(mPreviewRotation);
+        if (mCamId < 2) {
+            mCamera.setDisplayOrientation(mPreviewRotation);
+        }
 
         try {
             mCamera.setPreviewTexture(surfaceTexture);
@@ -328,30 +337,57 @@ public class SrsCameraView extends GLSurfaceView implements GLSurfaceView.Render
     }
 
     private Camera openCamera() {
-        Camera camera;
+//        Camera camera;
+        int numCameras = 0;
+        Camera.CameraInfo info = new Camera.CameraInfo();
+        numCameras = Camera.getNumberOfCameras();
         if (mCamId < 0) {
-            Camera.CameraInfo info = new Camera.CameraInfo();
-            int numCameras = Camera.getNumberOfCameras();
             int frontCamId = -1;
             int backCamId = -1;
+            int modCamId = -1;
             for (int i = 0; i < numCameras; i++) {
                 Camera.getCameraInfo(i, info);
                 if (info.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
                     backCamId = i;
                 } else if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
                     frontCamId = i;
-                    break;
+                    mCamId = i;
+//                    break;
+                } else {
+                    modCamId = i;
                 }
             }
-            if (frontCamId != -1) {
-                mCamId = frontCamId;
-            } else if (backCamId != -1) {
-                mCamId = backCamId;
-            } else {
-                mCamId = 0;
-            }
+//            if (modCamId != -1) {
+//                mCamId = modCamId;
+//            }else
+//            if (frontCamId != -1) {
+//                mCamId = frontCamId;
+//            } else if (backCamId != -1) {
+//                mCamId = backCamId;
+//            } else {
+//                mCamId = 0;
+//            }
         }
-        camera = Camera.open(mCamId);
+//        camera = Camera.open(mCamId);
+        Camera camera = null;
+        if (numCameras > 2) {
+            mCamId = 2;
+            Class[] paramInt = new Class[2];
+            paramInt[0] = Integer.TYPE;
+            paramInt[1] = Integer.TYPE;
+
+
+            try {
+                Class cls = Class.forName("android.hardware.Camera");
+                Method method = cls.getDeclaredMethod("openLegacy", paramInt);
+                camera = (Camera) method.invoke(null, mCamId, 0x100);
+            } catch (NoSuchMethodException | IllegalAccessException |
+                    InvocationTargetException | ClassNotFoundException e) {
+                camera = Camera.open(mCamId);
+            }
+        } else {
+            camera = Camera.open(mCamId);
+        }
         return camera;
     }
 
