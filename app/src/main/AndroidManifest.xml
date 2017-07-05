@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="com.motorola.mod.permission.MOD_ACCESS_INFO" />
 
     <uses-feature android:name="android.hardware.camera2" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -65,6 +66,15 @@
             android:resizeableActivity="false"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/label_activity_custom_friends" />
+        
+        <receiver
+            android:name=".receiver.ModReceiver"
+            android:permission="com.motorola.mod.permission.MOD_INTERNAL">
+            <intent-filter>
+                <action android:name="com.motorola.mod.action.MOD_ATTACH" />
+                <action android:name="com.motorola.mod.action.MOD_DETACH" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
