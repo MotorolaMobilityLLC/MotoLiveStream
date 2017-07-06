@@ -1,9 +1,11 @@
 package com.motorola.livestream.viewcache.fb;
 
-import com.alibaba.fastjson.JSONObject;
 import com.motorola.livestream.R;
 import com.motorola.livestream.model.fb.TimelinePrivacy;
 import com.motorola.livestream.viewcache.ViewCacheBean;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,15 +108,19 @@ public class TimelinePrivacyCacheBean implements ViewCacheBean {
 
     public String toJsonString() {
         JSONObject json = new JSONObject();
-        json.put("value", PRIVACY_VALUE[mPrivacy.ordinal()]);
-        if (TimelinePrivacy.CUSTOM == mPrivacy) {
-            json.put("friends", CUSTOM_FRIENDS_VALUE);
-            json.put("allow", generateCustomFriendList());
-            json.put("deny", EMPTY_VALUE);
-        } else {
-            json.put("friends", EMPTY_VALUE);
-            json.put("allow", EMPTY_VALUE);
-            json.put("deny", EMPTY_VALUE);
+        try {
+            json.put("value", PRIVACY_VALUE[mPrivacy.ordinal()]);
+            if (TimelinePrivacy.CUSTOM == mPrivacy) {
+                json.put("friends", CUSTOM_FRIENDS_VALUE);
+                json.put("allow", generateCustomFriendList());
+                json.put("deny", EMPTY_VALUE);
+            } else {
+                json.put("friends", EMPTY_VALUE);
+                json.put("allow", EMPTY_VALUE);
+                json.put("deny", EMPTY_VALUE);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
         return json.toString();
     }

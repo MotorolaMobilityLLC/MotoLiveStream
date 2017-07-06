@@ -2,11 +2,12 @@ package com.motorola.livestream.util;
 
 import android.os.Bundle;
 
-import com.alibaba.fastjson.JSON;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.motorola.livestream.model.fb.Comment;
 import com.motorola.livestream.model.fb.Cursors;
 import com.motorola.livestream.model.fb.FriendList;
@@ -18,6 +19,7 @@ import com.motorola.livestream.model.fb.User;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 public class FbUtil {
@@ -97,9 +99,9 @@ public class FbUtil {
                 (GraphResponse response) -> {
                     if (response.getError() == null) {
                         try {
-                            List<FriendList> friendList = JSON.parseArray(
-                                    response.getJSONObject().getJSONArray("data").toString(),
-                                    FriendList.class);
+                            Type type = new TypeToken<List<FriendList>>() {}.getType();
+                            List<FriendList> friendList = new Gson().fromJson(
+                                    response.getJSONObject().getJSONArray("data").toString(), type);
                             listener.onSuccess(friendList);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -127,7 +129,7 @@ public class FbUtil {
                 HttpMethod.POST,
                 (GraphResponse response) -> {
                     if (response.getError() == null) {
-                        LiveInfo liveInfo = JSON.parseObject(
+                        LiveInfo liveInfo = new Gson().fromJson(
                                 response.getJSONObject().toString(), LiveInfo.class);
                         listener.onSuccess(liveInfo);
                     } else {
@@ -147,9 +149,8 @@ public class FbUtil {
                 HttpMethod.GET,
                 (GraphResponse response) -> {
                     if (response.getError() == null) {
-                        LiveViews liveViews = JSON.parseObject(
-                                response.getJSONObject().toString(),
-                                LiveViews.class);
+                        LiveViews liveViews = new Gson().
+                                fromJson(response.getJSONObject().toString(), LiveViews.class);
                         listener.onSuccess(liveViews);
                     } else {
                         listener.onError(response.getError().getException());
@@ -181,16 +182,17 @@ public class FbUtil {
                 (GraphResponse response) -> {
                     if (response.getError() == null) {
                         try {
+                            Gson gson = new Gson();
                             JSONObject responseJson = response.getJSONObject();
-                            List<Comment> commentList = JSON.parseArray(
-                                    responseJson.getJSONArray("data").toString(),
-                                    Comment.class);
+                            Type type = new TypeToken<List<Comment>>() {}.getType();
+                            List<Comment> commentList = gson.fromJson(
+                                    responseJson.getJSONArray("data").toString(), type);
 
                             Cursors newCursors = null;
                             if (responseJson.has("paging")) {
                                 JSONObject pagingJson = responseJson.getJSONObject("paging");
                                 if (pagingJson.has("cursors")) {
-                                    newCursors = JSON.parseObject(
+                                    newCursors = gson.fromJson(
                                             pagingJson.getJSONObject("cursors").toString(),
                                             Cursors.class);
                                 }
@@ -231,10 +233,12 @@ public class FbUtil {
                 (GraphResponse response) -> {
                     if (response.getError() == null) {
                         try {
+                            Gson gson = new Gson();
                             JSONObject responseJson = response.getJSONObject();
-                            List<Reaction> reactionList = JSON.parseArray(
-                                    responseJson.getJSONArray("data").toString(),
-                                    Reaction.class);
+                            Type type = new TypeToken<List<Reaction>>() {}.getType();
+                            List<Reaction> reactionList = gson.fromJson(
+                                    responseJson.getJSONArray("data").toString(), type);
+
                             int totalLikeCount = 0;
                             for (Reaction reaction : reactionList) {
                                 if (Reaction.ReactionType.LIKE == reaction.getType()) {
@@ -246,7 +250,7 @@ public class FbUtil {
                             if (responseJson.has("paging")) {
                                 JSONObject pagingJson = responseJson.getJSONObject("paging");
                                 if (pagingJson.has("cursors")) {
-                                    newCursors = JSON.parseObject(
+                                    newCursors = gson.fromJson(
                                             pagingJson.getJSONObject("cursors").toString(),
                                             Cursors.class);
                                 }

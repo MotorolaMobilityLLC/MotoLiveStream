@@ -8,10 +8,10 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.motorola.livestream.R;
 import com.motorola.livestream.model.fb.Comment;
 import com.motorola.livestream.model.fb.User;
+import com.motorola.livestream.util.CircleTransform;
 import com.motorola.livestream.util.ExecutorUtil;
 import com.motorola.livestream.util.FbUtil;
 
@@ -26,14 +26,8 @@ public class CommentListAdapter extends BaseRecyclerViewAdapter<Comment> {
         }
     };
 
-    private final RequestOptions mRequestOptions;
-
     public CommentListAdapter(RecyclerView recyclerView) {
         super(recyclerView, R.layout.live_comment_item, null);
-
-        mRequestOptions = new RequestOptions();
-        mRequestOptions.placeholder(R.drawable.ic_user_photo_default)
-                .circleCrop();
     }
 
     @Override
@@ -65,7 +59,7 @@ public class CommentListAdapter extends BaseRecyclerViewAdapter<Comment> {
         if (TextUtils.isEmpty(userPhotoUrl)) {
             Glide.with(mContext)
                     .load(R.drawable.ic_user_photo_default)
-                    .apply(mRequestOptions)
+                    .transform(new CircleTransform(mContext))
                     .into(imgView);
             // Cause maybe there will be a huge instant request, so we have to control them in a deque
             // avoid Facebook to process the requests simultaneously
@@ -73,7 +67,8 @@ public class CommentListAdapter extends BaseRecyclerViewAdapter<Comment> {
         } else {
             Glide.with(mContext)
                     .load(userPhotoUrl)
-                    .apply(mRequestOptions)
+                    .placeholder(R.drawable.ic_user_photo_default)
+                    .transform(new CircleTransform(mContext))
                     .into(imgView);
         }
     }

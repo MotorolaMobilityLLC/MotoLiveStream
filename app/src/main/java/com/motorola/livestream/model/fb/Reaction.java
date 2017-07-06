@@ -5,7 +5,8 @@ import com.motorola.livestream.R;
 public class Reaction {
     private String id;
     private String name;
-    private ReactionType reactionType;
+    private String type;
+    private ReactionType reactionType = null;
 
     public Reaction() { }
 
@@ -26,11 +27,10 @@ public class Reaction {
     }
 
     public ReactionType getType() {
+        if (reactionType == null) {
+            reactionType = ReactionType.valueOf(type);
+        }
         return reactionType;
-    }
-
-    public void setType(String type) {
-        this.reactionType = ReactionType.valueOf(type);
     }
 
     public enum ReactionType {

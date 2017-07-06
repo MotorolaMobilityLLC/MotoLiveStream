@@ -74,7 +74,7 @@
                 android:layout_height="@dimen/live_user_avatar_size"
                 android:scaleType="centerInside" />
             <TextView
-                android:id="@+id/privacy_view"
+                android:id="@+id/result_privacy_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
