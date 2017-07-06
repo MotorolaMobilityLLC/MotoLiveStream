@@ -32,7 +32,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
@@ -47,6 +46,7 @@ import com.motorola.livestream.model.fb.User;
 import com.motorola.livestream.ui.adapter.CommentListAdapter;
 import com.motorola.livestream.ui.animate.ReactionView;
 import com.motorola.livestream.ui.privacy.TimelineActivity;
+import com.motorola.livestream.util.CircleTransform;
 import com.motorola.livestream.util.FbUtil;
 import com.motorola.livestream.util.FbUtil.OnDataRetrievedListener;
 import com.motorola.livestream.util.FbUtil.OnPagedListRetrievedListener;
@@ -94,8 +94,6 @@ public class LiveMainFragment extends Fragment
     }
 
     private SrsPublisher mPublisher = null;
-
-    private RequestOptions mRequestOptions;
 
     private View mLoadingLayout;
 
@@ -472,17 +470,13 @@ public class LiveMainFragment extends Fragment
             return;
         }
 
-        if (mRequestOptions == null) {
-            mRequestOptions = new RequestOptions();
-            mRequestOptions.placeholder(R.drawable.ic_user_photo_default)
-                .circleCrop();
-        }
         if (TextUtils.isEmpty(currentUser.getUserPhotoUrl())) {
             String cachedUrl = SettingsPref.getUserPhotoUrl(getActivity());
             if (!TextUtils.isEmpty(cachedUrl)) {
                 Glide.with(getActivity())
                         .load(cachedUrl)
-                        .apply(mRequestOptions)
+                        .placeholder(R.drawable.ic_user_photo_default)
+                        .transform(new CircleTransform(getActivity()))
                         .into(mUserAvatar);
             }
 
@@ -508,7 +502,8 @@ public class LiveMainFragment extends Fragment
 
             Glide.with(getActivity())
                     .load(newUrl)
-                    .apply(mRequestOptions)
+                    .placeholder(R.drawable.ic_user_photo_default)
+                    .transform(new CircleTransform(getActivity()))
                     .into(mUserAvatar);
         }
     }
