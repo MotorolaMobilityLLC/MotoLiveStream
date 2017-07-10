@@ -8,15 +8,31 @@ android {
         applicationId "com.motorola.livestream"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode getCustomVersionCode()
+        versionName "${getVersionNameMajor()}"
         jackOptions {
             enabled true
         }
     }
+    lintOptions {
+        abortOnError false
+        checkAllWarnings true
+        warningsAsErrors true
+        disable 'MissingTranslation'
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src/main/java']
+            aidl.srcDirs = ['src/main/java']
+            res.srcDirs = ['src/main/res']
+            jni.srcDirs = [] // forces ndk-build to be run from the command line
+            assets.srcDirs = ['assets']
+        }
     }
     signingConfigs {
         motCommonDebug {
@@ -24,6 +40,14 @@ android {
             storePassword "motorola"
             keyAlias "common"
             keyPassword "motorola"
+        }
+    }
+    def proAAPTConfigs = System.getenv("GRADLE_PRODUCT_AAPT_CONFIG")
+    if (proAAPTConfigs != null) {
+        productFlavors {
+            myresConfigs {
+                resConfigs proAAPTConfigs
+            }
         }
     }
     buildTypes {
@@ -37,6 +61,16 @@ android {
             signingConfig signingConfigs.motCommonDebug
         }
     }
+     project.archivesBaseName = "MotoLiveStream-v${getVersionNameMajor()}";
+     applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            if (variant.buildType.name == "release") {
+                def file = output.outputFile
+                def new_name = file.name.replaceAll(/-v.*-release/,"-release")
+                output.outputFile = new File(file.parent, new_name)
+            }
+        }
+     }
 }
 
 repositories {
@@ -56,4 +90,48 @@ dependencies {
     compile 'com.google.code.gson:gson:2.5'
     compile 'com.github.bumptech.glide:glide:3.6.1'
     compile project(path: ':library')
+}
+
+//----moto auto construction config
+import java.text.SimpleDateFormat
+def dateStamp() {
+    def df = new SimpleDateFormat("yyMMdd")
+    return df.format(new Date())
+}
+
+def commitID() {
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'show', '-s', '--pretty=oneline'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim().substring(0,7)
+}
+
+def getVersionNameMajor() {
+    def manifest = new XmlSlurper().parse(file("AndroidManifest.xml"))
+    if (manifest==null) {
+        throw new StopExecutionException("no manifest file")
+    }
+    def vn = manifest['@android:versionName'].text()
+    if (vn!=null && !vn.equals("")){
+        return vn
+    }else{
+        throw new StopExecutionException("no versioName")
+    }
+}
+
+def getCustomVersionCode() {
+    def manifest = new XmlSlurper().parse(file("AndroidManifest.xml"))
+    if (manifest==null) {
+        throw new StopExecutionException("no manifest file")
+    }
+    def vc = manifest['@android:versionCode'].text()
+    if (vc!=null && !vc.equals("")){
+        if (System.properties['auto_build_num'] == null) return Integer.parseInt(vc)
+        vc=Integer.parseInt(vc)+Integer.parseInt(System.properties['auto_build_num'])
+        return vc
+    }else{
+        throw new StopExecutionException("no versioName")
+    }
 }
