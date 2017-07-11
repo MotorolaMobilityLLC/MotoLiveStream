@@ -63,7 +63,7 @@ fi
 
 # Get NDK
 if [ ! -d ${android_ndk_dir} ]; then
-    wget http://dl.google.com/android/ndk/${android_ndk_starter_pkg} -O ${top_dir}/${android_ndk_starter_pkg}
+    wget http://dl.google.com/android/repository/${android_ndk_starter_pkg} -O ${top_dir}/${android_ndk_starter_pkg}
     chmod +x ${top_dir}/${android_ndk_starter_pkg}
     cd ${top_dir}
     ./${android_ndk_starter_pkg}
