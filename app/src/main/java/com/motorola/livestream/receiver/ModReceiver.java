@@ -4,6 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import com.motorola.livestream.util.ModHelper;
+
 public class ModReceiver extends BroadcastReceiver {
     private static final String TAG = ModReceiver.class.getSimpleName();
     public static final String ACTION_MOD_ATTACH =
@@ -20,10 +22,14 @@ public class ModReceiver extends BroadcastReceiver {
         String action = intent.getAction();
         switch (action) {
             case ACTION_MOD_ATTACH:
-                System.exit(0);
+                if (ModHelper.isModCamera()) {
+                    System.exit(0);
+                }
                 break;
             case ACTION_MOD_DETACH:
-                System.exit(0);
+                if (ModHelper.isModCamera()) {
+                    System.exit(0);
+                }
                 break;
             default:
                 break;
