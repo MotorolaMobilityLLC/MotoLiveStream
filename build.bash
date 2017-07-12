@@ -61,19 +61,18 @@ if [ ! -d ${android_sdk_dir} ]; then
     fi
 fi
 
-# Get NDK
+## get NDK
 if [ ! -d ${android_ndk_dir} ]; then
-    wget http://dl.google.com/android/repository/${android_ndk_starter_pkg} -O ${top_dir}/${android_ndk_starter_pkg}
-    chmod +x ${top_dir}/${android_ndk_starter_pkg}
-    cd ${top_dir}
-    ./${android_ndk_starter_pkg}
-    rm ${top_dir}/${android_ndk_starter_pkg}
+    git clone ssh://gerrit.mot.com/home/repo/dev/AndroidNDK.git -b ${android_ndk_branch} --single-branch
+    mv AndroidNDK ${android_ndk_dir}
 fi
+
+export ANDROID_HOME=${android_sdk_dir}
+export ANDROID_NDK_HOME=${android_ndk_dir}
 
 rm -f ${top_dir}/v8*.log
 cd ${script_dir}
 
-export ANDROID_HOME=${android_sdk_dir}
 # Version is <major>.<minor>.<build_number>
 # AndroidVersionCode is an INT32 so MAX 4,294,967,295
 # Defining the schema using 9 digits <P><2><2><5>
