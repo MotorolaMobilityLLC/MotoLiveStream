@@ -301,12 +301,13 @@ public class LiveMainFragment extends Fragment
         mPublisher.setRtmpHandler(new RtmpHandler(this));
         mPublisher.setRecordHandler(new SrsRecordHandler(this));
         // Get the real screen size and set as preview resolution
+
+        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        Point screenSize = new Point();
+        wm.getDefaultDisplay().getRealSize(screenSize);
+        mPublisher.setPreviewResolution(screenSize.y, screenSize.x);
+        mPublisher.setOutputResolution(720, 1280);
         if (mPublisher.getCamraId() != 2) {
-            WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-            Point screenSize = new Point();
-            wm.getDefaultDisplay().getRealSize(screenSize);
-            mPublisher.setPreviewResolution(screenSize.y, screenSize.x);
-            mPublisher.setOutputResolution(720, 1280);
             mPublisher.switchCameraFace((mPublisher.getCamraId() + 1) % 2);
         } else {
             mPublisher.setPreviewResolution(2160, 1080);
