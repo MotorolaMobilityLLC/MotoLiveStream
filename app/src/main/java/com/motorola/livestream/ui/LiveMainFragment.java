@@ -1,17 +1,19 @@
 package com.motorola.livestream.ui;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Point;
 import android.graphics.Typeface;
-import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -36,6 +38,9 @@ import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.github.faucamp.simplertmp.RtmpHandler;
+
+import com.motorola.gl.viewfinder.ViewfinderFactory.ViewfinderType;
+
 import com.motorola.livestream.R;
 import com.motorola.livestream.model.fb.Comment;
 import com.motorola.livestream.model.fb.Cursors;
@@ -52,6 +57,7 @@ import com.motorola.livestream.util.FbUtil.OnDataRetrievedListener;
 import com.motorola.livestream.util.FbUtil.OnPagedListRetrievedListener;
 import com.motorola.livestream.ui.widget.LiveCountingTimer;
 import com.motorola.livestream.util.Log;
+import com.motorola.livestream.util.ModHelper;
 import com.motorola.livestream.util.SettingsPref;
 import com.motorola.livestream.util.Util;
 import com.motorola.livestream.viewcache.ViewCacheManager;
@@ -88,6 +94,7 @@ public class LiveMainFragment extends Fragment
     private static final int MSG_UPDATE_LIVE_VIEWS = 0x103;
     private static final int MSG_UPDATE_LIVE_REACTIONS = 0x104;
     private static final int MSG_LIVE_STOPPED = 0x105;
+    private static final int MSG_EXIT_APP = 0x106;
 
     public static Fragment newInstance() {
         return new LiveMainFragment();
@@ -228,6 +235,9 @@ public class LiveMainFragment extends Fragment
                     mLoadingLayout.setVisibility(View.GONE);
                     showLiveStreamResult();
                     break;
+                case MSG_EXIT_APP:
+                    System.exit(0);
+                    break;
             }
         }
     };
@@ -253,6 +263,24 @@ public class LiveMainFragment extends Fragment
 
     private AlertDialog mPostDialog = null;
 
+    private BroadcastReceiver mMoto360Receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+            if (ModHelper.ACTION_MOTO_360_ATTACHED.equals(action)
+                    || ModHelper.ACTION_MOTO_360_DETACHED.equals(action)) {
+                if (mIsOnLive) {
+                    mPublisher.stopCamera();
+                    mPublisher.stopRecord();
+                }
+                if (getActivity() != null) {
+                    getActivity().finish();
+                }
+                mHandler.sendEmptyMessageDelayed(MSG_EXIT_APP, 200L);
+            }
+        }
+    };
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -266,6 +294,11 @@ public class LiveMainFragment extends Fragment
                     .getCacheFromTag(ViewCacheManager.FB_LIVE_INFO);
         }
 
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ModHelper.ACTION_MOTO_360_ATTACHED);
+        filter.addAction(ModHelper.ACTION_MOTO_360_DETACHED);
+        LocalBroadcastManager.getInstance(getActivity())
+                .registerReceiver(mMoto360Receiver, filter);
         if (Profile.getCurrentProfile() == null) {
             new ProfileTracker() {
                 @Override
@@ -300,18 +333,20 @@ public class LiveMainFragment extends Fragment
         mPublisher.setEncodeHandler(new SrsEncodeHandler(this));
         mPublisher.setRtmpHandler(new RtmpHandler(this));
         mPublisher.setRecordHandler(new SrsRecordHandler(this));
-        // Get the real screen size and set as preview resolution
 
-        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-        Point screenSize = new Point();
-        wm.getDefaultDisplay().getRealSize(screenSize);
-        mPublisher.setPreviewResolution(screenSize.y, screenSize.x);
-        mPublisher.setOutputResolution(720, 1280);
-        if (mPublisher.getCamraId() != 2) {
+        if (!ModHelper.isModMoto360(getActivity())) {
+            // Get the real screen size and set as preview resolution
+            WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+            Point screenSize = new Point();
+            wm.getDefaultDisplay().getRealSize(screenSize);
+            mPublisher.setPreviewResolution(screenSize.y, screenSize.x);
+            mPublisher.setOutputResolution(720, 1280);
             mPublisher.switchCameraFace((mPublisher.getCamraId() + 1) % 2);
+            mPublisher.switchCameraFilter(ViewfinderType.NONE);
         } else {
             mPublisher.setPreviewResolution(2160, 1080);
             mPublisher.setOutputResolution(640, 1280);
+            mPublisher.switchCameraFilter(ViewfinderType.NONE);
         }
         mPublisher.setVideoHDMode();
     }
@@ -364,6 +399,8 @@ public class LiveMainFragment extends Fragment
 
         mLiveTimer.stopCounting();
         mIsOnLive = false;
+
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mMoto360Receiver);
     }
 
     @Override

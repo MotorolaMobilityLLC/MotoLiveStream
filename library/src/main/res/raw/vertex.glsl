@@ -1,11 +1,11 @@
-attribute vec4 position;
-attribute vec4 inputTextureCoordinate;
+attribute vec4 a_Position;
+attribute vec4 a_TextureCoord;
 
-varying vec2 textureCoordinate;
+varying vec2 v_TextureCoord;
 
-uniform mat4 textureTransform;
+uniform mat4 u_STMatrix;
 
 void main() {
-    textureCoordinate = (textureTransform * inputTextureCoordinate).xy;
-    gl_Position = position;
+    gl_Position = a_Position;
+    v_TextureCoord = (u_STMatrix * a_TextureCoord).xy;
 }

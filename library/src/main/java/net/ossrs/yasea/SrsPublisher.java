@@ -5,7 +5,7 @@ import android.media.audiofx.AcousticEchoCanceler;
 import android.media.audiofx.AutomaticGainControl;
 
 import com.github.faucamp.simplertmp.RtmpHandler;
-import com.seu.magicfilter.utils.MagicFilterType;
+import com.motorola.gl.viewfinder.ViewfinderFactory.ViewfinderType;
 
 import java.io.File;
 
@@ -260,7 +260,7 @@ public class SrsPublisher {
         sendAudioOnly = flag;
     }
 
-    public boolean switchCameraFilter(MagicFilterType type) {
+    public boolean switchCameraFilter(ViewfinderType type) {
         return mCameraView.setFilter(type);
     }
 
