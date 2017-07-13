@@ -1,10 +1,8 @@
 package com.motorola.livestream.util;
 
-import android.content.ContentResolver;
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-
-import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class ModHelper {
     public static final int VENDOR_MOTOROLA = 0x128;
@@ -17,8 +15,10 @@ public class ModHelper {
 
     private static final int PRODUCT_ID_HW_REV_MASK = 0xff;
 
-    private ModHelper() {
-    }
+    public static final String ACTION_MOTO_360_ATTACHED = "com.motorola.livestream.action.MOTO_360_ATTACHED";
+    public static final String ACTION_MOTO_360_DETACHED = "com.motorola.livestream.action.MOTO_360_DETACHED";
+
+    private static boolean sIsModCameraAttached = false;
 
     public static int getProduct(int pid) {
         return (pid ^ PRODUCT_ID_HW_REV_MASK) >> 8;
@@ -28,26 +28,58 @@ public class ModHelper {
         return pid & PRODUCT_ID_HW_REV_MASK;
     }
 
-    public static boolean isModHasselblad(int pid) {
-        return PRODUCT_HASSELBLAD_TRUE_ZOOM == getProduct(pid);
-    }
+    public static boolean isModCamera(Context context) {
+        int productId = getModProductId(context);
 
-    public static boolean isModMoto360(int pid) {
-        return PRODUCT_MOTO_360 == getProduct(pid);
-    }
-
-    public static boolean isModCamera() {
-        boolean isModCamera = false;
-        ContentResolver resolver = getApplicationContext().getContentResolver();
-        Cursor cursor = resolver.query(CONTENT_URI_MOD, null, null, null, null);
-        if (cursor != null && cursor.getCount() != 0) {
-            cursor.moveToFirst();
-            int product = getProduct(cursor.getInt(0));
-            isModCamera = (product == PRODUCT_HASSELBLAD_TRUE_ZOOM ||
-            product == PRODUCT_MOTO_360);
+        if (isModHasselblad(productId) || isModMoto360(productId)) {
+            sIsModCameraAttached = true;
+        } else {
+            sIsModCameraAttached = false;
         }
-        if (cursor != null) cursor.close();
-
-        return isModCamera;
+        return sIsModCameraAttached;
     }
+
+    public static boolean isModMoto360(Context context) {
+        int productId = getModProductId(context);
+        if (isModMoto360(productId)) {
+            sIsModCameraAttached = true;
+            return true;
+        } else {
+            sIsModCameraAttached = false;
+            return false;
+        }
+    }
+
+    private static int getModProductId(Context context) {
+        Cursor cursor = null;
+        try {
+            cursor = context.getContentResolver().query(CONTENT_URI_MOD, null, null, null, null);
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                return getProduct(cursor.getInt(0));
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return 0;
+    }
+
+    private static boolean isModHasselblad(int pid) {
+        return PRODUCT_HASSELBLAD_TRUE_ZOOM == pid;
+    }
+
+    private static boolean isModMoto360(int pid) {
+        return PRODUCT_MOTO_360 == pid;
+    }
+
+    public static boolean isModCameraAttached() {
+        return sIsModCameraAttached;
+    }
+
+    public static void setModCameraDetached() {
+        sIsModCameraAttached = false;
+    }
+
 }

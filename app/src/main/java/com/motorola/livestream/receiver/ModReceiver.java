@@ -3,6 +3,7 @@ package com.motorola.livestream.receiver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 
 import com.motorola.livestream.util.ModHelper;
 
@@ -22,13 +23,16 @@ public class ModReceiver extends BroadcastReceiver {
         String action = intent.getAction();
         switch (action) {
             case ACTION_MOD_ATTACH:
-                if (ModHelper.isModCamera()) {
-                    System.exit(0);
+                if (ModHelper.isModCamera(context)) {
+                    Intent broadcastIntent = new Intent(ModHelper.ACTION_MOTO_360_ATTACHED);
+                    LocalBroadcastManager.getInstance(context).sendBroadcast(broadcastIntent);
                 }
                 break;
             case ACTION_MOD_DETACH:
-                if (ModHelper.isModCamera()) {
-                    System.exit(0);
+                if (ModHelper.isModCameraAttached()) {
+                    Intent broadcastIntent = new Intent(ModHelper.ACTION_MOTO_360_DETACHED);
+                    LocalBroadcastManager.getInstance(context).sendBroadcast(broadcastIntent);
+                    ModHelper.setModCameraDetached();
                 }
                 break;
             default:
