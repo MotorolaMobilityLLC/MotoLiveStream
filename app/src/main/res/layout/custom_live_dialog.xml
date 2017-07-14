@@ -9,6 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:gravity="end"
         android:textColor="@color/colorAccent"
         android:layout_marginEnd="@dimen/live_layout_settings_margin_horizontal"
         style="@android:style/Holo.Light.ButtonBar.AlertDialog"/>
@@ -18,6 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:gravity="end"
         android:textColor="@color/colorAccent"
         android:layout_marginEnd="@dimen/live_layout_settings_margin_horizontal"
         style="@android:style/Holo.Light.ButtonBar.AlertDialog"/>

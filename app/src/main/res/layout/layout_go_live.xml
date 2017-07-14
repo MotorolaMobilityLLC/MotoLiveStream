@@ -15,14 +15,15 @@
         android:layout_marginBottom="@dimen/live_layout_settings_child_margin_vertical"
         android:text="@string/live_label_go_live"
         android:textSize="@dimen/text_size_medium"
-        android:textAllCaps="true"/>
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"/>
 
     <RelativeLayout
         android:id="@+id/live_btn"
         android:layout_width="match_parent"
         android:layout_height="@dimen/go_live_button_panel_height"
         android:layout_below="@id/label_golive"
-        android:layout_alignBottom="@id/live_btn">
+        android:layout_marginBottom="@dimen/live_ctrl_panel_margin_bottom">
 
         <ImageButton
             android:id="@+id/btn_go_live"
