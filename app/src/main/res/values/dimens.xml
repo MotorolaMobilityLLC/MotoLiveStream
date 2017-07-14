@@ -44,4 +44,6 @@
 
     <dimen name="button_size">40dp</dimen>
     <dimen name="go_live_button_panel_height">60dp</dimen>
+
+    <dimen name="live_ctrl_panel_margin_bottom">12dp</dimen>
 </resources>

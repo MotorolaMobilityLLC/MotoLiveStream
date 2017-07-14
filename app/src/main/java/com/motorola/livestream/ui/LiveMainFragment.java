@@ -137,6 +137,9 @@ public class LiveMainFragment extends Fragment
 
     private boolean mIsOnLive = false;
 
+    private AlertDialog mPostDialog = null;
+    private AlertDialog mLogoutDialog = null;
+
     private Timer mLiveCommentsTimer;
     private final OnPagedListRetrievedListener<Comment> mLiveCommentListener =
             new OnPagedListRetrievedListener<Comment>() {
@@ -260,8 +263,6 @@ public class LiveMainFragment extends Fragment
                         break;
                 }
             };
-
-    private AlertDialog mPostDialog = null;
 
     private BroadcastReceiver mMoto360Receiver = new BroadcastReceiver() {
         @Override
@@ -590,6 +591,7 @@ public class LiveMainFragment extends Fragment
     }
 
     private void showLogoutDialog() {
+        /*
         User currentUser = mLiveInfoCacheBean.getUser();
         if (currentUser == null) {
             return;
@@ -609,6 +611,53 @@ public class LiveMainFragment extends Fragment
                 .setPositiveButton(R.string.live_dlg_btn_logout,
                         (DialogInterface dialog, int which) -> logoutFromFacebook(false))
                 .show();
+                */
+        User currentUser = mLiveInfoCacheBean.getUser();
+        if (currentUser == null) {
+            return;
+        }
+
+        final FragmentActivity activity = getActivity();
+        if (activity == null) {
+            return;
+        }
+
+        String userName = currentUser.getName();
+        String message = activity.getString(R.string.live_dlg_logout_message, userName);
+        int startIndex = message.indexOf(userName);
+        SpannableStringBuilder ssb = new SpannableStringBuilder(message);
+        ssb.setSpan(new StyleSpan(Typeface.BOLD), startIndex, startIndex + userName.length(),
+                Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+
+        View view = LayoutInflater.from(activity).inflate(R.layout.custom_live_dialog, null);
+        Button btnPositive = (Button) view.findViewById(R.id.btn_positive);
+        if (btnPositive != null) {
+            btnPositive.setText(R.string.live_dlg_btn_logout);
+            btnPositive.setOnClickListener(this);
+        }
+        Button btnNegative = (Button) view.findViewById(R.id.btn_negative);
+        if (btnNegative != null) {
+            btnNegative.setText(R.string.live_login_identify);
+            btnNegative.setOnClickListener(this);
+        }
+
+        builder.setView(view)
+                .setMessage(ssb);
+
+        mLogoutDialog = builder.show();
+    }
+
+    private void handleLogoutDialogOnClick(int id) {
+        if (mLogoutDialog != null) {
+            mLogoutDialog.dismiss();
+            mLogoutDialog = null;
+        }
+
+        if (R.id.btn_positive == id) {
+            logoutFromFacebook(false);
+        }
     }
 
     private void showResumeDialog() {
@@ -1105,7 +1154,11 @@ public class LiveMainFragment extends Fragment
                 break;
             case R.id.btn_positive:
             case R.id.btn_negative:
-                handleLivePostedDialogOnClick(v.getId());
+                if (mPostDialog != null) {
+                    handleLivePostedDialogOnClick(v.getId());
+                } else if (mLogoutDialog != null){
+                    handleLogoutDialogOnClick(v.getId());
+                }
                 break;
             default:
                 break;

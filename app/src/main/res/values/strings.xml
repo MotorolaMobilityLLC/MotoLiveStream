@@ -46,4 +46,6 @@
     <string name="live_posted_message">Your video has been posted on your timeline.</string>
     <string name="live_posted_view">View on facebook</string>
     <string name="live_process_identify">Got it</string>
+
+    <string name="live_login_identify">Okay</string>
 </resources>
