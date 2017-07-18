@@ -2,7 +2,7 @@
     <string name="app_name">Moto Live Stream</string>
     <string name="facebook_app_id" translatable="false">1933762443579662</string>
 
-    <string name="label_network_not_available">"Your network available now"</string>
+    <string name="label_network_not_available">"Your network not available now."</string>
     <string name="label_profile_not_available">"Failed to get your profile"</string>
 
     <string name="label_activity_timeline_privacy">Select Privacy</string>
@@ -10,6 +10,7 @@
 
     <string name="menu_done">Done</string>
 
+    <string name="btn_ok">OK</string>
     <string name="btn_delete">Delete</string>
     <string name="btn_post">Post</string>
 

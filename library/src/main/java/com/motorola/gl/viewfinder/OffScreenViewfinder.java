@@ -4,8 +4,8 @@ import android.content.Context;
 import android.opengl.GLES11Ext;
 import android.opengl.GLES20;
 
-import com.motorola.gl.viewfinder.ViewfinderFactory.ViewfinderType;
 import com.motorola.gl.utils.OpenGLUtils;
+import com.motorola.gl.viewfinder.ViewfinderFactory.ViewfinderType;
 
 import net.ossrs.yasea.R;
 
@@ -15,7 +15,7 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.LinkedList;
 
-public class DefaultViewfinder {
+public class OffScreenViewfinder {
 
     private static final int NO_TEXTURE = -1;
     private static final int NOT_INIT = -1;
@@ -32,7 +32,7 @@ public class DefaultViewfinder {
 
     private boolean mIsInitialized;
     protected Context mContext;
-    private ViewfinderFactory.ViewfinderType mType = ViewfinderFactory.ViewfinderType.NONE;
+    private ViewfinderType mType = ViewfinderType.NONE;
     private final LinkedList<Runnable> mRunOnDraw;
     private final int mVertexShaderId;
     private final int mFragmentShaderId;
@@ -59,15 +59,15 @@ public class DefaultViewfinder {
     private int[] mGLFboTexId;
     private IntBuffer mGLFboBuffer;
 
-    public DefaultViewfinder() {
-        this(ViewfinderFactory.ViewfinderType.NONE);
+    public OffScreenViewfinder() {
+        this(ViewfinderType.NONE);
     }
 
-    public DefaultViewfinder(ViewfinderType type) {
+    public OffScreenViewfinder(ViewfinderType type) {
         this(type, R.raw.vertex, R.raw.fragment);
     }
 
-    public DefaultViewfinder(ViewfinderType type, int vertexShaderId, int fragmentShaderId) {
+    public OffScreenViewfinder(ViewfinderType type, int vertexShaderId, int fragmentShaderId) {
         mType = type;
         mRunOnDraw = new LinkedList<>();
         mVertexShaderId = vertexShaderId;
@@ -172,11 +172,12 @@ public class DefaultViewfinder {
 
         GLES20.glGenTextures(1, mGLFboTexId, 0);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mGLFboTexId[0]);
-        GLES20.glTexImage2D(GLES20.GL_TEXTURE_2D, 0, GLES20.GL_RGBA, width, height, 0, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, null);
         GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
         GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
         GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE);
         GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE);
+        GLES20.glTexImage2D(GLES20.GL_TEXTURE_2D, 0, GLES20.GL_RGBA, width, height,
+                0, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, null);
 
         GLES20.glGenFramebuffers(1, mGLFboId, 0);
         GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, mGLFboId[0]);
@@ -206,7 +207,9 @@ public class DefaultViewfinder {
         }
 
         GLES20.glUseProgram(mProgramHandle);
-        runPendingOnDrawTasks();
+
+        GLES20.glActiveTexture(GLES20.GL_TEXTURE5);
+        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mGLFboTexId[0]);
 
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, mGLCubeId[0]);
         GLES20.glEnableVertexAttribArray(mPositionIndex);
@@ -220,48 +223,17 @@ public class DefaultViewfinder {
 
         GLES20.glUniformMatrix4fv(mSTMatrixIndex, 1, false, mGLTextureTransformMatrix, 0);
 
-        if (cameraTextureId != OpenGLUtils.NO_TEXTURE) {
-            GLES20.glActiveTexture(GLES20.GL_TEXTURE1);
-            GLES20.glBindTexture(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, cameraTextureId);
-            GLES20.glUniform1i(mTextureIndex, GLES20.GL_TEXTURE1 - GLES20.GL_TEXTURE0);
-        }
+        GLES20.glUniform1i(mTextureIndex, GLES20.GL_TEXTURE5 - GLES20.GL_TEXTURE0);
 
-        onDrawArraysPre();
-
-        // Do not process the FBO buffer anymore, let OffScreenViewfinder to handle it
-//        GLES20.glViewport(0, 0, mInputWidth, mInputHeight);
-//        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, mGLFboId[0]);
-//        for (int i = 0; i < mVboSegmentCount; i++) {
-//            GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, i * VERTEX_LENGTH_PER_SEGMENT, VERTEX_LENGTH_PER_SEGMENT);
-//        }
-//        GLES20.glReadPixels(0, 0, mInputWidth, mInputHeight, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, mGLFboBuffer);
-//        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0);
-        GLES20.glViewport(0, 0, mOutputWidth, mOutputHeight);
-
+        GLES20.glViewport(0, 0, mInputWidth, mInputHeight);
+        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, mGLFboId[0]);
         for (int i = 0; i < mVboSegmentCount; i++) {
             GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, i * VERTEX_LENGTH_PER_SEGMENT, VERTEX_LENGTH_PER_SEGMENT);
         }
-
-        onDrawArraysAfter();
-
-        GLES20.glBindTexture(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, 0);
-
-        GLES20.glDisableVertexAttribArray(mPositionIndex);
-        GLES20.glDisableVertexAttribArray(mTextureCoordIndex);
-
-        GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
+        GLES20.glReadPixels(0, 0, mInputWidth, mInputHeight, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, mGLFboBuffer);
+        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0);
 
         return mGLFboTexId[0];
-    }
-
-    protected void onDrawArraysPre() {}
-
-    protected void onDrawArraysAfter() {}
-
-    private void runPendingOnDrawTasks() {
-        while (!mRunOnDraw.isEmpty()) {
-            mRunOnDraw.removeFirst().run();
-        }
     }
 
     public IntBuffer getGLFboBuffer() {
@@ -270,10 +242,6 @@ public class DefaultViewfinder {
 
     protected Context getContext() {
         return mContext;
-    }
-
-    protected ViewfinderType getFilterType() {
-        return mType;
     }
 
     public void setTextureTransformMatrix(float[] mtx){
