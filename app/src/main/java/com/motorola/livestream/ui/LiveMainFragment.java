@@ -346,8 +346,8 @@ public class LiveMainFragment extends Fragment
             mPublisher.switchCameraFilter(ViewfinderType.NONE);
         } else {
             mPublisher.setPreviewResolution(2160, 1080);
-            mPublisher.setOutputResolution(640, 1280);
-            mPublisher.switchCameraFilter(ViewfinderType.NONE);
+            mPublisher.setOutputResolution(1080, 2160);
+            mPublisher.switchCameraFilter(ViewfinderType.SPLITSCREEN);
         }
         mPublisher.setVideoHDMode();
     }

@@ -1,10 +1,11 @@
 package com.motorola.livestream.ui;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -37,15 +38,19 @@ public class MainActivity extends AbstractPermissionActivity {
         super.onCreate(savedInstanceState);
 
         if (!Util.isNetworkConnected(getApplicationContext())) {
-            Toast.makeText(this,
-                    R.string.label_network_not_available, Toast.LENGTH_SHORT).show();
-            finish();
-            return;
+            new AlertDialog.Builder(this)
+                    .setMessage(R.string.label_network_not_available)
+                    .setPositiveButton(R.string.btn_ok,
+                            (DialogInterface dialog, int which) -> {
+                                MainActivity.this.finish();
+                            }
+                    )
+                    .show();
+        } else {
+            mCallbackManager = CallbackManager.Factory.create();
+
+            handleFbLoginProcedure();
         }
-
-        mCallbackManager = CallbackManager.Factory.create();
-
-        handleFbLoginProcedure();
     }
 
     @Override

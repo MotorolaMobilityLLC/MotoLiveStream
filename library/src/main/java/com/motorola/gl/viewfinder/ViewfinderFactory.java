@@ -9,6 +9,7 @@ public class ViewfinderFactory {
     public enum ViewfinderType {
         NONE,
         SPLITSCREEN,
+        OFFSCREEN,
     }
 
     public static DefaultViewfinder initFilters(ViewfinderType type) {
