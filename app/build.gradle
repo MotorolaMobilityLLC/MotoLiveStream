@@ -61,16 +61,21 @@ android {
             signingConfig signingConfigs.motCommonDebug
         }
     }
+
      project.archivesBaseName = "MotoLiveStream-v${getVersionNameMajor()}";
-     applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            if (variant.buildType.name == "release") {
-                def file = output.outputFile
-                def new_name = file.name.replaceAll(/-v.*-release/,"-release")
-                output.outputFile = new File(file.parent, new_name)
+     //def proAAPTConfigs = System.getenv("GRADLE_PRODUCT_AAPT_CONFIG")
+     if (proAAPTConfigs != null) {
+        applicationVariants.all { variant ->
+            variant.outputs.each { output ->
+                if (variant.buildType.name == "release") {
+                    def file = output.outputFile
+                    def new_name = file.name.replaceAll(/-v.*-release/,"-release")
+                    output.outputFile = new File(file.parent, new_name)
+                }
             }
         }
      }
+
 }
 
 repositories {
