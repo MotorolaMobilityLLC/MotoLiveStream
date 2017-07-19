@@ -334,6 +334,8 @@ public class SrsEncoder {
                     onProcessedYuvFrame(processedData, pts);
                 } catch (IllegalStateException e) {
                     mHandler.notifyEncodeIllegalStateException(e);
+                } catch (NullPointerException npe) {
+                    mHandler.notifyEncodeIllegalStateException(new IllegalStateException(npe));
                 }
             } else {
                 mHandler.notifyEncodeIllegalArgumentException(new IllegalArgumentException("libyuv failure"));
