@@ -3,6 +3,7 @@ package net.ossrs.yasea;
 import android.media.AudioRecord;
 import android.media.audiofx.AcousticEchoCanceler;
 import android.media.audiofx.AutomaticGainControl;
+import android.util.Log;
 
 import com.github.faucamp.simplertmp.RtmpHandler;
 import com.motorola.gl.viewfinder.ViewfinderFactory.ViewfinderType;
@@ -13,6 +14,8 @@ import java.io.File;
  * Created by Leo Ma on 2016/7/25.
  */
 public class SrsPublisher {
+
+    private static final String LOG_TAG = "SrsPublisher";
 
     private static AudioRecord mic;
     private static AcousticEchoCanceler aec;
@@ -107,9 +110,31 @@ public class SrsPublisher {
                             break;
                         }
                     } else {
-                        int size = mic.read(mPcmBuffer, 0, mPcmBuffer.length);
-                        if (size > 0) {
-                            mEncoder.onGetPcmFrame(mPcmBuffer, size);
+                        if (mic == null) {
+                            mic = mEncoder.chooseAudioRecord();
+                            if (mic != null) {
+                                if (AcousticEchoCanceler.isAvailable()) {
+                                    aec = AcousticEchoCanceler.create(mic.getAudioSessionId());
+                                    if (aec != null) {
+                                        aec.setEnabled(true);
+                                    }
+                                }
+
+                                if (AutomaticGainControl.isAvailable()) {
+                                    agc = AutomaticGainControl.create(mic.getAudioSessionId());
+                                    if (agc != null) {
+                                        agc.setEnabled(true);
+                                    }
+                                }
+                            }
+                        }
+                        if (mic != null) {
+                            int size = mic.read(mPcmBuffer, 0, mPcmBuffer.length);
+                            if (size > 0) {
+                                mEncoder.onGetPcmFrame(mPcmBuffer, size);
+                            }
+                        } else {
+                            Log.e(LOG_TAG, "AudioRecord mic is null, unable to record audio");
                         }
                     }
                 }

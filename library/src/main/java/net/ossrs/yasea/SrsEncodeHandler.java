@@ -14,6 +14,7 @@ public class SrsEncodeHandler extends Handler {
     private static final int MSG_ENCODE_NETWORK_WEAK = 0;
     private static final int MSG_ENCODE_NETWORK_RESUME = 1;
     private static final int MSG_ENCODE_ILLEGAL_ARGUMENT_EXCEPTION = 2;
+    private static final int MSG_ENCODE_ILLEGAL_STATE_EXCEPTION = 3;
 
     private WeakReference<SrsEncodeListener> mWeakListener;
 
@@ -32,7 +33,11 @@ public class SrsEncodeHandler extends Handler {
     public void notifyEncodeIllegalArgumentException(IllegalArgumentException e) {
         obtainMessage(MSG_ENCODE_ILLEGAL_ARGUMENT_EXCEPTION, e).sendToTarget();
     }
-    
+
+    public void notifyEncodeIllegalStateException(IllegalStateException e) {
+        obtainMessage(MSG_ENCODE_ILLEGAL_STATE_EXCEPTION, e).sendToTarget();
+    }
+
     @Override  // runs on UI thread
     public void handleMessage(Message msg) {
         SrsEncodeListener listener = mWeakListener.get();
@@ -49,6 +54,9 @@ public class SrsEncodeHandler extends Handler {
                 break;
             case MSG_ENCODE_ILLEGAL_ARGUMENT_EXCEPTION:
                 listener.onEncodeIllegalArgumentException((IllegalArgumentException) msg.obj);
+                break;
+            case MSG_ENCODE_ILLEGAL_STATE_EXCEPTION:
+                listener.onEncodeIllegalStateException((IllegalStateException) msg.obj);
             default:
                 throw new RuntimeException("unknown msg " + msg.what);
         }
@@ -61,5 +69,7 @@ public class SrsEncodeHandler extends Handler {
         void onNetworkResume();
 
         void onEncodeIllegalArgumentException(IllegalArgumentException e);
+
+        void onEncodeIllegalStateException(IllegalStateException e);
     }
 }
