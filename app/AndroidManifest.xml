@@ -17,6 +17,8 @@
 
     <uses-feature android:name="com.motorola.livestream" />
 
+    <uses-feature android:name="com.motorola.hardware.mods" android:required="true" />
+
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
