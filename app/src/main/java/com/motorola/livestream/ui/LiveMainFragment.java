@@ -328,6 +328,9 @@ public class LiveMainFragment extends Fragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Force to check if 360Mod is attached
+        ModHelper.isModMoto360(getActivity());
+
         initWidgets(view);
 
         mPublisher = new SrsPublisher((SrsCameraView) view.findViewById(R.id.live_camera_view));
@@ -335,7 +338,7 @@ public class LiveMainFragment extends Fragment
         mPublisher.setRtmpHandler(new RtmpHandler(this));
         mPublisher.setRecordHandler(new SrsRecordHandler(this));
 
-        if (!ModHelper.isModMoto360(getActivity())) {
+        if (!ModHelper.isModCameraAttached()) {
             // Get the real screen size and set as preview resolution
             WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
             Point screenSize = new Point();
@@ -447,7 +450,12 @@ public class LiveMainFragment extends Fragment
         mGoLiveLayout = view.findViewById(R.id.layout_go_live);
         mBtnGoLive = (ImageButton) mGoLiveLayout.findViewById(R.id.btn_go_live);
         mBtnGoLive.setOnClickListener(this);
-        mGoLiveLayout.findViewById(R.id.btn_switch_camera).setOnClickListener(this);
+        View btnSwitchCamera = mGoLiveLayout.findViewById(R.id.btn_switch_camera);
+        btnSwitchCamera.setOnClickListener(this);
+        // Hide switch camera button if 360Mod attached
+        if (ModHelper.isModCameraAttached()) {
+            btnSwitchCamera.setVisibility(View.GONE);
+        }
         mGoLiveLayout.findViewById(R.id.btn_select_camera).setOnClickListener(this);
         mBtnExit = (ImageButton) mGoLiveLayout.findViewById(R.id.btn_exit);
         mBtnExit.setOnClickListener(this);
