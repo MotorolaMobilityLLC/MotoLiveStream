@@ -18,9 +18,6 @@ public class LiveDynamicActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_live_dynamic);
 
-        // response screen rotation event
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.live_main_container, LiveMainFragment.newInstance())
                 .commit();
