@@ -89,6 +89,8 @@ public class SrsFlvMuxer {
             publisher.close();
         } catch (IllegalStateException e) {
             // Ignore illegal state.
+        } catch (NullPointerException e) {
+            // Ignore null pointer exception
         }
         connected = false;
         mVideoSequenceHeader = null;

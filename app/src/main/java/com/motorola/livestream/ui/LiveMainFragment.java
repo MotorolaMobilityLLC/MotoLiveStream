@@ -1293,4 +1293,9 @@ public class LiveMainFragment extends Fragment
     public void onEncodeIllegalArgumentException(IllegalArgumentException e) {
         handleException(e);
     }
+
+    @Override
+    public void onEncodeIllegalStateException(IllegalStateException e) {
+        handleException(e);
+    }
 }

@@ -330,7 +330,11 @@ public class SrsEncoder {
 
             byte[] processedData = hwRgbaFrame(data, width, height);
             if (processedData != null) {
-                onProcessedYuvFrame(processedData, pts);
+                try {
+                    onProcessedYuvFrame(processedData, pts);
+                } catch (IllegalStateException e) {
+                    mHandler.notifyEncodeIllegalStateException(e);
+                }
             } else {
                 mHandler.notifyEncodeIllegalArgumentException(new IllegalArgumentException("libyuv failure"));
             }
