@@ -180,12 +180,19 @@ public class SrsFlvMuxer {
         mFlvTagCache.clear();
         if (worker != null) {
             worker.interrupt();
-            try {
-                worker.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                worker.interrupt();
-            }
+            final Thread oldWorkder = worker;
+            // To make sure the join function won't block main thread
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        oldWorkder.join();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                        oldWorkder.interrupt();
+                    }
+                }
+            }).start();
             worker = null;
         }
         flv.reset();
