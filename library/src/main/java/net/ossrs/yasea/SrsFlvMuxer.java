@@ -7,6 +7,8 @@ import android.util.Log;
 import com.github.faucamp.simplertmp.DefaultRtmpPublisher;
 import com.github.faucamp.simplertmp.RtmpHandler;
 
+import java.io.IOException;
+import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -26,6 +28,7 @@ public class SrsFlvMuxer {
     private volatile boolean connected = false;
     private DefaultRtmpPublisher publisher;
     private RtmpHandler mHandler;
+    private SrsPublishListener mPublishListener;
 
     private Thread worker;
     private final Object txFrameLock = new Object();
@@ -42,13 +45,106 @@ public class SrsFlvMuxer {
     private static final int AUDIO_TRACK = 101;
     private static final String TAG = "SrsFlvMuxer";
 
+    private RtmpHandler.RtmpListener mRtmpListener = new RtmpHandler.RtmpListener() {
+        @Override
+        public void onRtmpConnecting(String msg) {
+            if (mPublishListener != null) {
+                mPublishListener.onRtmpConnecting(msg);
+            }
+        }
+
+        @Override
+        public void onRtmpConnected(String msg) {
+            if (mPublishListener != null) {
+                mPublishListener.onRtmpConnected(msg);
+            }
+        }
+
+        @Override
+        public void onRtmpVideoStreaming() {
+            if (mPublishListener!= null) {
+                mPublishListener.onRtmpVideoStreaming();
+            }
+        }
+
+        @Override
+        public void onRtmpAudioStreaming() {
+            if (mPublishListener != null) {
+                mPublishListener.onRtmpAudioStreaming();
+            }
+        }
+
+        @Override
+        public void onRtmpStopped() {
+            if (mPublishListener != null) {
+                mPublishListener.onRtmpStopped();
+            }
+        }
+
+        @Override
+        public void onRtmpDisconnected() {
+            if (mPublishListener != null) {
+                mPublishListener.onRtmpDisconnected();
+            }
+        }
+
+        @Override
+        public void onRtmpVideoFpsChanged(double fps) {
+            if (mPublishListener != null) {
+                mPublishListener.onRtmpVideoFpsChanged(fps);
+            }
+        }
+
+        @Override
+        public void onRtmpVideoBitrateChanged(double bitrate) {
+            if (mPublishListener != null) {
+                mPublishListener.onRtmpVideoBitrateChanged(bitrate);
+            }
+        }
+
+        @Override
+        public void onRtmpAudioBitrateChanged(double bitrate) {
+            if (mPublishListener != null) {
+                mPublishListener.onRtmpAudioBitrateChanged(bitrate);
+            }
+        }
+
+        @Override
+        public void onRtmpSocketException(SocketException e) {
+            if (mPublishListener != null) {
+                mPublishListener.onRtmpSocketException(e);
+            }
+        }
+
+        @Override
+        public void onRtmpIOException(IOException e) {
+            if (mPublishListener != null) {
+                mPublishListener.onRtmpIOException(e);
+            }
+        }
+
+        @Override
+        public void onRtmpIllegalArgumentException(IllegalArgumentException e) {
+            if (mPublishListener != null) {
+                mPublishListener.onRtmpIllegalArgumentException(e);
+            }
+        }
+
+        @Override
+        public void onRtmpIllegalStateException(IllegalStateException e) {
+            if (mPublishListener != null) {
+                mPublishListener.onRtmpIllegalStateException(e);
+            }
+        }
+    };
     /**
      * constructor.
-     * @param handler the rtmp event handler.
+     * @param listener the rtmp publish event listener.
      */
-    public SrsFlvMuxer(RtmpHandler handler) {
-        mHandler = handler;
-        publisher = new DefaultRtmpPublisher(handler);
+    public SrsFlvMuxer(SrsPublishListener listener) {
+        mPublishListener = listener;
+        mHandler = new RtmpHandler(mRtmpListener);
+        publisher = new DefaultRtmpPublisher(mHandler);
     }
 
     /**
@@ -164,7 +260,9 @@ public class SrsFlvMuxer {
                             // isEmpty() may take some time, so we set timeout to detect next frame
                             txFrameLock.wait(500);
                         } catch (InterruptedException ie) {
-                            worker.interrupt();
+                            if (worker != null) {
+                                worker.interrupt();
+                            }
                         }
                     }
                 }
@@ -180,16 +278,16 @@ public class SrsFlvMuxer {
         mFlvTagCache.clear();
         if (worker != null) {
             worker.interrupt();
-            final Thread oldWorkder = worker;
+            final Thread oldWorker = worker;
             // To make sure the join function won't block main thread
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                        oldWorkder.join();
+                        oldWorker.join();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
-                        oldWorkder.interrupt();
+                        oldWorker.interrupt();
                     }
                 }
             }).start();

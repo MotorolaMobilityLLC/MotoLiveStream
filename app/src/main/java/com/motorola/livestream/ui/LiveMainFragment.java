@@ -37,7 +37,6 @@ import com.bumptech.glide.Glide;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
-import com.github.faucamp.simplertmp.RtmpHandler;
 
 import com.motorola.gl.viewfinder.ViewfinderFactory.ViewfinderType;
 
@@ -66,6 +65,7 @@ import com.motorola.livestream.viewcache.fb.TimelinePrivacyCacheBean;
 
 import net.ossrs.yasea.SrsCameraView;
 import net.ossrs.yasea.SrsEncodeHandler;
+import net.ossrs.yasea.SrsPublishListener;
 import net.ossrs.yasea.SrsPublisher;
 import net.ossrs.yasea.SrsRecordHandler;
 
@@ -79,7 +79,7 @@ import java.util.TimerTask;
 import static android.app.Activity.RESULT_OK;
 
 public class LiveMainFragment extends Fragment
-        implements SrsEncodeHandler.SrsEncodeListener, RtmpHandler.RtmpListener,
+        implements SrsEncodeHandler.SrsEncodeListener, SrsPublishListener,
         SrsRecordHandler.SrsRecordListener, View.OnClickListener {
 
     private static final String LOG_TAG = "LiveMainFragment";
@@ -335,7 +335,7 @@ public class LiveMainFragment extends Fragment
 
         mPublisher = new SrsPublisher((SrsCameraView) view.findViewById(R.id.live_camera_view));
         mPublisher.setEncodeHandler(new SrsEncodeHandler(this));
-        mPublisher.setRtmpHandler(new RtmpHandler(this));
+        mPublisher.setRtmpListener(this);
         mPublisher.setRecordHandler(new SrsRecordHandler(this));
 
         if (!ModHelper.isModCameraAttached()) {

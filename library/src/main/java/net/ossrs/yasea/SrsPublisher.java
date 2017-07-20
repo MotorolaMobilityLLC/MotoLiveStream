@@ -5,7 +5,6 @@ import android.media.audiofx.AcousticEchoCanceler;
 import android.media.audiofx.AutomaticGainControl;
 import android.util.Log;
 
-import com.github.faucamp.simplertmp.RtmpHandler;
 import com.motorola.gl.viewfinder.ViewfinderFactory.ViewfinderType;
 
 import java.io.File;
@@ -303,8 +302,8 @@ public class SrsPublisher {
         mCameraView.startCamera();
     }
 
-    public void setRtmpHandler(RtmpHandler handler) {
-        mFlvMuxer = new SrsFlvMuxer(handler);
+    public void setRtmpListener(SrsPublishListener listener) {
+        mFlvMuxer = new SrsFlvMuxer(listener);
         if (mEncoder != null) {
             mEncoder.setFlvMuxer(mFlvMuxer);
         }
