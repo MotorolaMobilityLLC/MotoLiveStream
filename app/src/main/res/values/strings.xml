@@ -45,10 +45,15 @@
 
     <string name="live_popup_dlg_network_poor">Create live failed, please check if your network is able to access Facebook service.</string>
 
+    <string name="live_popup_dlg_camera_failed">Failed to connect to camera service, please try again later.</string>
+
     <string name="live_deleted_message">Your video has been deleted</string>
     <string name="live_posted_message">Your video has been posted on your timeline.</string>
     <string name="live_posted_view">View on facebook</string>
     <string name="live_process_identify">Got it</string>
 
     <string name="live_login_identify">Okay</string>
+
+    <string name="str_phone_camera">Phone camera</string>
+    <string name="str_mod_camera">360 camera</string>
 </resources>

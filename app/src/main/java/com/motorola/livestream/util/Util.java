@@ -15,6 +15,9 @@ import java.util.Locale;
 
 public class Util {
 
+    public static final String ACTION = "com.motorola.livestream.intent.ACTION_CREATE_LIVE_STREAM";
+    public static final String EXTRA_CAMERA = "com.motorola.livestream.intent.EXTRA_CAMERA";
+
     private static final int THOUSAND = 1000;
     private static final int MEGA = 1000000;
 

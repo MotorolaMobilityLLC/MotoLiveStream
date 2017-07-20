@@ -74,6 +74,10 @@ public class SrsPublisher {
         mCameraView.stopCamera();
     }
 
+    public void setCameraId(int camId) {
+        mCameraView.setCameraId(camId);
+    }
+
     public void startAudio() {
         mic = mEncoder.chooseAudioRecord();
         if (mic == null) {

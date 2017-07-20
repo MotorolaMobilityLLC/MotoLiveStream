@@ -168,4 +168,7 @@
         </android.support.design.widget.TextInputLayout>
 
     </RelativeLayout>
+
+    <include
+        layout="@layout/layout_dynamic_cam_btn"/>
 </RelativeLayout>
