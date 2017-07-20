@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:versionCode="10010004"
-    android:versionName="1.1.4"
+    android:versionCode="10010005"
+    android:versionName="1.1.5"
     package="com.motorola.livestream">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -50,7 +50,7 @@
 
         <provider
             android:name="com.facebook.FacebookContentProvider"
-            android:authorities="com.facebook.app.FacebookContentProvider1855903138009935"
+            android:authorities="com.facebook.app.FacebookContentProvider1933762443579662"
             android:exported="true" />
 
         <activity
