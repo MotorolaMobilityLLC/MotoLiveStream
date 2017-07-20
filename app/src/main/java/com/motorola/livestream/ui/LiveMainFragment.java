@@ -108,6 +108,7 @@ public class LiveMainFragment extends Fragment
         return new LiveMainFragment();
     }
 
+    private int mDefaultCamId = -1;
     private SrsPublisher mPublisher = null;
 
     private View mLoadingLayout;
@@ -124,9 +125,11 @@ public class LiveMainFragment extends Fragment
     private EditText mLiveInfoInput;
 
     private View mGoLiveLayout;
-    private ImageButton mBtnGoLive;
-    private TextView mGoLiveLabel;
-    private ImageButton mBtnExit;
+    private View mBtnGoLive;
+    private View mGoLiveLabel;
+    private View mBtnExit;
+    private View mBtnSwitchCamera;
+    private View mBtnSelectCamera;
 
     private View mLiveInteract;
     private TextView mLiveComments;
@@ -139,6 +142,8 @@ public class LiveMainFragment extends Fragment
     private View mCommentLayout;
     private ReactionView mReactionView;
     private CommentListAdapter mCommentAdapter;
+
+    private View mDynamicCamBtnLayout;
 
     private TimelinePrivacyCacheBean mPrivacyCacheBean = null;
     private LiveInfoCacheBean mLiveInfoCacheBean = null;
@@ -265,13 +270,22 @@ public class LiveMainFragment extends Fragment
             (DialogInterface dialog, int which) -> {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
-                        mPublisher.setSendVideoOnly(false);
-                        // Cause the camera is closed when onPause(), and the encoding also stopped
-                        // So we have to start the camera preview, and resume encoding work
-                        mPublisher.startCameraAndResumeEnc();
+                        try {
+                            mPublisher.setSendVideoOnly(false);
+                            // Cause the camera is closed when onPause(), and the encoding also stopped
+                            // So we have to start the camera preview, and resume encoding work
+                            mPublisher.startCameraAndResumeEnc();
 
-                        mLiveTimer.resumeCounting();
-                        startUpdateInteractInfo();
+                            mLiveTimer.resumeCounting();
+                            startUpdateInteractInfo();
+                        } catch (NullPointerException e) {
+                            stopLive();
+                        } catch (IllegalStateException e) {
+                            stopLive();
+                        } catch (RuntimeException e) {
+                            e.printStackTrace();
+                            showCameraFailedDialog();
+                        }
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
                         stopLive();
@@ -344,8 +358,7 @@ public class LiveMainFragment extends Fragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Force to check if 360Mod is attached
-        ModHelper.isModMoto360(getActivity());
+        initDefaultCamId();
 
         initWidgets(view);
 
@@ -354,21 +367,7 @@ public class LiveMainFragment extends Fragment
         mPublisher.setRtmpListener(this);
         mPublisher.setRecordHandler(new SrsRecordHandler(this));
 
-        if (!ModHelper.isModCameraAttached()) {
-            // Get the real screen size and set as preview resolution
-            WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-            Point screenSize = new Point();
-            wm.getDefaultDisplay().getRealSize(screenSize);
-            mPublisher.setPreviewResolution(screenSize.y, screenSize.x);
-            mPublisher.setOutputResolution(720, 1280);
-            mPublisher.switchCameraFace((mPublisher.getCamraId() + 1) % 2);
-            mPublisher.switchCameraFilter(ViewfinderType.NONE);
-        } else {
-            mPublisher.setPreviewResolution(2160, 1080);
-            mPublisher.setOutputResolution(1080, 2160);
-            mPublisher.switchCameraFilter(ViewfinderType.SPLITSCREEN);
-        }
-        mPublisher.setVideoHDMode();
+        swapCamera(mDefaultCamId);
     }
 
     @Override
@@ -379,7 +378,12 @@ public class LiveMainFragment extends Fragment
             //Popup a dialog to indicate user whether to resume or stop the live
             showResumeDialog();
         } else {
-            mPublisher.startCamera();
+            try {
+                mPublisher.startCamera();
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+                showCameraFailedDialog();
+            }
 
             updateUserInfo(Profile.getCurrentProfile());
             updateLivePrivacySettings();
@@ -464,18 +468,20 @@ public class LiveMainFragment extends Fragment
 
         // Go live controller layout
         mGoLiveLayout = view.findViewById(R.id.layout_go_live);
-        mBtnGoLive = (ImageButton) mGoLiveLayout.findViewById(R.id.btn_go_live);
+        mBtnGoLive = mGoLiveLayout.findViewById(R.id.btn_go_live);
         mBtnGoLive.setOnClickListener(this);
-        View btnSwitchCamera = mGoLiveLayout.findViewById(R.id.btn_switch_camera);
-        btnSwitchCamera.setOnClickListener(this);
+        mBtnSwitchCamera = mGoLiveLayout.findViewById(R.id.btn_switch_camera);
+        mBtnSwitchCamera.setOnClickListener(this);
         // Hide switch camera button if 360Mod attached
         if (ModHelper.isModCameraAttached()) {
-            btnSwitchCamera.setVisibility(View.GONE);
+            mBtnSwitchCamera.setVisibility(View.GONE);
         }
         mGoLiveLayout.findViewById(R.id.btn_select_camera).setOnClickListener(this);
-        mBtnExit = (ImageButton) mGoLiveLayout.findViewById(R.id.btn_exit);
+        mBtnSelectCamera = mGoLiveLayout.findViewById(R.id.btn_select_camera);
+
+        mBtnExit = mGoLiveLayout.findViewById(R.id.btn_exit);
         mBtnExit.setOnClickListener(this);
-        mGoLiveLabel = (TextView) mGoLiveLayout.findViewById(R.id.label_golive);
+        mGoLiveLabel = mGoLiveLayout.findViewById(R.id.label_golive);
         mGoLiveLabel.setVisibility(View.VISIBLE);
 
         // Live interact layout
@@ -499,6 +505,46 @@ public class LiveMainFragment extends Fragment
         commentListView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         mCommentAdapter = new CommentListAdapter(commentListView);
         commentListView.setAdapter(mCommentAdapter);
+
+        //Dynamic camera button to show phone camera or camera mod
+        mDynamicCamBtnLayout = view.findViewById(R.id.dynamic_cam_btn);
+        mDynamicCamBtnLayout.setOnClickListener(this);
+        mDynamicCamBtnLayout.findViewById(R.id.phone_cam).setOnClickListener(this);
+        mDynamicCamBtnLayout.findViewById(R.id.mod_cam).setOnClickListener(this);
+
+        // TODO part first, because swap camera function is not completed
+//        if (ModHelper.isModCameraAttached()) {
+//            mBtnSelectCamera.setVisibility(View.VISIBLE);
+//            mBtnSwitchCamera.setVisibility(View.GONE);
+//            setDynamicCamBtnState(mDefaultCamId);
+//        } else {
+//            mBtnSelectCamera.setVisibility(View.GONE);
+//            mBtnSwitchCamera.setVisibility(View.VISIBLE);
+//        }
+    }
+
+    private void showDynamicCamLayout(boolean show) {
+        if (show) {
+            mDynamicCamBtnLayout.setVisibility(View.VISIBLE);
+            mLiveSettings.setVisibility(View.GONE);
+            mGoLiveLayout.setVisibility(View.GONE);
+        } else {
+            mDynamicCamBtnLayout.setVisibility(View.GONE);
+            mLiveSettings.setVisibility(View.VISIBLE);
+            mGoLiveLayout.setVisibility(View.VISIBLE);
+            mBtnSwitchCamera.setVisibility(
+                    mPublisher.getCamraId() == MOD_CAMERA_ID ? View.INVISIBLE : View.VISIBLE);
+        }
+    }
+
+    private void setDynamicCamBtnState(int camId) {
+        if (camId == MOD_CAMERA_ID) {
+            mDynamicCamBtnLayout.findViewById(R.id.phone_cam).setSelected(false);
+            mDynamicCamBtnLayout.findViewById(R.id.mod_cam).setSelected(true);
+        } else {
+            mDynamicCamBtnLayout.findViewById(R.id.phone_cam).setSelected(true);
+            mDynamicCamBtnLayout.findViewById(R.id.mod_cam).setSelected(false);
+        }
     }
 
     private void updateUserInfo(Profile profile) {
@@ -615,27 +661,6 @@ public class LiveMainFragment extends Fragment
     }
 
     private void showLogoutDialog() {
-        /*
-        User currentUser = mLiveInfoCacheBean.getUser();
-        if (currentUser == null) {
-            return;
-        }
-
-        final FragmentActivity activity = getActivity();
-
-        String userName = currentUser.getName();
-        String message = activity.getString(R.string.live_dlg_logout_message, userName);
-        int startIndex = message.indexOf(userName);
-        SpannableStringBuilder ssb = new SpannableStringBuilder(message);
-        ssb.setSpan(new StyleSpan(Typeface.BOLD), startIndex, startIndex + userName.length(),
-                Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-
-        new AlertDialog.Builder(activity)
-                .setMessage(ssb)
-                .setPositiveButton(R.string.live_dlg_btn_logout,
-                        (DialogInterface dialog, int which) -> logoutFromFacebook(false))
-                .show();
-                */
         User currentUser = mLiveInfoCacheBean.getUser();
         if (currentUser == null) {
             return;
@@ -694,6 +719,18 @@ public class LiveMainFragment extends Fragment
                 .setMessage(R.string.live_popup_dlg_content)
                 .setNegativeButton(R.string.live_popup_dlg_btn_finish, mResumeDialogListener)
                 .setPositiveButton(R.string.live_popup_dlg_btn_resume, mResumeDialogListener)
+                .setCancelable(false)
+                .show();
+    }
+
+    private void showCameraFailedDialog() {
+        new AlertDialog.Builder(getActivity())
+                .setMessage(R.string.live_popup_dlg_camera_failed)
+                .setNegativeButton(R.string.btn_ok,
+                        (DialogInterface dialog, int which) -> {
+                            getActivity().finish();
+                        }
+                )
                 .setCancelable(false)
                 .show();
     }
@@ -1198,6 +1235,53 @@ public class LiveMainFragment extends Fragment
         });
     }
 
+    private void initDefaultCamId() {
+        // Force to check if 360Mod is attached
+        ModHelper.isModMoto360(getActivity());
+
+        if (ModHelper.isModCameraAttached()) {
+            mDefaultCamId = MOD_CAMERA_ID;
+        } else {
+            mDefaultCamId = 0;
+        }
+
+        Intent intent = getActivity().getIntent();
+        if (intent != null) {
+            mDefaultCamId = intent.getIntExtra(Util.EXTRA_CAMERA, mDefaultCamId);
+        }
+    }
+
+    private void swapCamera(int camId) {
+        if (mPublisher.getCamraId() == camId) {
+            return;
+        }
+
+        mPublisher.stopCamera();
+        try {
+            if (camId == MOD_CAMERA_ID) {
+                mPublisher.setCameraId(camId);
+                mPublisher.setPreviewResolution(2160, 1080);
+                mPublisher.setOutputResolution(1080, 2160);
+                mPublisher.switchCameraFace(camId);
+                mPublisher.switchCameraFilter(ViewfinderType.SPLITSCREEN);
+            } else {
+                mPublisher.setCameraId(camId);
+                // Get the real screen size and set as preview resolution
+                WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+                Point screenSize = new Point();
+                wm.getDefaultDisplay().getRealSize(screenSize);
+                mPublisher.setPreviewResolution(screenSize.y, screenSize.x);
+                mPublisher.setOutputResolution(720, 1280);
+                mPublisher.switchCameraFace(camId);
+                mPublisher.switchCameraFilter(ViewfinderType.NONE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            showCameraFailedDialog();
+        }
+        mPublisher.setVideoHDMode();
+    }
+
     // Implementation of View.OnClickListener
     @Override
     public void onClick(View v) {
@@ -1216,7 +1300,22 @@ public class LiveMainFragment extends Fragment
                     mPublisher.switchCameraFace(
                             (mPublisher.getCamraId() + 1) % 2);
                 }
+                break;
             case R.id.btn_select_camera:
+                showDynamicCamLayout(true);
+                break;
+            case R.id.phone_cam:
+                swapCamera(0);
+                setDynamicCamBtnState(0);
+                showDynamicCamLayout(false);
+                break;
+            case R.id.mod_cam:
+                swapCamera(MOD_CAMERA_ID);
+                setDynamicCamBtnState(MOD_CAMERA_ID);
+                showDynamicCamLayout(false);
+                break;
+            case R.id.dynamic_cam_btn:
+                showDynamicCamLayout(false);
                 break;
             case R.id.btn_exit:
                 getActivity().finish();

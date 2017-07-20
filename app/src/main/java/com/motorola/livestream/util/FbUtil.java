@@ -314,6 +314,9 @@ public class FbUtil {
                 null,
                 HttpMethod.DELETE,
                 (GraphResponse response) -> {
+                    if (listener == null) {
+                        return;
+                    }
                     if (response.getError() == null) {
                         listener.onSuccess(true);
                     } else {

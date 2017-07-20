@@ -15,4 +15,6 @@
     <color name="black_overlay">#66000000</color>
 
     <color name="result_text_color">#ff48bfe0</color>
+
+    <color name="dynamic_btn_txt_color_selected">#fff7c22d</color>
 </resources>

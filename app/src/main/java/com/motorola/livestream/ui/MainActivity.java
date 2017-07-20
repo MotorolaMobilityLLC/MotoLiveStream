@@ -37,7 +37,12 @@ public class MainActivity extends AbstractPermissionActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (!Util.isNetworkConnected(getApplicationContext())) {
+        Intent intent = getIntent();
+        if (intent == null
+                || intent.getAction() == null
+                /*|| !Util.ACTION.equals(intent.getAction())*/) {
+            finish();
+        } else if (!Util.isNetworkConnected(getApplicationContext())) {
             new AlertDialog.Builder(this)
                     .setMessage(R.string.label_network_not_available)
                     .setPositiveButton(R.string.btn_ok,
@@ -63,7 +68,9 @@ public class MainActivity extends AbstractPermissionActivity {
     @Override
     protected void onGetPermissionsSuccess() {
         Log.d(TAG, "Permission granted");
-        startActivity(new Intent(this, LiveDynamicActivity.class));
+        Intent intent = new Intent(this, LiveDynamicActivity.class);
+        intent.putExtras(getIntent());
+        startActivity(intent);
         finish();
     }
 
