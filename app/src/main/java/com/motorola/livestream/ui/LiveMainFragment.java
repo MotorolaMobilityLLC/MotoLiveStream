@@ -90,11 +90,19 @@ public class LiveMainFragment extends Fragment
     private static final int LIVE_INFO_REFRESH_INTERVAL = 3000; //3sec
 
     private static final int MSG_START_LIVE = 0x101;
-    private static final int MSG_UPDATE_LIVE_COMMENTS = 0x102;
-    private static final int MSG_UPDATE_LIVE_VIEWS = 0x103;
-    private static final int MSG_UPDATE_LIVE_REACTIONS = 0x104;
-    private static final int MSG_LIVE_STOPPED = 0x105;
-    private static final int MSG_EXIT_APP = 0x106;
+    private static final int MSG_LIVE_CONNECTED = 0x102;
+    private static final int MSG_UPDATE_LIVE_COMMENTS = 0x103;
+    private static final int MSG_UPDATE_LIVE_VIEWS = 0x104;
+    private static final int MSG_UPDATE_LIVE_REACTIONS = 0x105;
+    private static final int MSG_LIVE_STOPPED = 0x106;
+    private static final int MSG_EXIT_APP = 0x107;
+
+    private static final int MSG_CREATE_LIVE_TIME_OUT = 0x201;
+
+    private static final long CREATE_LIVE_TIME_OUT = 10000l;
+    private static final long CONNECT_LIVE_TIME_OUT = 5000l;
+
+    private static final int MOD_CAMERA_ID = 2;
 
     public static Fragment newInstance() {
         return new LiveMainFragment();
@@ -225,6 +233,9 @@ public class LiveMainFragment extends Fragment
                 case MSG_START_LIVE:
                     onLiveStart();
                     break;
+                case MSG_LIVE_CONNECTED:
+                    showLiveStatusInfo();
+                    break;
                 case MSG_UPDATE_LIVE_COMMENTS:
                     updateLiveComments();
                     break;
@@ -240,6 +251,11 @@ public class LiveMainFragment extends Fragment
                     break;
                 case MSG_EXIT_APP:
                     System.exit(0);
+                    break;
+                case MSG_CREATE_LIVE_TIME_OUT:
+                    showLiveTimeoutDialog();
+                    break;
+                default:
                     break;
             }
         }
@@ -682,6 +698,31 @@ public class LiveMainFragment extends Fragment
                 .show();
     }
 
+    private void showLiveTimeoutDialog() {
+        mHandler.removeMessages(MSG_CREATE_LIVE_TIME_OUT);
+
+        if (getActivity() == null || !isResumed()) {
+            return;
+        }
+
+        // Hide the loading view
+        mLoadingLayout.setVisibility(View.GONE);
+
+        // Stop camera encoding and publishing first
+        mPublisher.stopPublish();
+        mPublisher.stopRecord();
+
+        new AlertDialog.Builder(getActivity())
+                .setMessage(R.string.live_popup_dlg_network_poor)
+                .setNegativeButton(R.string.btn_ok,
+                        (DialogInterface dialog, int which) -> {
+                            stopLiveForNwPoor();
+                        }
+                )
+                .setCancelable(false)
+                .show();
+    }
+
     private void showLiveDeletedDialog() {
         if (getActivity() == null) {
             return;
@@ -750,12 +791,6 @@ public class LiveMainFragment extends Fragment
             return;
         }
 
-//        if (!((LiveDynamicActivity) getActivity()).checkIfNeedToRequestPermission()) {
-//            // The checkIfNeedToRequestPermission function will handle the login procedure
-//            // So just return here
-//            return;
-//        }
-
         // Hide the soft input panel
         InputMethodManager imm =
                 (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -763,9 +798,9 @@ public class LiveMainFragment extends Fragment
 
         mLoadingLayout.setVisibility(View.VISIBLE);
 
-        Boolean pano = false;
-        if (mPublisher.getCamraId() == 2) {
-            pano = true;
+        if (!Util.isNetworkConnected(getActivity())) {
+            showLiveTimeoutDialog();
+            return;
         }
 
         FbUtil.createUserLive(
@@ -785,10 +820,15 @@ public class LiveMainFragment extends Fragment
                     }
                 },
                 currentUser.getId(), mLiveInfoInput.getText().toString(),
-                mPrivacyCacheBean.toJsonString(), pano);
+                mPrivacyCacheBean.toJsonString(), (mPublisher.getCamraId() == MOD_CAMERA_ID));
+        // Set 10 seconds to wait the response from Facebook server
+        mHandler.sendEmptyMessageDelayed(MSG_CREATE_LIVE_TIME_OUT, CREATE_LIVE_TIME_OUT);
     }
 
     private void onLiveStreamReady(LiveInfo liveInfo) {
+        // Create live from Facebook server OK
+        mHandler.removeMessages(MSG_CREATE_LIVE_TIME_OUT);
+
         if (mLiveInfoCacheBean == null) {
             mLiveInfoCacheBean = (LiveInfoCacheBean) ViewCacheManager
                     .getCacheFromTag(ViewCacheManager.FB_LIVE_INFO);
@@ -800,7 +840,7 @@ public class LiveMainFragment extends Fragment
             mCommentAdapter.notifyDataSetChanged();
         }
 
-        mLoadingLayout.setVisibility(View.GONE);
+        //mLoadingLayout.setVisibility(View.GONE);
 
         mHandler.sendEmptyMessage(MSG_START_LIVE);
         // TODO maybe need a countdown timer to indicate starting live
@@ -819,7 +859,7 @@ public class LiveMainFragment extends Fragment
     }
 
     private void onLiveStart() {
-        mTopLayout.setVisibility(View.VISIBLE);
+//        mTopLayout.setVisibility(View.VISIBLE);
         mLiveSettings.setVisibility(View.GONE);
         mCommentLayout.setVisibility(View.VISIBLE);
 
@@ -844,6 +884,24 @@ public class LiveMainFragment extends Fragment
         mPublisher.startPublish(mLiveInfoCacheBean.getLiveStreamUrl());
         mPublisher.startCamera();
 
+        // Maybe we cannot connect to the stream url
+        // so wait the RTMP connected callback, then start the real live
+        // and set 5 seconds timeout to check if we can connect to the stream url
+//        mLiveTimer.startCounting();
+//        startUpdateInteractInfo();
+//        mIsOnLive = true;
+        mHandler.sendEmptyMessageDelayed(MSG_CREATE_LIVE_TIME_OUT, CONNECT_LIVE_TIME_OUT);
+    }
+
+    private void showLiveStatusInfo() {
+        // Hide the loading view
+        mLoadingLayout.setVisibility(View.GONE);
+
+        // Cancel timeout waiting
+        mHandler.removeMessages(MSG_CREATE_LIVE_TIME_OUT);
+
+        // Show the live timer
+        mTopLayout.setVisibility(View.VISIBLE);
         mLiveTimer.startCounting();
         startUpdateInteractInfo();
         mIsOnLive = true;
@@ -902,6 +960,33 @@ public class LiveMainFragment extends Fragment
         mPublisher.stopRecord();
     }
 
+    private void stopLiveForNwPoor() {
+        mIsOnLive = false;
+        stopUpdateInteractInfo();
+        mLiveTimer.stopCounting();
+        // Stop reaction animation and clear reactions
+        mReactionView.stop();
+        mReactionView.clear();
+        clearResultInfoCache();
+
+        // Hide go live controller layout
+        mTopLayout.setVisibility(View.GONE);
+        mGoLiveLayout.setVisibility(View.GONE);
+        mBtnGoLive.setSelected(false);
+
+        // Hide the interact layout
+        mLiveInteract.setVisibility(View.GONE);
+        // Hide the comment layout
+        mCommentLayout.setVisibility(View.GONE);
+
+        if (!TextUtils.isEmpty(mLiveInfoCacheBean.getLiveStreamId())) {
+            FbUtil.deleteLive(null, mLiveInfoCacheBean.getLiveStreamId());
+        }
+
+        refreshPreGoLiveUI();
+        mPublisher.startCamera();
+    }
+
     private void showLiveStreamResult() {
         // Hide go live controller layout
         mTopLayout.setVisibility(View.GONE);
@@ -921,6 +1006,7 @@ public class LiveMainFragment extends Fragment
     }
 
     private void refreshPreGoLiveUI() {
+        mLiveInfoCacheBean.setLiveInfo(null);
         mGoLiveLayout.setVisibility(View.VISIBLE);
         mGoLiveLabel.setVisibility(View.VISIBLE);
         mLiveSettings.setVisibility(View.VISIBLE);
@@ -1182,6 +1268,7 @@ public class LiveMainFragment extends Fragment
     @Override
     public void onRtmpConnected(String msg) {
         Log.d(LOG_TAG, msg);
+        mHandler.sendEmptyMessage(MSG_LIVE_CONNECTED);
     }
 
     @Override
