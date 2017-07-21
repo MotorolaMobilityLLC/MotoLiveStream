@@ -238,6 +238,9 @@ public class SrsFlvMuxer {
                 while (!Thread.interrupted()) {
                     while (!mFlvTagCache.isEmpty()) {
                         SrsFlvFrame frame = mFlvTagCache.poll();
+                        if (frame == null) {
+                            continue;
+                        }
                         if (frame.isSequenceHeader()) {
                             if (frame.isVideo()) {
                                 mVideoSequenceHeader = frame;

@@ -293,8 +293,10 @@ public class SrsPublisher {
     }
 
     public void switchCameraFace(int id) {
-        mCameraView.stopCamera();
-        mCameraView.setCameraId(id);
+        if (mCameraView.getCameraId() != id) {
+            mCameraView.stopCamera();
+            mCameraView.setCameraId(id);
+        }
         if (id == 0) {
             mEncoder.setCameraBackFace();
         } else {

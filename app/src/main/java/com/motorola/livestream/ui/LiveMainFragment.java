@@ -487,6 +487,9 @@ public class LiveMainFragment extends Fragment
         }
         mGoLiveLayout.findViewById(R.id.btn_select_camera).setOnClickListener(this);
         mBtnSelectCamera = mGoLiveLayout.findViewById(R.id.btn_select_camera);
+        if (ModHelper.isModCameraAttached()) {
+            mBtnSelectCamera.setVisibility(View.VISIBLE);
+        }
 
         mBtnExit = mGoLiveLayout.findViewById(R.id.btn_exit);
         mBtnExit.setOnClickListener(this);
@@ -522,14 +525,14 @@ public class LiveMainFragment extends Fragment
         mDynamicCamBtnLayout.findViewById(R.id.mod_cam).setOnClickListener(this);
 
         // TODO part first, because swap camera function is not completed
-//        if (ModHelper.isModCameraAttached()) {
-//            mBtnSelectCamera.setVisibility(View.VISIBLE);
-//            mBtnSwitchCamera.setVisibility(View.GONE);
-//            setDynamicCamBtnState(mDefaultCamId);
-//        } else {
-//            mBtnSelectCamera.setVisibility(View.GONE);
-//            mBtnSwitchCamera.setVisibility(View.VISIBLE);
-//        }
+        if (ModHelper.isModCameraAttached()) {
+            mBtnSelectCamera.setVisibility(View.VISIBLE);
+            mBtnSwitchCamera.setVisibility(View.GONE);
+            setDynamicCamBtnState(mDefaultCamId);
+        } else {
+            mBtnSelectCamera.setVisibility(View.GONE);
+            mBtnSwitchCamera.setVisibility(View.VISIBLE);
+        }
     }
 
     private void showDynamicCamLayout(boolean show) {

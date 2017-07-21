@@ -57,6 +57,7 @@ public class SrsEncodeHandler extends Handler {
                 break;
             case MSG_ENCODE_ILLEGAL_STATE_EXCEPTION:
                 listener.onEncodeIllegalStateException((IllegalStateException) msg.obj);
+                break;
             default:
                 throw new RuntimeException("unknown msg " + msg.what);
         }
