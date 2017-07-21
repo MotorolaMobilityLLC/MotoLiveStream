@@ -3,6 +3,8 @@ package com.motorola.livestream.util;
 import android.os.Bundle;
 
 import com.facebook.AccessToken;
+import com.facebook.FacebookRequestError;
+import com.facebook.FacebookServiceException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
@@ -25,6 +27,23 @@ import java.util.List;
 public class FbUtil {
 
     public static final int PAGE_SIZE = 50;
+
+    public static final int ERR_UNKNOWN = -0x1;
+    public static final int ERR_NONE = 0x0;
+    public static final int ERR_PERMISSION_NOT_GRANTED = 0x1;
+
+    private static final String FB_OAUTH_EXCEPTION = "OAuthException";
+
+    public static int handleException(Exception exp) {
+        if (exp instanceof FacebookServiceException) {
+            FacebookServiceException fse = (FacebookServiceException) exp;
+            String errorType = fse.getRequestError().getErrorType();
+            if (FB_OAUTH_EXCEPTION.equals(errorType)) {
+                return ERR_PERMISSION_NOT_GRANTED;
+            }
+        }
+        return ERR_UNKNOWN;
+    }
 
     public interface OnListRetrievedListener<T> {
         void onSuccess(List<T> dataList);

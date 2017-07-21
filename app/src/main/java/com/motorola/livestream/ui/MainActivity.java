@@ -112,19 +112,49 @@ public class MainActivity extends AbstractPermissionActivity {
 
             @Override
             public void onCancel() {
-                Log.w(TAG, "Login onCancel");
-                // Toast.makeText(MainActivity.this, "Login canceled", Toast.LENGTH_SHORT).show();
-                MainActivity.this.finish();
+                Log.w(TAG, "Login canceled for: " + permission);
+
+                showCancelDialog(permission);
             }
 
             @Override
             public void onError(FacebookException error) {
-                Log.e(TAG, "Login onError!");
-                // Toast.makeText(MainActivity.this, "Login error", Toast.LENGTH_SHORT).show();
+                Log.w(TAG, "Login failed for: " + permission);
+
                 error.printStackTrace();
-                MainActivity.this.finish();
+                showErrorDialog();
             }
         });
+    }
+
+    private void showCancelDialog(String permission) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        if (FbPermission.PUBLISH_ACTION.equals(permission)) {
+            builder.setMessage(R.string.dlg_publish_not_granted);
+        } else {
+            builder.setMessage(R.string.dlg_public_profile_not_granted);
+        }
+        builder.setCancelable(false)
+                .setPositiveButton(R.string.btn_retry,
+                        (DialogInterface dialog, int which) -> {
+                            mHandler.sendEmptyMessage(0);
+                    })
+                .setNegativeButton(R.string.btn_exit,
+                        (DialogInterface dialog, int which) -> {
+                            MainActivity.this.finish();
+                    })
+                .show();
+    }
+
+    private void showErrorDialog() {
+        new AlertDialog.Builder(this)
+                .setMessage(getString(R.string.dlg_fb_login_failed))
+                .setCancelable(false)
+                .setPositiveButton(R.string.btn_exit,
+                        (DialogInterface dialog, int which) -> {
+                            MainActivity.this.finish();
+                        })
+                .show();
     }
 
 }

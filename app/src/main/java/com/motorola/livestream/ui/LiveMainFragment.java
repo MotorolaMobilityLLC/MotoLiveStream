@@ -34,6 +34,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.facebook.AccessToken;
+import com.facebook.FacebookServiceException;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
@@ -51,6 +53,7 @@ import com.motorola.livestream.ui.adapter.CommentListAdapter;
 import com.motorola.livestream.ui.animate.ReactionView;
 import com.motorola.livestream.ui.privacy.TimelineActivity;
 import com.motorola.livestream.util.CircleTransform;
+import com.motorola.livestream.util.FbPermission;
 import com.motorola.livestream.util.FbUtil;
 import com.motorola.livestream.util.FbUtil.OnDataRetrievedListener;
 import com.motorola.livestream.util.FbUtil.OnPagedListRetrievedListener;
@@ -735,6 +738,18 @@ public class LiveMainFragment extends Fragment
                 .show();
     }
 
+    private void showNoPermissionDialog() {
+        new AlertDialog.Builder(getActivity())
+                .setMessage(R.string.live_popup_no_publish_permission)
+                .setNegativeButton(R.string.btn_exit,
+                        (DialogInterface dialog, int which) -> {
+                            getActivity().finish();
+                        }
+                )
+                .setCancelable(false)
+                .show();
+    }
+
     private void showLiveTimeoutDialog() {
         mHandler.removeMessages(MSG_CREATE_LIVE_TIME_OUT);
 
@@ -833,12 +848,12 @@ public class LiveMainFragment extends Fragment
                 (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(mLiveInfoInput.getWindowToken(), 0);
 
-        mLoadingLayout.setVisibility(View.VISIBLE);
-
         if (!Util.isNetworkConnected(getActivity())) {
             showLiveTimeoutDialog();
             return;
         }
+
+        mLoadingLayout.setVisibility(View.VISIBLE);
 
         FbUtil.createUserLive(
                 new FbUtil.OnDataRetrievedListener<LiveInfo>() {
@@ -854,6 +869,10 @@ public class LiveMainFragment extends Fragment
                         exp.printStackTrace();
 
                         mLoadingLayout.setVisibility(View.GONE);
+
+                        if (FbUtil.handleException(exp) == FbUtil.ERR_PERMISSION_NOT_GRANTED) {
+                            showNoPermissionDialog();
+                        }
                     }
                 },
                 currentUser.getId(), mLiveInfoInput.getText().toString(),
@@ -1483,5 +1502,14 @@ public class LiveMainFragment extends Fragment
     @Override
     public void onEncodeIllegalStateException(IllegalStateException e) {
         handleException(e);
+    }
+
+    private static boolean checkIfPublishPermissionGranted() {
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        if (accessToken == null || accessToken.isExpired()
+                || !accessToken.getPermissions().contains(FbPermission.PUBLISH_ACTION)) {
+            return false;
+        }
+        return true;
     }
 }

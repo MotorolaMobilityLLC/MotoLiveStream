@@ -5,6 +5,10 @@
     <string name="label_network_not_available">"Your network not available now."</string>
     <string name="label_profile_not_available">"Failed to get your profile"</string>
 
+    <string name="dlg_public_profile_not_granted">"You are not agreed with MotoLiveStream accessing your public profile and custom friends lists. Please press 'Continue' to agree the action."</string>
+    <string name="dlg_publish_not_granted">"You are not agreed with MotoLiveStream posting Live Video to your Facebook. Please press 'OK' to agree the action."</string>
+    <string name="dlg_fb_login_failed">"Failed to grant permissions from Facebook. Please try again later!"</string>
+
     <string name="label_activity_timeline_privacy">Select Privacy</string>
     <string name="label_activity_custom_friends">Specific Friends</string>
 
@@ -13,6 +17,8 @@
     <string name="btn_ok">OK</string>
     <string name="btn_delete">Delete</string>
     <string name="btn_post">Post</string>
+    <string name="btn_retry">Retry</string>
+    <string name="btn_exit">Exit</string>
 
     <string name="live_description_hint">Description</string>
 
@@ -43,6 +49,7 @@
     <string name="live_dlg_logout_message">"You are logged in as %s."</string>
     <string name="live_dlg_btn_logout">Log out</string>
 
+    <string name="live_popup_no_publish_permission">"No permission to perform posting live videos. Please check if you have deleted the permissions granted by MotoLiveStream from Facebook website or App."</string>
     <string name="live_popup_dlg_network_poor">Create live failed, please check if your network is able to access Facebook service.</string>
 
     <string name="live_popup_dlg_camera_failed">Failed to connect to camera service, please try again later.</string>
