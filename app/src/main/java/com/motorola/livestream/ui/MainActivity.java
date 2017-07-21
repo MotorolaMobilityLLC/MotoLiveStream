@@ -37,12 +37,7 @@ public class MainActivity extends AbstractPermissionActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent intent = getIntent();
-        if (intent == null
-                || intent.getAction() == null
-                /*|| !Util.ACTION.equals(intent.getAction())*/) {
-            finish();
-        } else if (!Util.isNetworkConnected(getApplicationContext())) {
+        if (!Util.isNetworkConnected(getApplicationContext())) {
             new AlertDialog.Builder(this)
                     .setMessage(R.string.label_network_not_available)
                     .setPositiveButton(R.string.btn_ok,
@@ -113,14 +108,12 @@ public class MainActivity extends AbstractPermissionActivity {
             @Override
             public void onCancel() {
                 Log.w(TAG, "Login canceled for: " + permission);
-
                 showCancelDialog(permission);
             }
 
             @Override
             public void onError(FacebookException error) {
                 Log.w(TAG, "Login failed for: " + permission);
-
                 error.printStackTrace();
                 showErrorDialog();
             }

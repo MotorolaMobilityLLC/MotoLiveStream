@@ -37,8 +37,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.facebook.AccessToken;
-import com.facebook.FacebookServiceException;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
@@ -56,7 +54,6 @@ import com.motorola.livestream.ui.adapter.CommentListAdapter;
 import com.motorola.livestream.ui.animate.ReactionView;
 import com.motorola.livestream.ui.privacy.TimelineActivity;
 import com.motorola.livestream.util.CircleTransform;
-import com.motorola.livestream.util.FbPermission;
 import com.motorola.livestream.util.FbUtil;
 import com.motorola.livestream.util.FbUtil.OnDataRetrievedListener;
 import com.motorola.livestream.util.FbUtil.OnPagedListRetrievedListener;
@@ -1276,9 +1273,22 @@ public class LiveMainFragment extends Fragment
             mDefaultCamId = 0;
         }
 
+        int requestCamId = -1;
         Intent intent = getActivity().getIntent();
         if (intent != null) {
-            mDefaultCamId = intent.getIntExtra(Util.EXTRA_CAMERA, mDefaultCamId);
+            requestCamId = intent.getIntExtra(Util.EXTRA_CAMERA, requestCamId);
+        }
+
+        if (requestCamId < 0 || requestCamId > 2) {
+            // Ignore because the request camera id is invalid
+            Log.w(LOG_TAG, "Requesting with invalid camera id: " + requestCamId);
+        } else {
+            if (!ModHelper.isModCameraAttached() && requestCamId == 2) {
+                // Just ignore if 360Mod not attached and request to open it
+                Log.w(LOG_TAG, "Requesting with external camera id while no external camera attached");
+            } else {
+                mDefaultCamId = requestCamId;
+            }
         }
     }
 
@@ -1326,10 +1336,7 @@ public class LiveMainFragment extends Fragment
                 break;
             case R.id.btn_switch_camera:
                 if (mPublisher.getCamraId() < 2) {
-//                    mPublisher.switchCameraFace(
-//                            (mPublisher.getCamraId() + 1) % Camera.getNumberOfCameras());
-                    mPublisher.switchCameraFace(
-                            (mPublisher.getCamraId() + 1) % 2);
+                    mPublisher.switchCameraFace((mPublisher.getCamraId() + 1) % 2);
                 }
                 break;
             case R.id.btn_select_camera:
@@ -1517,15 +1524,6 @@ public class LiveMainFragment extends Fragment
     @Override
     public void onEncodeIllegalStateException(IllegalStateException e) {
         handleException(e);
-    }
-
-    private static boolean checkIfPublishPermissionGranted() {
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        if (accessToken == null || accessToken.isExpired()
-                || !accessToken.getPermissions().contains(FbPermission.PUBLISH_ACTION)) {
-            return false;
-        }
-        return true;
     }
 
     public void startOpensourceLicense(){
