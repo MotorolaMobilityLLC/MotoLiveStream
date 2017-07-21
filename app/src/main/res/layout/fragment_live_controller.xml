@@ -31,6 +31,23 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/layout_license_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/overflow_margin_top"
+        android:paddingEnd="@dimen/overflow_margin_end">
+
+        <ImageButton
+            android:id="@+id/btn_overflow"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/btn_mode_menu"
+            android:background="#00000000"/>
+
+    </RelativeLayout>
+
     <include
         android:id="@+id/layout_go_live"
         layout="@layout/layout_go_live" />

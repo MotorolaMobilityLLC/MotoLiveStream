@@ -36,4 +36,21 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
+
+    <!-- open source license style -->
+    <style name="MotoAppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/moto_primary_color</item>
+        <item name="colorPrimaryDark">@color/moto_primary_color_dark</item>
+        <item name="colorAccent">@color/moto_accent_color</item>
+        <item name="android:actionBarTheme">@style/MotoActionBar</item>
+        <item name="android:textColorPrimary">@color/moto_primary_color</item>
+        <item name="android:textColorSecondary">@color/moto_primary_color_dark</item>
+    </style>
+    <style name="MotoActionBar" parent="android:ThemeOverlay.Material.Dark.ActionBar">
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="MotoAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="MotoAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColor">@color/moto_text_title_color</item>
+    </style>
 </resources>

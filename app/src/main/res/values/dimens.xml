@@ -46,4 +46,8 @@
     <dimen name="go_live_button_panel_height">60dp</dimen>
 
     <dimen name="live_ctrl_panel_margin_bottom">12dp</dimen>
+
+    <dimen name="overflow_margin_top">16dp</dimen>
+    <dimen name="overflow_margin_end">8dp</dimen>
+    <dimen name="popup_windows_padding">8dp</dimen>
 </resources>

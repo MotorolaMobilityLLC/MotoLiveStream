@@ -21,8 +21,10 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -30,6 +32,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -117,6 +120,7 @@ public class LiveMainFragment extends Fragment
     private View mLoadingLayout;
 
     private View mTopLayout;
+    private View mLicenseLayout;
     private LiveCountingTimer mLiveTimer;
 
     private View mLiveSettings;
@@ -157,6 +161,9 @@ public class LiveMainFragment extends Fragment
     private AlertDialog mLogoutDialog = null;
 
     private Timer mLiveCommentsTimer;
+
+    private PopupWindow mPopWindow;
+    private ImageButton mImageButton;
     private final OnPagedListRetrievedListener<Comment> mLiveCommentListener =
             new OnPagedListRetrievedListener<Comment>() {
                 @Override
@@ -450,9 +457,11 @@ public class LiveMainFragment extends Fragment
 
         // Live top layout
         mTopLayout = view.findViewById(R.id.layout_top);
+        mLicenseLayout = view.findViewById(R.id.layout_license_info);
         mLiveTimer = (LiveCountingTimer) mTopLayout.findViewById(R.id.live_timer_view);
         mTopLayout.findViewById(R.id.btn_record_mute).setOnClickListener(this);
-
+        mImageButton = (ImageButton) mLicenseLayout.findViewById(R.id.btn_overflow);
+        mImageButton.setOnClickListener(this);
         mLiveSettings = view.findViewById(R.id.layout_live_settings);
         // User information
         mUserInfoLayout = mLiveSettings.findViewById(R.id.layout_user_info);
@@ -915,6 +924,7 @@ public class LiveMainFragment extends Fragment
     }
 
     private void onLiveStart() {
+        mLicenseLayout.setVisibility(View.GONE);
 //        mTopLayout.setVisibility(View.VISIBLE);
         mLiveSettings.setVisibility(View.GONE);
         mCommentLayout.setVisibility(View.VISIBLE);
@@ -1045,6 +1055,7 @@ public class LiveMainFragment extends Fragment
 
     private void showLiveStreamResult() {
         // Hide go live controller layout
+        mLicenseLayout.setVisibility(View.GONE);
         mTopLayout.setVisibility(View.GONE);
         mGoLiveLayout.setVisibility(View.GONE);
         mBtnGoLive.setSelected(false);
@@ -1067,6 +1078,7 @@ public class LiveMainFragment extends Fragment
         mGoLiveLabel.setVisibility(View.VISIBLE);
         mLiveSettings.setVisibility(View.VISIBLE);
         mBtnExit.setVisibility(View.VISIBLE);
+        mLicenseLayout.setVisibility(View.VISIBLE);
     }
 
     private void startToGetViews() {
@@ -1343,6 +1355,9 @@ public class LiveMainFragment extends Fragment
                 mPublisher.setSendVideoOnly(!v.isSelected());
                 v.setSelected(!v.isSelected());
                 break;
+            case R.id.btn_overflow:
+                showPopupWindow(v);
+                break;
             case R.id.btn_go_live:
                 if (v.isSelected()) {
                     v.setSelected(false);
@@ -1511,5 +1526,33 @@ public class LiveMainFragment extends Fragment
             return false;
         }
         return true;
+    }
+
+    public void startOpensourceLicense(){
+        Log.d(LOG_TAG, "LiveMainFragment startOpensourceLicense");
+        Intent intent = new Intent(getActivity(), LicenseActivity.class);
+        startActivity(intent);
+    }
+
+    private void showPopupWindow(View v) {
+        View contentView = LayoutInflater.from(getActivity()).inflate(R.layout.license_popup, null);
+        mPopWindow = new PopupWindow(contentView,ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        mPopWindow.setOutsideTouchable(true);
+        Button mBt = (Button) contentView.findViewById(R.id.btn_license_popupwindow);
+        mBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startOpensourceLicense();
+                mPopWindow.dismiss();
+            }
+        });
+        View flowButton = v.findViewById(R.id.btn_overflow);
+        int[] location = new int[2];
+        flowButton.getLocationOnScreen(location);
+        int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        mBt.measure(w, h);
+        mPopWindow.showAtLocation(flowButton, Gravity.NO_GRAVITY, location[0] + flowButton.getMeasuredWidth() - mBt.getMeasuredWidth(), location[1]);
+
     }
 }

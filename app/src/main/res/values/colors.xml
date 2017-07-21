@@ -17,4 +17,10 @@
     <color name="result_text_color">#ff48bfe0</color>
 
     <color name="dynamic_btn_txt_color_selected">#fff7c22d</color>
+
+    <!-- Open source licenses -->
+    <color name="moto_text_title_color">#263746</color>
+    <color name="moto_primary_color">#4abfdf</color>
+    <color name="moto_primary_color_dark">#1b87c9</color>
+    <color name="moto_accent_color">#4abfdf</color>
 </resources>

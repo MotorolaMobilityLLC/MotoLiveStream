@@ -72,6 +72,13 @@
             android:resizeableActivity="false"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/label_activity_custom_friends" />
+        <activity
+            android:name=".ui.LicenseActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/licenses_title"
+            android:exported="false"
+            android:theme="@style/MotoAppTheme">
+        </activity>
 
         <receiver
             android:name=".receiver.ModReceiver"

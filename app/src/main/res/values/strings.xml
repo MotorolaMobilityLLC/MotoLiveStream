@@ -63,4 +63,7 @@
 
     <string name="str_phone_camera">Phone camera</string>
     <string name="str_mod_camera">360 camera</string>
+
+    <!-- Open source licenses -->
+    <string name="licenses_title">Open source licenses</string>
 </resources>
