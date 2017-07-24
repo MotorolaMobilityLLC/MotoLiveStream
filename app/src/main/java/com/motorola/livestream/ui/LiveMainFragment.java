@@ -663,13 +663,37 @@ public class LiveMainFragment extends Fragment
     }
 
     private void handleException(Exception e) {
-        try {
-            e.printStackTrace();
+        e.printStackTrace();
 
+        mLiveTimer.stopCounting();
+
+        try {
             mPublisher.stopPublish();
             mPublisher.stopRecord();
-        } catch (Exception e1) {
-        }
+
+            stopLive();
+        } catch (Exception e1) {}
+    }
+
+    private void handleNwException(Exception e) {
+        e.printStackTrace();
+
+        mLiveTimer.stopCounting();
+
+        try {
+            mPublisher.stopPublish();
+            mPublisher.stopRecord();
+        } catch (Exception e1) { }
+
+        new AlertDialog.Builder(getActivity())
+                .setMessage(R.string.live_popup_dlg_rtmp_failed)
+                .setNegativeButton(R.string.btn_ok,
+                        (DialogInterface dialog, int which) -> {
+                            stopLiveForNwPoor();
+                        }
+                )
+                .setCancelable(false)
+                .show();
     }
 
     private void showLogoutDialog() {
@@ -1459,12 +1483,12 @@ public class LiveMainFragment extends Fragment
 
     @Override
     public void onRtmpSocketException(SocketException e) {
-        handleException(e);
+        handleNwException(e);
     }
 
     @Override
     public void onRtmpIOException(IOException e) {
-        handleException(e);
+        handleNwException(e);
     }
 
     @Override
