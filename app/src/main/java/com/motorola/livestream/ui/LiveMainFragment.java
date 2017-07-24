@@ -155,6 +155,7 @@ public class LiveMainFragment extends Fragment
 
     private AlertDialog mPostDialog = null;
     private AlertDialog mLogoutDialog = null;
+    private AlertDialog mResumeDialog = null;
 
     private Timer mLiveCommentsTimer;
 
@@ -294,10 +295,12 @@ public class LiveMainFragment extends Fragment
                             e.printStackTrace();
                             showCameraFailedDialog();
                         }
+                        mResumeDialog = null;
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
                         stopLive();
                         mBtnGoLive.setSelected(false);
+                        mResumeDialog = null;
                         break;
                 }
             };
@@ -751,7 +754,11 @@ public class LiveMainFragment extends Fragment
             return;
         }
 
-        new AlertDialog.Builder(getActivity())
+        if (mResumeDialog != null) {
+            return;
+        }
+
+        mResumeDialog = new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.live_popup_dlg_title)
                 .setMessage(R.string.live_popup_dlg_content)
                 .setNegativeButton(R.string.live_popup_dlg_btn_finish, mResumeDialogListener)
