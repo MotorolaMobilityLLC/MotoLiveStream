@@ -38,7 +38,7 @@
     <string name="privacy_custom">Specific friends</string>
     <string name="privacy_custom_description">Only show to some friends</string>
 
-    <string name="live_label_go_live">Go Live</string>
+    <string name="live_label_go_live">Live to Facebook</string>
     <string name="live_label_count_timer" translatable="false">"LIVE %s"</string>
 
     <string name="live_popup_dlg_title">Your live stream has been paused</string>
