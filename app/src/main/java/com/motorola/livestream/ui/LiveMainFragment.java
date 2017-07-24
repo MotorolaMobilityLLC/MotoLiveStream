@@ -24,13 +24,11 @@ import android.text.style.StyleSpan;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -101,6 +99,7 @@ public class LiveMainFragment extends Fragment
     private static final int MSG_EXIT_APP = 0x107;
 
     private static final int MSG_CREATE_LIVE_TIME_OUT = 0x201;
+    private static final int MSG_CONNECT_LIVE_TIME_OUT = 0x202;
 
     private static final long CREATE_LIVE_TIME_OUT = 10000l;
     private static final long CONNECT_LIVE_TIME_OUT = 5000l;
@@ -160,7 +159,8 @@ public class LiveMainFragment extends Fragment
     private Timer mLiveCommentsTimer;
 
     private PopupWindow mPopWindow;
-    private ImageButton mImageButton;
+    private View mBtnOpenSource;
+
     private final OnPagedListRetrievedListener<Comment> mLiveCommentListener =
             new OnPagedListRetrievedListener<Comment>() {
                 @Override
@@ -265,6 +265,7 @@ public class LiveMainFragment extends Fragment
                     System.exit(0);
                     break;
                 case MSG_CREATE_LIVE_TIME_OUT:
+                case MSG_CONNECT_LIVE_TIME_OUT:
                     showLiveTimeoutDialog();
                     break;
                 default:
@@ -454,11 +455,13 @@ public class LiveMainFragment extends Fragment
 
         // Live top layout
         mTopLayout = view.findViewById(R.id.layout_top);
-        mLicenseLayout = view.findViewById(R.id.layout_license_info);
         mLiveTimer = (LiveCountingTimer) mTopLayout.findViewById(R.id.live_timer_view);
         mTopLayout.findViewById(R.id.btn_record_mute).setOnClickListener(this);
-        mImageButton = (ImageButton) mLicenseLayout.findViewById(R.id.btn_overflow);
-        mImageButton.setOnClickListener(this);
+
+        mLicenseLayout = view.findViewById(R.id.layout_license_info);
+        mBtnOpenSource = mLicenseLayout.findViewById(R.id.btn_overflow);
+        mBtnOpenSource.setOnClickListener(this);
+
         mLiveSettings = view.findViewById(R.id.layout_live_settings);
         // User information
         mUserInfoLayout = mLiveSettings.findViewById(R.id.layout_user_info);
@@ -481,15 +484,8 @@ public class LiveMainFragment extends Fragment
         mBtnGoLive.setOnClickListener(this);
         mBtnSwitchCamera = mGoLiveLayout.findViewById(R.id.btn_switch_camera);
         mBtnSwitchCamera.setOnClickListener(this);
-        // Hide switch camera button if 360Mod attached
-        if (ModHelper.isModCameraAttached()) {
-            mBtnSwitchCamera.setVisibility(View.GONE);
-        }
         mGoLiveLayout.findViewById(R.id.btn_select_camera).setOnClickListener(this);
         mBtnSelectCamera = mGoLiveLayout.findViewById(R.id.btn_select_camera);
-        if (ModHelper.isModCameraAttached()) {
-            mBtnSelectCamera.setVisibility(View.VISIBLE);
-        }
 
         mBtnExit = mGoLiveLayout.findViewById(R.id.btn_exit);
         mBtnExit.setOnClickListener(this);
@@ -676,6 +672,11 @@ public class LiveMainFragment extends Fragment
     }
 
     private void handleNwException(Exception e) {
+        // Do not show dialog when not living or not connected to RTMP server
+        if (!mIsOnLive || mHandler.hasMessages(MSG_CONNECT_LIVE_TIME_OUT)) {
+            return;
+        }
+
         e.printStackTrace();
 
         mLiveTimer.stopCounting();
@@ -689,7 +690,7 @@ public class LiveMainFragment extends Fragment
                 .setMessage(R.string.live_popup_dlg_rtmp_failed)
                 .setNegativeButton(R.string.btn_ok,
                         (DialogInterface dialog, int which) -> {
-                            stopLiveForNwPoor();
+                            stopLive();
                         }
                 )
                 .setCancelable(false)
@@ -785,6 +786,7 @@ public class LiveMainFragment extends Fragment
 
     private void showLiveTimeoutDialog() {
         mHandler.removeMessages(MSG_CREATE_LIVE_TIME_OUT);
+        mHandler.removeMessages(MSG_CONNECT_LIVE_TIME_OUT);
 
         if (getActivity() == null || !isResumed()) {
             return;
@@ -980,7 +982,7 @@ public class LiveMainFragment extends Fragment
 //        mLiveTimer.startCounting();
 //        startUpdateInteractInfo();
 //        mIsOnLive = true;
-        mHandler.sendEmptyMessageDelayed(MSG_CREATE_LIVE_TIME_OUT, CONNECT_LIVE_TIME_OUT);
+        mHandler.sendEmptyMessageDelayed(MSG_CONNECT_LIVE_TIME_OUT, CONNECT_LIVE_TIME_OUT);
     }
 
     private void showLiveStatusInfo() {
@@ -988,7 +990,7 @@ public class LiveMainFragment extends Fragment
         mLoadingLayout.setVisibility(View.GONE);
 
         // Cancel timeout waiting
-        mHandler.removeMessages(MSG_CREATE_LIVE_TIME_OUT);
+        mHandler.removeMessages(MSG_CONNECT_LIVE_TIME_OUT);
 
         // Show the live timer
         mTopLayout.setVisibility(View.VISIBLE);
@@ -1553,31 +1555,30 @@ public class LiveMainFragment extends Fragment
         handleException(e);
     }
 
-    public void startOpensourceLicense(){
-        Log.d(LOG_TAG, "LiveMainFragment startOpensourceLicense");
+    public void startOpensourceLicense() {
+        Log.d(LOG_TAG, "startOpensourceLicense");
         Intent intent = new Intent(getActivity(), LicenseActivity.class);
         startActivity(intent);
     }
 
     private void showPopupWindow(View v) {
         View contentView = LayoutInflater.from(getActivity()).inflate(R.layout.license_popup, null);
-        mPopWindow = new PopupWindow(contentView,ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        mPopWindow = new PopupWindow(contentView,
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mPopWindow.setOutsideTouchable(true);
         Button mBt = (Button) contentView.findViewById(R.id.btn_license_popupwindow);
-        mBt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startOpensourceLicense();
-                mPopWindow.dismiss();
-            }
+        mBt.setOnClickListener(view -> {
+            startOpensourceLicense();
+            mPopWindow.dismiss();
         });
-        View flowButton = v.findViewById(R.id.btn_overflow);
+        View flowButton = mBtnOpenSource;
         int[] location = new int[2];
         flowButton.getLocationOnScreen(location);
         int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
         int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
         mBt.measure(w, h);
-        mPopWindow.showAtLocation(flowButton, Gravity.NO_GRAVITY, location[0] + flowButton.getMeasuredWidth() - mBt.getMeasuredWidth(), location[1]);
-
+        mPopWindow.showAtLocation(flowButton, Gravity.NO_GRAVITY,
+                location[0] + flowButton.getMeasuredWidth() - mBt.getMeasuredWidth(), location[1]);
     }
+
 }
