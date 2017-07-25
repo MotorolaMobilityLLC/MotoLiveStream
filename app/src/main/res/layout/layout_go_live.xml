@@ -7,15 +7,14 @@
     android:paddingEnd="@dimen/top_layout_margin"
     android:background="@color/black_overlay">
 
-    <TextView
+    <ImageView
         android:id="@+id/label_golive"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/live_layout_settings_child_margin_vertical"
-        android:text="@string/live_label_go_live"
-        android:textSize="@dimen/text_size_medium"
-        android:textColor="@android:color/white"/>
+        android:src="@drawable/ic_facebook_label"
+        android:scaleType="centerCrop"/>
 
     <RelativeLayout
         android:id="@+id/live_btn"
