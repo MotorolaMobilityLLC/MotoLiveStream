@@ -1275,7 +1275,8 @@ public class LiveMainFragment extends Fragment
                 Log.e(LOG_TAG, "Post video failed: " + exp.getMessage());
                 exp.printStackTrace();
                 hideResultInfo();
-                mPublisher.startCamera();
+                // The live video already posted, so show the dialog no matter of the post result
+                showLivePostedDialog();
             }
         }, mLiveInfoCacheBean.getLiveStreamId(), mPrivacyCacheBean.toJsonString());
     }
