@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Ваша сеть в данный момент недоступна."</string>
+    <string name="label_profile_not_available">"Не удалось получить ваш профиль"</string>
+
+    <string name="dlg_public_profile_not_granted">"Вы не предоставили разрешения Moto Live Stream на доступ к вашему общему профилю и пользовательским спискам друзей. Нажмите \"Продолжить\", чтобы дать свое согласие."</string>
+    <string name="dlg_publish_not_granted">"Вы не предоставили разрешения Moto Live Stream на публикацию видео в режиме реального времени на вашу страницу в Facebook. Нажмите \"ОК\", чтобы дать свое согласие."</string>
+    <string name="dlg_fb_login_failed">"Не удалось предоставить разрешения Facebook. Повторите попытку позже!"</string>
+
+    <string name="label_activity_timeline_privacy">Выберите \"Конфиденциальность\"</string>
+    <string name="label_activity_custom_friends">Конкретные друзья</string>
+
+    <string name="menu_done">Готово</string>
+
+    <string name="btn_ok">OК</string>
+    <string name="btn_delete">Удалить</string>
+    <string name="btn_post">Опубликовать</string>
+    <string name="btn_retry">Повторить попытку</string>
+    <string name="btn_exit">Выход</string>
+
+    <string name="live_description_hint">Описание</string>
+
+    <string name="failed_getting_friend_list">Не удалось получить список друзей. Повторите попытку позже.</string>
+    <string name="no_friend_list_warning">Вы еще не создали ни одного списка друзей.</string>
+
+    <string name="post_live_privacy_description">Размещайте повтор видео в вашей хронике Facebook, чтобы люди могли посмотреть его снова.</string>
+    <string name="total_live_time">Трансляция длилась <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Для всех</string>
+    <string name="privacy_world_description">Любой человек в сети или вне сети Facebook</string>
+    <string name="privacy_friends">Друзья</string>
+    <string name="privacy_friends_description">Ваши друзья на Facebook</string>
+    <string name="privacy_self">Только я</string>
+    <string name="privacy_self_description">Только я</string>
+    <string name="privacy_custom">Конкретные друзья</string>
+    <string name="privacy_custom_description">Показывать только некоторым друзьям</string>
+
+    <string name="live_label_go_live">Трансляция в Facebook</string>
+
+    <string name="live_popup_dlg_title">Трансляция приостановлена</string>
+    <string name="live_popup_dlg_content">Продолжить трансляцию?</string>
+    <string name="live_popup_dlg_btn_resume">Продолжить</string>
+    <string name="live_popup_dlg_btn_finish">Готово</string>
+
+    <string name="live_dlg_logout_message">"Вы вошли как %s."</string>
+    <string name="live_dlg_btn_logout">Выйти</string>
+
+    <string name="live_popup_no_publish_permission">"Нет разрешения на размещение видео в реальном времени. Убедитесь, что вы удалили разрешения, предоставленные Moto Live Stream, с веб-сайта Facebook или из приложения."</string>
+    <string name="live_popup_dlg_network_poor">"Не удалось запустить трансляцию. Убедитесь, что у вас есть доступ к Facebook."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Не удалось опубликовать трансляцию. Убедитесь, что у вас есть доступ к сети Интернет."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Невозможно подключиться к камере. Повторите попытку позже."</string>
+
+    <string name="live_deleted_message">Ваше видео было удалено</string>
+    <string name="live_posted_message">Ваше видео опубликовано в хронике.</string>
+    <string name="live_posted_view">Просмотреть в Facebook</string>
+    <string name="live_process_identify">Понятно</string>
+
+    <string name="live_login_identify">Хорошо</string>
+
+    <string name="str_phone_camera">Камера телефона</string>
+    <string name="str_mod_camera">360 Camera</string>
+    <string name="licenses_title">Лицензии на ПО с открытым кодом</string>
+</resources>

@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"در حال حاضر، شبکه شما در دسترس نیست."</string>
+    <string name="label_profile_not_available">"دریافت نمایه شما ناموفق بود"</string>
+
+    <string name="dlg_public_profile_not_granted">"موافقت نکرده‌اید که MotoLiveStream به نمایه عمومی شما و لیست دوستانتان دسترسی داشته باشد. لطفاً \'ادامه\' را فشار دهید و با آن موافقت کنید."</string>
+    <string name="dlg_publish_not_granted">"موافقت نکرده‌اید که MotoLiveStream ویدیوی زنده به Facebook شما ارسال کند. لطفاً \'تأیید\' را فشار دهید و با آن موافقت کنید."</string>
+    <string name="dlg_fb_login_failed">"ارائه مجوز از Facebook ناموفق بود. بعداً دوباره امتحان کنید!"</string>
+
+    <string name="label_activity_timeline_privacy">انتخاب حریم خصوصی</string>
+    <string name="label_activity_custom_friends">دوستان خاص</string>
+
+    <string name="menu_done">تمام</string>
+
+    <string name="btn_ok">تأیید</string>
+    <string name="btn_delete">حذف</string>
+    <string name="btn_post">ارسال</string>
+    <string name="btn_retry">سعی مجدد</string>
+    <string name="btn_exit">خروج</string>
+
+    <string name="live_description_hint">توضیح</string>
+
+    <string name="failed_getting_friend_list">دریافت لیست دوستان ناموفق بود. بعداً دوباره امتحان کنید.</string>
+    <string name="no_friend_list_warning">هنوز هیچ لیست دوستی ایجاد نکرده‌اید.</string>
+
+    <string name="post_live_privacy_description">پخش مجدد ویدیوی خود را در تایم‌لاین Facebook خود ارسال کنید تا دیگران بتوانند آن را تماشا کنند.</string>
+    <string name="total_live_time">تصویر زنده شما برای <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">عمومی</string>
+    <string name="privacy_world_description">همه کسانی که در Facebook هستند یا نیستند</string>
+    <string name="privacy_friends">دوستان</string>
+    <string name="privacy_friends_description">دوستانتان در Facebook</string>
+    <string name="privacy_self">فقط من</string>
+    <string name="privacy_self_description">فقط من</string>
+    <string name="privacy_custom">دوستان خاص</string>
+    <string name="privacy_custom_description">نمایش فقط برای برخی دوستان</string>
+
+    <string name="live_label_go_live">پخش مستقیم در Facebook</string>
+
+    <string name="live_popup_dlg_title">پخش مستقیم تصویر شما موقتاً متوقف شد</string>
+    <string name="live_popup_dlg_content">می‌خواهید به پخش مستقیم تصویر خود ادامه دهید؟</string>
+    <string name="live_popup_dlg_btn_resume">ازسرگیری</string>
+    <string name="live_popup_dlg_btn_finish">پایان</string>
+
+    <string name="live_dlg_logout_message">"شما به‌عنوان %s وارد شده‌اید."</string>
+    <string name="live_dlg_btn_logout">خروج از سیستم</string>
+
+    <string name="live_popup_no_publish_permission">"هیچ مجوزی برای ارسال ویدیوی زنده وجود ندارد. لطفاً بررسی کنید مجوزهای ارائه شده توسط MotoLiveStream را از برنامه یا وب‌سایت Facebook پاک نکرده باشید."</string>
+    <string name="live_popup_dlg_network_poor">"ایجاد ویدیوی زنده ناموفق بود، لطفاً بررسی کنید شبکه قادر به دسترسی به سرویس Facebook شما باشد."</string>
+    <string name="live_popup_dlg_rtmp_failed">"ارسال ویدیوی زنده ناموفق بود، لطفاً بررسی کنید شبکه در دسترس باشد."</string>
+
+    <string name="live_popup_dlg_camera_failed">"اتصال به سرویس دوربین ناموفق بود، لطفاً بعداً دوباره امتحان کنید."</string>
+
+    <string name="live_deleted_message">ویدیوی شما حذف شده است</string>
+    <string name="live_posted_message">ویدیوی شما در تایم‌لاین ارسال شده است.</string>
+    <string name="live_posted_view">مشاهده در facebook</string>
+    <string name="live_process_identify">متوجه شدم</string>
+
+    <string name="live_login_identify">تأیید</string>
+
+    <string name="str_phone_camera">دوربین تلفن</string>
+    <string name="str_mod_camera">دوربین 360</string>
+    <string name="licenses_title">مجوزهای منبع آزاد</string>
+</resources>

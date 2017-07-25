@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Vaše omrežje trenutno ni na voljo."</string>
+    <string name="label_profile_not_available">"Vašega profila ni bilo mogoče pridobiti"</string>
+
+    <string name="dlg_public_profile_not_granted">"Niste dali dovoljenja, da lahko MotoLiveStream dostopi do vašega javnega profila in seznamov prijateljev po meri. Pritisnite \"Nadaljuj\", da dovolite to dejanje."</string>
+    <string name="dlg_publish_not_granted">"Niste dali dovoljenja, da MotoLiveStream objavi video v živo v vašem Facebooku. Pritisnite \"V redu\", da dovolite to dejanje."</string>
+    <string name="dlg_fb_login_failed">"Dovoljenj ni bilo mogoče podeliti s Facebooka. Poskusite znova pozneje."</string>
+
+    <string name="label_activity_timeline_privacy">Izberite zasebnost</string>
+    <string name="label_activity_custom_friends">Določeni prijatelji</string>
+
+    <string name="menu_done">Končano</string>
+
+    <string name="btn_ok">V redu</string>
+    <string name="btn_delete">Izbriši</string>
+    <string name="btn_post">Objavi</string>
+    <string name="btn_retry">Poskusi znova</string>
+    <string name="btn_exit">Izhod</string>
+
+    <string name="live_description_hint">Opis</string>
+
+    <string name="failed_getting_friend_list">Seznama prijateljev ni bilo mogoče pridobiti. Poskusite znova pozneje.</string>
+    <string name="no_friend_list_warning">Ustvarili niste še nobenega seznama prijateljev.</string>
+
+    <string name="post_live_privacy_description">Objavite ponovitev predvajanja videa na svoji časovnici na Facebooku, da si ga bodo lahko ogledali drugi.</string>
+    <string name="total_live_time">V živo ste predvajali <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Javno</string>
+    <string name="privacy_world_description">Kdor koli, ki je s Facebooka ali ni</string>
+    <string name="privacy_friends">Prijatelji</string>
+    <string name="privacy_friends_description">Prijatelji s Facebooka</string>
+    <string name="privacy_self">Samo jaz</string>
+    <string name="privacy_self_description">Samo jaz</string>
+    <string name="privacy_custom">Določeni prijatelji</string>
+    <string name="privacy_custom_description">Pokažite samo nekaterim prijateljem</string>
+
+    <string name="live_label_go_live">Predvajanje v živo na Facebooku</string>
+
+    <string name="live_popup_dlg_title">Pretočno predvajanje v živo je bilo začasno ustavljeno</string>
+    <string name="live_popup_dlg_content">Ali želite nadaljevati s pretočnim predvajanjem v živo?</string>
+    <string name="live_popup_dlg_btn_resume">Nadaljuj</string>
+    <string name="live_popup_dlg_btn_finish">Dokončaj</string>
+
+    <string name="live_dlg_logout_message">"Niste prijavljeni kot %s."</string>
+    <string name="live_dlg_btn_logout">Odjava</string>
+
+    <string name="live_popup_no_publish_permission">"Ni dovoljenja za objavo videov v živo. Preverite, ali ste s spletnega mesta ali iz aplikacije Facebook izbrisali dovoljenja, ki jih je podelil MotoLiveStream."</string>
+    <string name="live_popup_dlg_network_poor">"Predvajanja v živo ni bilo mogoče ustvariti. Preverite, ali lahko vaše omrežje dostopa do storitve Facebook."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Predvajanja v živo ni bilo mogoče objaviti. Preverite, ali je vaše omrežje zdaj na voljo."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Povezava s storitvijo fotoaparata ni uspela. Poskusite znova pozneje."</string>
+
+    <string name="live_deleted_message">Video je bil izbrisan</string>
+    <string name="live_posted_message">Video je bil objavljen na vaši časovnici.</string>
+    <string name="live_posted_view">Ogled na Facebooku</string>
+    <string name="live_process_identify">Razumem</string>
+
+    <string name="live_login_identify">V redu</string>
+
+    <string name="str_phone_camera">Fotoaparat telefona</string>
+    <string name="str_mod_camera">360 Camera</string>
+    <string name="licenses_title">Odprtokodne licence</string>
+</resources>

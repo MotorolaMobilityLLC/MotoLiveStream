@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">MotoLiveStream</string>
+
+    <string name="label_network_not_available">"De momento, a rede não está disponível."</string>
+    <string name="label_profile_not_available">"Falha ao obter o perfil"</string>
+
+    <string name="dlg_public_profile_not_granted">"Não permitiu que o MotoLiveStream aceda ao seu perfil público e a listas de amigos personalizadas. Prima \"Continuar\" para permitir."</string>
+    <string name="dlg_publish_not_granted">"Não permitiu que o MotoLiveStream publique vídeos em direto no seu perfil de Facebook. Prima \"OK\" para permitir."</string>
+    <string name="dlg_fb_login_failed">"Falha em fornecer permissões do Facebook. Tente novamente mais tarde."</string>
+
+    <string name="label_activity_timeline_privacy">Selecione Privacidade</string>
+    <string name="label_activity_custom_friends">Amigos específicos</string>
+
+    <string name="menu_done">Concluído</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Eliminar</string>
+    <string name="btn_post">Publicar</string>
+    <string name="btn_retry">Tentar novamente</string>
+    <string name="btn_exit">Sair</string>
+
+    <string name="live_description_hint">Descrição</string>
+
+    <string name="failed_getting_friend_list">Falha ao obter a lista de amigos. Tente novamente mais tarde.</string>
+    <string name="no_friend_list_warning">Ainda não criou uma lista de amigos.</string>
+
+    <string name="post_live_privacy_description">Publique o vídeo no seu mural do Facebook para que as pessoas o possam ver.</string>
+    <string name="total_live_time">Esteve em direto durante <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Público</string>
+    <string name="privacy_world_description">Público com ou sem conta de Facebook</string>
+    <string name="privacy_friends">Amigos</string>
+    <string name="privacy_friends_description">Os seus amigos no Facebook</string>
+    <string name="privacy_self">Apenas eu</string>
+    <string name="privacy_self_description">Apenas eu</string>
+    <string name="privacy_custom">Amigos específicos</string>
+    <string name="privacy_custom_description">Mostrar apenas a alguns amigos</string>
+
+    <string name="live_label_go_live">Em direto para o Facebook</string>
+
+    <string name="live_popup_dlg_title">A sua transmissão em fluxo e em direto foi interrompida</string>
+    <string name="live_popup_dlg_content">Pretende continuar a transmitir em fluxo e em direto?</string>
+    <string name="live_popup_dlg_btn_resume">Retomar</string>
+    <string name="live_popup_dlg_btn_finish">Concluir</string>
+
+    <string name="live_dlg_logout_message">"Tem sessão iniciada como %s."</string>
+    <string name="live_dlg_btn_logout">Terminar sessão</string>
+
+    <string name="live_popup_no_publish_permission">"Sem permissão para publicar vídeos em direto. Verifique se eliminou as permissões da aplicação ou do Web site do Facebook concedidas pelo MotoLiveStream."</string>
+    <string name="live_popup_dlg_network_poor">"Falha ao criar vídeo em direto. Verifique se a rede consegue aceder ao Facebook."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Falha ao publicar vídeo em direto. Verifique se a rede está disponível."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Falha ao ligar ao serviço da câmara. Tente novamente mais tarde."</string>
+
+    <string name="live_deleted_message">O vídeo foi eliminado</string>
+    <string name="live_posted_message">O vídeo foi publicado no seu mural.</string>
+    <string name="live_posted_view">Ver no Facebook</string>
+    <string name="live_process_identify">Compreendi</string>
+
+    <string name="live_login_identify">OK</string>
+
+    <string name="str_phone_camera">Câmara do telemóvel</string>
+    <string name="str_mod_camera">360 Camera</string>
+    <string name="licenses_title">Licenças open source</string>
+</resources>

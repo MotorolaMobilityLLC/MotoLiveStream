@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Reţeaua dvs. este indisponibilă acum."</string>
+    <string name="label_profile_not_available">"Nu am reuşit să vă obţinem profilul"</string>
+
+    <string name="dlg_public_profile_not_granted">"Nu v-aţi dat acordul pentru ca MotoLiveStream să vă acceseze profilul public şi listele personalizate cu prietenii dvs. Apăsaţi „Continuare” pentru a accepta acţiunea."</string>
+    <string name="dlg_publish_not_granted">"Nu v-aţi dat acordul pentru ca MotoLiveStream să posteze videoclipuri în direct pe pagina dvs. de Facebook. Apăsaţi „OK” pentru a accepta acţiunea."</string>
+    <string name="dlg_fb_login_failed">"Obţinerea permisiunilor de pe Facebook a eşuat. Încercaţi din nou mai târziu!"</string>
+
+    <string name="label_activity_timeline_privacy">Selectaţi confidenţialitatea</string>
+    <string name="label_activity_custom_friends">Prieteni specifici</string>
+
+    <string name="menu_done">Terminat</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Ştergere</string>
+    <string name="btn_post">Postare</string>
+    <string name="btn_retry">Reîncercare</string>
+    <string name="btn_exit">Ieşire</string>
+
+    <string name="live_description_hint">Descriere</string>
+
+    <string name="failed_getting_friend_list">Obţinerea listei dvs. de prieteni a eşuat. Încercaţi din nou mai târziu.</string>
+    <string name="no_friend_list_warning">Nu aţi creat încă nicio listă de prieteni.</string>
+
+    <string name="post_live_privacy_description">Postaţi redarea videoclipului dvs. pe cronologia dvs. de pe Facebook, astfel încât utilizatorii să îl poată urmări din nou.</string>
+    <string name="total_live_time">Aţi intrat în direct pentru <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Public</string>
+    <string name="privacy_world_description">Oricine are sau nu are cont de Facebook</string>
+    <string name="privacy_friends">Prieteni</string>
+    <string name="privacy_friends_description">Prietenii dvs. de pe Facebook</string>
+    <string name="privacy_self">Doar eu</string>
+    <string name="privacy_self_description">Doar eu</string>
+    <string name="privacy_custom">Prieteni specifici</string>
+    <string name="privacy_custom_description">Se afişează doar pentru anumiţi prieteni</string>
+
+    <string name="live_label_go_live">În direct pe Facebook</string>
+
+    <string name="live_popup_dlg_title">Transmisia dvs. în flux în direct a fost întreruptă</string>
+    <string name="live_popup_dlg_content">Doriţi să continuaţi transmisia dvs. în flux în direct?</string>
+    <string name="live_popup_dlg_btn_resume">Reluare</string>
+    <string name="live_popup_dlg_btn_finish">Finalizare</string>
+
+    <string name="live_dlg_logout_message">"Sunteţi conectat(ă) ca %s."</string>
+    <string name="live_dlg_btn_logout">Deconectare</string>
+
+    <string name="live_popup_no_publish_permission">"Nicio permisiune pentru a posta videoclipuri în direct. Verificaţi dacă aţi şters permisiunile acordate de MotoLiveStream de pe site-ul Facebook sau din aplicaţie."</string>
+    <string name="live_popup_dlg_network_poor">"Crearea videoclipului în direct a eşuat, verificaţi dacă reţeaua dvs. poate accesa serviciul Facebook."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Postarea videoclipului în direct a eşuat, verificaţi dacă reţeaua dvs. este disponibilă acum."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Conectare imposibilă la serviciul camerei, încercaţi din nou mai târziu."</string>
+
+    <string name="live_deleted_message">Videoclipul dvs. a fost şters</string>
+    <string name="live_posted_message">Videoclipul dvs. a fost postat pe cronologie.</string>
+    <string name="live_posted_view">Vizualizaţi pe Facebook</string>
+    <string name="live_process_identify">Am înţeles</string>
+
+    <string name="live_login_identify">OK</string>
+
+    <string name="str_phone_camera">Cameră telefon</string>
+    <string name="str_mod_camera">Cameră 360</string>
+    <string name="licenses_title">Licențe open source</string>
+</resources>

@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"您的網路現在無法使用。"</string>
+    <string name="label_profile_not_available">"無法取得您的個人資料"</string>
+
+    <string name="dlg_public_profile_not_granted">"您未同意 MotoLiveStream 存取您的公開個人資料和自訂朋友清單。請按下 [繼續] 同意動作。"</string>
+    <string name="dlg_publish_not_granted">"您未同意 MotoLiveStream 張貼即時影片至您的 Facebook。請按下 [確定] 同意動作。"</string>
+    <string name="dlg_fb_login_failed">"無法從 Facebook 授予權限。請稍後再試！"</string>
+
+    <string name="label_activity_timeline_privacy">選取隱私權</string>
+    <string name="label_activity_custom_friends">特定朋友</string>
+
+    <string name="menu_done">完成</string>
+
+    <string name="btn_ok">確定</string>
+    <string name="btn_delete">刪除</string>
+    <string name="btn_post">張貼</string>
+    <string name="btn_retry">重試</string>
+    <string name="btn_exit">結束</string>
+
+    <string name="live_description_hint">說明</string>
+
+    <string name="failed_getting_friend_list">無法取得您的朋友清單。請稍後再試。</string>
+    <string name="no_friend_list_warning">您尚未建立任何朋友清單。</string>
+
+    <string name="post_live_privacy_description">在您的 Facebook 時間軸上張貼影片重播，讓他人能重溫影片內容。</string>
+    <string name="total_live_time">您的即時串流持續期間：<xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">公開</string>
+    <string name="privacy_world_description">登入或未登入 Facebook 的任何人</string>
+    <string name="privacy_friends">朋友</string>
+    <string name="privacy_friends_description">您在 Facebook 上的朋友</string>
+    <string name="privacy_self">只有我</string>
+    <string name="privacy_self_description">只有我</string>
+    <string name="privacy_custom">特定朋友</string>
+    <string name="privacy_custom_description">只向某些朋友顯示</string>
+
+    <string name="live_label_go_live">即時串流至 Facebook</string>
+
+    <string name="live_popup_dlg_title">您的即時串流已暫停</string>
+    <string name="live_popup_dlg_content">是否要繼續即時串流?</string>
+    <string name="live_popup_dlg_btn_resume">繼續</string>
+    <string name="live_popup_dlg_btn_finish">完成</string>
+
+    <string name="live_dlg_logout_message">"您已登入為 %s。"</string>
+    <string name="live_dlg_btn_logout">登出</string>
+
+    <string name="live_popup_no_publish_permission">"沒有權限，無法張貼即時影片。請檢查您是否已從 Facebook 網站或應用程式刪除 MotoLiveStream 授予的權限。"</string>
+    <string name="live_popup_dlg_network_poor">"無法建立即時串流，請檢查您的網路是否能存取 Facebook 服務。"</string>
+    <string name="live_popup_dlg_rtmp_failed">"無法張貼即時串流，請檢查您的網路現在是否可供使用。"</string>
+
+    <string name="live_popup_dlg_camera_failed">"無法連線至相機服務，請稍後再試。"</string>
+
+    <string name="live_deleted_message">您的影片已刪除</string>
+    <string name="live_posted_message">您的影片已張貼至時間軸。</string>
+    <string name="live_posted_view">在 Facebook 上檢視</string>
+    <string name="live_process_identify">瞭解</string>
+
+    <string name="live_login_identify">好</string>
+
+    <string name="str_phone_camera">手機相機</string>
+    <string name="str_mod_camera">360 Camera</string>
+    <string name="licenses_title">開放原始碼授權</string>
+</resources>

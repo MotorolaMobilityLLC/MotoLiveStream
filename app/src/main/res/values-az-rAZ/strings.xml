@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Canlı Yayım</string>
+
+    <string name="label_network_not_available">"Şəbəkəniz indi mövcud deyil."</string>
+    <string name="label_profile_not_available">"Profili əldə etmək olmadıle"</string>
+
+    <string name="dlg_public_profile_not_granted">"Moto Canlı Yayımın istimai profil və fərdi dost siyahınıza daxil olması ilə razı deyilsiniz. Razılıq vermək üçün \"Davam et\" vurun."</string>
+    <string name="dlg_publish_not_granted">"Siz Moto Canlı Yayımın Facebook səhifənizdə Canlı Video yayımlaması ilə razı deyilsiniz. Razılıq vermək üçün \"OK\" vurun."</string>
+    <string name="dlg_fb_login_failed">"Facebook-dan icazə vermək olmadı. Daha sonra yenidən cəhd edin!"</string>
+
+    <string name="label_activity_timeline_privacy">Məxfilik seçin</string>
+    <string name="label_activity_custom_friends">Xüsusi dostlar</string>
+
+    <string name="menu_done">Hazırdır</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Sil</string>
+    <string name="btn_post">Dərc et</string>
+    <string name="btn_retry">Təkrarla</string>
+    <string name="btn_exit">Çıxış</string>
+
+    <string name="live_description_hint">Təsvir</string>
+
+    <string name="failed_getting_friend_list">Dost siyahınızı əldə etmək olmadı. Daha sonra yenidən cəhd edin.</string>
+    <string name="no_friend_list_warning">Hələ heç bir dost siyahısı yaratmamısınız.</string>
+
+    <string name="post_live_privacy_description">İnsanların videonuna bir daha baxa bilməsi üçün təkrarını facebook-da dərc edin.</string>
+    <string name="total_live_time"><xliff:g id="DURATION">%s</xliff:g> canlı bağlantıda idiniz</string>
+
+    <string name="privacy_world">Ümumi</string>
+    <string name="privacy_world_description">Kimsə Facebook-u yandırdı və ya söndürdü</string>
+    <string name="privacy_friends">Dostlar</string>
+    <string name="privacy_friends_description">Facebook dostlarınız</string>
+    <string name="privacy_self">Yalnız mən</string>
+    <string name="privacy_self_description">Yalnız mən</string>
+    <string name="privacy_custom">Xüsusi dostlar</string>
+    <string name="privacy_custom_description">Yalnız bir neçə dostuma göstər</string>
+
+    <string name="live_label_go_live">Facebook-da canlı</string>
+
+    <string name="live_popup_dlg_title">Canlı yayıma pauza verildi</string>
+    <string name="live_popup_dlg_content">Canlı yayıma davam etmək istəyirsinizmi?</string>
+    <string name="live_popup_dlg_btn_resume">Davam et</string>
+    <string name="live_popup_dlg_btn_finish">Bitir</string>
+
+    <string name="live_dlg_logout_message">"%s kimi daxil oldunuz."</string>
+    <string name="live_dlg_btn_logout">Çıx</string>
+
+    <string name="live_popup_no_publish_permission">"Canlı video dərc edən zaman icazə verilmədi. Facebook vebsaytı və ya proqramından verilən icazəni silmədiyinizi yoxlayın."</string>
+    <string name="live_popup_dlg_network_poor">"Canlı yaratmaq olmadı, şəbəkənizin Facebook xidmətinə çıxış imkanını yoxlayın."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Canlı dərc etmək olmadı, şəbəkənizin olduğunu yoxlayın."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Kamera xidmətlərinə qoşulmaq olmadı, daha sonra yenidən cəhd edin."</string>
+
+    <string name="live_deleted_message">Videonuz silindi</string>
+    <string name="live_posted_message">Videonuz lentdə dərc edildi.</string>
+    <string name="live_posted_view">Facebook-da bax</string>
+    <string name="live_process_identify">Anladım</string>
+
+    <string name="live_login_identify">Okey</string>
+
+    <string name="str_phone_camera">Telefon kamerası</string>
+    <string name="str_mod_camera">360 kamera</string>
+    <string name="licenses_title">Açıq mənbə lisenziyaları</string>
+</resources>

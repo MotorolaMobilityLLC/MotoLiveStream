@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Ihr Netzwerk ist gerade nicht verfügbar."</string>
+    <string name="label_profile_not_available">"Ihr Profil konnte nicht abgerufen werden."</string>
+
+    <string name="dlg_public_profile_not_granted">"Sie haben dem Zugriff von MotoLiveStream auf Ihr öffentliches Profil und die benutzerdefinierte Freundesliste nicht zugestimmt. Drücken Sie \"Fortfahren\", um dies zu bestätigen."</string>
+    <string name="dlg_publish_not_granted">"Sie haben dem Posten von Live-Videos durch MotoLiveStream auf Facebook nicht zugestimmt. Drücken Sie \"OK\", um dies zu bestätigen."</string>
+    <string name="dlg_fb_login_failed">"Es konnten keine Berechtigungen für Facebook gewährt werden. Versuchen Sie es später erneut."</string>
+
+    <string name="label_activity_timeline_privacy">Datenschutzoption auswählen</string>
+    <string name="label_activity_custom_friends">Bestimmte Freunde</string>
+
+    <string name="menu_done">Fertig</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Löschen</string>
+    <string name="btn_post">Posten</string>
+    <string name="btn_retry">Erneut versuchen</string>
+    <string name="btn_exit">Beenden</string>
+
+    <string name="live_description_hint">Beschreibung</string>
+
+    <string name="failed_getting_friend_list">Ihre Freundesliste konnte nicht abgerufen werden. Versuchen Sie es später erneut.</string>
+    <string name="no_friend_list_warning">Sie haben noch keine Freundesliste erstellt.</string>
+
+    <string name="post_live_privacy_description">Posten Sie Ihre Videoantwort in Ihrer Facebook Timeline, damit andere sie sehen können.</string>
+    <string name="total_live_time">Sie waren <xliff:g id="DURATION">%s</xliff:g> lang live</string>
+
+    <string name="privacy_world">Öffentlich</string>
+    <string name="privacy_world_description">Jeder auf oder außerhalb von Facebook</string>
+    <string name="privacy_friends">Freunde</string>
+    <string name="privacy_friends_description">Ihre Freunde auf Facebook</string>
+    <string name="privacy_self">Nur ich</string>
+    <string name="privacy_self_description">Nur ich</string>
+    <string name="privacy_custom">Bestimmte Freunde</string>
+    <string name="privacy_custom_description">Nur manchen Freunden zeigen</string>
+
+    <string name="live_label_go_live">Live auf Facebook</string>
+
+    <string name="live_popup_dlg_title">Ihr Live-Stream wurde angehalten</string>
+    <string name="live_popup_dlg_content">Möchten Sie den Live-Stream fortsetzen?</string>
+    <string name="live_popup_dlg_btn_resume">Fortsetzen</string>
+    <string name="live_popup_dlg_btn_finish">Fertig</string>
+
+    <string name="live_dlg_logout_message">"Sie sind als %s angemeldet."</string>
+    <string name="live_dlg_btn_logout">Abmelden</string>
+
+    <string name="live_popup_no_publish_permission">"Keine Berechtigung zum Posten von Live-Videos. Prüfen Sie, ob Sie die von MotoLiveStream für die Facebook-Webseite oder -App gewährten Berechtigungen gelöscht haben."</string>
+    <string name="live_popup_dlg_network_poor">"Live-Erstellung fehlgeschlagen. Prüfen Sie, ob das Netzwerk auf den Facebook-Dienst zugreifen kann."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Live-Post fehlgeschlagen. Prüfen Sie, ob das Netzwerk jetzt verfügbar ist."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Verbindung zum Kameradienst konnte nicht hergestellt werden. Versuchen Sie es später erneut."</string>
+
+    <string name="live_deleted_message">Ihr Video wurde gelöscht.</string>
+    <string name="live_posted_message">Ihr Video wurde in Ihrer Timeline gepostet.</string>
+    <string name="live_posted_view">Auf Facebook anzeigen</string>
+    <string name="live_process_identify">OK</string>
+
+    <string name="live_login_identify">Okay</string>
+
+    <string name="str_phone_camera">Telefonkamera</string>
+    <string name="str_mod_camera">360-Kamera</string>
+    <string name="licenses_title">Open-Source-Lizenzen</string>
+</resources>

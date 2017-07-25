@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Verkko ei ole nyt käytettävissä."</string>
+    <string name="label_profile_not_available">"Ei voitu noutaa profiilia"</string>
+
+    <string name="dlg_public_profile_not_granted">"Et ole hyväksynyt MotoLiveStreamin pääsyä julkiseen profiiliisi ja mukautettuihin kaveriluetteloihisi. Hyväksy toiminto valitsemalla Jatka."</string>
+    <string name="dlg_publish_not_granted">"Et ole hyväksynyt MotoLoveStream live-videoiden julkaisemista Facebookissa. Hyväksy toiminto valitsemalla OK."</string>
+    <string name="dlg_fb_login_failed">"Facebook-oikeuksien myöntäminen epäonnistui. Yritä myöhemmin uudelleen."</string>
+
+    <string name="label_activity_timeline_privacy">Valitse tietosuoja</string>
+    <string name="label_activity_custom_friends">Tietyt kaverit</string>
+
+    <string name="menu_done">Valmis</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Poista</string>
+    <string name="btn_post">Julkaise</string>
+    <string name="btn_retry">Yritä uudelleen</string>
+    <string name="btn_exit">Sulje</string>
+
+    <string name="live_description_hint">Kuvaus</string>
+
+    <string name="failed_getting_friend_list">Ei voitu noutaa kaveriluetteloa. Yritä myöhemmin uudelleen.</string>
+    <string name="no_friend_list_warning">Et ole luonut kaveriluetteloa vielä.</string>
+
+    <string name="post_live_privacy_description">Julkaise video Facebook-aikajanallasi, jotta muutkin näkevät sen.</string>
+    <string name="total_live_time">Laite <xliff:g id="DURATION">%s</xliff:g> on live-tilassa</string>
+
+    <string name="privacy_world">Julkinen</string>
+    <string name="privacy_world_description">Kuka tahansa Facebookissa ja sen ulkopuolella</string>
+    <string name="privacy_friends">Kaverit</string>
+    <string name="privacy_friends_description">Facebook-kaverisi</string>
+    <string name="privacy_self">Vain minä</string>
+    <string name="privacy_self_description">Vain minä</string>
+    <string name="privacy_custom">Tietyt kaverit</string>
+    <string name="privacy_custom_description">Näytä vain joillekin kavereille</string>
+
+    <string name="live_label_go_live">Live-video Facebookissa</string>
+
+    <string name="live_popup_dlg_title">Live-video pysäytettiin</string>
+    <string name="live_popup_dlg_content">Haluatko jatkaa live-videota?</string>
+    <string name="live_popup_dlg_btn_resume">Jatka</string>
+    <string name="live_popup_dlg_btn_finish">Valmis</string>
+
+    <string name="live_dlg_logout_message">"Olet kirjautunut sisään käyttäjänä %s."</string>
+    <string name="live_dlg_btn_logout">Kirjaudu ulos</string>
+
+    <string name="live_popup_no_publish_permission">"Ei oikeutta jakaa live-videoita. Tarkista, oletko poistanut MotoLiveStreamin Facebookissa tai sovelluksessa myöntämät luvat."</string>
+    <string name="live_popup_dlg_network_poor">"Live-videon luominen epäonnistui. Tarkista, pystyykö verkkosi käyttämään Facebook-palvelua."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Live-videon julkaiseminen epäonnistui. Tarkista, on verkkosi käytettävissä"</string>
+
+    <string name="live_popup_dlg_camera_failed">"Yhteyttä kamerapalveluun ei voitu muodostaa, yritä myöhemmin uudelleen."</string>
+
+    <string name="live_deleted_message">Video poistettiin</string>
+    <string name="live_posted_message">Video julkaistiin aikajanallasi.</string>
+    <string name="live_posted_view">Katso Facebookissa</string>
+    <string name="live_process_identify">Selvä!</string>
+
+    <string name="live_login_identify">OK</string>
+
+    <string name="str_phone_camera">Puhelimen kamera</string>
+    <string name="str_mod_camera">360-kamera</string>
+    <string name="licenses_title">Avoimen lähdekoodin lisenssit</string>
+</resources>

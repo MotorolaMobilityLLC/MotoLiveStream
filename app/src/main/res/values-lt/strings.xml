@@ -1,0 +1,16 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="menu_done">Atlikta</string>
+
+    <string name="btn_ok">Gerai</string>
+    <string name="btn_delete">Ištrinti</string>
+    <string name="btn_post">Rašyti</string>
+
+    <string name="live_description_hint">Aprašas</string>
+
+    <string name="privacy_world">Viešas</string>
+    <string name="privacy_friends">Draugai</string>
+    <string name="live_popup_dlg_btn_resume">Atnaujinti</string>
+    <string name="live_dlg_btn_logout">Atsijungti</string>
+    <string name="live_process_identify">Supratau</string>
+</resources>

@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live স্ট্রিম</string>
+
+    <string name="label_network_not_available">"এই মুহূর্তে আপনার নেটওয়ার্ক উপলব্ধ নাই।"</string>
+    <string name="label_profile_not_available">"আপনার প্রোফাইল পেতে ব্যর্থ হয়েছে"</string>
+
+    <string name="dlg_public_profile_not_granted">"আপনি MotoLiveStream-এর আপনার সর্বজনীন প্রোফাইল ও কাস্টম বন্ধুর তালিকাগুলো অ্যাক্সেস করার সাথে সম্মত নন। ক্রিয়াকলাপটিতে সম্মত হতে অনুগ্রহ করে \'অবিরত রাখুন\' টিপুন।"</string>
+    <string name="dlg_publish_not_granted">"আপনি MotoLiveStream-এর আপনার Facebook-এ লাইভ ভিডিও পোস্টে সম্মত নন। ক্রিয়াকলাপটিতে সম্মত হতে অনুগ্রহ করে \'ঠিক আছে\' টিপুন।"</string>
+    <string name="dlg_fb_login_failed">"Facebook থেকে অনুমতিগুলোর মঞ্জুরি দিতে ব্যর্থ হয়েছে। অনুগ্রহ করে পরে আবার চেষ্টা করুন!"</string>
+
+    <string name="label_activity_timeline_privacy">গোপনীয়তা নির্বাচন করুন</string>
+    <string name="label_activity_custom_friends">নির্দিষ্ট বন্ধুরা</string>
+
+    <string name="menu_done">সম্পন্ন হয়েছে</string>
+
+    <string name="btn_ok">ঠিক আছে</string>
+    <string name="btn_delete">মুছুন</string>
+    <string name="btn_post">পোস্ট করুন</string>
+    <string name="btn_retry">পুনরায় চেষ্টা করুন</string>
+    <string name="btn_exit">প্রস্থান করুন</string>
+
+    <string name="live_description_hint">বর্ণনা</string>
+
+    <string name="failed_getting_friend_list">আপনার বন্ধুর তালিকাটি পেতে ব্যর্থ হয়েছে। অনুগ্রহ করে পরে আবার চেষ্টা করুন।</string>
+    <string name="no_friend_list_warning">আপনি এখনো কোনো বন্ধুর তালিকা তৈরি করেন নি।</string>
+
+    <string name="post_live_privacy_description">আপনার facebook টাইমলাইনে আপনার ভিডিও পুনরায় প্লে পোস্ট করুন যাতে লোকেরা এটি আবার দেখতে পায়।</string>
+    <string name="total_live_time">আপনি <xliff:g id="DURATION">%s</xliff:g>-এ লাইভ ছিলেন</string>
+
+    <string name="privacy_world">সর্বজনীন</string>
+    <string name="privacy_world_description">Facebook চালু বা বন্ধ রয়েছে এমন যে কেউ</string>
+    <string name="privacy_friends">বন্ধুরা</string>
+    <string name="privacy_friends_description">Facebook-এ আপনার বন্ধুরা</string>
+    <string name="privacy_self">শুধুমাত্র আমি</string>
+    <string name="privacy_self_description">শুধুমাত্র আমি</string>
+    <string name="privacy_custom">নির্দিষ্ট বন্ধুরা</string>
+    <string name="privacy_custom_description">শুধুমাত্র কিছু বন্ধুদের দেখান</string>
+
+    <string name="live_label_go_live">Facebook-এ লাইভ</string>
+
+    <string name="live_popup_dlg_title">আপনার লাইভ স্ট্রিমে বিরাম দেয়া হয়েছে</string>
+    <string name="live_popup_dlg_content">আপনি কি আপনার লাইভ স্ট্রিম অবিরত রাখতে চান?</string>
+    <string name="live_popup_dlg_btn_resume">পুনঃসূচনা করুন</string>
+    <string name="live_popup_dlg_btn_finish">শেষ করুন</string>
+
+    <string name="live_dlg_logout_message">"আপনি %s হিসাবে লগ ইন রয়েছেন।"</string>
+    <string name="live_dlg_btn_logout">লগ আউট আউট করুন</string>
+
+    <string name="live_popup_no_publish_permission">"লাইভ ভিডিওগুলো পোস্ট করার অনুমতি নাই। আপনি Facebook ওয়েবসাইট বা অ্যাপ থেকে MotoLiveStream দ্বরা মঞ্জুরিকৃত অনুমতিগুলো মুছেছেন কিনা তা অনুগ্রহ করে পরীক্ষা করুন।"</string>
+    <string name="live_popup_dlg_network_poor">"লাইভ তৈরি ব্যর্থ হয়েছে, আপনার নেটওয়ার্ক Facebook পরিষেবা অ্যাক্সেস করতে সক্ষম কিনা তা অনুগ্রহ করে পরীক্ষা করুন।"</string>
+    <string name="live_popup_dlg_rtmp_failed">"লাইভ পোস্ট ব্যর্থ হয়েছে, আপনার নেটওয়ার্ক এখন উপলব্ধ কিনা তা অনুগ্রহ করে পরীক্ষা করুন।"</string>
+
+    <string name="live_popup_dlg_camera_failed">"ক্যামেরা পরিষেবায় সংযোগ করতে ব্যর্থ হয়েছে, অনুগ্রহ করে পরে আবার চেষ্টা করে দেখুন।"</string>
+
+    <string name="live_deleted_message">আপনার ভিডিও মোছা হয়েছে</string>
+    <string name="live_posted_message">আপনার ভিডিও আপনার টাইমলাইনে পোস্ট করা হয়েছে।</string>
+    <string name="live_posted_view">facebook-এ দেখুন</string>
+    <string name="live_process_identify">বুঝেছি</string>
+
+    <string name="live_login_identify">ঠিক আছে</string>
+
+    <string name="str_phone_camera">ফোনের ক্যামেরা</string>
+    <string name="str_mod_camera">360 camera</string>
+    <string name="licenses_title">ওপেন সোর্স লাইসেন্সগুলি</string>
+</resources>

@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto සජීවී ප්‍රවාහය</string>
+
+    <string name="label_network_not_available">"ඔබේ ජාලය දැන් නොමැත."</string>
+    <string name="label_profile_not_available">"ඔබේ පැතිකඩ ලබා ගැනීමට අසමත් විය"</string>
+
+    <string name="dlg_public_profile_not_granted">"ඔබ ඔබේ පොදු පැතිකඩ සහ අභිමත මිතුරන්ගේ ලැයිස්තුවට MotoLiveStream ප්‍රවේශ වීම සමඟ එකඟ වී නැත. ක්‍රියාවට එකඟ වීමට \'ඉදිරියට යන්න\' ඔබන්න."</string>
+    <string name="dlg_publish_not_granted">"ඔබ ඔබේ Facebook වෙත MotoLiveStream සජීවී වීඩියෝ පළ කිරීම සමඟ එකඟ වී නැත. ක්‍රියාවට එකඟ වීමට \'හරි\' ඔබන්න."</string>
+    <string name="dlg_fb_login_failed">"Facebook වෙතින් අවසර ලබා දීමට අසමත් විය. පසුව නැවත උත්සාහ කරන්න!"</string>
+
+    <string name="label_activity_timeline_privacy">රහස්‍යතාවය තෝරන්න</string>
+    <string name="label_activity_custom_friends">විශේෂිත මිතුරන්</string>
+
+    <string name="menu_done">හරි</string>
+
+    <string name="btn_ok">හරි</string>
+    <string name="btn_delete">මකන්න</string>
+    <string name="btn_post">පළ කිරීම</string>
+    <string name="btn_retry">නැවත උත්සාහ කරන්න</string>
+    <string name="btn_exit">පිටවන්න</string>
+
+    <string name="live_description_hint">විස්තරය</string>
+
+    <string name="failed_getting_friend_list">ඔබේ මිතුරු ලැයිස්තුව ලබා ගැනීමට අසමත් විය. පසුව නැවත උත්සාහ කරන්න.</string>
+    <string name="no_friend_list_warning">ඔබ තවම මිතුරන්ගේ ලැයිස්තුවක් තනා නැත.</string>
+
+    <string name="post_live_privacy_description">පුද්ගලයින්ට ආපසු නැරඹිය හැකි වන පරිදි ඔබේ facebook කාලරේඛාවෙහි ඔබේ වීඩියෝවේ යළි වාදනය පළ කරන්න.</string>
+    <string name="total_live_time">ඔබ <xliff:g id="DURATION">%s</xliff:g> සඳහා සජීවී වූහ</string>
+
+    <string name="privacy_world">පොදු</string>
+    <string name="privacy_world_description">Facebook මත සිටින හෝ නොසිටින ඕනෑම කෙනෙක්</string>
+    <string name="privacy_friends">මිතුරන්</string>
+    <string name="privacy_friends_description">Facebook මත ඔබේ මිතුරන්</string>
+    <string name="privacy_self">මට පමණයි</string>
+    <string name="privacy_self_description">මට පමණයි</string>
+    <string name="privacy_custom">විශේෂිත මිතුරන්</string>
+    <string name="privacy_custom_description">සමහර මිතුරන්ට පමණක් පෙන්වන්න</string>
+
+    <string name="live_label_go_live">Facebook වෙත සජීවී</string>
+
+    <string name="live_popup_dlg_title">ඔබේ සජීවී ප්‍රවාහය විරාමය වී ඇත</string>
+    <string name="live_popup_dlg_content">ඔබට ඔබේ සජීවී ප්‍රවාහය කර ගෙන යාමට අවශ්‍යයි ද?</string>
+    <string name="live_popup_dlg_btn_resume">නැවත පටන්ගන්න</string>
+    <string name="live_popup_dlg_btn_finish">අවසන් කරන්න</string>
+
+    <string name="live_dlg_logout_message">"ඔබ %s ලෙස පිවිස ඇත."</string>
+    <string name="live_dlg_btn_logout">වරන්න</string>
+
+    <string name="live_popup_no_publish_permission">"සජීවී වීඩියෝ පළ කිරීමට අවසර නැත. ඔබ Facebook වෙබ් අඩවියෙන් හෝ යෙදුමෙන් MotoLiveStream විසින් ලබා දුන් අවසර මකා ඇත්දැයි පරීක්ෂා කරන්න."</string>
+    <string name="live_popup_dlg_network_poor">"සජීවී නිර්මාණය අසමත් විය, ඔබේ ජාලයට Facebook සේවාවට ප්‍රවේශ විය හැකි දැයි පරීක්ෂා කර බලන්න."</string>
+    <string name="live_popup_dlg_rtmp_failed">"සජීවී පළ කිරීම අසමත් විය, ඔබේ ජාලය දැන් තිබේ දැයි පරීක්ෂා කරන්න."</string>
+
+    <string name="live_popup_dlg_camera_failed">"කැමරා සේවාවට සම්බන්ධ වීමට අසමත් විය, පසුව නැවත උත්සාහ කරන්න."</string>
+
+    <string name="live_deleted_message">ඔබේ වීඩියෝව මකා දමා ඇත</string>
+    <string name="live_posted_message">ඔබේ වීඩියෝව ඔබේ කාලරේඛාවෙහි පළ කර ඇත.</string>
+    <string name="live_posted_view">facebook මත බලන්න</string>
+    <string name="live_process_identify">තේරුණා</string>
+
+    <string name="live_login_identify">හරි</string>
+
+    <string name="str_phone_camera">දුරකථන කැමරාව</string>
+    <string name="str_mod_camera">360 කැමරාව</string>
+    <string name="licenses_title">විවෘත මූලාශ්‍ර බලපත්‍ර</string>
+</resources>

@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Mạng của bạn hiện không khả dụng."</string>
+    <string name="label_profile_not_available">"Lấy hồ sơ không thành công"</string>
+
+    <string name="dlg_public_profile_not_granted">"Bạn không đồng ý để MotoLiveStream truy cập hồ sơ công cộng của bạn và tùy chỉnh danh sách bạn bè. Vui lòng bấm \'Tiếp tục’ để đồng ý tác vụ này."</string>
+    <string name="dlg_publish_not_granted">"Bạn không đồng ý để MotoLiveStream đăng video trực tiếp của bạn lên Facebook. Vui lòng bấm \'OK\' để đồng ý tác vụ này."</string>
+    <string name="dlg_fb_login_failed">"Cấp quyền từ Facebook không thành công. Vui lòng thử lại sau!"</string>
+
+    <string name="label_activity_timeline_privacy">Chọn Bảo mật</string>
+    <string name="label_activity_custom_friends">Bạn bè cụ thể</string>
+
+    <string name="menu_done">Xong</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Xóa</string>
+    <string name="btn_post">Đăng</string>
+    <string name="btn_retry">Thử lại</string>
+    <string name="btn_exit">Thoát</string>
+
+    <string name="live_description_hint">Mô tả</string>
+
+    <string name="failed_getting_friend_list">Lấy danh sách bạn bè không thành công. Vui lòng thử lại sau.</string>
+    <string name="no_friend_list_warning">Bạn chưa tạo bất kỳ danh sách bạn bè nào.</string>
+
+    <string name="post_live_privacy_description">Đăng phát lại video của bạn trên dòng thời gian của facebook để mọi người có thể xem lại.</string>
+    <string name="total_live_time">Bạn đã phát trực tiếp <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Công khai</string>
+    <string name="privacy_world_description">Bất kỳ ai bật hoặc tắt Facebook</string>
+    <string name="privacy_friends">Bạn bè</string>
+    <string name="privacy_friends_description">Bạn bè trên Facebook</string>
+    <string name="privacy_self">Chỉ tôi</string>
+    <string name="privacy_self_description">Chỉ tôi</string>
+    <string name="privacy_custom">Bạn bè cụ thể</string>
+    <string name="privacy_custom_description">Chỉ hiển thị với một số bạn bè</string>
+
+    <string name="live_label_go_live">Trực tiếp trên Facebook</string>
+
+    <string name="live_popup_dlg_title">Tính năng phát trực tiếp của bạn đã tạm dừng</string>
+    <string name="live_popup_dlg_content">Bạn có muốn tiếp tục phát trực tiếp không?</string>
+    <string name="live_popup_dlg_btn_resume">Tiếp tục</string>
+    <string name="live_popup_dlg_btn_finish">Kết thúc</string>
+
+    <string name="live_dlg_logout_message">"Bạn đã đăng nhập dưới tên %s."</string>
+    <string name="live_dlg_btn_logout">Đăng xuất</string>
+
+    <string name="live_popup_no_publish_permission">"Không có quyền để thực hiện đăng video trực tiếp. Vui lòng kiểm tra xem bạn có xóa quyền do MotoLiveStream cấp từ trang web Facebook hoặc ứng dụng của bạn hay không."</string>
+    <string name="live_popup_dlg_network_poor">"Tạo trực tiếp không thành công, vui lòng kiểm tra xem mạng của bạn có thể truy cập dịch vụ của Facebook hay không."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Đăng trực tiếp không thành công, vui lòng kiểm tra xem mạng của bạn hiện có khả dụng không."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Kết nối với dịch vụ máy ảnh không thành công, vui lòng thử lại sau."</string>
+
+    <string name="live_deleted_message">Video của bạn đã được xóa</string>
+    <string name="live_posted_message">Video của bạn đã được đăng trên dòng thời gian.</string>
+    <string name="live_posted_view">Xem trên facebook</string>
+    <string name="live_process_identify">Hiểu rồi</string>
+
+    <string name="live_login_identify">Ok</string>
+
+    <string name="str_phone_camera">Máy ảnh điện thoại</string>
+    <string name="str_mod_camera">Máy ảnh 360</string>
+    <string name="licenses_title">Giấy phép nguồn mở</string>
+</resources>

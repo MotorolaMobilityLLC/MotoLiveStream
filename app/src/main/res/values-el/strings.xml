@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Προσωρινά μη διαθέσιμο δίκτυο."</string>
+    <string name="label_profile_not_available">"Αποτυχία λήψης του προφίλ σας"</string>
+
+    <string name="dlg_public_profile_not_granted">"Δεν έχετε συμφωνήσει το MotoLiveStream να έχει πρόσβαση στο δημόσιο προφίλ και στις προσαρμοσμένες λίστες φίλων σας. Πατήστε \"Συνέχεια\" για να συμφωνήσετε με την ενέργεια."</string>
+    <string name="dlg_publish_not_granted">"Δεν έχετε συμφωνήσει το MotoLiveStream να δημοσιεύει live βίντεο στο προφίλ σας στο Facebook. Πατήστε \"OK\" για να συμφωνήσετε με την ενέργεια."</string>
+    <string name="dlg_fb_login_failed">"Αποτυχία εκχώρησης αδειών από το Facebook. Προσπαθήστε ξανά αργότερα!"</string>
+
+    <string name="label_activity_timeline_privacy">Επιλέξτε απόρρητο</string>
+    <string name="label_activity_custom_friends">Συγκεκριμένοι φίλοι</string>
+
+    <string name="menu_done">Τέλος</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Διαγραφή</string>
+    <string name="btn_post">Δημοσίευση</string>
+    <string name="btn_retry">Επανάληψη</string>
+    <string name="btn_exit">Έξοδος</string>
+
+    <string name="live_description_hint">Περιγραφή</string>
+
+    <string name="failed_getting_friend_list">Αποτυχία ανάκτησης της λίστας των φίλων σας. Προσπαθήστε ξανά αργότερα.</string>
+    <string name="no_friend_list_warning">Δεν έχετε δημιουργήσει λίστα φίλων ακόμα.</string>
+
+    <string name="post_live_privacy_description">Δημοσιεύστε μια επανάληψη του βίντεό σας στο χρονολόγιό σας στο Facebook ώστε να μπορούν οι χρήστες να το παρακολουθήσουν ξανά.</string>
+    <string name="total_live_time">Κάνατε live μετάδοση για <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Δημόσιο</string>
+    <string name="privacy_world_description">Οποιοσδήποτε εντός ή εκτός Facebook</string>
+    <string name="privacy_friends">Φίλοι</string>
+    <string name="privacy_friends_description">Οι φίλοι σας στο Facebook</string>
+    <string name="privacy_self">Μόνο εγώ</string>
+    <string name="privacy_self_description">Μόνο εγώ</string>
+    <string name="privacy_custom">Συγκεκριμένοι φίλοι</string>
+    <string name="privacy_custom_description">Να εμφανίζεται μόνο σε μερικούς φίλους</string>
+
+    <string name="live_label_go_live">Live μετάδοση στο Facebook</string>
+
+    <string name="live_popup_dlg_title">Έγινε παύση στη live ροή</string>
+    <string name="live_popup_dlg_content">Θέλετε να συνεχίσετε τη live ροή;</string>
+    <string name="live_popup_dlg_btn_resume">Συνέχιση</string>
+    <string name="live_popup_dlg_btn_finish">Τέλος</string>
+
+    <string name="live_dlg_logout_message">"Έχετε συνδεθεί ως %s."</string>
+    <string name="live_dlg_btn_logout">Αποσύνδεση</string>
+
+    <string name="live_popup_no_publish_permission">"Δεν υπάρχει άδεια για τη δημοσίευση live βίντεο. Ελέγξτε αν έχετε διαγράψει τις άδειες που παρέχονται από το MotoLiveStream για την ιστοσελίδα ή την εφαρμογή του Facebook."</string>
+    <string name="live_popup_dlg_network_poor">"Η live δημιουργία απέτυχε, ελέγξτε αν το δίκτυο σας έχει πρόσβαση στην υπηρεσία του Facebook."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Η live δημοσίευση απέτυχε, ελέγξτε αν το δίκτυο σας είναι τώρα διαθέσιμο."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Αποτυχία σύνδεσης με την υπηρεσία κάμερας, προσπαθήστε ξανά αργότερα."</string>
+
+    <string name="live_deleted_message">Το βίντεο σας έχει διαγραφεί</string>
+    <string name="live_posted_message">Το βίντεο σας έχει δημοσιευθεί στο χρονολόγιό σας.</string>
+    <string name="live_posted_view">Προβολή στο Facebook</string>
+    <string name="live_process_identify">Το κατάλαβα</string>
+
+    <string name="live_login_identify">Εντάξει</string>
+
+    <string name="str_phone_camera">Κάμερα τηλεφώνου</string>
+    <string name="str_mod_camera">Κάμερα 360</string>
+    <string name="licenses_title">Άδειες ανοικτού κώδικα</string>
+</resources>

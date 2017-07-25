@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Rede não disponível no momento."</string>
+    <string name="label_profile_not_available">"Falha ao obter seu perfil"</string>
+
+    <string name="dlg_public_profile_not_granted">"Você não concordou com o acesso do MotoLiveStream ao seu perfil público e à personalização de sua lista de amigos. Pressione \'Continuar\' para concordar com a ação."</string>
+    <string name="dlg_publish_not_granted">"Você não concordou com que o MotoLiveStream postasse vídeos ao vivo em sua conta do Facebook. Pressione \'OK\' para concordar com a ação."</string>
+    <string name="dlg_fb_login_failed">"Falha ao conceder permissões do Facebook. Tente novamente depois."</string>
+
+    <string name="label_activity_timeline_privacy">Selecione Privacidade</string>
+    <string name="label_activity_custom_friends">Amigos específicos</string>
+
+    <string name="menu_done">Concluído</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Excluir</string>
+    <string name="btn_post">Postar</string>
+    <string name="btn_retry">Tentar novamente</string>
+    <string name="btn_exit">Sair</string>
+
+    <string name="live_description_hint">Descrição</string>
+
+    <string name="failed_getting_friend_list">Falha ao obter lista de amigos. Tente novamente depois.</string>
+    <string name="no_friend_list_warning">Você ainda não criou nenhuma lista de amigos.</string>
+
+    <string name="post_live_privacy_description">Poste o replay de seu vídeo na timeline do Facebook para que as pessoas possam assistir.</string>
+    <string name="total_live_time">Você está ao vivo por <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Público</string>
+    <string name="privacy_world_description">Qualquer pessoa conectada ou desconectada do Facebook</string>
+    <string name="privacy_friends">Amigos</string>
+    <string name="privacy_friends_description">Seus amigos do Facebook</string>
+    <string name="privacy_self">Somente eu</string>
+    <string name="privacy_self_description">Somente eu</string>
+    <string name="privacy_custom">Amigos específicos</string>
+    <string name="privacy_custom_description">Mostrar apenas para alguns amigos</string>
+
+    <string name="live_label_go_live">Ao vivo para o Facebook</string>
+
+    <string name="live_popup_dlg_title">Seu stream ao vivo foi pausado</string>
+    <string name="live_popup_dlg_content">Deseja continuar seu stream ao vivo?</string>
+    <string name="live_popup_dlg_btn_resume">Retomar</string>
+    <string name="live_popup_dlg_btn_finish">Finalizar</string>
+
+    <string name="live_dlg_logout_message">"Você está conectado como %s."</string>
+    <string name="live_dlg_btn_logout">Desconectar</string>
+
+    <string name="live_popup_no_publish_permission">"Você não tem permissão para postar vídeos ao vivo. Verifique se as permissões concedidas pelo MotoLiveStream no site ou no app do Facebook foram excluídas."</string>
+    <string name="live_popup_dlg_network_poor">"Falha ao criar stream ao vivo. Verifique se sua rede pode acessar os serviços do Facebook."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Falha ao postar stream ao vivo. Verifique se sua rede está disponível agora."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Falha ao se conectar ao serviço de câmera. Tente novamente depois."</string>
+
+    <string name="live_deleted_message">Seu vídeo foi excluído</string>
+    <string name="live_posted_message">Seu vídeo foi postado em sua timeline.</string>
+    <string name="live_posted_view">Visualizar no Facebook</string>
+    <string name="live_process_identify">Entendi</string>
+
+    <string name="live_login_identify">Ok</string>
+
+    <string name="str_phone_camera">Câmera do telefone</string>
+    <string name="str_mod_camera">360 camera</string>
+    <string name="licenses_title">Licenças de código aberto</string>
+</resources>

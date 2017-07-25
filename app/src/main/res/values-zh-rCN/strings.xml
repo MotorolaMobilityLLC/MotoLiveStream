@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"您的网络目前不可用。"</string>
+    <string name="label_profile_not_available">"无法获取您的配置文件"</string>
+
+    <string name="dlg_public_profile_not_granted">"您不同意 MotoLiveStream 访问您的公用配置文件和自定义好友列表。请按 \"继续\" 以同意操作。"</string>
+    <string name="dlg_publish_not_granted">"您不同意 MotoLiveStream 将直播视频发布到您的 Facebook。请按 \"确定\" 以同意操作。"</string>
+    <string name="dlg_fb_login_failed">"无法从 Facebook 授权。请稍后重试！"</string>
+
+    <string name="label_activity_timeline_privacy">选择政策</string>
+    <string name="label_activity_custom_friends">特定好友</string>
+
+    <string name="menu_done">完成</string>
+
+    <string name="btn_ok">确定</string>
+    <string name="btn_delete">删除</string>
+    <string name="btn_post">发布</string>
+    <string name="btn_retry">重试</string>
+    <string name="btn_exit">退出</string>
+
+    <string name="live_description_hint">说明</string>
+
+    <string name="failed_getting_friend_list">无法获取好友列表。请稍后重试。</string>
+    <string name="no_friend_list_warning">您尚未创建任何好友列表。</string>
+
+    <string name="post_live_privacy_description">在 Facebook 时间轴上发布您的视频重播，以便其他人可以回看。</string>
+    <string name="total_live_time">您已开始使用 <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">公开</string>
+    <string name="privacy_world_description">任何人打开或关闭 Facebook</string>
+    <string name="privacy_friends">好友</string>
+    <string name="privacy_friends_description">您的好友打开 Facebook</string>
+    <string name="privacy_self">只有我</string>
+    <string name="privacy_self_description">只有我</string>
+    <string name="privacy_custom">特定好友</string>
+    <string name="privacy_custom_description">仅对一些好友显示</string>
+
+    <string name="live_label_go_live">直播到 Facebook</string>
+
+    <string name="live_popup_dlg_title">您的直播流已暂停</string>
+    <string name="live_popup_dlg_content">是否继续您的直播流？</string>
+    <string name="live_popup_dlg_btn_resume">恢复</string>
+    <string name="live_popup_dlg_btn_finish">完成</string>
+
+    <string name="live_dlg_logout_message">"您已作为 %s 登录。"</string>
+    <string name="live_dlg_btn_logout">注销</string>
+
+    <string name="live_popup_no_publish_permission">"没有执行发布直播视频的权限。请检查您是否已删除 Facebook 网站或应用程序授予 MotoLiveStream 的权限。"</string>
+    <string name="live_popup_dlg_network_poor">"创建直播失败，请检查您的网络是否可以访问 Facebook 服务。"</string>
+    <string name="live_popup_dlg_rtmp_failed">"发布直播失败，请检查您的网络目前是否可用。"</string>
+
+    <string name="live_popup_dlg_camera_failed">"无法连接到相机服务，请稍后重试。"</string>
+
+    <string name="live_deleted_message">您的视频已删除</string>
+    <string name="live_posted_message">您的视频已发布到您的时间轴上。</string>
+    <string name="live_posted_view">在 Facebook 上查看</string>
+    <string name="live_process_identify">知道了</string>
+
+    <string name="live_login_identify">确定</string>
+
+    <string name="str_phone_camera">手机相机</string>
+    <string name="str_mod_camera">360 Camera</string>
+    <string name="licenses_title">开放源代码许可</string>
+</resources>

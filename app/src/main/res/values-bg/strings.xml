@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Вашата мрежа не е налична сега."</string>
+    <string name="label_profile_not_available">"Неуспешен достъп до Вашия профил"</string>
+
+    <string name="dlg_public_profile_not_granted">"Вие не сте съгласни с достъпа на MotoLiveStream до Вашия публичен профил и персонализирани списъци с приятели. Моля, натиснете \"Продължавам\", за да се съгласите с действието."</string>
+    <string name="dlg_publish_not_granted">"Вие не сте съгласни MotoLiveStream да публикува видео на живо във Вашия Facebook. Моля, натиснете \"ОК\", за да се съгласите с действието."</string>
+    <string name="dlg_fb_login_failed">"Неуспешно предоставяне на разрешение от Facebook. Моля, опитайте отново по-късно!"</string>
+
+    <string name="label_activity_timeline_privacy">Изберете \"Поверителност\"</string>
+    <string name="label_activity_custom_friends">Конкретни приятели</string>
+
+    <string name="menu_done">Готово</string>
+
+    <string name="btn_ok">ОК</string>
+    <string name="btn_delete">Изтриване</string>
+    <string name="btn_post">Публикуване</string>
+    <string name="btn_retry">Нов опит</string>
+    <string name="btn_exit">Изход</string>
+
+    <string name="live_description_hint">Описание</string>
+
+    <string name="failed_getting_friend_list">Неуспешно получаване на списъка Ви с приятели. Моля, опитайте отново по-късно.</string>
+    <string name="no_friend_list_warning">Още не сте създали списък с приятели.</string>
+
+    <string name="post_live_privacy_description">Публикувайте видеозаписа си във времевата линия на Facebook, така че хората да могат да го гледат.</string>
+    <string name="total_live_time">Вие сте били на живо за <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Публичен</string>
+    <string name="privacy_world_description">Всеки, който е във или извън Facebook</string>
+    <string name="privacy_friends">Приятели</string>
+    <string name="privacy_friends_description">Приятелите Ви във Facebook</string>
+    <string name="privacy_self">Само аз</string>
+    <string name="privacy_self_description">Само аз</string>
+    <string name="privacy_custom">Конкретни приятели</string>
+    <string name="privacy_custom_description">Покажете само на някои приятели</string>
+
+    <string name="live_label_go_live">На живо във Facebook</string>
+
+    <string name="live_popup_dlg_title">Вашият поток на живо е временно спрян</string>
+    <string name="live_popup_dlg_content">Искате ли да продължите Вашия поток на живо?</string>
+    <string name="live_popup_dlg_btn_resume">Възобновяване</string>
+    <string name="live_popup_dlg_btn_finish">Край</string>
+
+    <string name="live_dlg_logout_message">"Вие сте влезли като %s."</string>
+    <string name="live_dlg_btn_logout">Излизане</string>
+
+    <string name="live_popup_no_publish_permission">"Няма разрешение за публикуване на видеоклипове на живо. Моля, проверете дали сте изтрили предоставените от MotoLiveStream разрешения от уебсайта или приложението на Facebook."</string>
+    <string name="live_popup_dlg_network_poor">"Създаването на живо не беше успешно, проверете дали Вашата мрежа има достъп до услугата на Facebook."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Публикуването на живо не беше успешно, моля, проверете дали Вашата мрежа е налична сега."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Неуспешна връзка с услуга за камерата, моля, опитайте отново по-късно."</string>
+
+    <string name="live_deleted_message">Видеоклипът Ви беше изтрит</string>
+    <string name="live_posted_message">Видеоклипът Ви беше публикуван във Вашата времева линия.</string>
+    <string name="live_posted_view">Преглед във facebook</string>
+    <string name="live_process_identify">Разбрах</string>
+
+    <string name="live_login_identify">Добре</string>
+
+    <string name="str_phone_camera">Камера на телефон</string>
+    <string name="str_mod_camera">360-градусова камера</string>
+    <string name="licenses_title">Лицензи с отворен код</string>
+</resources>

@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto-liveströmning</string>
+
+    <string name="label_network_not_available">"Nätverket är inte tillgängligt nu."</string>
+    <string name="label_profile_not_available">"Det gick inte att hämta din profil"</string>
+
+    <string name="dlg_public_profile_not_granted">"Du har inte gett MotoLiveStream åtkomst till din offentliga profil och anpassade vänlistor. Tryck på Fortsätt om du godkänner åtgärden."</string>
+    <string name="dlg_publish_not_granted">"Du har inte godkänt att MotoLiveStream publicerar livevideo på din Facebook-sida. Tryck på OK om du godkänner åtgärden."</string>
+    <string name="dlg_fb_login_failed">"Det gick inte att ge behörighet från Facebook. Försök igen senare."</string>
+
+    <string name="label_activity_timeline_privacy">Välj Sekretess</string>
+    <string name="label_activity_custom_friends">Specifika vänner</string>
+
+    <string name="menu_done">Färdig</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Ta bort</string>
+    <string name="btn_post">Skicka</string>
+    <string name="btn_retry">Försök igen</string>
+    <string name="btn_exit">Avsluta</string>
+
+    <string name="live_description_hint">Beskrivning</string>
+
+    <string name="failed_getting_friend_list">Det gick inte att hämta din vänlista. Försök igen senare.</string>
+    <string name="no_friend_list_warning">Du har inte skapat någon vänlista än.</string>
+
+    <string name="post_live_privacy_description">Publicera videouppspelningen på tidslinjen på Facebook så att andra kan titta på den.</string>
+    <string name="total_live_time">Du publicerade live i <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Offentligt</string>
+    <string name="privacy_world_description">Alla, oavsett om de har Facebook</string>
+    <string name="privacy_friends">Vänner</string>
+    <string name="privacy_friends_description">Dina vänner på Facebook</string>
+    <string name="privacy_self">Endast jag</string>
+    <string name="privacy_self_description">Endast jag</string>
+    <string name="privacy_custom">Specifika vänner</string>
+    <string name="privacy_custom_description">Vissa endast för vissa vänner</string>
+
+    <string name="live_label_go_live">Live på Facebook</string>
+
+    <string name="live_popup_dlg_title">Liveströmningen har pausats</string>
+    <string name="live_popup_dlg_content">Vill du fortsätta med liveströmningen?</string>
+    <string name="live_popup_dlg_btn_resume">Återuppta</string>
+    <string name="live_popup_dlg_btn_finish">Slutför</string>
+
+    <string name="live_dlg_logout_message">"Du är inloggad som %s."</string>
+    <string name="live_dlg_btn_logout">Logga ut</string>
+
+    <string name="live_popup_no_publish_permission">"Ingen behörighet att publicera livevideor. Kontrollera om du har tagit bort de behörigheter som har getts av MotoLiveStream från Facebook-webbplatsen eller -appen."</string>
+    <string name="live_popup_dlg_network_poor">"Det gick inte att skapa livepublicering. Kontrollera om nätverket har åtkomst till Facebook-tjänsten."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Livepublicering misslyckades. Kontrollera om nätverket är tillgängligt nu."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Det gick inte att ansluta till kameratjänsten. Försök igen senare."</string>
+
+    <string name="live_deleted_message">Videon har tagits bort</string>
+    <string name="live_posted_message">Videon har publicerats på din tidslinje.</string>
+    <string name="live_posted_view">Visa på Facebook</string>
+    <string name="live_process_identify">Förstått</string>
+
+    <string name="live_login_identify">OK</string>
+
+    <string name="str_phone_camera">Telefonkamera</string>
+    <string name="str_mod_camera">360 Camera</string>
+    <string name="licenses_title">Licenser för öppen källkod</string>
+</resources>

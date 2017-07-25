@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Live Stream ng Moto</string>
+
+    <string name="label_network_not_available">"Hindi available ngayon ang iyong network."</string>
+    <string name="label_profile_not_available">"Nabigong makuha ang iyong profile"</string>
+
+    <string name="dlg_public_profile_not_granted">"Hindi ka sang-ayon sa pag-access ng MotoLiveStream sa iyong pampublikong profile at pasadyang listahan ng mga kaibigan. Paki-pindot ang \'Magpatuloy\' upang sumang-ayon sa aksyon."</string>
+    <string name="dlg_publish_not_granted">"Hindi ka sumasang-ayon sa pag-post ng Live Video ng MotoLiveStream sa iyong Facebook. Pakipindot ang \'OK\' upang sumang-ayon sa aksyon."</string>
+    <string name="dlg_fb_login_failed">"Nabigong mabigyan ng permiso mula sa Facebook. Pakisubukang muli mamaya!"</string>
+
+    <string name="label_activity_timeline_privacy">Piliin ang Pagkapribado</string>
+    <string name="label_activity_custom_friends">Espesipikong Mga Kaibigan</string>
+
+    <string name="menu_done">Tapos na</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Tanggalin</string>
+    <string name="btn_post">I-post</string>
+    <string name="btn_retry">Subukang muli</string>
+    <string name="btn_exit">Labasan</string>
+
+    <string name="live_description_hint">Paglalarawan</string>
+
+    <string name="failed_getting_friend_list">Nabigong makuha ang listahan ng iyong kaibigan. Pakisubukang muli mamaya.</string>
+    <string name="no_friend_list_warning">Wala ka pang ginawang listahan ng iyong kaibigan.</string>
+
+    <string name="post_live_privacy_description">I-post ang video replay sa iyong facebook timeline para mapanood ulit ito ng mga tao.</string>
+    <string name="total_live_time">Nag-live ka ng hanggang <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Pampubliko</string>
+    <string name="privacy_world_description">Lahat ng on o off sa Facebook</string>
+    <string name="privacy_friends">Mga kaibigan</string>
+    <string name="privacy_friends_description">Mga kaibigan mo sa Facebook</string>
+    <string name="privacy_self">Ako lang</string>
+    <string name="privacy_self_description">Ako lang</string>
+    <string name="privacy_custom">Espesipikong mga kaibigan</string>
+    <string name="privacy_custom_description">Ipakita lamang sa ilang mga kaibigan</string>
+
+    <string name="live_label_go_live">Live sa Facebook</string>
+
+    <string name="live_popup_dlg_title">Na-pause ang iyong live stream</string>
+    <string name="live_popup_dlg_content">Gusto mo bang ipagpatuloy ang iyong live stream?</string>
+    <string name="live_popup_dlg_btn_resume">Ituloy</string>
+    <string name="live_popup_dlg_btn_finish">Tapusin</string>
+
+    <string name="live_dlg_logout_message">"Naka-login ka bilang %s."</string>
+    <string name="live_dlg_btn_logout">Mag-log out</string>
+
+    <string name="live_popup_no_publish_permission">"Hindi kailangan ng permisyo para gawin ang pag-post ng live video. Pakitingnan kung natanggal mo ang mga permiso na ibinigay ng MotoLiveStream mula sa Facebook website o App."</string>
+    <string name="live_popup_dlg_network_poor">"Nabigo ang paggawa ng live, pakitingnan kung na-access ng iyong network ang serbisyo ng Facebook."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Nabigo ang pag-post ng live, pakitingnan kung available na ngayon ang iyong network."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Nabigong kumonekta sa serbisyo ng camera, pakisubukang muli mamaya."</string>
+
+    <string name="live_deleted_message">Natanggal na ang iyong video</string>
+    <string name="live_posted_message">Na-post sa iyong timeline ang iyong video.</string>
+    <string name="live_posted_view">Tingnan sa facebook</string>
+    <string name="live_process_identify">Alam ko na</string>
+
+    <string name="live_login_identify">Okay</string>
+
+    <string name="str_phone_camera">Camera ng telepono</string>
+    <string name="str_mod_camera">360 camera</string>
+    <string name="licenses_title">Mga lisensyang open source</string>
+</resources>

@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">ស្ទ្រីមផ្ទាយ​ផ្ទាល់​របស់ Moto</string>
+
+    <string name="label_network_not_available">"បណ្ដាញ​របស់​អ្នក​ មិនអាច​ប្រើបាន​ទេ នៅពេលនេះ។"</string>
+    <string name="label_profile_not_available">"មិនបាន​ទទួល​កម្រង​ព័ត៌មាន​របស់​អ្នក"</string>
+
+    <string name="dlg_public_profile_not_granted">"អ្នក​មិន​ទទួល​បាន​ការ​យល់​ព្រម​​ពី MotoLiveStream សម្រាប់​ចូល​ប្រើកម្រង​ព័ត៌មាន​សាធារណៈ​របស់​អ្នក និង​ប្ដូរ​តាម​តម្រូវការ​លើ​បញ្ជី​មិត្ត​ភក្តិ​នៅ​ឡើយ។ សូម​ចុច \'បន្ត\' ដើម្បី​យល់ព្រម​​ជាមួយ​នឹង​សកម្មភាព។"</string>
+    <string name="dlg_publish_not_granted">"អ្នក​មិន​ទទួល​បាន​ការ​យល់​ព្រម​​ពី MotoLiveStream ក្នុងការ​បង្ហោះ Live Video ទៅលើ Facebook របស់​អ្នកទេ។ សូម​ចុច​ \'យល់ព្រម\' ដើម្បី​យល់ព្រម​​ជាមួយ​នឹង​សកម្មភាព។"</string>
+    <string name="dlg_fb_login_failed">"បាន​បរាជ័យក្នុងការ​ផ្ដល់​ការអនុញ្ញាតពី Facebook។ សូម​ព្យាយាម​ម្ដង​ទៀត​នៅពេល​ក្រោយ!"</string>
+
+    <string name="label_activity_timeline_privacy">ជ្រើសរើស​ភាពឯកជន</string>
+    <string name="label_activity_custom_friends">ជ្រើសរើស​មិត្តិភក្តិ</string>
+
+    <string name="menu_done">រួចរាល់</string>
+
+    <string name="btn_ok">យល់ព្រម</string>
+    <string name="btn_delete">លុប</string>
+    <string name="btn_post">បង្ហោះ</string>
+    <string name="btn_retry">ព្យាយាម​ម្ដងទៀត</string>
+    <string name="btn_exit">ចេញ</string>
+
+    <string name="live_description_hint">ការពណ៌នា</string>
+
+    <string name="failed_getting_friend_list">បាន​បរាជ័យក្នុងការ​ទទួល​បាន​បញ្ជី​មិត្តភក្តិ។ សូម​ព្យាយាម​ម្ដង​ទៀត​នៅពេល​ក្រោយ!</string>
+    <string name="no_friend_list_warning">អ្នក​មិន​ទាន់​បានបង្កើត​បញ្ជី​មិត្តិភក្តិ​ណាមួយ​នៅ​ឡើយ។</string>
+
+    <string name="post_live_privacy_description">បង្ហោះ​ការ​ចាក់​វីដេអូ​របស់អ្នក​ឡើងវិញ នៅលើ​បន្ទាត់ពេល​នៃ​ facebook របស់អ្នក ដើម្បី​គេអាច​មើល​ទៀត។</string>
+    <string name="total_live_time">អ្នកបាន​ផ្សាយផ្ទាល់​រយៈពេល <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">សាធារណៈ</string>
+    <string name="privacy_world_description">គ្រប់គ្នា​ដែល​ប្រើ ឬ​មិនប្រើ Facebook</string>
+    <string name="privacy_friends">មិត្តភក្តិ</string>
+    <string name="privacy_friends_description">មិត្តភក្តិ​របស់​អ្នកនៅលើ Facebook</string>
+    <string name="privacy_self">តែខ្ញុំ​ប៉ុណ្ណោះ</string>
+    <string name="privacy_self_description">តែខ្ញុំ​ប៉ុណ្ណោះ</string>
+    <string name="privacy_custom">មិត្តភក្តិ​ជាក់លាក់</string>
+    <string name="privacy_custom_description">បង្ហាញ​តែ​មិត្តភក្ដិ​ខ្លះៗ​ប៉ុណ្ណោះ</string>
+
+    <string name="live_label_go_live">ផ្សាយផ្ទាល់នៅលើ Facebook</string>
+
+    <string name="live_popup_dlg_title">ការស្ទ្រីម​ផ្សាយផ្ទាល់​របស់​អ្នក ត្រូវ​បានផ្អាក</string>
+    <string name="live_popup_dlg_content">តើអ្នក​ចង់បន្តស្ទ្រីម​ផ្សាយផ្ទាល់​ទេ?</string>
+    <string name="live_popup_dlg_btn_resume">បន្ត</string>
+    <string name="live_popup_dlg_btn_finish">បញ្ចប់</string>
+
+    <string name="live_dlg_logout_message">"អ្នក​បាន​ចូល​ក្នុងនាមជា %s។"</string>
+    <string name="live_dlg_btn_logout">ចេញ</string>
+
+    <string name="live_popup_no_publish_permission">"មិនមាន​ការ​អនុញ្ញាត​ដើម្បី​អនុវត្ត​ការ​បង្ហោះវីដេអូ​ផ្សាយផ្ទាល់។ សូម​ពិនិត្យ​ក្រែង​អ្នក​បាន​លុប​ការ​អនុញ្ញាត​ ដែលបាន​ផ្ដល់​ដោយ MotoLiveStream ពី​វិបសាយ​ឬ​កម្មវិធី Facebook ។"</string>
+    <string name="live_popup_dlg_network_poor">"បាន​បរាជ័យ​ក្នុងការ​បង្កើត​ការផ្សាយ​ផ្ទាល់ សូម​ពិនិត្យថាតើ​បណ្ដាញ​របស់​អ្នកអាច​ចូល​ប្រើ​សេវាកម្ម Facebook ដែរ​ឬទេ។"</string>
+    <string name="live_popup_dlg_rtmp_failed">"មិនអាច​បង្ហោះ​​ការផ្សាយ​ផ្ទាល់ សូម​ពិនិត្យថា តើ​បណ្ដាញ​របស់​អ្នកអាចប្រើបាន​ឬទេ នៅពេល​នេះ។"</string>
+
+    <string name="live_popup_dlg_camera_failed">"មិនអាច​ភ្ជាប់​សេវាកម្ម​ម៉ាស៊ីនថត សូម​ព្យាយាម​ម្ដង​ទៀត​នៅពេល​ក្រោយ។"</string>
+
+    <string name="live_deleted_message">វីដេអូ​របស់​អ្នក​ត្រូវ​បាន​លុបហើយ</string>
+    <string name="live_posted_message">វីដេអូ​របស់​អ្នក​ត្រូវ​បាន​បង្ហោះ​នៅលើបន្ទាត់ពេល​របស់​អ្នក។</string>
+    <string name="live_posted_view">មើល​នៅលើ facebook</string>
+    <string name="live_process_identify">យល់ហើយ</string>
+
+    <string name="live_login_identify">យល់ព្រម</string>
+
+    <string name="str_phone_camera">កាមេរ៉ាទូរស័ព្ទ</string>
+    <string name="str_mod_camera">ម៉ាស៊ីនថត 360</string>
+    <string name="licenses_title">អាជ្ញាប័ណ្ណ​ប្រភព​បើក​ចំហ</string>
+</resources>

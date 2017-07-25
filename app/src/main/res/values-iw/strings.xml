@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">זרם Moto בשידור חי</string>
+
+    <string name="label_network_not_available">"הרשת שלך אינה זמינה כעת."</string>
+    <string name="label_profile_not_available">"הבאת הפרופיל נכשלה."</string>
+
+    <string name="dlg_public_profile_not_granted">"לא התרת ל-MotoLiveStream לגשת לפרופיל הציבורי שלך ולרשימות החברים המותאמות אישית. לחץ על \'המשך\' כדי להסכים לפעולה."</string>
+    <string name="dlg_publish_not_granted">"לא התרת ל-MotoLiveStream לפרסם סרטון בשידור חי בחשבון ה-Facebook שלך. לחץ על \'אישור\' כדי להסכים לפעולה."</string>
+    <string name="dlg_fb_login_failed">"קבלת ההרשאות מ-Facebook נכשלה. נסה שוב מאוחר יותר!"</string>
+
+    <string name="label_activity_timeline_privacy">בחר פרטיות</string>
+    <string name="label_activity_custom_friends">חברים ספציפיים</string>
+
+    <string name="menu_done">בוצע</string>
+
+    <string name="btn_ok">אישור</string>
+    <string name="btn_delete">מחק</string>
+    <string name="btn_post">פרסם</string>
+    <string name="btn_retry">נסה שוב</string>
+    <string name="btn_exit">יציאה</string>
+
+    <string name="live_description_hint">תיאור</string>
+
+    <string name="failed_getting_friend_list">הבאת רשימת החברים שלך נכשלה. נסה שוב מאוחר יותר.</string>
+    <string name="no_friend_list_warning">לא יצרת עדיין אף רשימת חברים.</string>
+
+    <string name="post_live_privacy_description">פרסם את ההפעלה החוזרת של הסרטון בציר הזמן בחשבון ה-Facebook שלך כדי שאנשים יוכלו לצפות בו שוב.</string>
+    <string name="total_live_time">עלית לשידור חי למשך <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">ציבורי</string>
+    <string name="privacy_world_description">כל מי שנמצא או לא נמצא ב-Facebook</string>
+    <string name="privacy_friends">חברים</string>
+    <string name="privacy_friends_description">החברים שלך ב-Facebook</string>
+    <string name="privacy_self">רק אני</string>
+    <string name="privacy_self_description">רק אני</string>
+    <string name="privacy_custom">חברים מסוימים</string>
+    <string name="privacy_custom_description">הצג רק לחברים מסוימים</string>
+
+    <string name="live_label_go_live">שידור חי ב-Facebook</string>
+
+    <string name="live_popup_dlg_title">השידור החי שלך הושהה</string>
+    <string name="live_popup_dlg_content">האם ברצונך להמשיך את הזרם החי?</string>
+    <string name="live_popup_dlg_btn_resume">המשך</string>
+    <string name="live_popup_dlg_btn_finish">סיום</string>
+
+    <string name="live_dlg_logout_message">"אתה מחובר בתור %s."</string>
+    <string name="live_dlg_btn_logout">התנתק</string>
+
+    <string name="live_popup_no_publish_permission">"אין הרשאה לפרסם סרטונים בשידור חי. בדוק אם מחקת את ההרשאות שהוענקו על-ידי MotoLiveStream מאתר או אפליקציית Facebook."</string>
+    <string name="live_popup_dlg_network_poor">"יצירת סרטון בשידור חי נכשלה, בדוק אם הרשת מסוגלת לגשת לשירות Facebook."</string>
+    <string name="live_popup_dlg_rtmp_failed">"פרסום סרטון בשידור חי נכשל, בדוק אם הרשת זמינה עכשיו."</string>
+
+    <string name="live_popup_dlg_camera_failed">"החיבור לשירות המצלמה נכשל, נסה שוב מאוחר יותר."</string>
+
+    <string name="live_deleted_message">הסרטון נמחק</string>
+    <string name="live_posted_message">הסרטון פורסם בציר הזמן שלך.</string>
+    <string name="live_posted_view">הצג ב-Facebook</string>
+    <string name="live_process_identify">הבנתי</string>
+
+    <string name="live_login_identify">אישור</string>
+
+    <string name="str_phone_camera">מצלמת הטלפון</string>
+    <string name="str_mod_camera">מצלמת 360</string>
+    <string name="licenses_title">רישיונות קוד פתוח</string>
+</resources>

@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Sieť nie je momentálne k dispozícii."</string>
+    <string name="label_profile_not_available">"Váš profil sa nepodarilo načítať."</string>
+
+    <string name="dlg_public_profile_not_granted">"Nepovolili ste službe MotoLiveStream prístup k vášmu verejnému profilu a voliteľnému zoznamu priateľov. Stlačením Continue (Pokračovať) udelíte súhlas s akciou."</string>
+    <string name="dlg_publish_not_granted">"Nepovolili ste službe MotoLiveStream zverejniť Live Video (Živé video) na vašom Facebooku. Stlačením OK udelíte súhlas s akciou."</string>
+    <string name="dlg_fb_login_failed">"Nepodarilo sa udeliť povolenia z Facebooku. Skúste to znova neskôr."</string>
+
+    <string name="label_activity_timeline_privacy">Vybrať súkromie</string>
+    <string name="label_activity_custom_friends">Konkrétni priatelia</string>
+
+    <string name="menu_done">Hotovo</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Odstrániť</string>
+    <string name="btn_post">Príspevok</string>
+    <string name="btn_retry">Skúsiť znova</string>
+    <string name="btn_exit">Ukončiť</string>
+
+    <string name="live_description_hint">Popis</string>
+
+    <string name="failed_getting_friend_list">Nepodarilo sa získať váš zoznam priateľov. Skúste to znova neskôr.</string>
+    <string name="no_friend_list_warning">Zatiaľ ste nevytvorili žiaden zoznam priateľov.</string>
+
+    <string name="post_live_privacy_description">Zverejnite reprízu videa na vašu časovú os na Facebooku, aby si ho ľudia mohli spätne pozrieť.</string>
+    <string name="total_live_time">Vysielali ste naživo <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Verejné</string>
+    <string name="privacy_world_description">Každý na Facebooku i mimo neho</string>
+    <string name="privacy_friends">Priatelia</string>
+    <string name="privacy_friends_description">Vaši priatelia na Facebooku</string>
+    <string name="privacy_self">Len ja</string>
+    <string name="privacy_self_description">Len ja</string>
+    <string name="privacy_custom">Konkrétni priatelia</string>
+    <string name="privacy_custom_description">Zobraziť len niektorým priateľom</string>
+
+    <string name="live_label_go_live">Naživo na Facebooku</string>
+
+    <string name="live_popup_dlg_title">Vaše živé vysielanie bolo pozastavené</string>
+    <string name="live_popup_dlg_content">Chcete pokračovať v živom vysielaní?</string>
+    <string name="live_popup_dlg_btn_resume">Pokračovať</string>
+    <string name="live_popup_dlg_btn_finish">Dokončiť</string>
+
+    <string name="live_dlg_logout_message">"Ste prihlásení ako %s."</string>
+    <string name="live_dlg_btn_logout">Odhlásiť sa</string>
+
+    <string name="live_popup_no_publish_permission">"Nemáte povolenie na zverejňovanie videí naživo. Skontrolujte, či ste odstránili povolenia udelené prostredníctvom služby MotoLiveStream z webovej stránky alebo aplikácie Facebook."</string>
+    <string name="live_popup_dlg_network_poor">"Vytvorenie živého prenosu zlyhalo. Skontrolujte, či prostredníctvom vašej siete dokážete získať prístup k službe Facebook."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Zverejnenie živého prenosu zlyhalo. Skontrolujte, či je sieť momentálne k dispozícii."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Nepodarilo sa pripojiť službu fotoaparátu. Skúste to znova neskôr."</string>
+
+    <string name="live_deleted_message">Video bolo odstránené</string>
+    <string name="live_posted_message">Video bolo zverejnené na vašej časovej osi.</string>
+    <string name="live_posted_view">Zobraziť na Facebooku</string>
+    <string name="live_process_identify">Rozumiem</string>
+
+    <string name="live_login_identify">OK</string>
+
+    <string name="str_phone_camera">Fotoaparát telefónu</string>
+    <string name="str_mod_camera">360 fotoaparát</string>
+    <string name="licenses_title">Licencie s otvoreným zdrojovým kódom</string>
+</resources>

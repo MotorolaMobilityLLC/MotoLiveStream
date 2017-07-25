@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto-direktestrøm</string>
+
+    <string name="label_network_not_available">"Nettverket er ikke tilgjengelig nå."</string>
+    <string name="label_profile_not_available">"Kunne ikke hente profilen din"</string>
+
+    <string name="dlg_public_profile_not_granted">"Du har ikke godtatt at MotoLiveStream får tilgang til den offentlige profilen din og de egendefinerte vennelistene dine. Trykk på Fortsett for å godta dette."</string>
+    <string name="dlg_publish_not_granted">"Du har ikke godtatt at MotoLiveStream legger ut direktevideo på Facebook. Trykk på OK for å godta dette."</string>
+    <string name="dlg_fb_login_failed">"Kunne ikke gi tillatelser fra Facebook. Prøv igjen senere."</string>
+
+    <string name="label_activity_timeline_privacy">Velg Personvern</string>
+    <string name="label_activity_custom_friends">Bestemte venner</string>
+
+    <string name="menu_done">Ferdig</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Slett</string>
+    <string name="btn_post">Legg ut</string>
+    <string name="btn_retry">Prøv på nytt</string>
+    <string name="btn_exit">Avslutt</string>
+
+    <string name="live_description_hint">Beskrivelse</string>
+
+    <string name="failed_getting_friend_list">Kunne ikke hente vennelisten din. Prøv igjen senere.</string>
+    <string name="no_friend_list_warning">Du har ikke opprettet noen venneliste ennå.</string>
+
+    <string name="post_live_privacy_description">Legg ut videoen på Facebook-tidslinjen din, slik at andre kan se den igjen.</string>
+    <string name="total_live_time">Du sendte direkte i <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Offentlig</string>
+    <string name="privacy_world_description">Alle på eller utenfor Facebook</string>
+    <string name="privacy_friends">Venner</string>
+    <string name="privacy_friends_description">Vennene dine på Facebook</string>
+    <string name="privacy_self">Bare jeg</string>
+    <string name="privacy_self_description">Bare jeg</string>
+    <string name="privacy_custom">Bestemte venner</string>
+    <string name="privacy_custom_description">Bare vis til enkelte venner</string>
+
+    <string name="live_label_go_live">Direkte på Facebook</string>
+
+    <string name="live_popup_dlg_title">Direktestrømmen er satt på pause</string>
+    <string name="live_popup_dlg_content">Vil du fortsette direktestrømmen?</string>
+    <string name="live_popup_dlg_btn_resume">Gjenoppta</string>
+    <string name="live_popup_dlg_btn_finish">Fullfør</string>
+
+    <string name="live_dlg_logout_message">"Du er logget på som %s."</string>
+    <string name="live_dlg_btn_logout">Logg av</string>
+
+    <string name="live_popup_no_publish_permission">"Ikke tillatelse til å legge ut direktevideoer. Sjekk om du har slettet tillatelsene fra MotoLiveStream fra Facebook-nettstedet eller -appen."</string>
+    <string name="live_popup_dlg_network_poor">"Kunne ikke opprette direktestrømmen. Sjekk om nettverket har tilgang til Facebook-tjenesten."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Kunne ikke legge ut direktestrømmen. Sjekk om nettverket er tilgjengelig nå."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Kunne ikke koble til kameratjenesten. Prøv igjen senere."</string>
+
+    <string name="live_deleted_message">Videoen er slettet</string>
+    <string name="live_posted_message">Videoen er lagt ut på tidslinjen din.</string>
+    <string name="live_posted_view">Vis på Facebook</string>
+    <string name="live_process_identify">Den er grei</string>
+
+    <string name="live_login_identify">OK</string>
+
+    <string name="str_phone_camera">Telefonkamera</string>
+    <string name="str_mod_camera">360-kamera</string>
+    <string name="licenses_title">Lisenser for åpen kildekode</string>
+</resources>

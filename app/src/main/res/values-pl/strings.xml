@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Sieć nie jest teraz dostępna."</string>
+    <string name="label_profile_not_available">"Nie udało się pobrać profilu użytkownika"</string>
+
+    <string name="dlg_public_profile_not_granted">"Użytkownik nie wyraził zgody na dostęp aplikacji MotoLiveStream do profilu publicznego i listy niestandardowych znajomych. Naciśnij Kontynuuj, aby wyrazić zgodę."</string>
+    <string name="dlg_publish_not_granted">"Użytkownik nie wyraził zgody na publikowanie przez aplikację MotoLiveStream wideo na żywo w profilu na Facebooku użytkownika. Naciśnij OK, aby wyrazić zgodę."</string>
+    <string name="dlg_fb_login_failed">"Nie udało się przyznać uprawnień z poziomu Facebooka. Spróbuj ponownie później."</string>
+
+    <string name="label_activity_timeline_privacy">Wybierz prywatność</string>
+    <string name="label_activity_custom_friends">Określeni znajomi</string>
+
+    <string name="menu_done">Gotowe</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Usuń</string>
+    <string name="btn_post">Opublikuj</string>
+    <string name="btn_retry">Ponów próbę</string>
+    <string name="btn_exit">Wyjdź</string>
+
+    <string name="live_description_hint">Opis</string>
+
+    <string name="failed_getting_friend_list">Nie udało się pobrać listy Twoich znajomych. Spróbuj ponownie później.</string>
+    <string name="no_friend_list_warning">Nie utworzono jeszcze żadnej listy znajomych.</string>
+
+    <string name="post_live_privacy_description">Opublikuj swoją odpowiedź wideo na osi czasu na Facebooku, aby inni mogli ją obejrzeć.</string>
+    <string name="total_live_time">Transmitowałeś(-aś) na żywo przez <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Publiczny</string>
+    <string name="privacy_world_description">Każda osoba na Facebooku lub spoza niego</string>
+    <string name="privacy_friends">Znajomi</string>
+    <string name="privacy_friends_description">Twoi znajomi na Facebooku</string>
+    <string name="privacy_self">Tylko ja</string>
+    <string name="privacy_self_description">Tylko ja</string>
+    <string name="privacy_custom">Określeni znajomi</string>
+    <string name="privacy_custom_description">Pokaż tylko niektórym znajomym</string>
+
+    <string name="live_label_go_live">Podgląd na żywo na Facebooku</string>
+
+    <string name="live_popup_dlg_title">Twoja transmisja na żywo została wstrzymana</string>
+    <string name="live_popup_dlg_content">Czy chcesz ją kontynuować?</string>
+    <string name="live_popup_dlg_btn_resume">Wznów</string>
+    <string name="live_popup_dlg_btn_finish">Zakończ</string>
+
+    <string name="live_dlg_logout_message">"Użytkownik zalogowany jako %s."</string>
+    <string name="live_dlg_btn_logout">Wyloguj się</string>
+
+    <string name="live_popup_no_publish_permission">"Brak uprawnień do publikowania wideo na żywo. Sprawdź, czy uprawniania przyznane przez MotoLiveStream nie zostały usunięte z witryny Facebooka lub aplikacji."</string>
+    <string name="live_popup_dlg_network_poor">"Tworzenie na żywo nie powiodło się. Sprawdź, czy Twoja sieć ma dostęp do usługi Facebook."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Nie udało się opublikować wideo na żywo. Sprawdź, czy Twoja sieć jest teraz dostępna."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Nie udało się połączyć z usługą aparatu. Spróbuj ponownie później."</string>
+
+    <string name="live_deleted_message">Wideo zostało usunięte</string>
+    <string name="live_posted_message">Opublikowano Twoje wideo na Twojej osi czasu.</string>
+    <string name="live_posted_view">Pokaż na Facebooku</string>
+    <string name="live_process_identify">Rozumiem</string>
+
+    <string name="live_login_identify">OK</string>
+
+    <string name="str_phone_camera">Aparat w telefonie</string>
+    <string name="str_mod_camera">Aparat 360</string>
+    <string name="licenses_title">Licencje open source</string>
+</resources>

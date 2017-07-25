@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Mreža trenutno nije dostupna."</string>
+    <string name="label_profile_not_available">"Nije uspelo preuzimanje profila"</string>
+
+    <string name="dlg_public_profile_not_granted">"Niste prihvatili da MotoLiveStream pristupa vašem javnom profilu i prilagođenim listama prijatelja. Pritisnite \'Nastavi\' da biste prihvatili radnju."</string>
+    <string name="dlg_publish_not_granted">"Niste prihvatili da MotoLiveStream postavlja video uživo na Facebook. Pritisnite \'Potvrdi\' da biste prihvatili radnju."</string>
+    <string name="dlg_fb_login_failed">"Nije uspelo davanje dozvola za Facebook. Pokušajte ponovo kasnije."</string>
+
+    <string name="label_activity_timeline_privacy">Izbor privatnosti</string>
+    <string name="label_activity_custom_friends">Navedite prijatelje</string>
+
+    <string name="menu_done">Gotovo</string>
+
+    <string name="btn_ok">Potvrdi</string>
+    <string name="btn_delete">Izbriši</string>
+    <string name="btn_post">Postavi</string>
+    <string name="btn_retry">Probaj ponovo</string>
+    <string name="btn_exit">Izađi</string>
+
+    <string name="live_description_hint">Opis</string>
+
+    <string name="failed_getting_friend_list">Nije uspelo preuzimanje liste prijatelja. Pokušajte ponovo kasnije.</string>
+    <string name="no_friend_list_warning">Još uvek niste napravili nijednu listu prijatelja.</string>
+
+    <string name="post_live_privacy_description">Postavite video za ponovnu reprodukciju na facebook vremensku liniju da bi drugi mogli ponovo da ga pogledaju.</string>
+    <string name="total_live_time">Emitovali ste uživo <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Javno</string>
+    <string name="privacy_world_description">Svi na Facebook-u ili van njega</string>
+    <string name="privacy_friends">Prijatelji</string>
+    <string name="privacy_friends_description">Prijatelji na Facebook-u</string>
+    <string name="privacy_self">Samo ja</string>
+    <string name="privacy_self_description">Samo ja</string>
+    <string name="privacy_custom">Određeni prijatelji</string>
+    <string name="privacy_custom_description">Prikaži samo nekim prijateljima</string>
+
+    <string name="live_label_go_live">Uživo na Facebook-u</string>
+
+    <string name="live_popup_dlg_title">Strim uživo je pauziran</string>
+    <string name="live_popup_dlg_content">Želite li da nastavite da strimujete uživo?</string>
+    <string name="live_popup_dlg_btn_resume">Nastavi</string>
+    <string name="live_popup_dlg_btn_finish">Završi</string>
+
+    <string name="live_dlg_logout_message">"Prijavljeni ste kao %s."</string>
+    <string name="live_dlg_btn_logout">Odjavi me</string>
+
+    <string name="live_popup_no_publish_permission">"Nema dozvole za postavljanje video snimaka uživo. Proverite da li ste izbrisali dozvole koje je dala usluga MotoLiveStream sa Facebook veb-sajta ili iz aplikacije."</string>
+    <string name="live_popup_dlg_network_poor">"Pravljenje strima uživo nije uspelo, proverite da li vaša mreža ima pristup Facebook usluzi."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Postavljanje video snimka uživo nije uspelo, proverite da li je vaša mreža dostupna."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Nije uspelo povezivanje na uslugu kamere, pokušajte ponovo kasnije."</string>
+
+    <string name="live_deleted_message">Video je izbrisan</string>
+    <string name="live_posted_message">Video je postavljen na vašu vremensku liniju.</string>
+    <string name="live_posted_view">Pogledajte na facebook-u</string>
+    <string name="live_process_identify">Važi</string>
+
+    <string name="live_login_identify">Potvrdi</string>
+
+    <string name="str_phone_camera">Kamera telefona</string>
+    <string name="str_mod_camera">360 Camera</string>
+    <string name="licenses_title">Licence otvorenog koda</string>
+</resources>

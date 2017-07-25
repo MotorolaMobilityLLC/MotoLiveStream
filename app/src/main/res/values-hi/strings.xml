@@ -1,0 +1,65 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto लाइव स्ट्रीम</string>
+
+    <string name="label_network_not_available">"आपका नेटवर्क अभी उपलब्ध नहीं है."</string>
+    <string name="label_profile_not_available">"आपकी प्रोफ़ाइल प्राप्त करने में विफल"</string>
+
+    <string name="dlg_public_profile_not_granted">"आप Moto लाइव स्ट्रीम को अपनी सार्वजनिक प्रोफ़ाइल और कस्टम मित्र सूचियों पर पहुंच प्राप्त करने की अनुमति देने से सहमत नहीं हैं. कृपया क्रिया से सहमत होने के लिए \'जारी रखें’ दबाएं."</string>
+    <string name="dlg_publish_not_granted">"आप Moto लाइव स्ट्रीम को अपने Facebook पर लाइव वीडियो पोस्ट करने की अनुमति देने से सहमत नहीं हैं. कृपया क्रिया से सहमत होने के लिए \'ठीक’ दबाएं."</string>
+    <string name="dlg_fb_login_failed">"Facebook से अनुमतियां देने में विफल. कृपया बाद में पुनः प्रयास करें!"</string>
+
+    <string name="label_activity_timeline_privacy">गोपनीयता चुनें</string>
+    <string name="label_activity_custom_friends">विशेष मित्र</string>
+
+    <string name="menu_done">पूर्ण</string>
+
+    <string name="btn_ok">ठीक</string>
+    <string name="btn_delete">हटाएं</string>
+    <string name="btn_post">पोस्ट करें</string>
+    <string name="btn_retry">दुबारा प्रयास करें</string>
+    <string name="btn_exit">बाहर निकलें</string>
+
+    <string name="live_description_hint">वर्णन</string>
+
+    <string name="failed_getting_friend_list">आपकी मित्र सूची प्राप्त करने में विफल. कृपया बाद में पुनः प्रयास करें.</string>
+    <string name="no_friend_list_warning">आपने अभी तक कोई मित्र सूची नहीं बनाई है.</string>
+
+    <string name="post_live_privacy_description">अपनी facebook टाइमलाइन पर अपना वीडियो रीप्ले पोस्ट करें, ताकि लोग उसे वापस देख सकें.</string>
+    <string name="total_live_time">आप <xliff:g id="DURATION">%s</xliff:g> के लिए लाइव थे</string>
+
+    <string name="privacy_world">सार्वजनिक</string>
+    <string name="privacy_world_description">कोई भी, जिनका Facebook खाता है या नहीं है</string>
+    <string name="privacy_friends">मित्र</string>
+    <string name="privacy_friends_description">Facebook पर आपके मित्र</string>
+    <string name="privacy_self">केवल मैं</string>
+    <string name="privacy_self_description">केवल मैं</string>
+    <string name="privacy_custom">विशेष मित्र</string>
+    <string name="privacy_custom_description">केवल कुछ मित्रों को दिखाएं</string>
+
+    <string name="live_label_go_live">Facebook पर लाइव हों</string>
+
+    <string name="live_popup_dlg_title">आपकी लाइव स्ट्रीम को विराम दिया गया है</string>
+    <string name="live_popup_dlg_content">क्या आप अपनी लाइव स्ट्रीम जारी रखना चाहते हैं?</string>
+    <string name="live_popup_dlg_btn_resume">फिर से शुरू करें</string>
+    <string name="live_popup_dlg_btn_finish">समाप्त करें</string>
+
+    <string name="live_dlg_logout_message">"आपने %s के रूप में लॉग इन किया है."</string>
+    <string name="live_dlg_btn_logout">लॉग आउट करें</string>
+
+    <string name="live_popup_no_publish_permission">"लाइव वीडियो पोस्ट करने की अनुमति नहीं है. कृपया जांचें कि आपने Facebook वेबसाइट या ऐप से Moto लाइव स्ट्रीम द्वारा प्रदान की गईं अनुमतियां हटा दी हैं."</string>
+    <string name="live_popup_dlg_network_poor">"लाइव बनाना विफल हुआ, कृपया जांचें कि आपका नेटवर्क Facebook सेवा पर पहुंच प्राप्त कर पा रहा है या नहीं."</string>
+    <string name="live_popup_dlg_rtmp_failed">"लाइव पोस्ट करना विफल हुआ, कृपया जांचें कि अभी आपका नेटवर्क उपलब्ध या नहीं."</string>
+
+    <string name="live_popup_dlg_camera_failed">"कैमरा सेवा से कनेक्ट करने में विफल, कृपया बाद में पुनः प्रयास करें."</string>
+
+    <string name="live_deleted_message">आपका वीडियो हटा दिया गया है</string>
+    <string name="live_posted_message">आपका वीडियो आपकी टाइमलाइन पर पोस्ट कर दिया गया है.</string>
+    <string name="live_posted_view">facebook पर देखें</string>
+    <string name="live_process_identify">समझ गए</string>
+
+    <string name="live_login_identify">ठीक है</string>
+
+    <string name="str_phone_camera">फ़ोन का कैमरा</string>
+    <string name="str_mod_camera">360 camera</string>
+    <string name="licenses_title">ओपन सोर्स लाइसेंस</string>
+</resources>
