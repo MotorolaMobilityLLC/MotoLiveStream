@@ -50,10 +50,11 @@
     <string name="live_dlg_btn_logout">Log out</string>
 
     <string name="live_popup_no_publish_permission">"No permission to perform posting live videos. Please check if you have deleted the permissions granted by MotoLiveStream from Facebook website or App."</string>
-    <string name="live_popup_dlg_network_poor">Create live failed, please check if your network is able to access Facebook service.</string>
-    <string name="live_popup_dlg_rtmp_failed">Post live failed, please check if your network is available now.</string>
+    <string name="live_popup_dlg_network_poor">"Create live failed, please check if your network is able to access Facebook service."</string>
+    <string name="live_popup_dlg_create_live_failed">"Create live failed, please check if your account if able to post lives, and try again later."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Post live failed, please check if your network is available now."</string>
 
-    <string name="live_popup_dlg_camera_failed">Failed to connect to camera service, please try again later.</string>
+    <string name="live_popup_dlg_camera_failed">"Failed to connect to camera service, please try again later."</string>
 
     <string name="live_deleted_message">Your video has been deleted</string>
     <string name="live_posted_message">Your video has been posted on your timeline.</string>

@@ -779,9 +779,9 @@ public class LiveMainFragment extends Fragment
                 .show();
     }
 
-    private void showNoPermissionDialog() {
+    private void showCreateLiveFailedDialog(int messageId) {
         new AlertDialog.Builder(getActivity())
-                .setMessage(R.string.live_popup_no_publish_permission)
+                .setMessage(messageId)
                 .setNegativeButton(R.string.btn_exit,
                         (DialogInterface dialog, int which) -> {
                             getActivity().finish();
@@ -907,13 +907,18 @@ public class LiveMainFragment extends Fragment
 
                     @Override
                     public void onError(Exception exp) {
+                        // Remove the timeout message, since it already failed
+                        mHandler.removeMessages(MSG_CREATE_LIVE_TIME_OUT);
+
                         Log.e(LOG_TAG, "Create live video failed!");
                         exp.printStackTrace();
 
                         mLoadingLayout.setVisibility(View.GONE);
 
                         if (FbUtil.handleException(exp) == FbUtil.ERR_PERMISSION_NOT_GRANTED) {
-                            showNoPermissionDialog();
+                            showCreateLiveFailedDialog(R.string.live_popup_no_publish_permission);
+                        } else {
+                            showCreateLiveFailedDialog(R.string.live_popup_dlg_create_live_failed);
                         }
                     }
                 },
@@ -1250,6 +1255,7 @@ public class LiveMainFragment extends Fragment
                 exp.printStackTrace();
 
                 hideResultInfo();
+                mPublisher.startCamera();
             }
         }, mLiveInfoCacheBean.getLiveStreamId());
     }
@@ -1269,6 +1275,7 @@ public class LiveMainFragment extends Fragment
                 Log.e(LOG_TAG, "Post video failed: " + exp.getMessage());
                 exp.printStackTrace();
                 hideResultInfo();
+                mPublisher.startCamera();
             }
         }, mLiveInfoCacheBean.getLiveStreamId(), mPrivacyCacheBean.toJsonString());
     }
@@ -1562,7 +1569,7 @@ public class LiveMainFragment extends Fragment
         handleException(e);
     }
 
-    public void startOpensourceLicense() {
+    private void startOpensourceLicense() {
         Log.d(LOG_TAG, "startOpensourceLicense");
         Intent intent = new Intent(getActivity(), LicenseActivity.class);
         startActivity(intent);
@@ -1588,4 +1595,7 @@ public class LiveMainFragment extends Fragment
                 location[0] + flowButton.getMeasuredWidth() - mBt.getMeasuredWidth(), location[1]);
     }
 
+    public boolean isDuringLive() {
+        return mIsOnLive;
+    }
 }
