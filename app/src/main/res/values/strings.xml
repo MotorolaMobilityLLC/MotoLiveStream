@@ -5,9 +5,9 @@
     <string name="label_network_not_available">"Your network not available now."</string>
     <string name="label_profile_not_available">"Failed to get your profile"</string>
 
-    <string name="dlg_public_profile_not_granted">"You are not agreed with MotoLiveStream accessing your public profile and custom friends lists. Please press 'Continue' to agree the action."</string>
-    <string name="dlg_publish_not_granted">"You are not agreed with MotoLiveStream posting Live Video to your Facebook. Please press 'OK' to agree the action."</string>
-    <string name="dlg_fb_login_failed">"Failed to grant permissions from Facebook. Please try again later!"</string>
+    <string name="dlg_public_profile_not_granted">"You are not agreed with Moto Live Stream to access your public profile and custom friends lists."</string>
+    <string name="dlg_publish_not_granted">"You are not agreed with Moto Live Stream to post Live Video to your Facebook."</string>
+    <string name="dlg_fb_login_failed">"Failed to obtain permissions from Facebook. Please try again later."</string>
 
     <string name="label_activity_timeline_privacy">Select Privacy</string>
     <string name="label_activity_custom_friends">Specific Friends</string>
@@ -25,7 +25,7 @@
     <string name="failed_getting_friend_list">Failed to get your friend list. Please try again later.</string>
     <string name="no_friend_list_warning">You have not create any friend list yet.</string>
 
-    <string name="post_live_privacy_description">Post your video replay on your facebook timeline so that people can watch it back.</string>
+    <string name="post_live_privacy_description">Post your video replay on your Facebook timeline so that people can watch it back.</string>
     <!-- Live stream duration -->
     <string name="total_live_time">You went live for <xliff:g id="DURATION">%s</xliff:g></string>
 
@@ -49,10 +49,10 @@
     <string name="live_dlg_logout_message">"You are logged in as %s."</string>
     <string name="live_dlg_btn_logout">Log out</string>
 
-    <string name="live_popup_no_publish_permission">"No permission to perform posting live videos. Please check if you have deleted the permissions granted by MotoLiveStream from Facebook website or App."</string>
-    <string name="live_popup_dlg_network_poor">"Create live failed, please check if your network is able to access Facebook service."</string>
-    <string name="live_popup_dlg_create_live_failed">"Create live failed, please check if your account if able to post lives, and try again later."</string>
-    <string name="live_popup_dlg_rtmp_failed">"Post live failed, please check if your network is available now."</string>
+    <string name="live_popup_no_publish_permission">"No permission to perform posting live videos. Please check if you have deleted the permissions granted by Moto Live Stream from Facebook website or App."</string>
+    <string name="live_popup_dlg_network_poor">"Create Facebook Live failed. Please check if your network is able to access Facebook service."</string>
+    <string name="live_popup_dlg_create_live_failed">"Create Facebook Live failed. Please check if your account if able to post lives, and try again later."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Post Facebook Live failed. Please check if your network is available now."</string>
 
     <string name="live_popup_dlg_camera_failed">"Failed to connect to camera service, please try again later."</string>
 
@@ -64,7 +64,7 @@
     <string name="live_login_identify">Okay</string>
 
     <string name="str_phone_camera">Phone camera</string>
-    <string name="str_mod_camera">360 camera</string>
+    <string name="str_mod_camera">Moto 360 camera</string>
 
     <!-- Open source licenses -->
     <string name="licenses_title">Open source licenses</string>
