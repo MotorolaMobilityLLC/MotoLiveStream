@@ -982,6 +982,7 @@ public class LiveMainFragment extends Fragment
         mGoLiveLabel.setVisibility(View.GONE);
 
         mBtnExit.setVisibility(View.GONE);
+        mBtnSelectCamera.setVisibility(View.GONE);
 
         // Reset send audio/video only mode
         mPublisher.setSendAudioOnly(false);
@@ -1118,6 +1119,10 @@ public class LiveMainFragment extends Fragment
         mGoLiveLabel.setVisibility(View.VISIBLE);
         mLiveSettings.setVisibility(View.VISIBLE);
         mBtnExit.setVisibility(View.VISIBLE);
+        if (ModHelper.isModCameraAttached()) {
+            mBtnSelectCamera.setEnabled(true);
+            mBtnSelectCamera.setVisibility(View.VISIBLE);
+        }
         mLicenseLayout.setVisibility(View.VISIBLE);
     }
 
@@ -1416,6 +1421,7 @@ public class LiveMainFragment extends Fragment
                     v.setSelected(false);
                     stopLive();
                 } else {
+                    mBtnSelectCamera.setEnabled(false);
                     startGoLive();
                 }
                 break;
