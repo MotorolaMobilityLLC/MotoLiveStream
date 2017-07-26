@@ -54,7 +54,7 @@
 
     <string name="live_deleted_message">Video của bạn đã được xóa</string>
     <string name="live_posted_message">Video của bạn đã được đăng trên dòng thời gian.</string>
-    <string name="live_posted_view">Xem trên facebook</string>
+    <string name="live_posted_view">Xem trên Facebook</string>
     <string name="live_process_identify">Hiểu rồi</string>
 
     <string name="live_login_identify">Ok</string>

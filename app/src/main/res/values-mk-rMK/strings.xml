@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Пренесување во живо со Moto</string>
+    <string name="app_name">Moto Live Stream</string>
 
     <string name="label_network_not_available">"Мрежата не е достапна во моментов."</string>
     <string name="label_profile_not_available">"Неуспешно добивање на вашиот профил"</string>

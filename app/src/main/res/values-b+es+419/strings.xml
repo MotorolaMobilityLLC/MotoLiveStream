@@ -36,7 +36,7 @@
     <string name="privacy_custom">Amigos específicos</string>
     <string name="privacy_custom_description">Mostrar solo a algunos amigos</string>
 
-    <string name="live_label_go_live">Transmisión en vivo en Facebook</string>
+    <string name="live_label_go_live">Transmitir en vivo en Facebook</string>
 
     <string name="live_popup_dlg_title">Se pausó tu transmisión en vivo</string>
     <string name="live_popup_dlg_content">¿Deseas seguir transmitiendo en vivo?</string>

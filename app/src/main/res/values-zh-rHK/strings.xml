@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Moto Live Stream</string>
+    <string name="app_name">Moto 即時串流</string>
 
     <string name="label_network_not_available">"您的網路現在無法使用。"</string>
     <string name="label_profile_not_available">"無法取得您的個人資料"</string>
@@ -28,7 +28,7 @@
     <string name="total_live_time">您的即時串流持續期間：<xliff:g id="DURATION">%s</xliff:g></string>
 
     <string name="privacy_world">公開</string>
-    <string name="privacy_world_description">登入或未登入 Facebook 的任何人</string>
+    <string name="privacy_world_description">任何人 (無論是否有 Facebook 帳戶)</string>
     <string name="privacy_friends">朋友</string>
     <string name="privacy_friends_description">您在 Facebook 上的朋友</string>
     <string name="privacy_self">只有我</string>

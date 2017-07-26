@@ -28,7 +28,7 @@
     <string name="total_live_time">라이브 시간: <xliff:g id="DURATION">%s</xliff:g></string>
 
     <string name="privacy_world">공개</string>
-    <string name="privacy_world_description">Facebook 전체</string>
+    <string name="privacy_world_description">전체</string>
     <string name="privacy_friends">친구의 소셜앨범</string>
     <string name="privacy_friends_description">Facebook 친구</string>
     <string name="privacy_self">나만</string>
@@ -36,7 +36,7 @@
     <string name="privacy_custom">특정 친구</string>
     <string name="privacy_custom_description">일부 친구에게만 표시</string>
 
-    <string name="live_label_go_live">Facebook 라이브로</string>
+    <string name="live_label_go_live">Facebook에 라이브 스트리밍</string>
 
     <string name="live_popup_dlg_title">라이브 스트리밍이 일시 정지되었습니다</string>
     <string name="live_popup_dlg_content">라이브 스트리밍을 재개하시겠습니까?</string>

@@ -8,7 +8,7 @@
     <string name="dlg_publish_not_granted">"Niste dopustili da MotoLiveStream objavljuje videozapise uživo na vaš Facebook. Za pristanak pritisnite OK."</string>
     <string name="dlg_fb_login_failed">"Nije uspjela dodjela dopuštenja za Facebook. Pokušajte ponovo kasnije!"</string>
 
-    <string name="label_activity_timeline_privacy">Odaberite privatnost</string>
+    <string name="label_activity_timeline_privacy">Odaberite Privatnost</string>
     <string name="label_activity_custom_friends">Određeni prijatelji</string>
 
     <string name="menu_done">Gotovo</string>

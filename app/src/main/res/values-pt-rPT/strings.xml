@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">MotoLiveStream</string>
+    <string name="app_name">Moto Live Stream</string>
 
     <string name="label_network_not_available">"De momento, a rede não está disponível."</string>
     <string name="label_profile_not_available">"Falha ao obter o perfil"</string>

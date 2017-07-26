@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Strim Langsung Moto</string>
+    <string name="app_name">Moto Live Stream</string>
 
     <string name="label_network_not_available">"Rangkaian anda tidak tersedia sekarang."</string>
     <string name="label_profile_not_available">"Gagal mendapatkan profil anda"</string>
@@ -36,10 +36,10 @@
     <string name="privacy_custom">Rakan khusus</string>
     <string name="privacy_custom_description">Hanya tunjukkan kepada beberapa rakan</string>
 
-    <string name="live_label_go_live">Strim langsung ke Facebook</string>
+    <string name="live_label_go_live">Live ke Facebook</string>
 
-    <string name="live_popup_dlg_title">Strim langsung anda telah dijeda</string>
-    <string name="live_popup_dlg_content">Adakah anda ingin meneruskan penstriman langsung anda?</string>
+    <string name="live_popup_dlg_title">Strim Live anda telah dijeda</string>
+    <string name="live_popup_dlg_content">Adakah anda ingin meneruskan penstriman live anda?</string>
     <string name="live_popup_dlg_btn_resume">Sambung semula</string>
     <string name="live_popup_dlg_btn_finish">Selesai</string>
 
@@ -54,7 +54,7 @@
 
     <string name="live_deleted_message">Video anda telah dipadamkan</string>
     <string name="live_posted_message">Video anda telah disiarkan pada garis masa anda.</string>
-    <string name="live_posted_view">Lihat di facebook</string>
+    <string name="live_posted_view">Lihat di Facebook</string>
     <string name="live_process_identify">Saya faham</string>
 
     <string name="live_login_identify">Baiklah</string>

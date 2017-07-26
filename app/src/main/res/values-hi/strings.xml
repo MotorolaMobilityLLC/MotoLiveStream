@@ -54,7 +54,7 @@
 
     <string name="live_deleted_message">आपका वीडियो हटा दिया गया है</string>
     <string name="live_posted_message">आपका वीडियो आपकी टाइमलाइन पर पोस्ट कर दिया गया है.</string>
-    <string name="live_posted_view">facebook पर देखें</string>
+    <string name="live_posted_view">Facebook पर देखें</string>
     <string name="live_process_identify">समझ गए</string>
 
     <string name="live_login_identify">ठीक है</string>

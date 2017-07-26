@@ -54,7 +54,7 @@
 
     <string name="live_deleted_message">Video je izbrisan</string>
     <string name="live_posted_message">Video je postavljen na vašu vremensku liniju.</string>
-    <string name="live_posted_view">Pogledajte na facebook-u</string>
+    <string name="live_posted_view">Pogledajte na Facebook-u</string>
     <string name="live_process_identify">Važi</string>
 
     <string name="live_login_identify">Potvrdi</string>

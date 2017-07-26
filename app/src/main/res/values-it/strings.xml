@@ -8,7 +8,7 @@
     <string name="dlg_publish_not_granted">"Non hai accettato che Moto Live Stream pubblichi video in diretta sulla tua pagina Facebook. Premi \"OK\" per accettare l\'azione."</string>
     <string name="dlg_fb_login_failed">"Impossibile concedere le autorizzazioni da Facebook. Riprova più tardi."</string>
 
-    <string name="label_activity_timeline_privacy">Seleziona privacy</string>
+    <string name="label_activity_timeline_privacy">Seleziona Privacy</string>
     <string name="label_activity_custom_friends">Amici specifici</string>
 
     <string name="menu_done">Fine</string>
