@@ -987,6 +987,7 @@ public class LiveMainFragment extends Fragment
         // Reset send audio/video only mode
         mPublisher.setSendAudioOnly(false);
         mPublisher.setSendVideoOnly(false);
+        mTopLayout.findViewById(R.id.btn_record_mute).setSelected(false);
 
         mPublisher.startPublish(mLiveInfoCacheBean.getLiveStreamUrl());
         mPublisher.startCamera();
