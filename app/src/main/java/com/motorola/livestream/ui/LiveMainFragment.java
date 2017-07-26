@@ -672,7 +672,9 @@ public class LiveMainFragment extends Fragment
             mPublisher.stopPublish();
             mPublisher.stopRecord();
 
-            stopLive();
+            if (mIsOnLive) {
+                stopLive();
+            }
         } catch (Exception e1) {}
     }
 
