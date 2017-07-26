@@ -105,9 +105,11 @@ public class TimelineFragment extends Fragment {
                         + mPrivacyCacheBean.getCustomFriendListDisplay());
                 mListener.onListFragmentDone();
             } else {
-                // Reset the previously selected custom friend list
-                mPrivacyCacheBean.setCustomFriendList(null);
-                mPrivacyCacheBean.setCustomFriendListDisplay(null);
+                if (mPrivacyCacheBean.getPrivacy() != TimelinePrivacy.CUSTOM) {
+                    // Reset the previously selected custom friend list
+                    mPrivacyCacheBean.setCustomFriendList(null);
+                    mPrivacyCacheBean.setCustomFriendListDisplay(null);
+                }
 
                 // Re-select to the previously selected privacy
                 mAdapter.setSelectedIndex(mPrivacyCacheBean.getCurrentPrivacyIndex());

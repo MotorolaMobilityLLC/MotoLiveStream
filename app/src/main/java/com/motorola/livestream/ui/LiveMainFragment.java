@@ -347,9 +347,11 @@ public class LiveMainFragment extends Fragment
                 protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
                     stopTracking();
                     if (currentProfile == null) {
-                        Toast.makeText(getActivity(),
-                                R.string.label_profile_not_available, Toast.LENGTH_SHORT).show();
-                        mUserInfoLayout.setVisibility(View.GONE);
+                        if (getActivity() != null) {
+                            Toast.makeText(getActivity(),
+                                    R.string.label_profile_not_available, Toast.LENGTH_SHORT).show();
+                            mUserInfoLayout.setVisibility(View.GONE);
+                        }
                     } else {
                         updateUserInfo(currentProfile);
                     }
