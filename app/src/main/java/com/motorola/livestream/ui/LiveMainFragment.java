@@ -772,6 +772,9 @@ public class LiveMainFragment extends Fragment
     }
 
     private void showCameraFailedDialog() {
+        if (getActivity() == null) {
+            return;
+        }
         new AlertDialog.Builder(getActivity())
                 .setMessage(R.string.live_popup_dlg_camera_failed)
                 .setNegativeButton(R.string.btn_ok,
@@ -784,6 +787,9 @@ public class LiveMainFragment extends Fragment
     }
 
     private void showCreateLiveFailedDialog(int messageId) {
+        if (getActivity() == null) {
+            return;
+        }
         new AlertDialog.Builder(getActivity())
                 .setMessage(messageId)
                 .setNegativeButton(R.string.btn_exit,
@@ -839,7 +845,7 @@ public class LiveMainFragment extends Fragment
     }
 
     private void showLivePostedDialog() {
-        if (getActivity() == null) {
+        if (getActivity() == null || mPostDialog != null) {
             return;
         }
 

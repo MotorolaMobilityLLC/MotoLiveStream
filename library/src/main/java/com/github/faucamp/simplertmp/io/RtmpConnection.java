@@ -138,6 +138,9 @@ public class RtmpConnection implements RtmpPublisher {
             e.printStackTrace();
             mHandler.notifyRtmpIOException(e);
             return false;
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return false;
         }
 
         // Start the "main" handling thread
