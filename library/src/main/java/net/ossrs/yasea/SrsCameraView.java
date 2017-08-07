@@ -10,11 +10,11 @@ import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
 import android.util.AttributeSet;
 
+import com.motorola.gl.utils.OpenGLUtils;
 import com.motorola.gl.viewfinder.DefaultViewfinder;
 import com.motorola.gl.viewfinder.OffScreenViewfinder;
 import com.motorola.gl.viewfinder.ViewfinderFactory;
 import com.motorola.gl.viewfinder.ViewfinderFactory.ViewfinderType;
-import com.motorola.gl.utils.OpenGLUtils;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -168,6 +168,9 @@ public class SrsCameraView extends GLSurfaceView implements GLSurfaceView.Render
         }
         mCamera.getParameters().setPreviewSize(mPreviewWidth, mPreviewHeight);
 
+        if (mGLPreviewBuffer != null) {
+            mGLPreviewBuffer.clear();
+        }
         mGLPreviewBuffer = ByteBuffer.allocateDirect(mPreviewWidth * mPreviewHeight * 4);
         mInputAspectRatio = mPreviewWidth > mPreviewHeight ?
             (float) mPreviewWidth / mPreviewHeight : (float) mPreviewHeight / mPreviewWidth;
@@ -176,6 +179,10 @@ public class SrsCameraView extends GLSurfaceView implements GLSurfaceView.Render
     }
 
     public boolean setFilter(final ViewfinderType type) {
+        return setFilter(type, false);
+    }
+
+    public boolean setFilter(final ViewfinderType type, final boolean force) {
         if (mCamera == null) {
             return false;
         }
@@ -183,7 +190,7 @@ public class SrsCameraView extends GLSurfaceView implements GLSurfaceView.Render
         queueEvent(new Runnable() {
             @Override
             public void run() {
-                if (mViewfinderType != type) {
+                if (mViewfinderType != type || force) {
                     mViewfinderType = type;
 
                     if (mPreviewViewfinder != null) {
@@ -262,8 +269,10 @@ public class SrsCameraView extends GLSurfaceView implements GLSurfaceView.Render
                 while (!Thread.interrupted()) {
                     while (!mGLIntBufferCache.isEmpty()) {
                         IntBuffer picture = mGLIntBufferCache.poll();
-                        mGLPreviewBuffer.asIntBuffer().put(picture.array());
-                        mPrevCb.onGetRgbaFrame(mGLPreviewBuffer.array(), mPreviewWidth, mPreviewHeight);
+                        if (mGLPreviewBuffer != null) {
+                            mGLPreviewBuffer.asIntBuffer().put(picture.array());
+                            mPrevCb.onGetRgbaFrame(mGLPreviewBuffer.array(), mPreviewWidth, mPreviewHeight);
+                        }
                     }
                     // Waiting for next frame
                     synchronized (writeLock) {
@@ -307,7 +316,14 @@ public class SrsCameraView extends GLSurfaceView implements GLSurfaceView.Render
 
         Camera.Parameters params = mCamera.getParameters();
         if (mCamId < 2) {
-            params.setPictureSize(mPreviewWidth, mPreviewHeight);
+            List<Camera.Size> sizes = params.getSupportedPictureSizes();
+            params.setPictureSize(sizes.get(0).width, sizes.get(0).height);
+            for (Camera.Size size : sizes) {
+                if (size.width == mPreviewWidth && size.height == mPreviewHeight) {
+                    params.setPictureSize(mPreviewWidth, mPreviewHeight);
+                    break;
+                }
+            }
             params.setPreviewSize(mPreviewWidth, mPreviewHeight);
             int[] range = adaptFpsRange(SrsEncoder.VFPS, params.getSupportedPreviewFpsRange());
             params.setPreviewFpsRange(range[0], range[1]);

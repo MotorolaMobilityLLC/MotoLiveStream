@@ -189,7 +189,8 @@ public class SrsPublisher {
 
     public void stopEncode() {
         stopAudio();
-        stopCamera();
+        //stopCamera();
+        mCameraView.disableEncoding();
         mEncoder.stop();
     }
 
@@ -268,6 +269,10 @@ public class SrsPublisher {
         mEncoder.setVideoHDMode();
     }
 
+    public void set360VideoHDMode(boolean is4K) {
+        mEncoder.set360VideoHDMode(is4K);
+    }
+
     public void setVideoSmoothMode() {
         mEncoder.setVideoSmoothMode();
     }
@@ -290,6 +295,10 @@ public class SrsPublisher {
 
     public boolean switchCameraFilter(ViewfinderType type) {
         return mCameraView.setFilter(type);
+    }
+
+    public boolean switchCameraFilter(ViewfinderType type, boolean force) {
+        return mCameraView.setFilter(type, force);
     }
 
     public void switchCameraFace(int id) {

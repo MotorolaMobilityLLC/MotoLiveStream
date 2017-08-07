@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:versionCode="1001000506"
-    android:versionName="1.1.5.6"
+    android:versionCode="1001000511"
+    android:versionName="1.1.5.11"
     package="com.motorola.livestream">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="com.motorola.mod.permission.MOD_ACCESS_INFO" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
 
     <uses-feature android:name="android.hardware.camera2" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -52,19 +53,20 @@
             tools:replace="android:theme"
             android:resizeableActivity="false"/>
 
-        <provider
-            android:name="com.facebook.FacebookContentProvider"
-            android:authorities="com.facebook.app.FacebookContentProvider1933762443579662"
-            android:exported="true" />
-
         <activity
-            android:name="com.motorola.livestreamlib.ui.LiveDynamicActivity"
+            android:name=".ui.LiveDynamicActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:resizeableActivity="false"
             android:configChanges="orientation"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
-            android:theme="@style/FullscreenTheme" />
+            android:theme="@style/FullscreenTheme" >
+            <intent-filter>
+                <action android:name="com.motorola.livestream.intent.ACTION_CREATE_LIVE_DYNAMIC" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name="com.motorola.livestreamlib.ui.privacy.TimelineActivity"
             android:screenOrientation="portrait"
@@ -78,12 +80,24 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/label_activity_custom_friends" />
         <activity
-            android:name="com.motorola.livestreamlib.ui.LicenseActivity"
+            android:name="com.motorola.livestreamlib.ui.AboutInfoActivity"
             android:screenOrientation="portrait"
-            android:label="@string/licenses_title"
+            android:resizeableActivity="false"
+            android:label="@string/about_title"
             android:exported="false"
             android:theme="@style/MotoAppTheme">
+            <intent-filter>
+                <action android:name="com.motorola.livestream.intent.ACTION_CREATE_LICENSE_MENU" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
+        <activity
+            android:name="com.motorola.livestreamlib.ui.LicenseActivity"
+            android:screenOrientation="portrait"
+            android:resizeableActivity="false"
+            android:label="@string/licenses_title"
+            android:exported="false"
+            android:theme="@style/MotoAppTheme"/>
 
         <receiver
             android:name="com.motorola.livestreamlib.receiver.ModReceiver"
