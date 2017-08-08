@@ -594,7 +594,9 @@ public class LiveMainFragment extends Fragment
             mResultChevronIcon.setImageDrawable(arrow);
         }
 
-        if (ModHelper.isModCameraAttached()) {
+        // Since the "Select Camera" list, only contains "Phone camera" and "Moto360 camera"
+        // We only show it when ModMoto360 is attached, ignore ModHasselblad is attached
+        if (ModHelper.isModMoto360Attached()) {
             mLive4KSettings.setVisibility(
                     (mDefaultCamId == MOD_CAMERA_ID) ? View.VISIBLE: View.GONE);
 
@@ -1233,7 +1235,7 @@ public class LiveMainFragment extends Fragment
         mGoLiveLabel.setVisibility(View.VISIBLE);
         mLiveSettings.setVisibility(View.VISIBLE);
         mBtnExit.setVisibility(View.VISIBLE);
-        if (ModHelper.isModCameraAttached()) {
+        if (ModHelper.isModMoto360Attached()) {
             mBtnSelectCamera.setEnabled(true);
             mBtnSelectCamera.setVisibility(View.VISIBLE);
         }
