@@ -631,10 +631,12 @@ public class LiveMainFragment extends Fragment
             mDynamicCamBtnLayout.setVisibility(View.VISIBLE);
             mLiveSettings.setVisibility(View.GONE);
             mGoLiveLayout.setVisibility(View.GONE);
+            mLicenseLayout.setVisibility(View.GONE);
         } else {
             mDynamicCamBtnLayout.setVisibility(View.GONE);
             mLiveSettings.setVisibility(View.VISIBLE);
             mGoLiveLayout.setVisibility(View.VISIBLE);
+            mLicenseLayout.setVisibility(View.VISIBLE);
             mBtnSwitchCamera.setVisibility(
                     mPublisher.getCamraId() == MOD_CAMERA_ID ? View.INVISIBLE : View.VISIBLE);
         }
@@ -1849,7 +1851,8 @@ public class LiveMainFragment extends Fragment
         rootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                if (mLiveStatus != LiveStatus.PRE_GO_LIVE) {
+                if (mLiveStatus != LiveStatus.PRE_GO_LIVE
+                        || mDynamicCamBtnLayout.getVisibility() == View.VISIBLE) {
                     return;
                 }
                 boolean mKeyboardUp = isKeyboardShown(rootView);
