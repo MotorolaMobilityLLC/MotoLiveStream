@@ -9,6 +9,7 @@ import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import com.motorola.gl.utils.OpenGLUtils;
 import com.motorola.gl.viewfinder.DefaultViewfinder;
@@ -324,7 +325,9 @@ public class SrsCameraView extends GLSurfaceView implements GLSurfaceView.Render
                     break;
                 }
             }
-            params.setPreviewSize(mPreviewWidth, mPreviewHeight);
+            // only set the preview size to what the current camera supports
+            Camera.Size rs = adaptPreviewResolution(mCamera.new Size(mPreviewWidth, mPreviewHeight));
+            params.setPreviewSize(rs.width, rs.height);
             int[] range = adaptFpsRange(SrsEncoder.VFPS, params.getSupportedPreviewFpsRange());
             params.setPreviewFpsRange(range[0], range[1]);
             params.setPreviewFormat(ImageFormat.NV21);

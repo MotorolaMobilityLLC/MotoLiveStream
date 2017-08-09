@@ -121,7 +121,7 @@ public class LiveMainFragment extends Fragment
     private static final long CONNECT_LIVE_TIME_OUT = 5000l;
     private static final long PUSH_LIVE_TIME_OUT = 5000l;
 
-    private static final int MOD_CAMERA_ID = 2;
+    private static final int MOTO_360_MOD_CAMERA = 2;
 
     private static final int OPEN_CAMERA_RETRY_MAX_COUNT = 5;
     private static final long OPEN_CAMERA_RETRY_TIME = 200L;
@@ -535,7 +535,7 @@ public class LiveMainFragment extends Fragment
         m4KLiveSwitch = (Switch) mLive4KSettings.findViewById(R.id.settings_4k_switch);
         m4KLiveSwitch.setOnCheckedChangeListener(
                 (CompoundButton buttonView, boolean isChecked) -> {
-                    swapCamera(mPublisher.getCamraId(), true);
+                    swapCamera(mPublisher.getCameraId(), true);
                 }
         );
 
@@ -598,7 +598,7 @@ public class LiveMainFragment extends Fragment
         // We only show it when ModMoto360 is attached, ignore ModHasselblad is attached
         if (ModHelper.isModMoto360Attached()) {
             mLive4KSettings.setVisibility(
-                    (mDefaultCamId == MOD_CAMERA_ID) ? View.VISIBLE: View.GONE);
+                    (mDefaultCamId == MOTO_360_MOD_CAMERA) ? View.VISIBLE: View.GONE);
 
             refreshCameraButton(true);
 
@@ -638,12 +638,12 @@ public class LiveMainFragment extends Fragment
             mGoLiveLayout.setVisibility(View.VISIBLE);
             mLicenseLayout.setVisibility(View.VISIBLE);
             mBtnSwitchCamera.setVisibility(
-                    mPublisher.getCamraId() == MOD_CAMERA_ID ? View.INVISIBLE : View.VISIBLE);
+                    mPublisher.getCameraId() == MOTO_360_MOD_CAMERA ? View.INVISIBLE : View.VISIBLE);
         }
     }
 
     private void setDynamicCamBtnState(int camId) {
-        if (camId == MOD_CAMERA_ID) {
+        if (camId == MOTO_360_MOD_CAMERA) {
             mDynamicCamBtnLayout.findViewById(R.id.phone_cam).setSelected(false);
             mDynamicCamBtnLayout.findViewById(R.id.mod_cam).setSelected(true);
         } else {
@@ -1032,7 +1032,7 @@ public class LiveMainFragment extends Fragment
                     }
                 },
                 currentUser.getId(), mLiveInfoInput.getText().toString(),
-                mPrivacyCacheBean.toJsonString(), (mPublisher.getCamraId() == MOD_CAMERA_ID));
+                mPrivacyCacheBean.toJsonString(), (mPublisher.getCameraId() == MOTO_360_MOD_CAMERA));
         // Set 10 seconds to wait the response from Facebook server
         mHandler.sendEmptyMessageDelayed(MSG_CREATE_LIVE_TIME_OUT, CREATE_LIVE_TIME_OUT);
     }
@@ -1434,10 +1434,10 @@ public class LiveMainFragment extends Fragment
 
     private void initDefaultCamId() {
         // Force to check if 360Mod is attached
-        ModHelper.isModMoto360(getActivity());
+        ModHelper.updateModStatus(getActivity());
 
-        if (ModHelper.isModCameraAttached()) {
-            mDefaultCamId = MOD_CAMERA_ID;
+        if (ModHelper.isModMoto360Attached()) {
+            mDefaultCamId = MOTO_360_MOD_CAMERA;
         } else {
             mDefaultCamId = 0;
         }
@@ -1452,7 +1452,7 @@ public class LiveMainFragment extends Fragment
             // Ignore because the request camera id is invalid
             Log.w(LOG_TAG, "Requesting with invalid camera id: " + requestCamId);
         } else {
-            if (!ModHelper.isModCameraAttached() && requestCamId == 2) {
+            if (!ModHelper.isModMoto360Attached() && requestCamId == 2) {
                 // Just ignore if 360Mod not attached and request to open it
                 Log.w(LOG_TAG, "Requesting with external camera id while no external camera attached");
             } else {
@@ -1466,14 +1466,14 @@ public class LiveMainFragment extends Fragment
     }
 
     private void swapCamera(int camId, boolean forceSwap) {
-        if (mPublisher.getCamraId() == camId && !forceSwap) {
+        if (mPublisher.getCameraId() == camId && !forceSwap) {
             mOpenCameraRetryCount = 0;
             return;
         }
 
         mPublisher.stopCamera();
         try {
-            if (camId == MOD_CAMERA_ID) {
+            if (camId == MOTO_360_MOD_CAMERA) {
                 mPublisher.setCameraId(camId);
                 if (m4KLiveSwitch.isChecked()) {
                     mPublisher.setPreviewResolution(3840, 1920);
@@ -1600,8 +1600,8 @@ public class LiveMainFragment extends Fragment
                         REQUEST_LIVE_PRIVACY);
                 break;
             case R.id.btn_switch_camera:
-                if (mPublisher.getCamraId() < 2) {
-                    mPublisher.switchCameraFace((mPublisher.getCamraId() + 1) % 2);
+                if (mPublisher.getCameraId() < 2) {
+                    mPublisher.switchCameraFace((mPublisher.getCameraId() + 1) % 2);
                 }
                 break;
             case R.id.btn_select_camera:
@@ -1614,8 +1614,8 @@ public class LiveMainFragment extends Fragment
                 mLive4KSettings.setVisibility(View.GONE);
                 break;
             case R.id.mod_cam:
-                swapCamera(MOD_CAMERA_ID);
-                setDynamicCamBtnState(MOD_CAMERA_ID);
+                swapCamera(MOTO_360_MOD_CAMERA);
+                setDynamicCamBtnState(MOTO_360_MOD_CAMERA);
                 showDynamicCamLayout(false);
                 mLive4KSettings.setVisibility(View.VISIBLE);
                 break;

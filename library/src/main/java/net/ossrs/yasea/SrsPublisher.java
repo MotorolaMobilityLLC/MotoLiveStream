@@ -243,7 +243,7 @@ public class SrsPublisher {
         return mSamplingFps;
     }
 
-    public int getCamraId() {
+    public int getCameraId() {
         return mCameraView.getCameraId();
     }
 
