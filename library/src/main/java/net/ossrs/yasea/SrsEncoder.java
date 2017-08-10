@@ -302,8 +302,27 @@ public class SrsEncoder {
     }
 
     public void onGetPcmFrame(byte[] data, int size) {
-        ByteBuffer[] inBuffers = aencoder.getInputBuffers();
-        ByteBuffer[] outBuffers = aencoder.getOutputBuffers();
+        // Begin, Lenovo, guzy2, IKSWN-74658, Handle the potential IllegalStateException
+        ByteBuffer[] inBuffers;
+        ByteBuffer[] outBuffers;
+        try {
+            inBuffers = aencoder.getInputBuffers();
+            outBuffers = aencoder.getOutputBuffers();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+            // Always try to stop first
+            aencoder.stop();
+            // Restart the audio encoder, to initialize the buffers
+            aencoder.start();
+
+            inBuffers = aencoder.getInputBuffers();
+            outBuffers = aencoder.getOutputBuffers();
+        }
+
+        if (inBuffers == null || outBuffers == null) {
+            return;
+        }
+        // End, Lenovo, guzy2, IKSWN-74658
 
         int inBufferIndex = aencoder.dequeueInputBuffer(-1);
         if (inBufferIndex >= 0) {
