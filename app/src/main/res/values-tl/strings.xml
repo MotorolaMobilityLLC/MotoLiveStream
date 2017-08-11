@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Hindi available ang network mo ngayon."</string>
+    <string name="label_profile_not_available">"Nabigong makuha ang iyong Facebook profile"</string>
+
+    <string name="dlg_public_profile_not_granted">"Hindi ka sumasang-ayon sa pag-access ng Moto Live Stream sa iyong pampublikong profile at custom na mga listahan ng mga kaibigan."</string>
+    <string name="dlg_publish_not_granted">"Hindi ka sumasang-ayon sa Moto Live Stream na mag-post ng Live Video sa iyong Facebook."</string>
+    <string name="dlg_fb_login_failed">"Nabigong makakuha ng permiso mula sa Facebook. Pakisubukang muli mamaya."</string>
+
+    <string name="perm_required_alert_title">Kinakailangan ng pahintulot</string>
+    <string name="perm_required_alert_msg">Kailangan ng Moto Live Stream ng pahintulot upang ma-access ang ilang bagay sa iyong device. Piliin ang \"Mga Pahintulot\" sa App info upang ire-enable.</string>
+    <string name="perm_required_alert_button_app_info">Impormasyon sa App</string>
+
+    <string name="dlg_request_notification_policy_access">"Pahintulutan ang Moto Live Stream para baguhin ang setting ng Huwag Istorbohin para i-mute ang ringtone habang naka-live streaming?"</string>
+
+    <string name="label_activity_timeline_privacy">Piliin ang Pagkapribado</string>
+    <string name="label_activity_custom_friends">Espesipikong Mga Kaibigan</string>
+
+    <string name="menu_done">Tapos na</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Tanggalin</string>
+    <string name="btn_post">I-post</string>
+    <string name="btn_retry">Subukang muli</string>
+    <string name="btn_exit">Labasan</string>
+    <string name="btn_cancel">Kanselahin</string>
+    <string name="btn_setting">Mga Setting</string>
+
+    <string name="live_description_hint">Paglalarawan</string>
+
+    <string name="failed_getting_friend_list">Nabigong makuha ang Listahan ng iyong Kaibigan. Pakisubukang muli mamaya.</string>
+    <string name="no_friend_list_warning">Wala ka pang ginawang anumang Listahan ng iyong Kaibigan.</string>
+
+    <string name="post_live_privacy_description">I-post ang iyong live stream sa iyong Facebook timeline para mapanood ito ng mga tao.</string>
+    <string name="total_live_time">Nag-live ka nang hanggang <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Pampubliko</string>
+    <string name="privacy_world_description">Lahat ng on o off sa Facebook</string>
+    <string name="privacy_friends">Mga kaibigan</string>
+    <string name="privacy_friends_description">Mga kaibigan mo sa Facebook</string>
+    <string name="privacy_self">Ako lang</string>
+    <string name="privacy_self_description">Ako lang</string>
+    <string name="privacy_custom">Espesipikong mga kaibigan</string>
+    <string name="privacy_custom_description">Ipakita lamang sa ilang mga kaibigan</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">HD kapag naka-off ang 4K</string>
+
+    <string name="live_label_go_live">Live sa Facebook</string>
+    <string name="live_label_count_timer">"LIVE %s"</string>
+
+    <string name="live_popup_dlg_title">Na-pause ang iyong live stream</string>
+    <string name="live_popup_dlg_content">Gusto mo bang ipagpatuloy ang iyong live stream?</string>
+    <string name="live_popup_dlg_btn_resume">Ituloy</string>
+    <string name="live_popup_dlg_btn_finish">Tapusin</string>
+
+    <string name="live_dlg_logout_message">"Naka-login ka bilang %s."</string>
+    <string name="live_dlg_btn_logout">Mag-log out</string>
+
+    <string name="live_popup_no_publish_permission">"Walang available na pahintulot para mag-pst ng live videos. Pakitingnan kung natanggal mo ang mga pahintulot na ibinigay ng Moto Live Stream mula sa Facebook."</string>
+    <string name="live_popup_dlg_network_poor">"Nabigong mag-live sa Facebook. Pakitingnan ang koneksyon ng iyong network."</string>
+    <string name="live_popup_dlg_create_live_failed">"Nabigong mag-live sa Facebook. Pakitingnan kung ang iyong account ay peding mag-live stream."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Nabigong mag-live sa Facebook. Pakitingnan ang koneksyon ng iyong network."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Nabigong buksan ang camera, pakisubukang muli."</string>
+
+    <string name="live_deleted_message">Natanggal na ang iyong video</string>
+    <string name="live_posted_message">Na-post sa iyong timeline ang iyong video.</string>
+    <string name="live_posted_view">Tingnan sa facebook</string>
+    <string name="live_process_identify">Alam ko na</string>
+
+    <string name="live_login_identify">Okay</string>
+
+    <string name="str_phone_camera">Camera ng telepono</string>
+    <string name="str_mod_camera">Moto 360 Camera</string>
+    <string name="licenses_title">Mga lisensyang open source</string>
+    <string name="licenses_detail">Mga detalye ng lisensya para sa open source na software</string>
+    <string name="about_title">Tungkol sa Moto Live Stream</string>
+    <string name="app_name_title">Pangalan ng app</string>
+    <string name="app_version_title">Bersyon ng app</string>
+</resources>

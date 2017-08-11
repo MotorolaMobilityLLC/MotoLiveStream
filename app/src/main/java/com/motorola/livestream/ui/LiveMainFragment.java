@@ -1,12 +1,17 @@
 package com.motorola.livestream.ui;
 
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -21,15 +26,21 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -97,12 +108,33 @@ public class LiveMainFragment extends Fragment
     private static final int MSG_LIVE_STOPPED = 0x106;
     private static final int MSG_EXIT_APP = 0x107;
 
+    private static final int MSG_RETRY_OPEN_CAMERA = 0x121;
+    private static final int MSG_RETRY_START_CAMERA = 0x122;
+    private static final int MSG_RETRY_RESUME_CAMERA = 0x123;
+
     private static final int MSG_CREATE_LIVE_TIME_OUT = 0x201;
+    private static final int MSG_CONNECT_LIVE_TIME_OUT = 0x202;
+
+    private static final int MSG_PUSH_LIVE_TIME_OUT = 0x301;
 
     private static final long CREATE_LIVE_TIME_OUT = 10000l;
     private static final long CONNECT_LIVE_TIME_OUT = 5000l;
+    private static final long PUSH_LIVE_TIME_OUT = 5000l;
 
-    private static final int MOD_CAMERA_ID = 2;
+    private static final int MOTO_360_MOD_CAMERA = 2;
+
+    private static final int OPEN_CAMERA_RETRY_MAX_COUNT = 5;
+    private static final long OPEN_CAMERA_RETRY_TIME = 200L;
+
+    private enum LiveStatus {
+        PRE_GO_LIVE,
+        CREATING_LIVE,
+        CREATE_LIVE_FAILED,
+        CONNECTING,
+        CONNECT_FAILED,
+        LIVING,
+        END
+    }
 
     public static Fragment newInstance() {
         return new LiveMainFragment();
@@ -114,6 +146,7 @@ public class LiveMainFragment extends Fragment
     private View mLoadingLayout;
 
     private View mTopLayout;
+    private View mLicenseLayout;
     private LiveCountingTimer mLiveTimer;
 
     private View mLiveSettings;
@@ -123,6 +156,8 @@ public class LiveMainFragment extends Fragment
     private ImageView mPrivacyIcon;
     private TextView mPrivacyTitle;
     private EditText mLiveInfoInput;
+    private View mLive4KSettings;
+    private Switch m4KLiveSwitch;
 
     private View mGoLiveLayout;
     private View mBtnGoLive;
@@ -148,12 +183,21 @@ public class LiveMainFragment extends Fragment
     private TimelinePrivacyCacheBean mPrivacyCacheBean = null;
     private LiveInfoCacheBean mLiveInfoCacheBean = null;
 
-    private boolean mIsOnLive = false;
+    private LiveStatus mLiveStatus = LiveStatus.PRE_GO_LIVE;
+//    private boolean mIsOnLive = false;
 
     private AlertDialog mPostDialog = null;
     private AlertDialog mLogoutDialog = null;
+    private AlertDialog mResumeDialog = null;
 
     private Timer mLiveCommentsTimer;
+
+    private PopupWindow mPopWindow;
+    private View mBtnOpenSource;
+
+    private int mOpenCameraRetryCount = 0;
+    private int mPrevAudioMode;
+
     private final OnPagedListRetrievedListener<Comment> mLiveCommentListener =
             new OnPagedListRetrievedListener<Comment>() {
                 @Override
@@ -257,8 +301,31 @@ public class LiveMainFragment extends Fragment
                 case MSG_EXIT_APP:
                     System.exit(0);
                     break;
+                case MSG_RETRY_OPEN_CAMERA:
+                    swapCamera(msg.arg1);
+                    break;
+                case MSG_RETRY_START_CAMERA:
+                    startCameraPreview();
+                    break;
+                case MSG_RETRY_RESUME_CAMERA:
+                    resumeLive();
+                    break;
                 case MSG_CREATE_LIVE_TIME_OUT:
+                    muteRinger(false);
                     showLiveTimeoutDialog();
+                    mLiveStatus = LiveStatus.CREATE_LIVE_FAILED;
+                    break;
+                case MSG_CONNECT_LIVE_TIME_OUT:
+                    muteRinger(false);
+                    showLiveTimeoutDialog();
+                    mLiveStatus = LiveStatus.CONNECT_FAILED;
+                    break;
+                case MSG_PUSH_LIVE_TIME_OUT:
+                    if (isDuringLive()) {
+                        muteRinger(false);
+                        handleNwException(null);
+                        mLiveStatus = LiveStatus.CONNECT_FAILED;
+                    }
                     break;
                 default:
                     break;
@@ -270,26 +337,13 @@ public class LiveMainFragment extends Fragment
             (DialogInterface dialog, int which) -> {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
-                        try {
-                            mPublisher.setSendVideoOnly(false);
-                            // Cause the camera is closed when onPause(), and the encoding also stopped
-                            // So we have to start the camera preview, and resume encoding work
-                            mPublisher.startCameraAndResumeEnc();
-
-                            mLiveTimer.resumeCounting();
-                            startUpdateInteractInfo();
-                        } catch (NullPointerException e) {
-                            stopLive();
-                        } catch (IllegalStateException e) {
-                            stopLive();
-                        } catch (RuntimeException e) {
-                            e.printStackTrace();
-                            showCameraFailedDialog();
-                        }
+                        resumeLive();
+                        mResumeDialog = null;
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
                         stopLive();
                         mBtnGoLive.setSelected(false);
+                        mResumeDialog = null;
                         break;
                 }
             };
@@ -300,9 +354,9 @@ public class LiveMainFragment extends Fragment
             final String action = intent.getAction();
             if (ModHelper.ACTION_MOTO_360_ATTACHED.equals(action)
                     || ModHelper.ACTION_MOTO_360_DETACHED.equals(action)) {
-                if (mIsOnLive) {
+                if (isDuringLive()) {
+                    mPublisher.stopPublish();
                     mPublisher.stopCamera();
-                    mPublisher.stopRecord();
                 }
                 if (getActivity() != null) {
                     getActivity().finish();
@@ -336,15 +390,18 @@ public class LiveMainFragment extends Fragment
                 protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
                     stopTracking();
                     if (currentProfile == null) {
-                        Toast.makeText(getActivity(),
-                                R.string.label_profile_not_available, Toast.LENGTH_SHORT).show();
-                        mUserInfoLayout.setVisibility(View.GONE);
+                        if (getActivity() != null) {
+                            Toast.makeText(getActivity(),
+                                    R.string.label_profile_not_available, Toast.LENGTH_SHORT).show();
+                            mUserInfoLayout.setVisibility(View.GONE);
+                        }
                     } else {
                         updateUserInfo(currentProfile);
                     }
                 }
             }.startTracking();
         }
+        setListenerToRootView();
     }
 
     @Nullable
@@ -357,6 +414,8 @@ public class LiveMainFragment extends Fragment
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        mLiveStatus = LiveStatus.PRE_GO_LIVE;
 
         initDefaultCamId();
 
@@ -374,16 +433,12 @@ public class LiveMainFragment extends Fragment
     public void onResume() {
         super.onResume();
 
-        if (mIsOnLive) {
+        getInitAudioMode();
+        if (isDuringLive()) {
             //Popup a dialog to indicate user whether to resume or stop the live
             showResumeDialog();
         } else {
-            try {
-                mPublisher.startCamera();
-            } catch (RuntimeException e) {
-                e.printStackTrace();
-                showCameraFailedDialog();
-            }
+            startCameraPreview();
 
             updateUserInfo(Profile.getCurrentProfile());
             updateLivePrivacySettings();
@@ -407,22 +462,27 @@ public class LiveMainFragment extends Fragment
             mPublisher.stopCamera();
         }
         stopUpdateInteractInfo();
+        muteRinger(false);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         if (mPublisher != null) {
-            mPublisher.stopRecord();
             mPublisher.stopCamera();
+        }
+
+        if(mPopWindow != null){
+            if (mPopWindow.isShowing()) {
+                mPopWindow.dismiss();
+            }
         }
 
         mPrivacyCacheBean.clean();
         mLiveInfoCacheBean.clean();
 
         mLiveTimer.stopCounting();
-        mIsOnLive = false;
+        mLiveStatus = LiveStatus.END;
 
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mMoto360Receiver);
     }
@@ -450,6 +510,10 @@ public class LiveMainFragment extends Fragment
         mLiveTimer = (LiveCountingTimer) mTopLayout.findViewById(R.id.live_timer_view);
         mTopLayout.findViewById(R.id.btn_record_mute).setOnClickListener(this);
 
+        mLicenseLayout = view.findViewById(R.id.layout_license_info);
+        mBtnOpenSource = mLicenseLayout.findViewById(R.id.btn_overflow);
+        mBtnOpenSource.setOnClickListener(this);
+
         mLiveSettings = view.findViewById(R.id.layout_live_settings);
         // User information
         mUserInfoLayout = mLiveSettings.findViewById(R.id.layout_user_info);
@@ -466,16 +530,21 @@ public class LiveMainFragment extends Fragment
         // Live description input
         mLiveInfoInput = (EditText) mLiveSettings.findViewById(R.id.live_description_input);
 
+        // Live 4K switch
+        mLive4KSettings = mLiveSettings.findViewById(R.id.layout_4k_setting);
+        m4KLiveSwitch = (Switch) mLive4KSettings.findViewById(R.id.settings_4k_switch);
+        m4KLiveSwitch.setOnCheckedChangeListener(
+                (CompoundButton buttonView, boolean isChecked) -> {
+                    swapCamera(mPublisher.getCameraId(), true);
+                }
+        );
+
         // Go live controller layout
         mGoLiveLayout = view.findViewById(R.id.layout_go_live);
         mBtnGoLive = mGoLiveLayout.findViewById(R.id.btn_go_live);
         mBtnGoLive.setOnClickListener(this);
         mBtnSwitchCamera = mGoLiveLayout.findViewById(R.id.btn_switch_camera);
         mBtnSwitchCamera.setOnClickListener(this);
-        // Hide switch camera button if 360Mod attached
-        if (ModHelper.isModCameraAttached()) {
-            mBtnSwitchCamera.setVisibility(View.GONE);
-        }
         mGoLiveLayout.findViewById(R.id.btn_select_camera).setOnClickListener(this);
         mBtnSelectCamera = mGoLiveLayout.findViewById(R.id.btn_select_camera);
 
@@ -512,15 +581,49 @@ public class LiveMainFragment extends Fragment
         mDynamicCamBtnLayout.findViewById(R.id.phone_cam).setOnClickListener(this);
         mDynamicCamBtnLayout.findViewById(R.id.mod_cam).setOnClickListener(this);
 
-        // TODO part first, because swap camera function is not completed
-//        if (ModHelper.isModCameraAttached()) {
-//            mBtnSelectCamera.setVisibility(View.VISIBLE);
-//            mBtnSwitchCamera.setVisibility(View.GONE);
-//            setDynamicCamBtnState(mDefaultCamId);
-//        } else {
-//            mBtnSelectCamera.setVisibility(View.GONE);
-//            mBtnSwitchCamera.setVisibility(View.VISIBLE);
-//        }
+        if (isRtl()) {
+            ImageView mPrivacyChevron = (ImageView) privacyLayout.findViewById(R.id.privacy_chevron);
+            ImageView mUserChevron = (ImageView) mUserInfoLayout.findViewById(R.id.user_chevron);
+            ImageView mResultChevronIcon = (ImageView) resultPrivacyView.findViewById(R.id.result_chevron_icon);
+            Drawable arrow = getResources().getDrawable(R.drawable.item_row_chevron_white);
+            if (arrow != null) {
+                arrow.setAutoMirrored(true);
+            }
+            mPrivacyChevron.setImageDrawable(arrow);
+            mUserChevron.setImageDrawable(arrow);
+            mResultChevronIcon.setImageDrawable(arrow);
+        }
+
+        // Since the "Select Camera" list, only contains "Phone camera" and "Moto360 camera"
+        // We only show it when ModMoto360 is attached, ignore ModHasselblad is attached
+        if (ModHelper.isModMoto360Attached()) {
+            mLive4KSettings.setVisibility(
+                    (mDefaultCamId == MOTO_360_MOD_CAMERA) ? View.VISIBLE: View.GONE);
+
+            refreshCameraButton(true);
+
+            setDynamicCamBtnState(mDefaultCamId);
+        } else {
+            mLive4KSettings.setVisibility(View.GONE);
+
+            refreshCameraButton(false);
+        }
+    }
+
+    private void refreshCameraButton(boolean showSelectButton) {
+        if (showSelectButton) {
+            mBtnSelectCamera.setVisibility(View.VISIBLE);
+            mBtnSwitchCamera.setVisibility(View.GONE);
+        } else {
+            mBtnSelectCamera.setVisibility(View.GONE);
+            mBtnSwitchCamera.setVisibility(View.VISIBLE);
+
+            // For normal camera, align the Camera switch button to parent bottom
+            RelativeLayout.LayoutParams lp =
+                    (RelativeLayout.LayoutParams) mBtnSwitchCamera.getLayoutParams();
+            lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            mBtnSwitchCamera.setLayoutParams(lp);
+        }
     }
 
     private void showDynamicCamLayout(boolean show) {
@@ -528,17 +631,19 @@ public class LiveMainFragment extends Fragment
             mDynamicCamBtnLayout.setVisibility(View.VISIBLE);
             mLiveSettings.setVisibility(View.GONE);
             mGoLiveLayout.setVisibility(View.GONE);
+            mLicenseLayout.setVisibility(View.GONE);
         } else {
             mDynamicCamBtnLayout.setVisibility(View.GONE);
             mLiveSettings.setVisibility(View.VISIBLE);
             mGoLiveLayout.setVisibility(View.VISIBLE);
+            mLicenseLayout.setVisibility(View.VISIBLE);
             mBtnSwitchCamera.setVisibility(
-                    mPublisher.getCamraId() == MOD_CAMERA_ID ? View.INVISIBLE : View.VISIBLE);
+                    mPublisher.getCameraId() == MOTO_360_MOD_CAMERA ? View.INVISIBLE : View.VISIBLE);
         }
     }
 
     private void setDynamicCamBtnState(int camId) {
-        if (camId == MOD_CAMERA_ID) {
+        if (camId == MOTO_360_MOD_CAMERA) {
             mDynamicCamBtnLayout.findViewById(R.id.phone_cam).setSelected(false);
             mDynamicCamBtnLayout.findViewById(R.id.mod_cam).setSelected(true);
         } else {
@@ -651,13 +756,44 @@ public class LiveMainFragment extends Fragment
     }
 
     private void handleException(Exception e) {
-        try {
-            e.printStackTrace();
+        e.printStackTrace();
 
+        mLiveTimer.stopCounting();
+
+        try {
             mPublisher.stopPublish();
-            mPublisher.stopRecord();
-        } catch (Exception e1) {
+
+            if (isDuringLive()) {
+                stopLive();
+            }
+        } catch (Exception e1) {}
+    }
+
+    private void handleNwException(Exception e) {
+        // Do not show dialog when not living or not connected to RTMP server
+        if (!isDuringLive() || mHandler.hasMessages(MSG_CONNECT_LIVE_TIME_OUT)) {
+            return;
         }
+
+        if (e != null) {
+            e.printStackTrace();
+        }
+
+        mLiveTimer.stopCounting();
+
+        try {
+            mPublisher.stopPublish();
+        } catch (Exception e1) { }
+
+        new AlertDialog.Builder(getActivity())
+                .setMessage(R.string.live_popup_dlg_rtmp_failed)
+                .setNegativeButton(R.string.btn_ok,
+                        (DialogInterface dialog, int which) -> {
+                            stopLive();
+                        }
+                )
+                .setCancelable(false)
+                .show();
     }
 
     private void showLogoutDialog() {
@@ -714,7 +850,11 @@ public class LiveMainFragment extends Fragment
             return;
         }
 
-        new AlertDialog.Builder(getActivity())
+        if (mResumeDialog != null) {
+            return;
+        }
+
+        mResumeDialog = new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.live_popup_dlg_title)
                 .setMessage(R.string.live_popup_dlg_content)
                 .setNegativeButton(R.string.live_popup_dlg_btn_finish, mResumeDialogListener)
@@ -724,6 +864,9 @@ public class LiveMainFragment extends Fragment
     }
 
     private void showCameraFailedDialog() {
+        if (getActivity() == null) {
+            return;
+        }
         new AlertDialog.Builder(getActivity())
                 .setMessage(R.string.live_popup_dlg_camera_failed)
                 .setNegativeButton(R.string.btn_ok,
@@ -735,8 +878,24 @@ public class LiveMainFragment extends Fragment
                 .show();
     }
 
+    private void showCreateLiveFailedDialog(int messageId) {
+        if (getActivity() == null) {
+            return;
+        }
+        new AlertDialog.Builder(getActivity())
+                .setMessage(messageId)
+                .setNegativeButton(R.string.btn_exit,
+                        (DialogInterface dialog, int which) -> {
+                            getActivity().finish();
+                        }
+                )
+                .setCancelable(false)
+                .show();
+    }
+
     private void showLiveTimeoutDialog() {
         mHandler.removeMessages(MSG_CREATE_LIVE_TIME_OUT);
+        mHandler.removeMessages(MSG_CONNECT_LIVE_TIME_OUT);
 
         if (getActivity() == null || !isResumed()) {
             return;
@@ -747,7 +906,6 @@ public class LiveMainFragment extends Fragment
 
         // Stop camera encoding and publishing first
         mPublisher.stopPublish();
-        mPublisher.stopRecord();
 
         new AlertDialog.Builder(getActivity())
                 .setMessage(R.string.live_popup_dlg_network_poor)
@@ -771,14 +929,14 @@ public class LiveMainFragment extends Fragment
                         (DialogInterface dialog, int which) -> {
                             mResultLayout.setVisibility(View.GONE);
                             refreshPreGoLiveUI();
-                            mPublisher.startCamera();
+                            startCameraPreview();
                         })
                 .setCancelable(false)
                 .show();
     }
 
     private void showLivePostedDialog() {
-        if (getActivity() == null) {
+        if (getActivity() == null || mPostDialog != null) {
             return;
         }
 
@@ -816,7 +974,7 @@ public class LiveMainFragment extends Fragment
                     mLiveInfoCacheBean.getUser());
         } else {
             // If not jump to facebook, resume the camera preview
-            mPublisher.startCamera();
+            startCameraPreview();
         }
     }
 
@@ -833,12 +991,14 @@ public class LiveMainFragment extends Fragment
                 (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(mLiveInfoInput.getWindowToken(), 0);
 
-        mLoadingLayout.setVisibility(View.VISIBLE);
-
         if (!Util.isNetworkConnected(getActivity())) {
             showLiveTimeoutDialog();
             return;
         }
+
+        mLoadingLayout.setVisibility(View.VISIBLE);
+
+        mLiveStatus = LiveStatus.CREATING_LIVE;
 
         FbUtil.createUserLive(
                 new FbUtil.OnDataRetrievedListener<LiveInfo>() {
@@ -850,14 +1010,29 @@ public class LiveMainFragment extends Fragment
 
                     @Override
                     public void onError(Exception exp) {
+                        // Remove the timeout message, since it already failed
+                        mHandler.removeMessages(MSG_CREATE_LIVE_TIME_OUT);
+
                         Log.e(LOG_TAG, "Create live video failed!");
                         exp.printStackTrace();
 
                         mLoadingLayout.setVisibility(View.GONE);
+
+                        // Only show error dialog while still under CREATING_LIVE status
+                        if (mLiveStatus != LiveStatus.CREATING_LIVE) {
+                            return;
+                        }
+
+                        if (FbUtil.handleException(exp) == FbUtil.ERR_PERMISSION_NOT_GRANTED) {
+                            showCreateLiveFailedDialog(R.string.live_popup_no_publish_permission);
+                        } else {
+                            showCreateLiveFailedDialog(R.string.live_popup_dlg_create_live_failed);
+                        }
+                        muteRinger(false);
                     }
                 },
                 currentUser.getId(), mLiveInfoInput.getText().toString(),
-                mPrivacyCacheBean.toJsonString(), (mPublisher.getCamraId() == MOD_CAMERA_ID));
+                mPrivacyCacheBean.toJsonString(), (mPublisher.getCameraId() == MOTO_360_MOD_CAMERA));
         // Set 10 seconds to wait the response from Facebook server
         mHandler.sendEmptyMessageDelayed(MSG_CREATE_LIVE_TIME_OUT, CREATE_LIVE_TIME_OUT);
     }
@@ -865,6 +1040,8 @@ public class LiveMainFragment extends Fragment
     private void onLiveStreamReady(LiveInfo liveInfo) {
         // Create live from Facebook server OK
         mHandler.removeMessages(MSG_CREATE_LIVE_TIME_OUT);
+
+        mLiveStatus = LiveStatus.CONNECTING;
 
         if (mLiveInfoCacheBean == null) {
             mLiveInfoCacheBean = (LiveInfoCacheBean) ViewCacheManager
@@ -896,6 +1073,7 @@ public class LiveMainFragment extends Fragment
     }
 
     private void onLiveStart() {
+        mLicenseLayout.setVisibility(View.GONE);
 //        mTopLayout.setVisibility(View.VISIBLE);
         mLiveSettings.setVisibility(View.GONE);
         mCommentLayout.setVisibility(View.VISIBLE);
@@ -913,21 +1091,24 @@ public class LiveMainFragment extends Fragment
         mGoLiveLabel.setVisibility(View.GONE);
 
         mBtnExit.setVisibility(View.GONE);
+        mBtnSelectCamera.setVisibility(View.GONE);
 
         // Reset send audio/video only mode
         mPublisher.setSendAudioOnly(false);
         mPublisher.setSendVideoOnly(false);
+        mTopLayout.findViewById(R.id.btn_record_mute).setSelected(false);
 
-        mPublisher.startPublish(mLiveInfoCacheBean.getLiveStreamUrl());
         mPublisher.startCamera();
+        mPublisher.startPublish(mLiveInfoCacheBean.getLiveStreamUrl());
+
+        muteRinger(true);
 
         // Maybe we cannot connect to the stream url
         // so wait the RTMP connected callback, then start the real live
         // and set 5 seconds timeout to check if we can connect to the stream url
 //        mLiveTimer.startCounting();
 //        startUpdateInteractInfo();
-//        mIsOnLive = true;
-        mHandler.sendEmptyMessageDelayed(MSG_CREATE_LIVE_TIME_OUT, CONNECT_LIVE_TIME_OUT);
+        mHandler.sendEmptyMessageDelayed(MSG_CONNECT_LIVE_TIME_OUT, CONNECT_LIVE_TIME_OUT);
     }
 
     private void showLiveStatusInfo() {
@@ -935,13 +1116,14 @@ public class LiveMainFragment extends Fragment
         mLoadingLayout.setVisibility(View.GONE);
 
         // Cancel timeout waiting
-        mHandler.removeMessages(MSG_CREATE_LIVE_TIME_OUT);
+        mHandler.removeMessages(MSG_CONNECT_LIVE_TIME_OUT);
+
+        mLiveStatus = LiveStatus.LIVING;
 
         // Show the live timer
         mTopLayout.setVisibility(View.VISIBLE);
         mLiveTimer.startCounting();
         startUpdateInteractInfo();
-        mIsOnLive = true;
     }
 
     private void startUpdateInteractInfo() {
@@ -968,7 +1150,8 @@ public class LiveMainFragment extends Fragment
     }
 
     private void stopLive() {
-        mIsOnLive = false;
+        mLiveStatus = LiveStatus.END;
+
         mLoadingLayout.setVisibility(View.VISIBLE);
         stopUpdateInteractInfo();
         mLiveTimer.stopCounting();
@@ -994,11 +1177,13 @@ public class LiveMainFragment extends Fragment
                 mLiveInfoCacheBean.getLiveStreamId());
 
         mPublisher.stopPublish();
-        mPublisher.stopRecord();
+
+        muteRinger(false);
     }
 
     private void stopLiveForNwPoor() {
-        mIsOnLive = false;
+        mLiveStatus = LiveStatus.END;
+
         stopUpdateInteractInfo();
         mLiveTimer.stopCounting();
         // Stop reaction animation and clear reactions
@@ -1026,6 +1211,7 @@ public class LiveMainFragment extends Fragment
 
     private void showLiveStreamResult() {
         // Hide go live controller layout
+        mLicenseLayout.setVisibility(View.GONE);
         mTopLayout.setVisibility(View.GONE);
         mGoLiveLayout.setVisibility(View.GONE);
         mBtnGoLive.setSelected(false);
@@ -1043,11 +1229,19 @@ public class LiveMainFragment extends Fragment
     }
 
     private void refreshPreGoLiveUI() {
+        mLiveStatus = LiveStatus.PRE_GO_LIVE;
+        muteRinger(false);
+
         mLiveInfoCacheBean.setLiveInfo(null);
         mGoLiveLayout.setVisibility(View.VISIBLE);
         mGoLiveLabel.setVisibility(View.VISIBLE);
         mLiveSettings.setVisibility(View.VISIBLE);
         mBtnExit.setVisibility(View.VISIBLE);
+        if (ModHelper.isModMoto360Attached()) {
+            mBtnSelectCamera.setEnabled(true);
+            mBtnSelectCamera.setVisibility(View.VISIBLE);
+        }
+        mLicenseLayout.setVisibility(View.VISIBLE);
     }
 
     private void startToGetViews() {
@@ -1186,6 +1380,7 @@ public class LiveMainFragment extends Fragment
                 exp.printStackTrace();
 
                 hideResultInfo();
+                mPublisher.startCamera();
             }
         }, mLiveInfoCacheBean.getLiveStreamId());
     }
@@ -1205,6 +1400,8 @@ public class LiveMainFragment extends Fragment
                 Log.e(LOG_TAG, "Post video failed: " + exp.getMessage());
                 exp.printStackTrace();
                 hideResultInfo();
+                // The live video already posted, so show the dialog no matter of the post result
+                showLivePostedDialog();
             }
         }, mLiveInfoCacheBean.getLiveStreamId(), mPrivacyCacheBean.toJsonString());
     }
@@ -1237,33 +1434,58 @@ public class LiveMainFragment extends Fragment
 
     private void initDefaultCamId() {
         // Force to check if 360Mod is attached
-        ModHelper.isModMoto360(getActivity());
+        ModHelper.updateModStatus(getActivity());
 
-        if (ModHelper.isModCameraAttached()) {
-            mDefaultCamId = MOD_CAMERA_ID;
+        if (ModHelper.isModMoto360Attached()) {
+            mDefaultCamId = MOTO_360_MOD_CAMERA;
         } else {
             mDefaultCamId = 0;
         }
 
+        int requestCamId = -1;
         Intent intent = getActivity().getIntent();
         if (intent != null) {
-            mDefaultCamId = intent.getIntExtra(Util.EXTRA_CAMERA, mDefaultCamId);
+            requestCamId = intent.getIntExtra(Util.EXTRA_CAMERA, requestCamId);
+        }
+
+        if (requestCamId < 0 || requestCamId > 2) {
+            // Ignore because the request camera id is invalid
+            Log.w(LOG_TAG, "Requesting with invalid camera id: " + requestCamId);
+        } else {
+            if (!ModHelper.isModMoto360Attached() && requestCamId == 2) {
+                // Just ignore if 360Mod not attached and request to open it
+                Log.w(LOG_TAG, "Requesting with external camera id while no external camera attached");
+            } else {
+                mDefaultCamId = requestCamId;
+            }
         }
     }
 
     private void swapCamera(int camId) {
-        if (mPublisher.getCamraId() == camId) {
+        swapCamera(camId, false);
+    }
+
+    private void swapCamera(int camId, boolean forceSwap) {
+        if (mPublisher.getCameraId() == camId && !forceSwap) {
+            mOpenCameraRetryCount = 0;
             return;
         }
 
         mPublisher.stopCamera();
         try {
-            if (camId == MOD_CAMERA_ID) {
+            if (camId == MOTO_360_MOD_CAMERA) {
                 mPublisher.setCameraId(camId);
-                mPublisher.setPreviewResolution(2160, 1080);
-                mPublisher.setOutputResolution(1080, 2160);
+                if (m4KLiveSwitch.isChecked()) {
+                    mPublisher.setPreviewResolution(3840, 1920);
+                    mPublisher.setOutputResolution(1920, 3840);
+                    mPublisher.set360VideoHDMode(true);
+                } else {
+                    mPublisher.setPreviewResolution(2160, 1080);
+                    mPublisher.setOutputResolution(1080, 2160);
+                    mPublisher.set360VideoHDMode(false);
+                }
                 mPublisher.switchCameraFace(camId);
-                mPublisher.switchCameraFilter(ViewfinderType.SPLITSCREEN);
+                mPublisher.switchCameraFilter(ViewfinderType.SPLITSCREEN, forceSwap);
             } else {
                 mPublisher.setCameraId(camId);
                 // Get the real screen size and set as preview resolution
@@ -1274,12 +1496,96 @@ public class LiveMainFragment extends Fragment
                 mPublisher.setOutputResolution(720, 1280);
                 mPublisher.switchCameraFace(camId);
                 mPublisher.switchCameraFilter(ViewfinderType.NONE);
+                mPublisher.setVideoHDMode();
             }
+            mOpenCameraRetryCount = 0;
         } catch (Exception e) {
             e.printStackTrace();
-            showCameraFailedDialog();
+
+            if (mOpenCameraRetryCount >= OPEN_CAMERA_RETRY_MAX_COUNT) {
+                mOpenCameraRetryCount = 0;
+                showCameraFailedDialog();
+            } else {
+                mOpenCameraRetryCount++;
+                Message msg = mHandler.obtainMessage(MSG_RETRY_RESUME_CAMERA);
+                msg.arg1 = camId;
+                mHandler.sendMessageDelayed(msg, OPEN_CAMERA_RETRY_TIME);
+            }
         }
-        mPublisher.setVideoHDMode();
+    }
+
+    private void startCameraPreview() {
+        try {
+            mPublisher.startCamera();
+            mOpenCameraRetryCount = 0;
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            if (mOpenCameraRetryCount >= OPEN_CAMERA_RETRY_MAX_COUNT) {
+                mOpenCameraRetryCount = 0;
+                showCameraFailedDialog();
+            } else {
+                mOpenCameraRetryCount++;
+                mHandler.sendEmptyMessageDelayed(MSG_RETRY_START_CAMERA, OPEN_CAMERA_RETRY_TIME);
+            }
+        }
+    }
+
+    private void resumeLive() {
+        try {
+            muteRinger(true);
+
+            mPublisher.setSendVideoOnly(false);
+            // Cause the camera is closed when onPause(), and the encoding also stopped
+            // So we have to start the camera preview, and resume encoding work
+            mPublisher.startCameraAndResumeEnc();
+
+            mLiveTimer.resumeCounting();
+            startUpdateInteractInfo();
+
+            mOpenCameraRetryCount = 0;
+        } catch (NullPointerException e) {
+            stopLive();
+
+            mOpenCameraRetryCount = 0;
+        } catch (IllegalStateException e) {
+            stopLive();
+
+            mOpenCameraRetryCount = 0;
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            if (mOpenCameraRetryCount >= OPEN_CAMERA_RETRY_MAX_COUNT) {
+                mOpenCameraRetryCount = 0;
+                showCameraFailedDialog();
+            } else {
+                mOpenCameraRetryCount++;
+                mHandler.sendEmptyMessageDelayed(MSG_RETRY_RESUME_CAMERA, OPEN_CAMERA_RETRY_TIME);
+            }
+        }
+    }
+
+    private void getInitAudioMode() {
+        AudioManager am = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+        mPrevAudioMode = am.getRingerMode();
+    }
+
+    private void muteRinger(boolean mute) {
+        if (getActivity() == null) {
+            return;
+        }
+
+        NotificationManager notificationManager =
+                (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
+                && !notificationManager.isNotificationPolicyAccessGranted()) {
+            return;
+        }
+        AudioManager am = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+
+        if (mute) {
+            am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+        } else {
+            am.setRingerMode(mPrevAudioMode);
+        }
     }
 
     // Implementation of View.OnClickListener
@@ -1294,11 +1600,8 @@ public class LiveMainFragment extends Fragment
                         REQUEST_LIVE_PRIVACY);
                 break;
             case R.id.btn_switch_camera:
-                if (mPublisher.getCamraId() < 2) {
-//                    mPublisher.switchCameraFace(
-//                            (mPublisher.getCamraId() + 1) % Camera.getNumberOfCameras());
-                    mPublisher.switchCameraFace(
-                            (mPublisher.getCamraId() + 1) % 2);
+                if (mPublisher.getCameraId() < 2) {
+                    mPublisher.switchCameraFace((mPublisher.getCameraId() + 1) % 2);
                 }
                 break;
             case R.id.btn_select_camera:
@@ -1308,11 +1611,13 @@ public class LiveMainFragment extends Fragment
                 swapCamera(0);
                 setDynamicCamBtnState(0);
                 showDynamicCamLayout(false);
+                mLive4KSettings.setVisibility(View.GONE);
                 break;
             case R.id.mod_cam:
-                swapCamera(MOD_CAMERA_ID);
-                setDynamicCamBtnState(MOD_CAMERA_ID);
+                swapCamera(MOTO_360_MOD_CAMERA);
+                setDynamicCamBtnState(MOTO_360_MOD_CAMERA);
                 showDynamicCamLayout(false);
+                mLive4KSettings.setVisibility(View.VISIBLE);
                 break;
             case R.id.dynamic_cam_btn:
                 showDynamicCamLayout(false);
@@ -1324,11 +1629,15 @@ public class LiveMainFragment extends Fragment
                 mPublisher.setSendVideoOnly(!v.isSelected());
                 v.setSelected(!v.isSelected());
                 break;
+            case R.id.btn_overflow:
+                showPopupWindow(v);
+                break;
             case R.id.btn_go_live:
                 if (v.isSelected()) {
                     v.setSelected(false);
                     stopLive();
                 } else {
+                    mBtnSelectCamera.setEnabled(false);
                     startGoLive();
                 }
                 break;
@@ -1367,6 +1676,7 @@ public class LiveMainFragment extends Fragment
     @Override
     public void onRtmpConnected(String msg) {
         Log.d(LOG_TAG, msg);
+        mHandler.removeMessages(MSG_CONNECT_LIVE_TIME_OUT);
         mHandler.sendEmptyMessage(MSG_LIVE_CONNECTED);
     }
 
@@ -1415,12 +1725,12 @@ public class LiveMainFragment extends Fragment
 
     @Override
     public void onRtmpSocketException(SocketException e) {
-        handleException(e);
+        handleNwException(e);
     }
 
     @Override
     public void onRtmpIOException(IOException e) {
-        handleException(e);
+        handleNwException(e);
     }
 
     @Override
@@ -1468,11 +1778,17 @@ public class LiveMainFragment extends Fragment
     @Override
     public void onNetworkWeak() {
         Log.d(LOG_TAG, "Network weak");
+
+        if (!mHandler.hasMessages(MSG_PUSH_LIVE_TIME_OUT)) {
+            mHandler.sendEmptyMessageDelayed(MSG_PUSH_LIVE_TIME_OUT, PUSH_LIVE_TIME_OUT);
+        }
     }
 
     @Override
     public void onNetworkResume() {
         Log.d(LOG_TAG, "Network resume");
+
+        mHandler.removeMessages(MSG_PUSH_LIVE_TIME_OUT);
     }
 
     @Override
@@ -1483,5 +1799,80 @@ public class LiveMainFragment extends Fragment
     @Override
     public void onEncodeIllegalStateException(IllegalStateException e) {
         handleException(e);
+    }
+
+    private void startOpensourceLicense() {
+        Intent intent = new Intent(getActivity(), AboutInfoActivity.class);
+        startActivity(intent);
+    }
+
+    private void showPopupWindow(View v) {
+        View contentView = LayoutInflater.from(getActivity()).inflate(R.layout.about_menu_popup, null);
+        mPopWindow = new PopupWindow(contentView,
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        mPopWindow.setOutsideTouchable(true);
+        Button mBt = (Button) contentView.findViewById(R.id.btn_about_menu_popupwindow);
+        mBt.setOnClickListener(view -> {
+            startOpensourceLicense();
+            mPopWindow.dismiss();
+        });
+
+        View flowButton = mBtnOpenSource;
+        int[] location = new int[2];
+        flowButton.getLocationOnScreen(location);
+
+        mBt.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        if (isRtl()) {
+            mPopWindow.showAtLocation(flowButton, Gravity.NO_GRAVITY,
+                    location[0], location[1]);
+        } else {
+            mPopWindow.showAtLocation(flowButton, Gravity.NO_GRAVITY,
+                    location[0] + flowButton.getMeasuredWidth() - mBt.getMeasuredWidth(), location[1]);
+        }
+    }
+
+    public boolean isRtl() {
+        return (getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL);
+    }
+
+    public boolean isDuringLive() {
+        return mLiveStatus == LiveStatus.LIVING;
+    }
+
+    // Begin, Lenovo, guzy2, IKSWN-71983, Stop live when user pressed Back key
+    public void stopLiveByBack() {
+        stopLive();
+    }
+    // End, Lenovo, guzy2, IKSWN-71983
+
+    private void setListenerToRootView() {
+        final View rootView = getActivity().getWindow().getDecorView().findViewById(android.R.id.content);
+        rootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if (mLiveStatus != LiveStatus.PRE_GO_LIVE
+                        || mDynamicCamBtnLayout.getVisibility() == View.VISIBLE) {
+                    return;
+                }
+                boolean mKeyboardUp = isKeyboardShown(rootView);
+                if (mKeyboardUp) {
+                    mLicenseLayout.setVisibility(View.GONE);
+                    mGoLiveLayout.setVisibility(View.GONE);
+                } else {
+                    mLicenseLayout.setVisibility(View.VISIBLE);
+                    mGoLiveLayout.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+    }
+
+    private boolean isKeyboardShown(View rootView) {
+        final int softKeyboardHeight = 100;
+        Rect r = new Rect();
+        rootView.getWindowVisibleDisplayFrame(r);
+        DisplayMetrics dm = rootView.getResources().getDisplayMetrics();
+        int heightDiff = rootView.getBottom() - r.bottom;
+        return heightDiff > softKeyboardHeight * dm.density;
     }
 }

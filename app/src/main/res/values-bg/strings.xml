@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"В момента мрежата Ви е недостъпна."</string>
+    <string name="label_profile_not_available">"Неуспешен достъп до Вашия Facebook профил"</string>
+
+    <string name="dlg_public_profile_not_granted">"Вие не сте се съгласили Moto Live Stream да има достъп до Вашия публичен профил и персонализирани списъци с приятели."</string>
+    <string name="dlg_publish_not_granted">"Вие не сте се съгласили Moto Live Stream да публикува видеоклипове на живо във Вашия Facebook."</string>
+    <string name="dlg_fb_login_failed">"Неуспешно предоставяне на разрешение от Facebook. Моля, опитайте отново по-късно."</string>
+
+    <string name="perm_required_alert_title">Изисква се разрешение</string>
+    <string name="perm_required_alert_msg">Moto Live Stream се нуждае от разрешение за достъп до някои елементи от Вашето устройство. Изберете \"Разрешения\" в Информация за приложението за повторно активиране.</string>
+    <string name="perm_required_alert_button_app_info">Информация за приложението</string>
+
+    <string name="dlg_request_notification_policy_access">"Позволение Moto Live Stream да променя настройките \"Не безпокойте\" да изключват звука на мелодията, докато предавате на живо?"</string>
+
+    <string name="label_activity_timeline_privacy">Изберете \"Поверителност\"</string>
+    <string name="label_activity_custom_friends">Конкретни приятели</string>
+
+    <string name="menu_done">Готово</string>
+
+    <string name="btn_ok">ОК</string>
+    <string name="btn_delete">Изтриване</string>
+    <string name="btn_post">Публикуване</string>
+    <string name="btn_retry">Нов опит</string>
+    <string name="btn_exit">Изход</string>
+    <string name="btn_cancel">Отказ</string>
+    <string name="btn_setting">Настройки</string>
+
+    <string name="live_description_hint">Описание</string>
+
+    <string name="failed_getting_friend_list">Неуспешно получаване на списъка Ви с приятели. Моля, опитайте отново по-късно.</string>
+    <string name="no_friend_list_warning">Още не сте създали списък с приятели.</string>
+
+    <string name="post_live_privacy_description">Публикувайте Вашето предаване на живо на времевата си линия във Facebook, така че хората да могат да го гледат отново.</string>
+    <string name="total_live_time">Вие сте били на живо за <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Публичен</string>
+    <string name="privacy_world_description">Всеки, който е във или извън Facebook</string>
+    <string name="privacy_friends">Приятели</string>
+    <string name="privacy_friends_description">Приятелите Ви във Facebook</string>
+    <string name="privacy_self">Само аз</string>
+    <string name="privacy_self_description">Само аз</string>
+    <string name="privacy_custom">Конкретни приятели</string>
+    <string name="privacy_custom_description">Покажете само на някои приятели</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">HD, когато 4K е изключено</string>
+
+    <string name="live_label_go_live">На живо във Facebook</string>
+    <string name="live_label_count_timer">"НА ЖИВО %s"</string>
+
+    <string name="live_popup_dlg_title">Вашият поток на живо е временно спрян</string>
+    <string name="live_popup_dlg_content">Искате ли да продължите Вашия поток на живо?</string>
+    <string name="live_popup_dlg_btn_resume">Възобновяване</string>
+    <string name="live_popup_dlg_btn_finish">Край</string>
+
+    <string name="live_dlg_logout_message">"Вие сте влезли като %s."</string>
+    <string name="live_dlg_btn_logout">Излизане</string>
+
+    <string name="live_popup_no_publish_permission">"Няма налични разрешения за публикуване на видеоклипове на живо. Моля, проверете дали сте изтрили разрешенията, осигурени за Moto Live Stream от Facebook."</string>
+    <string name="live_popup_dlg_network_poor">"Неуспешно включване на живо във Facebook. Моля, проверете мрежовата си връзка."</string>
+    <string name="live_popup_dlg_create_live_failed">"Неуспешно включване на живо във Facebook. Моля, проверете дали профилът Ви може да предава на живо."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Неуспешно включване на живо във Facebook. Моля, проверете мрежовата си връзка."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Неуспешно стартиране на камерата, моля, опитайте отново."</string>
+
+    <string name="live_deleted_message">Видеоклипът Ви беше изтрит</string>
+    <string name="live_posted_message">Видеоклипът Ви беше публикуван във Вашата времева линия.</string>
+    <string name="live_posted_view">Преглед във Facebook</string>
+    <string name="live_process_identify">Разбрах</string>
+
+    <string name="live_login_identify">Добре</string>
+
+    <string name="str_phone_camera">Камера на телефон</string>
+    <string name="str_mod_camera">Moto 360 Camera</string>
+    <string name="licenses_title">Лицензи с отворен код</string>
+    <string name="licenses_detail">Данни за лицензи за софтуер с отворен код</string>
+    <string name="about_title">Относно Moto Live Stream</string>
+    <string name="app_name_title">Име на приложението</string>
+    <string name="app_version_title">Версия на приложението</string>
+</resources>

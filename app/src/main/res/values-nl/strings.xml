@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Uw netwerk is momenteel niet beschikbaar."</string>
+    <string name="label_profile_not_available">"Uw Facebook-profiel kan niet worden opgehaald"</string>
+
+    <string name="dlg_public_profile_not_granted">"U heeft Moto Live Stream geen toegang gegeven tot uw openbare profiel en aangepaste vriendenlijst."</string>
+    <string name="dlg_publish_not_granted">"U heeft Moto Live Stream geen toestemming gegeven om livevideo\'s op uw Facebook-profiel te posten."</string>
+    <string name="dlg_fb_login_failed">"Kan machtigingen van Facebook niet ophalen. Probeer het later opnieuw."</string>
+
+    <string name="perm_required_alert_title">Toestemming vereist</string>
+    <string name="perm_required_alert_msg">Moto Live Stream heeft toestemming nodig voor toegang tot bepaalde delen op uw apparaat. Selecteer Toestaan in App-info om dit opnieuw in te schakelen.</string>
+    <string name="perm_required_alert_button_app_info">App-info</string>
+
+    <string name="dlg_request_notification_policy_access">"Moto Live Stream toestaan de Niet storen-instellingen te wijzigen, zodat de beltoon tijdens het livestreamen wordt gedempt?"</string>
+
+    <string name="label_activity_timeline_privacy">Selecteer Privacy</string>
+    <string name="label_activity_custom_friends">Specifieke vrienden</string>
+
+    <string name="menu_done">Gereed</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Verwijderen</string>
+    <string name="btn_post">Plaatsen</string>
+    <string name="btn_retry">Opnieuw proberen</string>
+    <string name="btn_exit">Sluiten</string>
+    <string name="btn_cancel">Annuleren</string>
+    <string name="btn_setting">Instellingen</string>
+
+    <string name="live_description_hint">Beschrijving</string>
+
+    <string name="failed_getting_friend_list">Kan uw vriendenlijst niet ophalen. Probeer het later opnieuw.</string>
+    <string name="no_friend_list_warning">U heeft nog geen vriendenlijst.</string>
+
+    <string name="post_live_privacy_description">Plaats uw livestream op uw tijdlijn van Facebook, zodat andere mensen uw video kunnen bekijken.</string>
+    <string name="total_live_time">U was <xliff:g id="DURATION">%s</xliff:g> live</string>
+
+    <string name="privacy_world">Openbaar</string>
+    <string name="privacy_world_description">Iedereen met of zonder Facebook</string>
+    <string name="privacy_friends">Vrienden</string>
+    <string name="privacy_friends_description">Uw Facebook-vrienden</string>
+    <string name="privacy_self">Alleen ik</string>
+    <string name="privacy_self_description">Alleen ik</string>
+    <string name="privacy_custom">Specifieke vrienden</string>
+    <string name="privacy_custom_description">Alleen aan sommige vrienden tonen</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">HD als 4K uitgeschakeld is</string>
+
+    <string name="live_label_go_live">Live op Facebook</string>
+    <string name="live_label_count_timer">"LIVE %s"</string>
+
+    <string name="live_popup_dlg_title">Uw livestream is onderbroken</string>
+    <string name="live_popup_dlg_content">Wilt u doorgaan met uw livestream?</string>
+    <string name="live_popup_dlg_btn_resume">Hervatten</string>
+    <string name="live_popup_dlg_btn_finish">Voltooien</string>
+
+    <string name="live_dlg_logout_message">"U bent ingelogd als %s."</string>
+    <string name="live_dlg_btn_logout">Uitloggen</string>
+
+    <string name="live_popup_no_publish_permission">"Er is geen machtiging gegeven voor het posten van livevideo\'s. Controleer of u de machtigingen voor Moto Live Stream van Facebook heeft verwijderd."</string>
+    <string name="live_popup_dlg_network_poor">"Kan niet livestreamen op Facebook. Controleer uw netwerkverbinding."</string>
+    <string name="live_popup_dlg_create_live_failed">"Kan niet livestreamen op Facebook. Controleer of uw account geschikt is voor livestreamen."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Kan niet livestreamen op Facebook. Controleer uw netwerkverbinding."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Kan de camera niet starten, probeer het opnieuw."</string>
+
+    <string name="live_deleted_message">Uw video is verwijderd</string>
+    <string name="live_posted_message">Uw video is op uw tijdlijn geplaatst.</string>
+    <string name="live_posted_view">Bekijken op Facebook</string>
+    <string name="live_process_identify">OK</string>
+
+    <string name="live_login_identify">Oké</string>
+
+    <string name="str_phone_camera">Camera van telefoon</string>
+    <string name="str_mod_camera">Moto 360 Camera</string>
+    <string name="licenses_title">Open-sourcelicenties</string>
+    <string name="licenses_detail">Licentiegegevens voor open-sourcesoftware</string>
+    <string name="about_title">Over Moto Live Stream</string>
+    <string name="app_name_title">Appnaam</string>
+    <string name="app_version_title">Appversie</string>
+</resources>

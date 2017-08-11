@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Reţeaua dvs. este indisponibilă acum."</string>
+    <string name="label_profile_not_available">"Nu am reuşit să vă obţinem profilul de pe Facebook"</string>
+
+    <string name="dlg_public_profile_not_granted">"Nu v-aţi dat acordul pentru ca Moto Live Stream să vă acceseze profilul public şi listele personalizate cu prietenii dvs."</string>
+    <string name="dlg_publish_not_granted">"Nu v-aţi dat acordul pentru ca Moto Live Stream să posteze videoclipuri în direct pe pagina dvs. de Facebook."</string>
+    <string name="dlg_fb_login_failed">"Obţinerea permisiunilor de pe Facebook a eşuat. Încercaţi din nou mai târziu."</string>
+
+    <string name="perm_required_alert_title">Permisiuni necesare</string>
+    <string name="perm_required_alert_msg">Moto Live Stream are nevoie de permisiune pentru a accesa anumite lucruri de pe dispozitiv. Pentru a reactiva, selectaţi „Permisiuni” în Informaţii despre aplicaţie.</string>
+    <string name="perm_required_alert_button_app_info">Informații despre aplicație</string>
+
+    <string name="dlg_request_notification_policy_access">"Permiteţi Moto Live Stream să modifice setările Nu deranja pentru a dezactiva sunetul tonului de apel în timpul transmisiei în flux în direct?"</string>
+
+    <string name="label_activity_timeline_privacy">Nivel de confidențialitate</string>
+    <string name="label_activity_custom_friends">Anumiți prieteni</string>
+
+    <string name="menu_done">Terminat</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Ştergere</string>
+    <string name="btn_post">Postare</string>
+    <string name="btn_retry">Reîncercare</string>
+    <string name="btn_exit">Ieşire</string>
+    <string name="btn_cancel">Anulare</string>
+    <string name="btn_setting">Setări</string>
+
+    <string name="live_description_hint">Descriere</string>
+
+    <string name="failed_getting_friend_list">Obţinerea listei dvs. de prieteni nu a reuşit. Încercaţi din nou mai târziu.</string>
+    <string name="no_friend_list_warning">Nu aţi creat încă nicio listă de prieteni.</string>
+
+    <string name="post_live_privacy_description">Postați transmisia în direct pe cronologia Facebook, astfel încât utilizatorii să o poată urmări din nou.</string>
+    <string name="total_live_time">Ați transmis în direct timp de <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Public</string>
+    <string name="privacy_world_description">Oricine are sau nu are cont de Facebook</string>
+    <string name="privacy_friends">Prieteni</string>
+    <string name="privacy_friends_description">Prietenii de pe Facebook</string>
+    <string name="privacy_self">Doar eu</string>
+    <string name="privacy_self_description">Doar eu</string>
+    <string name="privacy_custom">Anumiți prieteni</string>
+    <string name="privacy_custom_description">Se afişează doar pentru anumiţi prieteni</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">HD când 4K este oprită</string>
+
+    <string name="live_label_go_live">În direct pe Facebook</string>
+    <string name="live_label_count_timer">"LIVE %s"</string>
+
+    <string name="live_popup_dlg_title">Transmisia în flux live a fost întreruptă</string>
+    <string name="live_popup_dlg_content">Continuați transmisia în flux live?</string>
+    <string name="live_popup_dlg_btn_resume">Reluare</string>
+    <string name="live_popup_dlg_btn_finish">Finalizare</string>
+
+    <string name="live_dlg_logout_message">"Sunteţi conectat(ă) ca %s."</string>
+    <string name="live_dlg_btn_logout">Deconectare</string>
+
+    <string name="live_popup_no_publish_permission">"Nu sunt disponibile permisiuni pentru postarea videoclipurilor în direct. Verificaţi dacă aţi şters permisiunile acordate de Moto Live Stream de pe Facebook."</string>
+    <string name="live_popup_dlg_network_poor">"Transmisia live pe Facebook nu a reușit. Verificați conexiunea rețelei."</string>
+    <string name="live_popup_dlg_create_live_failed">"Intrarea în direct pe Facebook nu a reuşit. Verificaţi dacă în contul dvs. pot fi realizate transmisii în flux în direct."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Intrarea în direct pe Facebook nu a reuşit. Verificaţi conectivitatea reţelei dvs."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Inițierea camerei nu a reușit, încercați din nou."</string>
+
+    <string name="live_deleted_message">Videoclipul a fost şters</string>
+    <string name="live_posted_message">Videoclipul a fost postat pe cronologie.</string>
+    <string name="live_posted_view">Vizualizaţi pe Facebook</string>
+    <string name="live_process_identify">Am înţeles</string>
+
+    <string name="live_login_identify">OK</string>
+
+    <string name="str_phone_camera">Cameră telefon</string>
+    <string name="str_mod_camera">Moto 360 Camera</string>
+    <string name="licenses_title">Licențe open source</string>
+    <string name="licenses_detail">Detalii de licențiere pentru software-ul open source</string>
+    <string name="about_title">Despre Moto Live Stream</string>
+    <string name="app_name_title">Numele aplicației</string>
+    <string name="app_version_title">Versiune aplicaţie</string>
+</resources>

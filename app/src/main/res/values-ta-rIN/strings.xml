@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"இப்போது உங்கள் நெட்வொர்க் கிடைக்கவில்லை."</string>
+    <string name="label_profile_not_available">"உங்கள் Facebook ப்ரொஃபைலை பெறுவது தோல்வியுற்றது"</string>
+
+    <string name="dlg_public_profile_not_granted">"Moto Live Stream, உங்கள் பொது சுயவிவரம் மற்றும் தனிப்பட்ட நண்பர்கள் பட்டியல்களை அணுகுவதை நீங்கள் அனுமதிக்கவில்லை."</string>
+    <string name="dlg_publish_not_granted">"Moto நேரலை ஒளிபரப்பு உங்கள் Facebook-இல் நேரலை வீடியோவை இடுகையிடுவதை நீங்கள் ஏற்கவில்லை."</string>
+    <string name="dlg_fb_login_failed">"Facebook-இல் இருந்து அனுமதிகளைப் பெறுவது தோல்வியுற்றது. பிறகு மீண்டும் முயலவும்."</string>
+
+    <string name="perm_required_alert_title">அனுமதிகள் தேவை</string>
+    <string name="perm_required_alert_msg">உங்கள் சாதனத்தில் சிலவற்றை அணுக, Moto Live Stream-க்கு அனுமதி தேவை. மீண்டும் இயக்க, பயன்பாட்டு தகவலில் \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுக்கவும்.</string>
+    <string name="perm_required_alert_button_app_info">பயன்பாட்டுத் தகவல்</string>
+
+    <string name="dlg_request_notification_policy_access">"நேரலை ஒலிபரப்பு செய்யும் போது ரிங்டோனை ஒலித்தடுப்பதற்காக தொந்தரவு செய்ய அமைப்பை மாற்ற, Moto Live Stream-ஐ அனுமதிக்கவா?"</string>
+
+    <string name="label_activity_timeline_privacy">தனியுரிமை தெரிவு</string>
+    <string name="label_activity_custom_friends">குறிப்பிட்ட நண்பர்கள்</string>
+
+    <string name="menu_done">முடிந்தது</string>
+
+    <string name="btn_ok">சரி</string>
+    <string name="btn_delete">நீக்கு</string>
+    <string name="btn_post">இடுகையிடவும்</string>
+    <string name="btn_retry">மீண்டும் முயலவும்</string>
+    <string name="btn_exit">வெளியேறு</string>
+    <string name="btn_cancel">ரத்துசெய்</string>
+    <string name="btn_setting">அமைப்புகள்</string>
+
+    <string name="live_description_hint">விளக்கம்</string>
+
+    <string name="failed_getting_friend_list">உங்கள் நண்பர் பட்டியல்களைப் பெறுவது தோல்வியுற்றது. பிறகு மீண்டும் முயலவும்.</string>
+    <string name="no_friend_list_warning">இதுவரை நீங்கள் எந்த நண்பர் பட்டியல்களையும் உருவாக்கவில்லை.</string>
+
+    <string name="post_live_privacy_description">உங்கள் நேரலை ஒளிபரப்புகளை Facebook காலக்கோட்டில் இடுகையிடவும், எனவே பிறர் அதை பிறகு பார்க்கலாம்.</string>
+    <string name="total_live_time"><xliff:g id="DURATION">%s</xliff:g>-இல் நீங்கள் நேரலை செய்துள்ளீர்கள்</string>
+
+    <string name="privacy_world">பொதுவானவை</string>
+    <string name="privacy_world_description">Facebook-இல் உள்ள/இல்லாத எவரும்</string>
+    <string name="privacy_friends">நண்பர்கள்</string>
+    <string name="privacy_friends_description">Facebook-இல் உள்ள உங்கள் நண்பர்கள்</string>
+    <string name="privacy_self">நான் மட்டும்</string>
+    <string name="privacy_self_description">நான் மட்டும்</string>
+    <string name="privacy_custom">குறிப்பிட்ட நண்பர்கள்</string>
+    <string name="privacy_custom_description">சில நண்பர்களிடம் மட்டும் காட்டவும்</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">4K ஆஃப் செய்யப்பட்டுள்ள போது, HD</string>
+
+    <string name="live_label_go_live">Facebook-இல் நேரலை</string>
+    <string name="live_label_count_timer">"நேரலை %s"</string>
+
+    <string name="live_popup_dlg_title">உங்கள் நேரடி ஒளிபரப்பு இடைநிறுத்தப்பட்டுள்ளது</string>
+    <string name="live_popup_dlg_content">உங்கள் நேரடி ஒளிபரப்பை தொடர விரும்புகிறீர்களா?</string>
+    <string name="live_popup_dlg_btn_resume">மீண்டும் தொடங்கு</string>
+    <string name="live_popup_dlg_btn_finish">முடி</string>
+
+    <string name="live_dlg_logout_message">"நீங்கள் %s-ஆக உள்நுழைந்துள்ளீர்கள்."</string>
+    <string name="live_dlg_btn_logout">வெளியேறு</string>
+
+    <string name="live_popup_no_publish_permission">"இந்த வீடியோவை இடுகையிட அனுமதிகள் எதுவும் கிடைக்கவில்லை. Facebook-இல் இருந்து Moto Live Stream-ஆல் வழங்கப்பட்ட அனுமதிகளை நீக்கியுள்ளீர்களா என்று பார்க்கவும்."</string>
+    <string name="live_popup_dlg_network_poor">"Facebook-இல் நேரலையில் செல்வது தோல்வியுற்றது. உங்கள் நெட்வொர்க் இணைப்பை சரிபார்க்கவும்."</string>
+    <string name="live_popup_dlg_create_live_failed">"Facebook-இல் நேரலையில் செல்வது தோல்வியுற்றது. உங்கள் கணக்கில் நேரலை ஒலிபரப்பு செய்ய முடிகிறதா என பார்க்கவும்."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Facebook-இல் நேரலையில் செல்வது தோல்வியுற்றது. உங்கள் நெட்வொர்க் இணைப்பை சரிபார்க்கவும்."</string>
+
+    <string name="live_popup_dlg_camera_failed">"கேமராவை தொடங்குவது தோல்வியுற்றது, பிறகு மீண்டும் முயலவும்."</string>
+
+    <string name="live_deleted_message">உங்கள் வீடியோ நீக்கப்பட்டுள்ளது</string>
+    <string name="live_posted_message">உங்கள் வீடியோ, காலவரிசையில் இடுகையிடப்பட்டுள்ளது.</string>
+    <string name="live_posted_view">Facebook-இல் பார்க்கவும்</string>
+    <string name="live_process_identify">புரிந்தது</string>
+
+    <string name="live_login_identify">சரி</string>
+
+    <string name="str_phone_camera">ஃபோன் கேமரா</string>
+    <string name="str_mod_camera">Moto 360 Camera</string>
+    <string name="licenses_title">ஓப்பன் சோர்ஸ் உரிமங்கள்</string>
+    <string name="licenses_detail">திறந்த மூல மென்பொருளுக்கான உரிம விவரங்கள்</string>
+    <string name="about_title">Moto Live Stream - அறிமுகம்</string>
+    <string name="app_name_title">பயன்பாட்டின் பெயர்</string>
+    <string name="app_version_title">பயன்பாட்டு பதிப்பு</string>
+</resources>

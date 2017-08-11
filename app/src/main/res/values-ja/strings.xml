@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"ネットワークを現在利用できません。"</string>
+    <string name="label_profile_not_available">"Facebookプロフィールの取得に失敗しました"</string>
+
+    <string name="dlg_public_profile_not_granted">"Moto Live Streamが公開プロフィールとカスタム友達リストにアクセスすることに同意していません。"</string>
+    <string name="dlg_publish_not_granted">"Facebookにライブ動画を投稿するMoto Live Streamに同意していません。"</string>
+    <string name="dlg_fb_login_failed">"Facebookからの権限取得に失敗しました。後で再試行してください。"</string>
+
+    <string name="perm_required_alert_title">必要な権限</string>
+    <string name="perm_required_alert_msg">Moto Live Streamは、デバイス上の一部の機能やデータにアクセスするために権限が必要です。再有効化するにはアプリ情報で[許可]を選択します。</string>
+    <string name="perm_required_alert_button_app_info">アプリ情報</string>
+
+    <string name="dlg_request_notification_policy_access">"Moto Live Streamによる[通知を無音化]設定の変更を許可して、ライブストリーミング中の着信音をミュートにしますか?"</string>
+
+    <string name="label_activity_timeline_privacy">プライバシーの選択</string>
+    <string name="label_activity_custom_friends">一部の友達</string>
+
+    <string name="menu_done">完了</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">削除</string>
+    <string name="btn_post">投稿</string>
+    <string name="btn_retry">再試行</string>
+    <string name="btn_exit">終了</string>
+    <string name="btn_cancel">キャンセル</string>
+    <string name="btn_setting">設定</string>
+
+    <string name="live_description_hint">説明</string>
+
+    <string name="failed_getting_friend_list">友達リストの取得に失敗しました。後で再試行してください。</string>
+    <string name="no_friend_list_warning">友達リストはまだ作成していません。</string>
+
+    <string name="post_live_privacy_description">Facebookのタイムラインにライブストリームを投稿して、後から見られるようにします。</string>
+    <string name="total_live_time"><xliff:g id="DURATION">%s</xliff:g>のライブストリーミングを行いました</string>
+
+    <string name="privacy_world">公開</string>
+    <string name="privacy_world_description">Facebook利用者でない人も含むすべての人</string>
+    <string name="privacy_friends">友達</string>
+    <string name="privacy_friends_description">Facebookの友達</string>
+    <string name="privacy_self">自分のみ</string>
+    <string name="privacy_self_description">自分のみ</string>
+    <string name="privacy_custom">一部の友達</string>
+    <string name="privacy_custom_description">一部の友達にのみ表示します</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">4Kがオフの場合はHD</string>
+
+    <string name="live_label_go_live">Facebookにライブストリーミング</string>
+    <string name="live_label_count_timer">"LIVE %s"</string>
+
+    <string name="live_popup_dlg_title">ライブストリームが一時停止しています</string>
+    <string name="live_popup_dlg_content">ライブストリームを続行しますか?</string>
+    <string name="live_popup_dlg_btn_resume">再開</string>
+    <string name="live_popup_dlg_btn_finish">完了</string>
+
+    <string name="live_dlg_logout_message">"%sとしてログインしています。"</string>
+    <string name="live_dlg_btn_logout">ログアウト</string>
+
+    <string name="live_popup_no_publish_permission">"ライブビデオを投稿するための権限がありません。FacebookでMoto Live Streamに付与された権限が削除されていないことを確認してください。"</string>
+    <string name="live_popup_dlg_network_poor">"Facebookでライブ配信できませんでした。ネットワーク接続を確認してください。"</string>
+    <string name="live_popup_dlg_create_live_failed">"Facebookでライブにできませんでした。ライブストリームできるアカウントか、確認してください。"</string>
+    <string name="live_popup_dlg_rtmp_failed">"Facebookでライブ配信できませんでした。ネットワーク接続を確認してください。"</string>
+
+    <string name="live_popup_dlg_camera_failed">"カメラを起動できませんでした。再試行してください。"</string>
+
+    <string name="live_deleted_message">動画が削除されました</string>
+    <string name="live_posted_message">動画がタイムラインに投稿されました。</string>
+    <string name="live_posted_view">Facebookで表示</string>
+    <string name="live_process_identify">了解</string>
+
+    <string name="live_login_identify">OK</string>
+
+    <string name="str_phone_camera">電話のカメラ</string>
+    <string name="str_mod_camera">Moto 360 Camera</string>
+    <string name="licenses_title">オープンソースライセンス</string>
+    <string name="licenses_detail">オープンソースソフトウェアのライセンスの詳細</string>
+    <string name="about_title">Moto Live Streamについて</string>
+    <string name="app_name_title">アプリ名</string>
+    <string name="app_version_title">アプリのバージョン</string>
+</resources>

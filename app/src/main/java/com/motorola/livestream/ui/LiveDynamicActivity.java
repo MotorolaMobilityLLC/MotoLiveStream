@@ -1,6 +1,5 @@
 package com.motorola.livestream.ui;
 
-import android.content.pm.ActivityInfo;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,4 +22,17 @@ public class LiveDynamicActivity extends AppCompatActivity {
                 .commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        LiveMainFragment liveMainFragment =
+                (LiveMainFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.live_main_container);
+        if (liveMainFragment != null && liveMainFragment.isDuringLive()) {
+            // Begin, Lenovo, guzy2, IKSWN-71983, Stop live when user pressed Back key
+            liveMainFragment.stopLiveByBack();
+            // End, Lenovo, guzy2, IKSWN-71983
+        } else {
+            finish();
+        }
+    }
 }

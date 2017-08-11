@@ -19,6 +19,8 @@ public class ModHelper {
     public static final String ACTION_MOTO_360_DETACHED = "com.motorola.livestream.action.MOTO_360_DETACHED";
 
     private static boolean sIsModCameraAttached = false;
+    private static boolean sIsModHasselbladAttached = false;
+    private static boolean sIsModMoto360Attached = false;
 
     public static int getProduct(int pid) {
         return (pid ^ PRODUCT_ID_HW_REV_MASK) >> 8;
@@ -39,14 +41,18 @@ public class ModHelper {
         return sIsModCameraAttached;
     }
 
-    public static boolean isModMoto360(Context context) {
+    public static void updateModStatus(Context context) {
         int productId = getModProductId(context);
         if (isModMoto360(productId)) {
             sIsModCameraAttached = true;
-            return true;
+            sIsModHasselbladAttached = false;
+            sIsModMoto360Attached = true;
+        } else if (isModHasselblad(productId)) {
+            sIsModCameraAttached = true;
+            sIsModHasselbladAttached = true;
+            sIsModMoto360Attached = false;
         } else {
-            sIsModCameraAttached = false;
-            return false;
+            setModCameraDetached();
         }
     }
 
@@ -80,6 +86,15 @@ public class ModHelper {
 
     public static void setModCameraDetached() {
         sIsModCameraAttached = false;
+        sIsModHasselbladAttached = false;
+        sIsModMoto360Attached = false;
     }
 
+    public static boolean isModMoto360Attached() {
+        return sIsModMoto360Attached;
+    }
+
+    public static boolean isModHasselbladAttached() {
+        return sIsModHasselbladAttached;
+    }
 }

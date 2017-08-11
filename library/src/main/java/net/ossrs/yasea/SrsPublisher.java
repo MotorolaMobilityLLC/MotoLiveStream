@@ -189,7 +189,8 @@ public class SrsPublisher {
 
     public void stopEncode() {
         stopAudio();
-        stopCamera();
+        //stopCamera();
+        mCameraView.disableEncoding();
         mEncoder.stop();
     }
 
@@ -242,7 +243,7 @@ public class SrsPublisher {
         return mSamplingFps;
     }
 
-    public int getCamraId() {
+    public int getCameraId() {
         return mCameraView.getCameraId();
     }
 
@@ -266,6 +267,10 @@ public class SrsPublisher {
 
     public void setVideoHDMode() {
         mEncoder.setVideoHDMode();
+    }
+
+    public void set360VideoHDMode(boolean is4K) {
+        mEncoder.set360VideoHDMode(is4K);
     }
 
     public void setVideoSmoothMode() {
@@ -292,9 +297,15 @@ public class SrsPublisher {
         return mCameraView.setFilter(type);
     }
 
+    public boolean switchCameraFilter(ViewfinderType type, boolean force) {
+        return mCameraView.setFilter(type, force);
+    }
+
     public void switchCameraFace(int id) {
-        mCameraView.stopCamera();
-        mCameraView.setCameraId(id);
+        if (mCameraView.getCameraId() != id) {
+            mCameraView.stopCamera();
+            mCameraView.setCameraId(id);
+        }
         if (id == 0) {
             mEncoder.setCameraBackFace();
         } else {

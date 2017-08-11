@@ -11,43 +11,48 @@ import java.util.ArrayList;
 
 public abstract class AbstractPermissionActivity extends AppCompatActivity {
 
-    private static final int PERMISSION_REQUEST_STORAGE = 1;
+    private static final int PERM_REQ_START_UP = 1;
+
+    private static final String[] PERMISSIONS = {
+            Manifest.permission.CAMERA,
+            Manifest.permission.RECORD_AUDIO,
+    };
+
     private boolean mIsPermissionGranted = false;
 
     protected abstract void onGetPermissionsSuccess();
     protected abstract void onGetPermissionsFailure();
 
-    void checkAppPermissionGranted() {
-        String[] permissions = {
-                Manifest.permission.CAMERA,
-                Manifest.permission.RECORD_AUDIO,
-        };
-        requestPermission(permissions, PERMISSION_REQUEST_STORAGE);
+    boolean checkAppPermissionsGranted() {
+        boolean needRequest = false;
+        for (String permission : PERMISSIONS) {
+            if (checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+                needRequest = true;
+            }
+        }
+        mIsPermissionGranted = !needRequest;
+
+        return mIsPermissionGranted;
     }
 
-    private void requestPermission(String[] permissions, int requestCode) {
+    boolean checkAndRequestAppPermissions() {
         boolean needRequest = false;
         ArrayList<String> permissionList = new ArrayList<>();
-        for (String permission : permissions) {
+        for (String permission : PERMISSIONS) {
             if (ContextCompat.checkSelfPermission(this, permission)
                     != PackageManager.PERMISSION_GRANTED) {
                 permissionList.add(permission);
                 needRequest = true;
             }
         }
-
         if (needRequest) {
-            int count = permissionList.size();
-            if (count > 0) {
-                String[] permissionArray = new String[count];
-                for (int i = 0; i < count; i++) {
-                    permissionArray[i] = permissionList.get(i);
-                }
-
-                ActivityCompat.requestPermissions(this, permissionArray, requestCode);
-            }
+            String[] requiredPermissions =
+                    permissionList.toArray(new String[permissionList.size()]);
+            requestPermissions(requiredPermissions, PERM_REQ_START_UP);
         }
         mIsPermissionGranted = !needRequest;
+
+        return mIsPermissionGranted;
     }
 
     private boolean checkPermissionGrantResults(int[] grantResults) {
@@ -62,19 +67,18 @@ public abstract class AbstractPermissionActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        mIsPermissionGranted = checkPermissionGrantResults(grantResults);
         switch (requestCode) {
-            case PERMISSION_REQUEST_STORAGE: {
+            case PERM_REQ_START_UP: {
+                mIsPermissionGranted = checkPermissionGrantResults(grantResults);
                 if (mIsPermissionGranted) {
                     onGetPermissionsSuccess();
                 } else {
                     onGetPermissionsFailure();
                 }
             }
+            default:
+                break;
         }
     }
 
-    boolean isPermissionGranted() {
-        return mIsPermissionGranted;
-    }
 }

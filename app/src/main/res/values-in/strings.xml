@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Jaringan Anda tidak tersedia sekarang."</string>
+    <string name="label_profile_not_available">"Gagal mendapatkan profil Facebook Anda"</string>
+
+    <string name="dlg_public_profile_not_granted">"Anda tidak menyetujui Moto Live Stream untuk mengakses profil publik dan daftar teman kustom Anda."</string>
+    <string name="dlg_publish_not_granted">"Anda tidak menyetujui Moto Live Stream untuk mengirim Video Live ke Facebook."</string>
+    <string name="dlg_fb_login_failed">"Gagal mendapatkan izin dari Facebook. Coba lagi nanti."</string>
+
+    <string name="perm_required_alert_title">Memerlukan izin</string>
+    <string name="perm_required_alert_msg">Moto Live Stream memerlukan izin untuk mengakses beberapa hal di perangkat Anda. Pilih \"Izin\" di info Aplikasi untuk mengaktifkan ulang.</string>
+    <string name="perm_required_alert_button_app_info">Info Aplikasi</string>
+
+    <string name="dlg_request_notification_policy_access">"Izinkan Moto Live Stream mengubah setelan Jangan Ganggu untuk mematikan suara nada dering saat streaming live?"</string>
+
+    <string name="label_activity_timeline_privacy">Pilih Privasi</string>
+    <string name="label_activity_custom_friends">Teman Tertentu</string>
+
+    <string name="menu_done">Selesai</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Hapus</string>
+    <string name="btn_post">Kirim</string>
+    <string name="btn_retry">Coba Lagi</string>
+    <string name="btn_exit">Keluar</string>
+    <string name="btn_cancel">Batal</string>
+    <string name="btn_setting">Setelan</string>
+
+    <string name="live_description_hint">Deskripsi</string>
+
+    <string name="failed_getting_friend_list">Gagal mendapatkan Daftar Teman Anda. Coba lagi nanti.</string>
+    <string name="no_friend_list_warning">Anda belum membuat Daftar Teman.</string>
+
+    <string name="post_live_privacy_description">Kirim streaming live Anda ke linimasa Facebook agar orang lain dapat menontonnya kembali.</string>
+    <string name="total_live_time">Video Anda live selama <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Publik</string>
+    <string name="privacy_world_description">Siapa saja di dalam atau di luar Facebook</string>
+    <string name="privacy_friends">Teman</string>
+    <string name="privacy_friends_description">Teman Anda di Facebook</string>
+    <string name="privacy_self">Hanya saya</string>
+    <string name="privacy_self_description">Hanya saya</string>
+    <string name="privacy_custom">Teman tertentu</string>
+    <string name="privacy_custom_description">Hanya tunjukkan pada beberapa teman</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">HD saat 4K nonaktif</string>
+
+    <string name="live_label_go_live">Live di Facebook</string>
+    <string name="live_label_count_timer">"LIVE %s"</string>
+
+    <string name="live_popup_dlg_title">Streaming live Anda telah dijeda</string>
+    <string name="live_popup_dlg_content">Ingin melanjutkan streaming live?</string>
+    <string name="live_popup_dlg_btn_resume">Lanjutkan</string>
+    <string name="live_popup_dlg_btn_finish">Selesai</string>
+
+    <string name="live_dlg_logout_message">"Anda masuk sebagai %s."</string>
+    <string name="live_dlg_btn_logout">Logout</string>
+
+    <string name="live_popup_no_publish_permission">"Tidak ada izin untuk mengirim video live. Periksa jika Anda telah menghapus izin yang diberikan oleh Moto Live Stream dari Facebook."</string>
+    <string name="live_popup_dlg_network_poor">"Gagal mengirim live di Facebook. Periksa konektivitas jaringan Anda."</string>
+    <string name="live_popup_dlg_create_live_failed">"Gagal mengirim live di Facebook. Periksa jika akun Anda dapat mengirim streaming live."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Gagal mengirim live di Facebook. Periksa konektivitas jaringan Anda."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Gagal memulai kamera, coba lagi."</string>
+
+    <string name="live_deleted_message">Video Anda telah dihapus</string>
+    <string name="live_posted_message">Video Anda telah dikirim ke linimasa Anda.</string>
+    <string name="live_posted_view">Tampilkan di Facebook</string>
+    <string name="live_process_identify">Mengerti</string>
+
+    <string name="live_login_identify">Oke</string>
+
+    <string name="str_phone_camera">Kamera Ponsel</string>
+    <string name="str_mod_camera">Moto 360 Camera</string>
+    <string name="licenses_title">Lisensi sumber terbuka</string>
+    <string name="licenses_detail">Detail lisensi untuk perangkat lunak sumber terbuka</string>
+    <string name="about_title">Tentang Moto Live Stream</string>
+    <string name="app_name_title">Nama apl</string>
+    <string name="app_version_title">Versi aplikasi</string>
+</resources>

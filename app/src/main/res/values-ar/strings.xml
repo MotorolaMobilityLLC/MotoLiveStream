@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"شبكتك غير متوفرة الآن."</string>
+    <string name="label_profile_not_available">"فشل الحصول على ملف تعريف Facebook الخاص بك"</string>
+
+    <string name="dlg_public_profile_not_granted">"لم توافق على تمكين Moto Live Stream من الوصول إلى ملف تعريفك العام وقوائم أصدقائك المخصصة."</string>
+    <string name="dlg_publish_not_granted">"لم توافق على تمكين Moto Live Stream من نشر فيديو مباشر على حساب Facebook."</string>
+    <string name="dlg_fb_login_failed">"فشل الحصول على الأذونات من Facebook. يرجى إعادة المحاولة لاحقًا."</string>
+
+    <string name="perm_required_alert_title">الأذونات المطلوبة</string>
+    <string name="perm_required_alert_msg">يحتاج Moto Live Stream إلى إذن للوصول إلى بعض العناصر على جهازك. حدد \"الأذونات\" في معلومات التطبيق لإعادة تمكينه.</string>
+    <string name="perm_required_alert_button_app_info">معلومات التطبيق</string>
+
+    <string name="dlg_request_notification_policy_access">"هل تريد السماح لـ Moto Live Stream بتغيير إعدادات ميزة عدم الإزعاج لكتم صوت نغمة الرنين أثناء التدفق المباشر؟"</string>
+
+    <string name="label_activity_timeline_privacy">تحديد الخصوصية</string>
+    <string name="label_activity_custom_friends">أصدقاء محددون</string>
+
+    <string name="menu_done">تم</string>
+
+    <string name="btn_ok">موافق</string>
+    <string name="btn_delete">حذف</string>
+    <string name="btn_post">نشر</string>
+    <string name="btn_retry">إعادة المحاولة</string>
+    <string name="btn_exit">خروج</string>
+    <string name="btn_cancel">إلغاء</string>
+    <string name="btn_setting">الإعدادات</string>
+
+    <string name="live_description_hint">الوصف</string>
+
+    <string name="failed_getting_friend_list">فشل الحصول على قوائم أصدقائك. يرجى إعادة المحاولة لاحقًا.</string>
+    <string name="no_friend_list_warning">لم تقم بإنشاء أي قوائم أصدقاء بعد.</string>
+
+    <string name="post_live_privacy_description">انشر التدفق المباشر على مخطط Facebook الزمني الخاص بك لكي يتمكن الأشخاص من مشاهدته مرة أخرى.</string>
+    <string name="total_live_time">قمت بنشر فيديو مباشر لمدة <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">عام</string>
+    <string name="privacy_world_description">أي شخص يستخدم Facebook أو لا يستخدمه</string>
+    <string name="privacy_friends">الأصدقاء</string>
+    <string name="privacy_friends_description">أصدقاؤك على Facebook</string>
+    <string name="privacy_self">أنا فقط</string>
+    <string name="privacy_self_description">أنا فقط</string>
+    <string name="privacy_custom">أصدقاء محددون</string>
+    <string name="privacy_custom_description">إظهار لبعض الأصدقاء فقط</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">دقة عالية HD عند توقف 4K</string>
+
+    <string name="live_label_go_live">بث مباشر على Facebook</string>
+    <string name="live_label_count_timer">"مباشر %s"</string>
+
+    <string name="live_popup_dlg_title">تم إيقاف التدفق المباشر مؤقتًا</string>
+    <string name="live_popup_dlg_content">هل ترغب بمتابعة التدفق المباشر؟</string>
+    <string name="live_popup_dlg_btn_resume">استئناف</string>
+    <string name="live_popup_dlg_btn_finish">إنهاء</string>
+
+    <string name="live_dlg_logout_message">"قمتَ بتسجيل الدخول كـ %s."</string>
+    <string name="live_dlg_btn_logout">تسجيل الخروج</string>
+
+    <string name="live_popup_no_publish_permission">"لا تتوفر أذونات لنشر الفيديوهات المباشرة. يرجى التحقق مما إذا قمت بحذف الأذونات التي منحها Moto Live Stream من Facebook."</string>
+    <string name="live_popup_dlg_network_poor">"فشل البث المباشر على Facebook. يرجى التحقق من اتصال الشبكة."</string>
+    <string name="live_popup_dlg_create_live_failed">"فشل البث المباشر على Facebook. يرجى التحقق مما إذا كان حسابك قادرًا على القيام بالتدفق المباشر."</string>
+    <string name="live_popup_dlg_rtmp_failed">"فشل البث المباشر على Facebook. يرجى التحقق من اتصال الشبكة."</string>
+
+    <string name="live_popup_dlg_camera_failed">"فشل بدء الكاميرا. يرجى إعادة المحاولة."</string>
+
+    <string name="live_deleted_message">تم حذف الفيديو الخاص بك</string>
+    <string name="live_posted_message">تم نشر الفيديو الخاص بك على مخططك الزمني.</string>
+    <string name="live_posted_view">عرض على Facebook</string>
+    <string name="live_process_identify">فهمت</string>
+
+    <string name="live_login_identify">حسنًا</string>
+
+    <string name="str_phone_camera">كاميرا الهاتف</string>
+    <string name="str_mod_camera">\u200fMoto 360 Camera</string>
+    <string name="licenses_title">التراخيص مفتوحة المصدر</string>
+    <string name="licenses_detail">تفاصيل الترخيص للبرامج مفتوحة المصدر</string>
+    <string name="about_title">حول Moto Live Stream</string>
+    <string name="app_name_title">اسم التطبيق</string>
+    <string name="app_version_title">إصدار التطبيق</string>
+</resources>

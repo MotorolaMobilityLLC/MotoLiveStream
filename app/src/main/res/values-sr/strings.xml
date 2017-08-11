@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Мрежа тренутно није доступна."</string>
+    <string name="label_profile_not_available">"Није успело преузимање Facebook профила"</string>
+
+    <string name="dlg_public_profile_not_granted">"Нисте прихватили да Moto Live Stream приступа вашем јавном профилу и прилагођеним листама пријатеља."</string>
+    <string name="dlg_publish_not_granted">"Нисте прихватили да Moto Live Stream поставља видео снимке уживо на Facebook."</string>
+    <string name="dlg_fb_login_failed">"Није успело добијање дозвола за Facebook. Покушајте поново касније."</string>
+
+    <string name="perm_required_alert_title">Потребне су дозволе</string>
+    <string name="perm_required_alert_msg">Moto Live Stream тражи дозволу да би приступио неким стварима на вашем уређају. Изаберите „Дозволе“ у информацијама о апликацији да бисте поново омогућили.</string>
+    <string name="perm_required_alert_button_app_info">Информације о апликацији</string>
+
+    <string name="dlg_request_notification_policy_access">"Желите ли да дозволите да Moto Live Stream мења подешавања за „Не узнемиравај“ да би искључио мелодију звона током стримовања уживо?"</string>
+
+    <string name="label_activity_timeline_privacy">Избор приватности</string>
+    <string name="label_activity_custom_friends">Одређени пријатељи</string>
+
+    <string name="menu_done">Готово</string>
+
+    <string name="btn_ok">Потврди</string>
+    <string name="btn_delete">Избриши</string>
+    <string name="btn_post">Постави</string>
+    <string name="btn_retry">Пробај поново</string>
+    <string name="btn_exit">Изађи</string>
+    <string name="btn_cancel">Откажи</string>
+    <string name="btn_setting">Подешавања</string>
+
+    <string name="live_description_hint">Опис</string>
+
+    <string name="failed_getting_friend_list">Није успело преузимање листе пријатеља. Покушајте поново касније.</string>
+    <string name="no_friend_list_warning">Још увек нисте направили ниједну листу пријатеља.</string>
+
+    <string name="post_live_privacy_description">Поставите стрим уживо на Facebook временску линију да би други могли поново да га погледају.</string>
+    <string name="total_live_time">Емитовали сте уживо <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Јавно</string>
+    <string name="privacy_world_description">Сви на Facebook-у или ван њега</string>
+    <string name="privacy_friends">Пријатељи</string>
+    <string name="privacy_friends_description">Пријатељи на Facebook-у</string>
+    <string name="privacy_self">Само ја</string>
+    <string name="privacy_self_description">Само ја</string>
+    <string name="privacy_custom">Одређени пријатељи</string>
+    <string name="privacy_custom_description">Прикажи само неким пријатељима</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">HD када је 4K искључено</string>
+
+    <string name="live_label_go_live">Уживо на Facebook-у</string>
+    <string name="live_label_count_timer">"УЖИВО %s"</string>
+
+    <string name="live_popup_dlg_title">Стрим уживо је паузиран</string>
+    <string name="live_popup_dlg_content">Желите ли да наставите да стримујете уживо?</string>
+    <string name="live_popup_dlg_btn_resume">Настави</string>
+    <string name="live_popup_dlg_btn_finish">Заврши</string>
+
+    <string name="live_dlg_logout_message">"Пријављени сте као %s."</string>
+    <string name="live_dlg_btn_logout">Одјави ме</string>
+
+    <string name="live_popup_no_publish_permission">"Нема дозволе за постављање видео снимака уживо. Проверите да ли сте избрисали дозволе које је дала услуга Moto Live Stream са Facebook-а."</string>
+    <string name="live_popup_dlg_network_poor">"Није успело стримовање уживо на Facebook-у. Проверите мрежну везу."</string>
+    <string name="live_popup_dlg_create_live_failed">"Није успело стримовање уживо на Facebook-у. Проверите да ли је вашем налогу омогућено стримовање уживо."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Није успело стримовање уживо на Facebook-у. Проверите мрежну везу."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Није успело покретање камере, покушајте поново."</string>
+
+    <string name="live_deleted_message">Видео је избрисан</string>
+    <string name="live_posted_message">Видео је постављен на вашу временску линију.</string>
+    <string name="live_posted_view">Погледајте на Facebook-у</string>
+    <string name="live_process_identify">Важи</string>
+
+    <string name="live_login_identify">Потврди</string>
+
+    <string name="str_phone_camera">Камера телефона</string>
+    <string name="str_mod_camera">Moto 360 Camera</string>
+    <string name="licenses_title">Лиценце отвореног кода</string>
+    <string name="licenses_detail">Детаљи о лиценцама за софтвер отвореног кода</string>
+    <string name="about_title">Основни подаци о Moto Live Stream</string>
+    <string name="app_name_title">Назив апликације</string>
+    <string name="app_version_title">Верзија апликације</string>
+</resources>

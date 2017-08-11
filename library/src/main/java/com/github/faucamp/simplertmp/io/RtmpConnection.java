@@ -44,6 +44,7 @@ import com.github.faucamp.simplertmp.packets.WindowAckSize;
 public class RtmpConnection implements RtmpPublisher {
 
     private static final String TAG = "RtmpConnection";
+    private static final boolean DEBUG = false;
     private static final Pattern rtmpUrlPattern = Pattern.compile("^rtmp://([^/:]+)(:(\\d+))*/([^/]+)(/(.*))*$");
 
     private RtmpHandler mHandler;
@@ -137,6 +138,9 @@ public class RtmpConnection implements RtmpPublisher {
         } catch (IOException e) {
             e.printStackTrace();
             mHandler.notifyRtmpIOException(e);
+            return false;
+        } catch (NullPointerException e) {
+            e.printStackTrace();
             return false;
         }
 
@@ -490,7 +494,9 @@ public class RtmpConnection implements RtmpPublisher {
                 rtmpPacket.getHeader().setAbsoluteTimestamp((int) chunkStreamInfo.markAbsoluteTimestampTx());
             }
             rtmpPacket.writeTo(outputStream, rtmpSessionInfo.getTxChunkSize(), chunkStreamInfo);
-            Log.d(TAG, "wrote packet: " + rtmpPacket + ", size: " + rtmpPacket.getHeader().getPacketLength());
+            if (DEBUG) {
+                Log.d(TAG, "wrote packet: " + rtmpPacket + ", size: " + rtmpPacket.getHeader().getPacketLength());
+            }
             if (rtmpPacket instanceof Command) {
                 rtmpSessionInfo.addInvokedCommand(((Command) rtmpPacket).getTransactionId(), ((Command) rtmpPacket).getCommandName());
             }

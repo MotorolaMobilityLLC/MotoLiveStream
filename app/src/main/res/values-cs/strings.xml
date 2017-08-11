@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Vaše síť nyní není dostupná."</string>
+    <string name="label_profile_not_available">"Nelze získat váš profil služby Facebook"</string>
+
+    <string name="dlg_public_profile_not_granted">"Neudělili jste aplikaci Moto Live Stream přístup ke svému veřejnému profilu a seznamu přátel."</string>
+    <string name="dlg_publish_not_granted">"Neudělili jste aplikaci Moto Live Stream povolení vkládat videa živě do služby Facebook."</string>
+    <string name="dlg_fb_login_failed">"Nepodařilo se získat povolení ze služby Facebook. Zkuste to znovu později."</string>
+
+    <string name="perm_required_alert_title">Vyžadována oprávnění</string>
+    <string name="perm_required_alert_msg">Aplikace Moto Live Stream potřebuje oprávnění pro přístup k některým položkám ve vašem zařízení. Znovu je povolte výběrem možnosti „Oprávnění“ v části informací o aplikaci.</string>
+    <string name="perm_required_alert_button_app_info">Informace o aplikaci</string>
+
+    <string name="dlg_request_notification_policy_access">"Povolit aplikaci Moto Live Stream měnit nastavení režimu Nerušit, aby mohla během živého streamování ztlumit vyzváněcí tón?"</string>
+
+    <string name="label_activity_timeline_privacy">Vybrat možnosti Soukromí</string>
+    <string name="label_activity_custom_friends">Konkrétní přátelé</string>
+
+    <string name="menu_done">Hotovo</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Smazat</string>
+    <string name="btn_post">Odeslat</string>
+    <string name="btn_retry">Opakovat</string>
+    <string name="btn_exit">Ukončit</string>
+    <string name="btn_cancel">Zrušit</string>
+    <string name="btn_setting">Nastavení</string>
+
+    <string name="live_description_hint">Popis</string>
+
+    <string name="failed_getting_friend_list">Nepodařilo se získat seznam přátel. Zkuste to znovu později.</string>
+    <string name="no_friend_list_warning">Zatím jste nevytvořili žádné seznamy přátel.</string>
+
+    <string name="post_live_privacy_description">Zveřejněte svůj živý stream v časové ose služby Facebook, aby si jej lidé mohli zpětně pustit.</string>
+    <string name="total_live_time">Živě jste vysílali po dobu <xliff:g id="DURATION">%s</xliff:g>.</string>
+
+    <string name="privacy_world">Veřejné</string>
+    <string name="privacy_world_description">Každý v síti Facebook i mimo ni</string>
+    <string name="privacy_friends">Přátelé</string>
+    <string name="privacy_friends_description">Vaši přátelé na Facebooku</string>
+    <string name="privacy_self">Jen já</string>
+    <string name="privacy_self_description">Jen já</string>
+    <string name="privacy_custom">Konkrétní přátelé</string>
+    <string name="privacy_custom_description">Zobrazit pouze některým z přátel</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">HD, je-li 4K vypnuté</string>
+
+    <string name="live_label_go_live">Živě na Facebook</string>
+    <string name="live_label_count_timer">"ŽIVĚ %s"</string>
+
+    <string name="live_popup_dlg_title">Vaše živé streamování bylo pozastaveno.</string>
+    <string name="live_popup_dlg_content">Chcete pokračovat v živém streamování?</string>
+    <string name="live_popup_dlg_btn_resume">Pokračovat</string>
+    <string name="live_popup_dlg_btn_finish">Dokončit</string>
+
+    <string name="live_dlg_logout_message">"Jste přihlášeni jako %s."</string>
+    <string name="live_dlg_btn_logout">Odhlásit se</string>
+
+    <string name="live_popup_no_publish_permission">"Nejsou dostupná oprávnění ke zveřejnění živých videí. Zkontrolujte, zda jste nesmazali povolení udělená aplikaci Moto Live Stream službou Facebook."</string>
+    <string name="live_popup_dlg_network_poor">"Nepodařilo se vysílat živě ve službě Facebook. Zkontrolujte připojení k síti."</string>
+    <string name="live_popup_dlg_create_live_failed">"Nepodařilo se vysílat živě ve službě Facebook. Zkontrolujte, zda je z vašeho účtu možné vysílat živý stream."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Nepodařilo se vysílat živě ve službě Facebook. Zkontrolujte připojení k síti."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Nepodařilo se načíst fotoaparát, zkuste to znovu."</string>
+
+    <string name="live_deleted_message">Video bylo smazáno.</string>
+    <string name="live_posted_message">Video bylo zveřejněno na časové ose.</string>
+    <string name="live_posted_view">Zobrazit na Facebooku</string>
+    <string name="live_process_identify">Rozumím</string>
+
+    <string name="live_login_identify">Dobře</string>
+
+    <string name="str_phone_camera">Fotoaparát telefonu</string>
+    <string name="str_mod_camera">Moto 360 Camera</string>
+    <string name="licenses_title">Licence Open Source</string>
+    <string name="licenses_detail">Podrobnosti o licencích pro software Open Source</string>
+    <string name="about_title">O aplikaci Moto Live Stream</string>
+    <string name="app_name_title">Název aplikace</string>
+    <string name="app_version_title">Verze aplikace</string>
+</resources>

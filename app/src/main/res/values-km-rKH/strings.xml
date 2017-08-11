@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">ស្ទ្រីមផ្ទាយ​ផ្ទាល់​របស់ Moto</string>
+
+    <string name="label_network_not_available">"អ្នកមិនមានបណ្ដាញ​ទេនៅពេលនេះ។"</string>
+    <string name="label_profile_not_available">"​បរាជ័យក្នុងការ​ទទួល​កម្រង​ព័ត៌មាន Facebook ​របស់​អ្នក"</string>
+
+    <string name="dlg_public_profile_not_granted">"អ្នកមិនបានយល់ព្រមឱ្យស្ទ្រីមផ្សាយផ្ទាល់របស់ Moto ចូលប្រើទម្រង់ព័ត៌មានសាធារណៈ និងបញ្ជីមិត្តភក្តិ​ផ្ទាល់ខ្លួនរបស់អ្នកទេ។"</string>
+    <string name="dlg_publish_not_granted">"អ្នកមិនបានយល់ព្រមឱ្យ Moto Live Stream បង្ហោះវីដេអូផ្សាយផ្ទាល់លើ Facebook របស់អ្នកទេ។"</string>
+    <string name="dlg_fb_login_failed">"បាន​បរាជ័យក្នុងការ​ទទួល​ការអនុញ្ញាតពី Facebook។ សូម​ព្យាយាម​ម្ដង​ទៀត​នៅពេល​ក្រោយ។"</string>
+
+    <string name="perm_required_alert_title">ចាំបាច់ត្រូវមានការអនុញ្ញាត</string>
+    <string name="perm_required_alert_msg">Moto Live Stream ត្រូវ​ការ​សិទ្ធិ​ដើម្បី​ចូល​ប្រើ​មុខងារ​មួយ​ចំនួន​លើ​ឧបករណ៍​របស់​អ្នក។ ជ្រើសរើស​ “ការអនុញ្ញាត” នៅក្នុង​ព័ត៌មាន​កម្មវិធី​ដើម្បី​បើក​វាឡើងវិញ។</string>
+    <string name="perm_required_alert_button_app_info">ព័ត៌មាន​កម្មវិធី</string>
+
+    <string name="dlg_request_notification_policy_access">"អនុញ្ញាតឱ្យ Moto Live Stream កែប្រែការកំណត់ កុំរំខាន ដើម្បីបិទសំឡេងរោទ៍ក្នុង​ពេល​កំពុង​ស្ទ្រីម។"</string>
+
+    <string name="label_activity_timeline_privacy">ជ្រើសរើស​ភាពឯកជន</string>
+    <string name="label_activity_custom_friends">​មិត្តភក្តិជាក់លាក់</string>
+
+    <string name="menu_done">រួចរាល់</string>
+
+    <string name="btn_ok">យល់ព្រម</string>
+    <string name="btn_delete">លុប</string>
+    <string name="btn_post">ដាក់ប្រកាស</string>
+    <string name="btn_retry">ព្យាយាម​ម្ដងទៀត</string>
+    <string name="btn_exit">ចេញ</string>
+    <string name="btn_cancel">បោះ​បង់​</string>
+    <string name="btn_setting">ការកំណត់​</string>
+
+    <string name="live_description_hint">ការពណ៌នា</string>
+
+    <string name="failed_getting_friend_list">បរាជ័យក្នុងការ​ទទួល​បាន​បញ្ជី​មិត្តភក្តិ។ សូម​ព្យាយាម​ម្ដង​ទៀត​នៅពេល​ក្រោយ។</string>
+    <string name="no_friend_list_warning">អ្នក​មិន​ទាន់​បានបង្កើត​បញ្ជី​មិត្តិភក្តិ​ណាមួយ​នៅ​ឡើយទេ។</string>
+
+    <string name="post_live_privacy_description">ដាក់ប្រកាស​ការ​ស្ទ្រីមផ្សាយ​ផ្ទាល់របស់អ្នក នៅលើ​បន្ទាត់ពេលវេលា​ Facebook របស់អ្នក ដើម្បីឱ្យមនុស្សទាំងឡាយអាច​មើលវា​ឡើងវិញ។</string>
+    <string name="total_live_time">អ្នកបាន​ផ្សាយផ្ទាល់​រយៈពេល <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">សាធារណៈ</string>
+    <string name="privacy_world_description">គ្រប់គ្នា​ដែល​ប្រើ ឬ​មិនប្រើ Facebook</string>
+    <string name="privacy_friends">មិត្តភក្តិ</string>
+    <string name="privacy_friends_description">មិត្តភក្តិ​របស់​អ្នកនៅលើ Facebook</string>
+    <string name="privacy_self">តែខ្ញុំ​ប៉ុណ្ណោះ</string>
+    <string name="privacy_self_description">តែខ្ញុំ​ប៉ុណ្ណោះ</string>
+    <string name="privacy_custom">មិត្តភក្តិ​ជាក់លាក់</string>
+    <string name="privacy_custom_description">បង្ហាញ​តែ​មិត្តភក្ដិ​ខ្លះៗ​ប៉ុណ្ណោះ</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">HD នៅពេល 4K ត្រូវបានបិទ</string>
+
+    <string name="live_label_go_live">ផ្សាយផ្ទាល់នៅលើ Facebook</string>
+    <string name="live_label_count_timer">"ផ្សាយផ្ទាល់ %s"</string>
+
+    <string name="live_popup_dlg_title">ការស្ទ្រីម​ផ្សាយផ្ទាល់​របស់​អ្នក ត្រូវ​បានផ្អាក</string>
+    <string name="live_popup_dlg_content">តើអ្នក​ចង់បន្តស្ទ្រីម​ផ្សាយផ្ទាល់​ទេ?</string>
+    <string name="live_popup_dlg_btn_resume">បន្ត</string>
+    <string name="live_popup_dlg_btn_finish">បញ្ចប់</string>
+
+    <string name="live_dlg_logout_message">"អ្នក​បាន​ចូល​ក្នុងនាមជា %s។"</string>
+    <string name="live_dlg_btn_logout">ចេញ</string>
+
+    <string name="live_popup_no_publish_permission">"មិនមាន​ការ​អនុញ្ញាត​ឱ្យ​បង្ហោះវីដេអូ​ផ្សាយផ្ទាល់ទេ។ សូម​ពិនិត្យ​ក្រែង​អ្នក​បាន​លុប​ការ​អនុញ្ញាត​ដែលបាន​ផ្ដល់​ដោយ Moto Live Stream ចេញពី​ Facebook។"</string>
+    <string name="live_popup_dlg_network_poor">"បរាជ័យក្នុងការផ្សាយផ្ទាល់លើ Facebook។ សូមពិនិត្យ ការតភ្ជាប់បណ្ដាញរបស់អ្នក។"</string>
+    <string name="live_popup_dlg_create_live_failed">"បរាជ័យក្នុងការផ្សាយផ្ទាល់លើ Facebook។ សូមពិនិត្យមើលថាតើ គណនីរបស់អ្នក​អាច​ផ្សាយផ្ទាល់​បានដែរឬទេ។"</string>
+    <string name="live_popup_dlg_rtmp_failed">"បរាជ័យក្នុងការផ្សាយផ្ទាល់លើ Facebook។ សូមពិនិត្យ ការតភ្ជាប់បណ្ដាញរបស់អ្នក។"</string>
+
+    <string name="live_popup_dlg_camera_failed">"បរាជ័យក្នុងការបើកកាមេរ៉ា សូម​ព្យាយាម​ម្ដង​ទៀត។"</string>
+
+    <string name="live_deleted_message">វីដេអូ​របស់​អ្នក​ត្រូវ​បាន​លុបហើយ</string>
+    <string name="live_posted_message">វីដេអូ​របស់​អ្នក​ត្រូវ​បានដាក់ប្រកាស​នៅលើបន្ទាត់ពេល​របស់​អ្នក។</string>
+    <string name="live_posted_view">មើល​នៅលើ facebook</string>
+    <string name="live_process_identify">យល់ហើយ</string>
+
+    <string name="live_login_identify">យល់ព្រម</string>
+
+    <string name="str_phone_camera">កាមេរ៉ាទូរស័ព្ទ</string>
+    <string name="str_mod_camera">Moto 360 Camera</string>
+    <string name="licenses_title">អាជ្ញាប័ណ្ណ​ប្រភព​បើក​ចំហ</string>
+    <string name="licenses_detail">សេចក្ដីលម្អិតអាជ្ញាប័ណ្ណសម្រាប់កម្មវិធីប្រភពកូដចំហ</string>
+    <string name="about_title">អំពី Moto Live Stream</string>
+    <string name="app_name_title">ឈ្មោះ​កម្មវិធី</string>
+    <string name="app_version_title">កំណែកម្មវិធី</string>
+</resources>

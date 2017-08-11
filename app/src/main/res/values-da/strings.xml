@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Netværket er ikke tilgængeligt nu."</string>
+    <string name="label_profile_not_available">"Kunne ikke hente din Facebook-profil"</string>
+
+    <string name="dlg_public_profile_not_granted">"Du har ikke accepteret, at Moto Live Stream opnår adgang til din offentlige profil og dine brugerdefinerede vennelister."</string>
+    <string name="dlg_publish_not_granted">"Du har ikke accepteret, at Moto Live Stream lægger live-videoer op på din Facebook-tidslinje."</string>
+    <string name="dlg_fb_login_failed">"Kunne ikke få tilladelser fra Facebook. Prøv igen senere!"</string>
+
+    <string name="perm_required_alert_title">Tilladelser påkrævet</string>
+    <string name="perm_required_alert_msg">Moto Live Stream skal have tilladelse for at få adgang til bestemte ting på din enhed. Vælg \"Tilladelser\" under Oplysninger om appen for at genaktivere.</string>
+    <string name="perm_required_alert_button_app_info">Oplysninger om appen</string>
+
+    <string name="dlg_request_notification_policy_access">"Vil du tillade at Moto Live Stream ændre indstillinger for Forstyr ikke for at slå ringetonens lyd fra under livestreaming?"</string>
+
+    <string name="label_activity_timeline_privacy">Vælg databeskyttelse</string>
+    <string name="label_activity_custom_friends">Specifikke venner</string>
+
+    <string name="menu_done">Udført</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Slet</string>
+    <string name="btn_post">Læg op</string>
+    <string name="btn_retry">Prøv igen</string>
+    <string name="btn_exit">Afslut</string>
+    <string name="btn_cancel">Annuller</string>
+    <string name="btn_setting">Indstillinger</string>
+
+    <string name="live_description_hint">Beskrivelse</string>
+
+    <string name="failed_getting_friend_list">Kunne ikke hente dine vennelister. Prøv igen senere.</string>
+    <string name="no_friend_list_warning">Du har ikke oprettet vennelister endnu.</string>
+
+    <string name="post_live_privacy_description">Læg din livestream op på din Facebook-tidslinje, så folk kan se den.</string>
+    <string name="total_live_time">Du gik live for <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Offentlig</string>
+    <string name="privacy_world_description">Alle, der er på eller ikke er på Facebook</string>
+    <string name="privacy_friends">Venner</string>
+    <string name="privacy_friends_description">Dine venner på Facebook</string>
+    <string name="privacy_self">Kun mig</string>
+    <string name="privacy_self_description">Kun mig</string>
+    <string name="privacy_custom">Specifikke venner</string>
+    <string name="privacy_custom_description">Vis kun til nogle venner</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">HD når 4K er deaktiveret</string>
+
+    <string name="live_label_go_live">Live på Facebook</string>
+    <string name="live_label_count_timer">"LIVE %s"</string>
+
+    <string name="live_popup_dlg_title">Din live-stream er afbrudt midlertidigt</string>
+    <string name="live_popup_dlg_content">Vil du fortsætte din live-stream?</string>
+    <string name="live_popup_dlg_btn_resume">Genoptag</string>
+    <string name="live_popup_dlg_btn_finish">Afslut</string>
+
+    <string name="live_dlg_logout_message">"Du er logget ind som %s."</string>
+    <string name="live_dlg_btn_logout">Log af</string>
+
+    <string name="live_popup_no_publish_permission">"Der er ingen tilgængelige tilladelser til at lægge live-videoer op. Kontroller, om du har slettet de tilladelser, der blev givet af Moto Live Stream fra Facebook."</string>
+    <string name="live_popup_dlg_network_poor">"Kunne ikke gå live på Facebook. Kontroller din netværksforbindelse."</string>
+    <string name="live_popup_dlg_create_live_failed">"Kunne ikke gå live på Facebook. Kontroller, om din konto kan livestreame."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Kunne ikke gå live på Facebook. Kontroller din netværksforbindelse."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Kunne ikke starte kameraet, prøv igen."</string>
+
+    <string name="live_deleted_message">Din video er blevet slettet</string>
+    <string name="live_posted_message">Din video er blevet lagt op på din tidslinje.</string>
+    <string name="live_posted_view">Vis på Facebook</string>
+    <string name="live_process_identify">Fundet</string>
+
+    <string name="live_login_identify">Okay</string>
+
+    <string name="str_phone_camera">Telefonkamera</string>
+    <string name="str_mod_camera">Moto 360 Camera</string>
+    <string name="licenses_title">Open source-licenser</string>
+    <string name="licenses_detail">Licensdetaljer til open source-software</string>
+    <string name="about_title">Om Moto Live Stream</string>
+    <string name="app_name_title">Navn på app</string>
+    <string name="app_version_title">App-version</string>
+</resources>

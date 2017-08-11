@@ -2,8 +2,19 @@
     <string name="app_name">Moto Live Stream</string>
     <string name="facebook_app_id" translatable="false">1933762443579662</string>
 
-    <string name="label_network_not_available">"Your network not available now."</string>
-    <string name="label_profile_not_available">"Failed to get your profile"</string>
+    <string name="label_network_not_available">"Your network is unavailable now."</string>
+    <string name="label_profile_not_available">"Failed to get your Facebook profile"</string>
+
+    <string name="dlg_public_profile_not_granted">"You are not agreed with Moto Live Stream to access your public profile and custom friends lists."</string>
+    <string name="dlg_publish_not_granted">"You are not agreed with Moto Live Stream to post Live Video to your Facebook."</string>
+    <string name="dlg_fb_login_failed">"Failed to obtain permissions from Facebook. Please try again later."</string>
+
+    <string name="perm_required_alert_title">Permissions required</string>
+    <string name="perm_required_alert_msg">Moto Live Stream needs permission to access some
+        things on your device. Select \"Permissions\" in App info to re-enable.</string>
+    <string name="perm_required_alert_button_app_info">App Info</string>
+
+    <string name="dlg_request_notification_policy_access">"Allow Moto Live Stream to change Do Not Disturb settings to mute the ringtone while live streaming?"</string>
 
     <string name="label_activity_timeline_privacy">Select Privacy</string>
     <string name="label_activity_custom_friends">Specific Friends</string>
@@ -13,13 +24,17 @@
     <string name="btn_ok">OK</string>
     <string name="btn_delete">Delete</string>
     <string name="btn_post">Post</string>
+    <string name="btn_retry">Retry</string>
+    <string name="btn_exit">Exit</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_setting">Settings</string>
 
     <string name="live_description_hint">Description</string>
 
-    <string name="failed_getting_friend_list">Failed to get your friend list. Please try again later.</string>
-    <string name="no_friend_list_warning">You have not create any friend list yet.</string>
+    <string name="failed_getting_friend_list">Failed to get your Friend Lists. Please try again later.</string>
+    <string name="no_friend_list_warning">You have not created any Friend Lists yet.</string>
 
-    <string name="post_live_privacy_description">Post your video replay on your facebook timeline so that people can watch it back.</string>
+    <string name="post_live_privacy_description">Post your your live stream on your Facebook timeline so that people can watch it back.</string>
     <!-- Live stream duration -->
     <string name="total_live_time">You went live for <xliff:g id="DURATION">%s</xliff:g></string>
 
@@ -32,8 +47,11 @@
     <string name="privacy_custom">Specific friends</string>
     <string name="privacy_custom_description">Only show to some friends</string>
 
-    <string name="live_label_go_live">Go Live</string>
-    <string name="live_label_count_timer" translatable="false">"LIVE %s"</string>
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">HD when 4K is off</string>
+
+    <string name="live_label_go_live">Live to Facebook</string>
+    <string name="live_label_count_timer">"LIVE %s"</string>
 
     <string name="live_popup_dlg_title">Your live stream has been paused</string>
     <string name="live_popup_dlg_content">Do you want to continue your live stream?</string>
@@ -43,9 +61,12 @@
     <string name="live_dlg_logout_message">"You are logged in as %s."</string>
     <string name="live_dlg_btn_logout">Log out</string>
 
-    <string name="live_popup_dlg_network_poor">Create live failed, please check if your network is able to access Facebook service.</string>
+    <string name="live_popup_no_publish_permission">"No permissions available to post live videos. Please check if you have deleted the permissions granted by Moto Live Stream from Facebook."</string>
+    <string name="live_popup_dlg_network_poor">"Failed to go live on Facebook. Please check your network connectivity."</string>
+    <string name="live_popup_dlg_create_live_failed">"Failed to go live on Facebook. Please check if your account is able to live stream."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Failed to go live on Facebook. Please check your network connectivity."</string>
 
-    <string name="live_popup_dlg_camera_failed">Failed to connect to camera service, please try again later.</string>
+    <string name="live_popup_dlg_camera_failed">"Failed to initiate camera, please try again."</string>
 
     <string name="live_deleted_message">Your video has been deleted</string>
     <string name="live_posted_message">Your video has been posted on your timeline.</string>
@@ -55,5 +76,12 @@
     <string name="live_login_identify">Okay</string>
 
     <string name="str_phone_camera">Phone camera</string>
-    <string name="str_mod_camera">360 camera</string>
+    <string name="str_mod_camera">Moto 360 camera</string>
+
+    <!-- Open source licenses -->
+    <string name="licenses_title">Open source licenses</string>
+    <string name="licenses_detail">License details for open source software</string>
+    <string name="about_title">About Moto Live Stream</string>
+    <string name="app_name_title">App name</string>
+    <string name="app_version_title">App version</string>
 </resources>

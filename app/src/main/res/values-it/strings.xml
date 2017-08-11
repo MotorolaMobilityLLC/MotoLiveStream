@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"La tua rete non è attualmente disponibile."</string>
+    <string name="label_profile_not_available">"Impossibile ottenere il tuo profilo Facebook"</string>
+
+    <string name="dlg_public_profile_not_granted">"Non hai accettato che Moto Live Stream acceda al tuo profilo pubblico e agli elenchi degli amici personalizzati."</string>
+    <string name="dlg_publish_not_granted">"Non hai accettato che Moto Live Stream pubblichi video in diretta sulla tua pagina Facebook."</string>
+    <string name="dlg_fb_login_failed">"Impossibile ottenere le autorizzazioni da Facebook. Riprova più tardi."</string>
+
+    <string name="perm_required_alert_title">Autorizzazioni richieste</string>
+    <string name="perm_required_alert_msg">Moto Live Stream necessita dell\'autorizzazione per accedere ad alcuni elementi del dispositivo. Seleziona \"Autorizzazioni\" in Informazioni app per riattivare.</string>
+    <string name="perm_required_alert_button_app_info">Informazioni app</string>
+
+    <string name="dlg_request_notification_policy_access">"Consentire a Moto Live Stream di modificare le impostazioni di Non disturbare per disattivare la suoneria durante lo streaming della diretta?"</string>
+
+    <string name="label_activity_timeline_privacy">Seleziona privacy</string>
+    <string name="label_activity_custom_friends">Amici specifici</string>
+
+    <string name="menu_done">Fine</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Elimina</string>
+    <string name="btn_post">Pubblica</string>
+    <string name="btn_retry">Riprova</string>
+    <string name="btn_exit">Esci</string>
+    <string name="btn_cancel">Annulla</string>
+    <string name="btn_setting">Impostazioni</string>
+
+    <string name="live_description_hint">Descrizione</string>
+
+    <string name="failed_getting_friend_list">Impossibile ottenere il tuo elenco degli amici. Riprova più tardi.</string>
+    <string name="no_friend_list_warning">Non hai ancora creato un elenco di amici.</string>
+
+    <string name="post_live_privacy_description">Pubblica la diretta streaming sul tuo diario di Facebook per consentire a più persone di riguardarla.</string>
+    <string name="total_live_time">Hai trasmesso in diretta per <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Pubblico</string>
+    <string name="privacy_world_description">Chiunque con o senza account Facebook</string>
+    <string name="privacy_friends">Amici</string>
+    <string name="privacy_friends_description">I tuoi amici su Facebook</string>
+    <string name="privacy_self">Solo io</string>
+    <string name="privacy_self_description">Solo io</string>
+    <string name="privacy_custom">Amici specifici</string>
+    <string name="privacy_custom_description">Mostra solo ad alcuni amici</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">HD quando l\'opzione 4K è disattivata</string>
+
+    <string name="live_label_go_live">In diretta su Facebook</string>
+    <string name="live_label_count_timer">"DIRETTA %s"</string>
+
+    <string name="live_popup_dlg_title">La tua diretta streaming è stata messa in pausa</string>
+    <string name="live_popup_dlg_content">Vuoi continuare la tua diretta streaming?</string>
+    <string name="live_popup_dlg_btn_resume">Riprendi</string>
+    <string name="live_popup_dlg_btn_finish">Fine</string>
+
+    <string name="live_dlg_logout_message">"Hai effettuato l\'accesso come %s."</string>
+    <string name="live_dlg_btn_logout">Disconnetti</string>
+
+    <string name="live_popup_no_publish_permission">"Nessuna autorizzazione disponibile per la pubblicazione di video in diretta. Controlla se hai eliminato le autorizzazioni concesse a Moto Live Stream da Facebook."</string>
+    <string name="live_popup_dlg_network_poor">"Impossibile trasmettere in diretta su Facebook. Verifica la connettività di rete."</string>
+    <string name="live_popup_dlg_create_live_failed">"Impossibile trasmettere in diretta su Facebook. Verifica che il tuo account sia in grado di trasmettere in diretta."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Impossibile trasmettere in diretta su Facebook. Verifica la connettività di rete."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Impossibile avviare la fotocamera. Riprova."</string>
+
+    <string name="live_deleted_message">Il tuo video è stato eliminato</string>
+    <string name="live_posted_message">Il video è stato pubblicato sul tuo diario.</string>
+    <string name="live_posted_view">Guarda su Facebook</string>
+    <string name="live_process_identify">OK</string>
+
+    <string name="live_login_identify">OK</string>
+
+    <string name="str_phone_camera">Fotocamera del telefono</string>
+    <string name="str_mod_camera">Moto 360 Camera</string>
+    <string name="licenses_title">Licenze open source</string>
+    <string name="licenses_detail">Dettagli licenze per software open source</string>
+    <string name="about_title">Info su Moto Live Stream</string>
+    <string name="app_name_title">Nome applicazione</string>
+    <string name="app_version_title">Versione dell\'app</string>
+</resources>

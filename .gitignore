@@ -1,0 +1,16 @@
+*bin/
+*gen/
+.DS*
+.classpath
+.project
+.gradle
+local.properties
+proguard.cfg
+*-bug-report.html
+build/intermediates/
+build/generated/
+captures/
+*/.idea/
+*.iml
+*.idea
+*.idea/

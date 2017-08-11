@@ -3,6 +3,7 @@ package com.motorola.livestream.ui.widget;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.text.format.DateUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -34,29 +35,8 @@ public class LiveCountingTimer extends LinearLayout {
         mTimerPreStr = context.getString(R.string.live_label_count_timer);
     }
 
-    private String formatTime(int timeInSeconds) {
-        timeInSeconds = Math.max(timeInSeconds, 0);
-        int minute = timeInSeconds / 60;
-        int hour = minute / 60;
-        StringBuilder sb = new StringBuilder();
-        if (hour > 0) {
-            sb.append(formatTimePart(hour)).append(":");
-        }
-        sb.append(formatTimePart(minute % 60)).append(":");
-        sb.append(formatTimePart(timeInSeconds % 60));
-        return sb.toString();
-    }
-
-    private String formatTimePart(int timePart) {
-        String timeStr = String.valueOf(timePart);
-        if (timePart < 10) {
-            return "0" + timeStr;
-        }
-        return timeStr;
-    }
-
     private void setTime(int timeInSeconds) {
-        mTimeStr = formatTime(timeInSeconds);
+        mTimeStr = DateUtils.formatElapsedTime(timeInSeconds);
         mLiveTime.setText(String.format(mTimerPreStr, mTimeStr));
     }
 

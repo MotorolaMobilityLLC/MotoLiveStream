@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.motorola.livestream"
-        minSdkVersion 24
+        minSdkVersion 23
         targetSdkVersion 25
         versionCode getCustomVersionCode()
         versionName "${getVersionNameMajor()}"

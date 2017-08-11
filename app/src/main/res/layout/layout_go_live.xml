@@ -1,88 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/live_btn_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/go_live_button_panel_height"
     android:layout_alignParentBottom="true"
-    android:paddingStart="@dimen/top_layout_margin"
-    android:paddingEnd="@dimen/top_layout_margin"
+    android:paddingStart="@dimen/live_layout_go_live_margin_horizontal"
+    android:paddingEnd="@dimen/live_layout_go_live_margin_horizontal"
+    android:paddingBottom="@dimen/live_ctrl_panel_margin_bottom"
     android:background="@color/black_overlay">
 
-    <TextView
+    <ImageButton
+        android:id="@+id/btn_go_live"
+        android:layout_width="@dimen/go_live_button_size"
+        android:layout_height="@dimen/go_live_button_size"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:drawablePadding="@dimen/live_layout_margin_vertical"
+        android:background="@drawable/btn_golive_bg"
+        android:src="@drawable/btn_golive_st" />
+
+    <ImageView
         android:id="@+id/label_golive"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/live_layout_settings_child_margin_vertical"
-        android:text="@string/live_label_go_live"
-        android:textSize="@dimen/text_size_medium"
-        android:textAllCaps="true"
-        android:textColor="@android:color/white"/>
+        android:layout_height="20dp"
+        android:layout_above="@id/btn_go_live"
+        android:layout_marginBottom="@dimen/go_live_label_margin_bottom"
+        android:src="@drawable/ic_facebook_label"
+        android:scaleType="centerCrop"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:id="@+id/btn_exit"
+        android:layout_width="@dimen/button_size"
+        android:layout_height="@dimen/button_size"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/go_live_button_margin_bottom"
+        android:src="@drawable/btn_close"
+        android:background="@drawable/btn_background" />
 
     <RelativeLayout
-        android:id="@+id/live_btn"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/go_live_button_panel_height"
-        android:layout_below="@id/label_golive"
-        android:layout_marginBottom="@dimen/live_ctrl_panel_margin_bottom">
-
-        <ImageButton
-            android:id="@+id/btn_go_live"
-            android:layout_width="@dimen/go_live_button_panel_height"
-            android:layout_height="@dimen/go_live_button_panel_height"
-            android:layout_centerHorizontal="true"
-            android:drawablePadding="@dimen/live_layout_margin_vertical"
-            android:background="@drawable/btn_golive_bg"
-            android:src="@drawable/btn_golive_st" />
-
-        <ImageButton
-            android:id="@+id/btn_capture"
-            android:layout_width="@dimen/button_size"
-            android:layout_height="@dimen/button_size"
-            android:layout_centerVertical="true"
-            android:drawablePadding="@dimen/live_layout_margin_vertical"
-            android:layout_toStartOf="@id/btn_go_live"
-            android:layout_marginEnd="@dimen/live_layout_margin"
-            android:background="@drawable/btn_bg"
-            android:visibility="gone"/>
-
-        <ImageButton
-            android:id="@+id/btn_exit"
-            android:layout_width="@dimen/button_size"
-            android:layout_height="@dimen/button_size"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:drawablePadding="@dimen/live_layout_margin_vertical"
-            android:src="@drawable/btn_close"
-            android:background="@drawable/btn_bg"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/dynamic_camera_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/button_size"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/live_btn">
+        android:layout_marginTop="@dimen/go_live_button_margin_bottom"
+        android:layout_marginBottom="@dimen/go_live_button_margin_bottom"
+        android:orientation="vertical">
 
         <ImageButton
             android:id="@+id/btn_select_camera"
             android:layout_width="@dimen/button_size"
             android:layout_height="@dimen/button_size"
-            android:layout_marginTop="@dimen/text_line_space"
-            android:layout_marginBottom="@dimen/text_line_space"
-            android:drawablePadding="@dimen/live_layout_margin_vertical"
-            android:src="@drawable/btn_camera_mode"
-            android:background="@drawable/btn_bg"
-            android:visibility="gone"/>
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/go_live_button_margin_top"
+            android:src="@drawable/btn_cam_select"
+            android:background="@drawable/btn_background"
+            android:visibility="gone" />
 
         <ImageButton
             android:id="@+id/btn_switch_camera"
             android:layout_width="@dimen/button_size"
             android:layout_height="@dimen/button_size"
-            android:layout_marginTop="@dimen/text_line_space"
-            android:layout_marginBottom="@dimen/text_line_space"
-            android:drawablePadding="@dimen/live_layout_margin_vertical"
+            android:layout_alignParentStart="true"
+            android:layout_above="@id/btn_select_camera"
             android:src="@drawable/btn_cam_switch"
-            android:background="@drawable/btn_bg"
-            android:layout_alignParentTop="true"
-            android:layout_above="@id/btn_select_camera"/>
+            android:background="@drawable/btn_background" />
+
     </RelativeLayout>
+
 </RelativeLayout>

@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Ağınız şu an kullanılamıyor."</string>
+    <string name="label_profile_not_available">"Facebook profiliniz alınamadı"</string>
+
+    <string name="dlg_public_profile_not_granted">"Moto Live Stream\'in genel profilinize ve özel arkadaş listelerinize erişmesini kabul etmediniz."</string>
+    <string name="dlg_publish_not_granted">"Moto Live Stream\'in Facebook\'unuza Canlı Video göndermesini kabul etmediniz."</string>
+    <string name="dlg_fb_login_failed">"Facebook\'tan izin alınamadı. Lütfen daha sonra tekrar deneyin."</string>
+
+    <string name="perm_required_alert_title">İzin gerektirir</string>
+    <string name="perm_required_alert_msg">Cihazınızdaki bazı öğelere erişmesi için Moto Live Stream\'e izin verilmesi gerekir. Yeniden etkinleştirmek için Uygulama bilgilerinden \"İzinler\" seçeneğini belirleyin.</string>
+    <string name="perm_required_alert_button_app_info">Uygulama Bilgileri</string>
+
+    <string name="dlg_request_notification_policy_access">"Canlı yayın sırasında Moto Live Stream\'in Rahatsız Etme modu ayarlarını değiştirerek zil sesini kapatmasına izin verilsin mi?"</string>
+
+    <string name="label_activity_timeline_privacy">Gizliliği Seç</string>
+    <string name="label_activity_custom_friends">Belirli Arkadaşlar</string>
+
+    <string name="menu_done">Bitti</string>
+
+    <string name="btn_ok">Tamam</string>
+    <string name="btn_delete">Sil</string>
+    <string name="btn_post">Gönder</string>
+    <string name="btn_retry">Tekrar dene</string>
+    <string name="btn_exit">Çık</string>
+    <string name="btn_cancel">İptal</string>
+    <string name="btn_setting">Ayarlar</string>
+
+    <string name="live_description_hint">Açıklama</string>
+
+    <string name="failed_getting_friend_list">Arkadaş Listeleriniz alınamadı. Lütfen daha sonra tekrar deneyin.</string>
+    <string name="no_friend_list_warning">Henüz Arkadaş Listesi oluşturmadınız.</string>
+
+    <string name="post_live_privacy_description">Tekrar izlenebilmesi için canlı yayınınızı Facebook zaman tünelinize gönderin.</string>
+    <string name="total_live_time"><xliff:g id="DURATION">%s</xliff:g> boyunca canlı yayın yaptınız</string>
+
+    <string name="privacy_world">Herkese Açık</string>
+    <string name="privacy_world_description">Facebook\'ta olan veya olmayan herkes</string>
+    <string name="privacy_friends">Arkadaşlar</string>
+    <string name="privacy_friends_description">Facebook\'taki arkadaşlarınız</string>
+    <string name="privacy_self">Sadece ben</string>
+    <string name="privacy_self_description">Sadece ben</string>
+    <string name="privacy_custom">Belirli arkadaşlar</string>
+    <string name="privacy_custom_description">Sadece bazı arkadaşlara göster</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">4K kapalıyken HD</string>
+
+    <string name="live_label_go_live">Facebook\'ta Canlı Yayın</string>
+    <string name="live_label_count_timer">"CANLI %s"</string>
+
+    <string name="live_popup_dlg_title">Canlı yayınınız duraklatıldı</string>
+    <string name="live_popup_dlg_content">Canlı yayınınıza devam etmek istiyor musunuz?</string>
+    <string name="live_popup_dlg_btn_resume">Sürdür</string>
+    <string name="live_popup_dlg_btn_finish">Bitir</string>
+
+    <string name="live_dlg_logout_message">"%s olarak oturum açtınız."</string>
+    <string name="live_dlg_btn_logout">Oturumu kapat</string>
+
+    <string name="live_popup_no_publish_permission">"Canlı video göndermek için hiçbir izin mevcut değil. Lütfen Facebook Moto Live Stream tarafından verilen izinleri silip silmediğinizi kontrol edin."</string>
+    <string name="live_popup_dlg_network_poor">"Facebook\'ta canlı yayına geçilemedi. Lütfen ağ bağlantınızı kontrol edin."</string>
+    <string name="live_popup_dlg_create_live_failed">"Facebook\'ta canlı yayına geçilemedi. Lütfen hesabınızın canlı yayın yapıp yapamadığını kontrol edin."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Facebook\'ta canlı yayına geçilemedi. Lütfen ağ bağlantınızı kontrol edin."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Kamera başlatılamadı. Lütfen tekrar deneyin."</string>
+
+    <string name="live_deleted_message">Videonuz silindi</string>
+    <string name="live_posted_message">Videonuz zaman tünelinize gönderildi.</string>
+    <string name="live_posted_view">Facebook\'ta görüntüle</string>
+    <string name="live_process_identify">Anladım</string>
+
+    <string name="live_login_identify">Tamam</string>
+
+    <string name="str_phone_camera">Telefon kamerası</string>
+    <string name="str_mod_camera">Moto 360 Camera</string>
+    <string name="licenses_title">Açık kaynak lisansları</string>
+    <string name="licenses_detail">Açık kaynaklı yazılımın lisans ayrıntıları</string>
+    <string name="about_title">Moto Live Stream Hakkında</string>
+    <string name="app_name_title">Uygulama adı</string>
+    <string name="app_version_title">Uygulama sürümü</string>
+</resources>

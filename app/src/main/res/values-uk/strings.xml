@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">MotoLiveStream</string>
+
+    <string name="label_network_not_available">"Ваша мережа наразі недоступна."</string>
+    <string name="label_profile_not_available">"Не вдалося отримати ваш профіль Facebook"</string>
+
+    <string name="dlg_public_profile_not_granted">"Ви не надали згоду на доступ Moto Live Stream до вашого відкритого профілю й користувацьких списків друзів."</string>
+    <string name="dlg_publish_not_granted">"Ви не надали згоду на публікацію програмою Moto Live Stream \"живих\" відео на вашій сторінці у Facebook."</string>
+    <string name="dlg_fb_login_failed">"Не вдалося отримати дозволи від Facebook. Повторіть спробу пізніше."</string>
+
+    <string name="perm_required_alert_title">Необхідні дозволи</string>
+    <string name="perm_required_alert_msg">Програмі Moto Live Stream потрібен дозвіл для доступу до певних файлів на пристрої. Щоб відновити дозвіл, виберіть \"Дозволи\" в розділі \"Інформація про програму\".</string>
+    <string name="perm_required_alert_button_app_info">Інформація про програму</string>
+
+    <string name="dlg_request_notification_policy_access">"Дозволити програмі Moto Live Stream змінювати налаштування режиму \"Не турбувати\", щоб вимикати мелодію дзвінка під час прямої трансляції?"</string>
+
+    <string name="label_activity_timeline_privacy">Налаштувати видимість</string>
+    <string name="label_activity_custom_friends">Вибрані друзі</string>
+
+    <string name="menu_done">Готово</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Видалити</string>
+    <string name="btn_post">Опублікувати</string>
+    <string name="btn_retry">Повторити спробу</string>
+    <string name="btn_exit">Вихід</string>
+    <string name="btn_cancel">Скасувати</string>
+    <string name="btn_setting">Налаштування</string>
+
+    <string name="live_description_hint">Опис</string>
+
+    <string name="failed_getting_friend_list">Не вдалось отримати списки ваших друзів. Повторіть спробу пізніше.</string>
+    <string name="no_friend_list_warning">Ви ще не створили жодного списку друзів.</string>
+
+    <string name="post_live_privacy_description">Опублікуйте трансляцію у своїй хроніці Facebook, щоб інші могли побачити її знову.</string>
+    <string name="total_live_time">Тривалість трансляції: <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Загальнодоступне</string>
+    <string name="privacy_world_description">Користувачі Facebook та Інтернету</string>
+    <string name="privacy_friends">Друзі</string>
+    <string name="privacy_friends_description">Ваші друзі на Facebook</string>
+    <string name="privacy_self">Лише я</string>
+    <string name="privacy_self_description">Лише я</string>
+    <string name="privacy_custom">Вибрані друзі</string>
+    <string name="privacy_custom_description">Показати лише вибраним друзям</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">HD, коли вимкнено 4K</string>
+
+    <string name="live_label_go_live">Наживо на Facebook</string>
+    <string name="live_label_count_timer">"НАЖИВО %s"</string>
+
+    <string name="live_popup_dlg_title">Вашу трансляцію призупинено</string>
+    <string name="live_popup_dlg_content">Продовжити трансляцію?</string>
+    <string name="live_popup_dlg_btn_resume">Відновити</string>
+    <string name="live_popup_dlg_btn_finish">Завершити</string>
+
+    <string name="live_dlg_logout_message">"Ви ввійшли як %s."</string>
+    <string name="live_dlg_btn_logout">Вийти</string>
+
+    <string name="live_popup_no_publish_permission">"Відсутні дозволи на пряму відеотрансляцію. Перевірте, чи не видалені дозволи, надані програмою Moto Live Stream, із сайту або програми Facebook."</string>
+    <string name="live_popup_dlg_network_poor">"Помилка прямої трансляції на Facebook. Перевірте мережне підключення."</string>
+    <string name="live_popup_dlg_create_live_failed">"Помилка прямої трансляції на Facebook. Переконайтеся, що ваш обліковий запис підтримує можливість прямих трансляцій."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Помилка прямої трансляції на Facebook. Перевірте мережне підключення."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Не вдалося увімкнути камеру, спробуйте пізніше."</string>
+
+    <string name="live_deleted_message">Ваше відео видалено</string>
+    <string name="live_posted_message">Запис трансляції опубліковано у вашій Хроніці.</string>
+    <string name="live_posted_view">Переглянути на Facebook</string>
+    <string name="live_process_identify">Зрозуміло</string>
+
+    <string name="live_login_identify">ОК</string>
+
+    <string name="str_phone_camera">Камера телефона</string>
+    <string name="str_mod_camera">Moto 360 Camera</string>
+    <string name="licenses_title">Ліцензії на ПЗ з відкритим кодом</string>
+    <string name="licenses_detail">Деталі ліцензій на ПЗ з відкритим кодом</string>
+    <string name="about_title">Про Moto Live Stream</string>
+    <string name="app_name_title">Назва програми</string>
+    <string name="app_version_title">Версія програми</string>
+</resources>

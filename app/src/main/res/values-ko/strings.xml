@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live 스트리밍</string>
+
+    <string name="label_network_not_available">"지금은 네트워크를 사용할 수 없습니다."</string>
+    <string name="label_profile_not_available">"Facebook 프로필을 가져오지 못함"</string>
+
+    <string name="dlg_public_profile_not_granted">"Moto Live 스트리밍이 공개 프로필과 사용자 설정 친구 목록에 액세스하도록 동의하지 않았습니다."</string>
+    <string name="dlg_publish_not_granted">"Moto Live 스트리밍이 라이브 동영상을 Facebook에 게시하도록 동의하지 않았습니다."</string>
+    <string name="dlg_fb_login_failed">"Facebook에서 권한을 획득하지 못했습니다. 나중에 다시 시도해 주십시오."</string>
+
+    <string name="perm_required_alert_title">권한 필요</string>
+    <string name="perm_required_alert_msg">Moto Live 스트리밍이 휴대전화의 특정 항목에 액세스하려면 권한이 필요합니다. 앱 정보의 \"권한\"을 선택하여 다시 활성화하십시오.</string>
+    <string name="perm_required_alert_button_app_info">앱 정보</string>
+
+    <string name="dlg_request_notification_policy_access">"스트리밍 중에는 벨소리를 사용하지 않도록 Moto Live 스트리밍에 방해금지 설정 변경 권한을 부여하시겠습니까?"</string>
+
+    <string name="label_activity_timeline_privacy">개인정보 보호 선택</string>
+    <string name="label_activity_custom_friends">특정 친구</string>
+
+    <string name="menu_done">완료</string>
+
+    <string name="btn_ok">확인</string>
+    <string name="btn_delete">삭제</string>
+    <string name="btn_post">게시</string>
+    <string name="btn_retry">다시 시도</string>
+    <string name="btn_exit">종료</string>
+    <string name="btn_cancel">취소</string>
+    <string name="btn_setting">설정</string>
+
+    <string name="live_description_hint">설명</string>
+
+    <string name="failed_getting_friend_list">친구 목록을 가져오지 못했습니다. 나중에 다시 시도해 주십시오.</string>
+    <string name="no_friend_list_warning">아직 친구 목록을 만들지 않았습니다.</string>
+
+    <string name="post_live_privacy_description">모두가 다시 볼 수 있도록 라이브 스트리밍 영상을 Facebook 타임라인에 게시하십시오.</string>
+    <string name="total_live_time">라이브 시간: <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">공개</string>
+    <string name="privacy_world_description">전체</string>
+    <string name="privacy_friends">친구의 소셜앨범</string>
+    <string name="privacy_friends_description">Facebook 친구</string>
+    <string name="privacy_self">나만</string>
+    <string name="privacy_self_description">나만</string>
+    <string name="privacy_custom">특정 친구</string>
+    <string name="privacy_custom_description">일부 친구에게만 표시</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">4K가 꺼져 있을 때 HD 사용</string>
+
+    <string name="live_label_go_live">Facebook에 라이브 스트리밍</string>
+    <string name="live_label_count_timer">"%s 라이브"</string>
+
+    <string name="live_popup_dlg_title">라이브 스트리밍이 일시 정지되었습니다</string>
+    <string name="live_popup_dlg_content">라이브 스트리밍을 재개하시겠습니까?</string>
+    <string name="live_popup_dlg_btn_resume">재개</string>
+    <string name="live_popup_dlg_btn_finish">마침</string>
+
+    <string name="live_dlg_logout_message">"%s(으)로 로그인했습니다."</string>
+    <string name="live_dlg_btn_logout">로그아웃</string>
+
+    <string name="live_popup_no_publish_permission">"라이브 동영상을 게시할 권한이 없습니다. Facebook이 Moto Live 스트리밍에 부여한 권한을 삭제했는지 확인하십시오."</string>
+    <string name="live_popup_dlg_network_poor">"Facebook에 게시할 수 없습니다. 네트워크 연결을 확인하십시오."</string>
+    <string name="live_popup_dlg_create_live_failed">"Facebook에 게시할 수 없습니다. 해당 계정으로 라이브 스트리밍이 가능한지 확인하십시오."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Facebook에 게시할 수 없습니다. 네트워크 연결을 확인하십시오."</string>
+
+    <string name="live_popup_dlg_camera_failed">"카메라를 시작하지 못했습니다. 나중에 다시 시도하십시오."</string>
+
+    <string name="live_deleted_message">동영상이 삭제됨</string>
+    <string name="live_posted_message">동영상이 타임라인에 게시되었습니다.</string>
+    <string name="live_posted_view">Facebook에서 보기</string>
+    <string name="live_process_identify">확인</string>
+
+    <string name="live_login_identify">확인</string>
+
+    <string name="str_phone_camera">휴대전화 카메라</string>
+    <string name="str_mod_camera">Moto 360 Camera</string>
+    <string name="licenses_title">오픈 소스 라이센스</string>
+    <string name="licenses_detail">오픈 소스 소프트웨어에 대한 라이센스 세부정보</string>
+    <string name="about_title">Moto Live 스트리밍 정보</string>
+    <string name="app_name_title">애플리케이션 이름</string>
+    <string name="app_version_title">앱 버전</string>
+</resources>

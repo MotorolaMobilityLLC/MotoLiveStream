@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto සජීවී ප්‍රවාහය</string>
+
+    <string name="label_network_not_available">"ඔබේ ජාලය දැන් ලබා ගත නොහැකිය."</string>
+    <string name="label_profile_not_available">"ඔබේ Facebook පැතිකඩ ලබා ගැනීමට අසමත් විය"</string>
+
+    <string name="dlg_public_profile_not_granted">"ඔබ ඔබේ පොදු පැතිකඩ සහ අභිමත මිතුරන්ගේ ලැයිස්තුවලට Moto සජීවී ප්‍රවාහයේ ප්‍රවේශය සමඟ එකඟ වී නැත."</string>
+    <string name="dlg_publish_not_granted">"ඔබ ඔබේ Facebook වෙත Moto සජීවී ප්‍රවාහය සජීවී වීඩියෝ පළ කිරීමත් සමඟ එකඟ වී නැත."</string>
+    <string name="dlg_fb_login_failed">"Facebook වෙතින් අවසර ලබා ගැනීමට අසමත් විය. පසුව නැවත උත්සාහ කරන්න."</string>
+
+    <string name="perm_required_alert_title">අවසර අවශ්‍යයි</string>
+    <string name="perm_required_alert_msg">Moto සජීවී ප්‍රවාහයට ඔබේ උපාංගයේ යම් දේවල් වෙත ප්‍රවේශ වීමට අවසරය අවශ්‍යයි. යළි-සබල කිරීමට යෙදුම් තතුවල \"අවසර\" තෝරන්න.</string>
+    <string name="perm_required_alert_button_app_info">යෙදුම් තතු</string>
+
+    <string name="dlg_request_notification_policy_access">"සජීවී ප්‍රවාහය අතරතුරදී නාදරිද්මය නිහඬ කිරීම සඳහා Moto සජීවී ප්‍රවාහයට බාධා නොකරන්න සැකසුම් වෙනස් කිරීමට ඉඩ දෙන්න ද?"</string>
+
+    <string name="label_activity_timeline_privacy">රහස්‍යතාවය තෝරන්න</string>
+    <string name="label_activity_custom_friends">විශේෂිත මිතුරන්</string>
+
+    <string name="menu_done">හරි</string>
+
+    <string name="btn_ok">හරි</string>
+    <string name="btn_delete">මකන්න</string>
+    <string name="btn_post">පළ කිරීම</string>
+    <string name="btn_retry">නැවත උත්සාහ කරන්න</string>
+    <string name="btn_exit">පිටවන්න</string>
+    <string name="btn_cancel">අවලංගු කරන්න</string>
+    <string name="btn_setting">සැකසීම්</string>
+
+    <string name="live_description_hint">විස්තරය</string>
+
+    <string name="failed_getting_friend_list">ඔබේ මිතුරු ලැයිස්තු ලබා ගැනීමට අසමත් විය. පසුව නැවත උත්සාහ කරන්න.</string>
+    <string name="no_friend_list_warning">ඔබ තවම කිසිදු මිතුරු ලැයිස්තුවක් තනා නැත.</string>
+
+    <string name="post_live_privacy_description">පුද්ගලයින්ට එය නැවත නැරඹිය හැකි වන පරිදි ඔබේ Facebook කාලරේඛාව මත ඔබේ සජීවී ප්‍රවාහය පළ කරන්න.</string>
+    <string name="total_live_time">ඔබ <xliff:g id="DURATION">%s</xliff:g> සඳහා සජීවී විය</string>
+
+    <string name="privacy_world">පොදු</string>
+    <string name="privacy_world_description">Facebook මත සිටින හෝ නොසිටින ඕනෑම කෙනෙක්</string>
+    <string name="privacy_friends">මිතුරන්</string>
+    <string name="privacy_friends_description">Facebook මත ඔබේ මිතුරන්</string>
+    <string name="privacy_self">මට පමණයි</string>
+    <string name="privacy_self_description">මට පමණයි</string>
+    <string name="privacy_custom">විශේෂිත මිතුරන්</string>
+    <string name="privacy_custom_description">සමහර මිතුරන්ට පමණක් පෙන්වන්න</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">4K ක්‍රියා විරහිත විට HD</string>
+
+    <string name="live_label_go_live">Facebook වෙත සජීවී</string>
+    <string name="live_label_count_timer">"සජීවී %s"</string>
+
+    <string name="live_popup_dlg_title">ඔබේ සජීවී ප්‍රවාහය විරාම කර ඇත</string>
+    <string name="live_popup_dlg_content">ඔබට ඔබේ සජීවී ප්‍රවාහය කර ගෙන යාමට අවශ්‍ය ද?</string>
+    <string name="live_popup_dlg_btn_resume">නැවත පටන්ගන්න</string>
+    <string name="live_popup_dlg_btn_finish">අවසන් කරන්න</string>
+
+    <string name="live_dlg_logout_message">"ඔබ %s ලෙස පිවිස ඇත."</string>
+    <string name="live_dlg_btn_logout">වරන්න</string>
+
+    <string name="live_popup_no_publish_permission">"සජීවී වීඩියෝ පළ කිරීමට අවසර නොමැත. ඔබ ෆේස්බුක් වෙතින් Moto සජීවී ප්‍රවාහය විසින් ලබා දී ඇති අවසරයන් මකා ඇත්දැයි පරීක්ෂා කරන්න."</string>
+    <string name="live_popup_dlg_network_poor">"Facebook මත සජීවී වීමට අසමත් විය. ඔබේ ජාල සම්බන්ධතාව පරීක්ෂා කරන්න."</string>
+    <string name="live_popup_dlg_create_live_failed">"Facebook මත සජීවී වීමට අසමත් විය. ඔබේ ගිණුමට සජීවී ප්‍රවාහ කළ හැකි දැයි පරීක්ෂා කරන්න."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Facebook මත සජීවී වීමට අසමත් විය. ඔබේ ජාල සම්බන්ධතාව පරීක්ෂා කරන්න."</string>
+
+    <string name="live_popup_dlg_camera_failed">"කැමරාව ආරම්භ කිරීමට අසමත් විය, නැවත උත්සාහ කරන්න."</string>
+
+    <string name="live_deleted_message">ඔබේ වීඩියෝව මකා දමා ඇත</string>
+    <string name="live_posted_message">ඔබේ වීඩියෝව ඔබේ කාලරේඛාවෙහි පළ කර ඇත.</string>
+    <string name="live_posted_view">facebook මත බලන්න</string>
+    <string name="live_process_identify">තේරුණා</string>
+
+    <string name="live_login_identify">හරි</string>
+
+    <string name="str_phone_camera">දුරකථන කැමරාව</string>
+    <string name="str_mod_camera">Moto 360 කැමරාව</string>
+    <string name="licenses_title">විවෘත මූලාශ්‍ර බලපත්‍ර</string>
+    <string name="licenses_detail">විවෘත මූලාශ්‍ර මෘදුකාංග සඳහා බලපත්‍ර විස්තර</string>
+    <string name="about_title">Moto Live Stream ගැන</string>
+    <string name="app_name_title">යෙදුමේ නම</string>
+    <string name="app_version_title">යෙදුම් අනුවාදය</string>
+</resources>

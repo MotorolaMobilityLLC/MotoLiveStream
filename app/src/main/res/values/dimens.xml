@@ -14,7 +14,9 @@
     <dimen name="live_layout_margin_vertical">8.0dp</dimen>
     <dimen name="live_user_avatar_size">24.0dp</dimen>
     <dimen name="live_user_avatar_size_big">36.0dp</dimen>
-    <dimen name="live_layout_input_margin_vertical">48.0dp</dimen>
+    <dimen name="live_layout_input_margin_top">24.0dp</dimen>
+    <dimen name="live_layout_input_margin_bottom">24.0dp</dimen>
+    <dimen name="live_layout_go_live_margin_horizontal">24.0dp</dimen>
 
     <dimen name="live_layout_interact_margin_horizontal">24.0dp</dimen>
     <dimen name="live_layout_interact_margin_top">8.0dp</dimen>
@@ -30,7 +32,9 @@
     <dimen name="timeline_fig_text_margin_vertical">8.0dp</dimen>
 
     <dimen name="live_layout_comment_height">280dp</dimen>
+    <dimen name="live_layout_comment_margin_bottom">12dp</dimen>
     <dimen name="live_comment_item_height">48dp</dimen>
+    <dimen name="live_comment_item_padding_horizontal">24dp</dimen>
     <dimen name="button_text_size_medium">13sp</dimen>
 
     <dimen name="text_icon_padding">8dp</dimen>
@@ -43,7 +47,17 @@
     <dimen name="top_layout_margin">20dp</dimen>
 
     <dimen name="button_size">40dp</dimen>
-    <dimen name="go_live_button_panel_height">60dp</dimen>
+    <dimen name="go_live_button_panel_height">136dp</dimen>
+    <dimen name="go_live_button_size">60dp</dimen>
+    <dimen name="go_live_button_margin_top">24dp</dimen>
+    <dimen name="go_live_button_margin_bottom">10dp</dimen>
+    <dimen name="go_live_label_margin_bottom">16dp</dimen>
+
+    <dimen name="camera_select_item_height">60dp</dimen>
 
     <dimen name="live_ctrl_panel_margin_bottom">12dp</dimen>
+
+    <dimen name="overflow_margin_top">16dp</dimen>
+    <dimen name="overflow_margin_end">8dp</dimen>
+    <dimen name="popup_windows_padding">8dp</dimen>
 </resources>

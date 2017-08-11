@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:versionCode="10010005"
-    android:versionName="1.1.5"
+    android:versionCode="1001000517"
+    android:versionName="1.1.5.17"
     package="com.motorola.livestream">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="com.motorola.mod.permission.MOD_ACCESS_INFO" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
 
     <uses-feature android:name="android.hardware.camera2" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -35,7 +36,11 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
                 <action android:name="com.motorola.livestream.intent.ACTION_CREATE_LIVE_STREAM" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
@@ -46,11 +51,6 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             tools:replace="android:theme"
             android:resizeableActivity="false"/>
-
-        <provider
-            android:name="com.facebook.FacebookContentProvider"
-            android:authorities="com.facebook.app.FacebookContentProvider1933762443579662"
-            android:exported="true" />
 
         <activity
             android:name=".ui.LiveDynamicActivity"
@@ -72,6 +72,21 @@
             android:resizeableActivity="false"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/label_activity_custom_friends" />
+        <activity
+            android:name=".ui.AboutInfoActivity"
+            android:screenOrientation="portrait"
+            android:resizeableActivity="false"
+            android:label="@string/about_title"
+            android:exported="false"
+            android:theme="@style/MotoAppTheme"/>
+        <activity
+            android:name=".ui.LicenseActivity"
+            android:screenOrientation="portrait"
+            android:resizeableActivity="false"
+            android:label="@string/licenses_title"
+            android:exported="false"
+            android:theme="@style/MotoAppTheme">
+        </activity>
 
         <receiver
             android:name=".receiver.ModReceiver"

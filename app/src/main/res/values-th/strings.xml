@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"เครือข่ายของคุณใช้งานไม่ได้ในขณะนี้"</string>
+    <string name="label_profile_not_available">"เข้าถึงโปรไฟล์ Facebook ของคุณไม่ได้"</string>
+
+    <string name="dlg_public_profile_not_granted">"คุณไม่ได้ยอมรับให้ Moto Live Stream เข้าถึงโปรไฟล์สาธารณะและรายชื่อเพื่อนที่กำหนดเองของคุณ"</string>
+    <string name="dlg_publish_not_granted">"คุณไม่ได้ยอมรับให้ Moto Live Stream โพสต์วิดีโอสดใน Facebook ของคุณ"</string>
+    <string name="dlg_fb_login_failed">"รับสิทธิ์จาก Facebook ไม่ได้ โปรดลองอีกครั้งในภายหลัง"</string>
+
+    <string name="perm_required_alert_title">ต้องการการอนุญาต</string>
+    <string name="perm_required_alert_msg">Moto Live Stream ต้องการสิทธิ์ในการเข้าถึงบางสิ่งในอุปกรณ์ของคุณ เลือก \"การอนุญาต\" ในข้อมูลแอปพลิเคชันเพื่อเปิดใช้งานอีกครั้ง</string>
+    <string name="perm_required_alert_button_app_info">ข้อมูลแอปพลิเคชัน</string>
+
+    <string name="dlg_request_notification_policy_access">"อนุญาตให้ Moto Live Stream เปลี่ยนการตั้งค่าห้ามรบกวนเพื่อปิดเสียงเรียกเข้าขณะสตรีมสดหรือไม่"</string>
+
+    <string name="label_activity_timeline_privacy">เลือกความเป็นส่วนตัว</string>
+    <string name="label_activity_custom_friends">เพื่อนที่เฉพาะเจาะจง</string>
+
+    <string name="menu_done">เสร็จสิ้น</string>
+
+    <string name="btn_ok">ตกลง</string>
+    <string name="btn_delete">ลบ</string>
+    <string name="btn_post">โพสต์</string>
+    <string name="btn_retry">ลองอีกครั้ง</string>
+    <string name="btn_exit">ออก</string>
+    <string name="btn_cancel">ยกเลิก</string>
+    <string name="btn_setting">การตั้งค่า</string>
+
+    <string name="live_description_hint">คำอธิบาย</string>
+
+    <string name="failed_getting_friend_list">เข้าถึงรายการเพื่อนของคุณไม่ได้ โปรดลองอีกครั้งในภายหลัง</string>
+    <string name="no_friend_list_warning">คุณยังไม่ได้สร้างรายการเพื่อน</string>
+
+    <string name="post_live_privacy_description">โพสต์สตรีมสดของคุณบนไทม์ไลน์ Facebook เพื่อให้คนอื่นดูภายหลังได้</string>
+    <string name="total_live_time">คุณถ่ายทอดสดเป็นเวลา <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">สาธารณะ</string>
+    <string name="privacy_world_description">ทุกคนในและนอก Facebook</string>
+    <string name="privacy_friends">เพื่อน</string>
+    <string name="privacy_friends_description">เพื่อนของคุณใน Facebook</string>
+    <string name="privacy_self">เฉพาะฉัน</string>
+    <string name="privacy_self_description">เฉพาะฉัน</string>
+    <string name="privacy_custom">เพื่อนที่เฉพาะเจาะจง</string>
+    <string name="privacy_custom_description">แสดงให้กับเพื่อนบางคนเท่านั้น</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">HD เมื่อ 4K ปิดอยู่</string>
+
+    <string name="live_label_go_live">ถ่ายทอดสดไปยัง Facebook</string>
+    <string name="live_label_count_timer">"ถ่ายทอดสด %s"</string>
+
+    <string name="live_popup_dlg_title">สตรีมสดของคุณถูกหยุดชั่วคราว</string>
+    <string name="live_popup_dlg_content">คุณต้องการสตรีมสดต่อหรือไม่</string>
+    <string name="live_popup_dlg_btn_resume">ดำเนินการต่อ</string>
+    <string name="live_popup_dlg_btn_finish">เสร็จสิ้น</string>
+
+    <string name="live_dlg_logout_message">"คุณเข้าสู่ระบบในฐานะ %s"</string>
+    <string name="live_dlg_btn_logout">ออกจากระบบ</string>
+
+    <string name="live_popup_no_publish_permission">"ไม่มีสิทธิ์โพสต์วิดีโอสด โปรดตรวจสอบว่าคุณได้ลบสิทธิ์ที่อนุญาต Moto Live Stream จาก Facebook หรือไม่"</string>
+    <string name="live_popup_dlg_network_poor">"ถ่ายทอดสดบน Facebook ไม่ได้ โปรดตรวจสอบการเชื่อมต่อเครือข่ายของคุณ"</string>
+    <string name="live_popup_dlg_create_live_failed">"ถ่ายทอดสดบน Facebook ไม่ได้ โปรดตรวจสอบว่าบัญชีของคุณสามารถสตรีมสดได้หรือไม่"</string>
+    <string name="live_popup_dlg_rtmp_failed">"ถ่ายทอดสดบน Facebook ไม่ได้ โปรดตรวจสอบการเชื่อมต่อเครือข่ายของคุณ"</string>
+
+    <string name="live_popup_dlg_camera_failed">"เริ่มกล้องถ่ายรูปไม่ได้ โปรดลองอีกครั้ง"</string>
+
+    <string name="live_deleted_message">ลบวิดีโอของคุณแล้ว</string>
+    <string name="live_posted_message">โพสต์วิดีโอของคุณบนไทม์ไลน์ของคุณแล้ว</string>
+    <string name="live_posted_view">ดูบน Facebook</string>
+    <string name="live_process_identify">เข้าใจแล้ว</string>
+
+    <string name="live_login_identify">ตกลง</string>
+
+    <string name="str_phone_camera">กล้องถ่ายรูปของโทรศัพท์</string>
+    <string name="str_mod_camera">Moto 360 Camera</string>
+    <string name="licenses_title">สัญญาอนุญาตสำหรับโอเพนซอร์ส</string>
+    <string name="licenses_detail">รายละเอียดสัญญาอนุญาตสำหรับซอฟต์แวร์โอเพนซอร์ส</string>
+    <string name="about_title">เกี่ยวกับ Moto Live Stream</string>
+    <string name="app_name_title">ชื่อแอปพลิเคชัน</string>
+    <string name="app_version_title">รุ่นแอป</string>
+</resources>

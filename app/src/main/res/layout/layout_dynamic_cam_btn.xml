@@ -3,6 +3,7 @@
     android:id="@+id/dynamic_cam_btn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black_overlay"
     android:gravity="bottom"
     android:paddingBottom="72dp"
     android:paddingStart="@dimen/live_layout_margin"
@@ -16,7 +17,7 @@
         <LinearLayout
             android:id="@+id/phone_cam"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/go_live_button_panel_height"
+            android:layout_height="@dimen/camera_select_item_height"
             android:orientation="horizontal">
 
             <ImageButton
@@ -43,7 +44,7 @@
         <LinearLayout
             android:id="@+id/mod_cam"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/go_live_button_panel_height"
+            android:layout_height="@dimen/camera_select_item_height"
             android:orientation="horizontal">
 
             <ImageButton

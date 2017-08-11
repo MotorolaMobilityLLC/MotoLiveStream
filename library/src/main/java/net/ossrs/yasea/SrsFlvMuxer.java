@@ -197,9 +197,19 @@ public class SrsFlvMuxer {
     private boolean connect(String url) {
         if (!connected) {
             Log.i(TAG, String.format("worker: connecting to RTMP server by url=%s\n", url));
-            if (publisher.connect(url)) {
-                connected = publisher.publish("live");
+            // Begin, Lenovo, guzy2, IKSWN-74658, Handle the potential exceptions
+            try {
+                if (publisher.connect(url)) {
+                    connected = publisher.publish("live");
+                }
+            } catch (IllegalStateException e) {
+                // Ignore illegal state.
+                connected = false;
+            } catch (NullPointerException e) {
+                // Ignore null pointer exception
+                connected = false;
             }
+            // End, Lenovo, guzy2, IKSWN-74658
             mVideoSequenceHeader = null;
             mAudioSequenceHeader = null;
         }
@@ -238,6 +248,9 @@ public class SrsFlvMuxer {
                 while (!Thread.interrupted()) {
                     while (!mFlvTagCache.isEmpty()) {
                         SrsFlvFrame frame = mFlvTagCache.poll();
+                        if (frame == null) {
+                            continue;
+                        }
                         if (frame.isSequenceHeader()) {
                             if (frame.isVideo()) {
                                 mVideoSequenceHeader = frame;

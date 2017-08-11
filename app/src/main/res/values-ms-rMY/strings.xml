@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"Rangkaian anda tidak tersedia sekarang."</string>
+    <string name="label_profile_not_available">"Gagal mendapatkan profil Facebook anda"</string>
+
+    <string name="dlg_public_profile_not_granted">"Anda tidak setuju dengan Moto Live Stream untuk mengakses profil awam dan senarai rakan tersuai anda."</string>
+    <string name="dlg_publish_not_granted">"Anda tidak setuju dengan Moto Live Stream untuk menyiarkan Video Langsung ke Facebook anda."</string>
+    <string name="dlg_fb_login_failed">"Gagal mendapatkan keizinan daripada Facebook. Sila cuba sebentar lagi."</string>
+
+    <string name="perm_required_alert_title">Kebenaran diperlukan</string>
+    <string name="perm_required_alert_msg">Moto Live Stream memerlukan kebenaran untuk mengakses perkara tertentu pada peranti anda. Pilih \"Kebenaran\" dalam maklumat Aplikasi untuk mendayakan semula.</string>
+    <string name="perm_required_alert_button_app_info">Maklumat Aplikasi</string>
+
+    <string name="dlg_request_notification_policy_access">"Benarkan Moto Live Stream untuk mengubah tetapan Jangan Ganggu untuk membisukan nada dering semasa penstriman langsung?"</string>
+
+    <string name="label_activity_timeline_privacy">Pilih Privasi</string>
+    <string name="label_activity_custom_friends">Rakan Khusus</string>
+
+    <string name="menu_done">Selesai</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Padam</string>
+    <string name="btn_post">Siarkan</string>
+    <string name="btn_retry">Cuba semula</string>
+    <string name="btn_exit">Keluar</string>
+    <string name="btn_cancel">Batal</string>
+    <string name="btn_setting">Tetapan</string>
+
+    <string name="live_description_hint">Perihalan</string>
+
+    <string name="failed_getting_friend_list">Gagal mendapatkan senarai Rakan anda. Sila cuba sebentar lagi.</string>
+    <string name="no_friend_list_warning">Anda belum mencipta sebarang Senarai Rakan lagi.</string>
+
+    <string name="post_live_privacy_description">Siarkan penstriman langsung anda pada garis masa Facebook anda agar orang lain boleh menonton kembali strim tersebut.</string>
+    <string name="total_live_time">Anda bersiaran secara langsung selama <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Awam</string>
+    <string name="privacy_world_description">Sesiapa sahaja pada atau di luar Facebook</string>
+    <string name="privacy_friends">Rakan</string>
+    <string name="privacy_friends_description">Rakan anda di Facebook</string>
+    <string name="privacy_self">Hanya saya</string>
+    <string name="privacy_self_description">Hanya saya</string>
+    <string name="privacy_custom">Rakan khusus</string>
+    <string name="privacy_custom_description">Hanya tunjukkan kepada beberapa rakan</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">HD apabila 4K dimatikan</string>
+
+    <string name="live_label_go_live">Live ke Facebook</string>
+    <string name="live_label_count_timer">"LANGSUNG %s"</string>
+
+    <string name="live_popup_dlg_title">Strim langsung anda telah dijeda</string>
+    <string name="live_popup_dlg_content">Adakah anda ingin meneruskan penstriman live anda?</string>
+    <string name="live_popup_dlg_btn_resume">Sambung semula</string>
+    <string name="live_popup_dlg_btn_finish">Selesai</string>
+
+    <string name="live_dlg_logout_message">"Anda log masuk sebagai %s."</string>
+    <string name="live_dlg_btn_logout">Daftar keluar</string>
+
+    <string name="live_popup_no_publish_permission">"Tiada kebenaran tersedia untuk menyiarkan video langsung. Sila semak jika anda telah memadamkan kebenaran yang diberikan oleh Moto Live Stream daripada Facebook."</string>
+    <string name="live_popup_dlg_network_poor">"Gagal bersiaran secara langsung pada Facebook. Sila semak semula sambungan rangkaian anda."</string>
+    <string name="live_popup_dlg_create_live_failed">"Gagal bersiaran secara langsung pada Facebook. Sila semak jika akaun anda boleh membuat penstriman langsung."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Gagal bersiaran secara langsung pada Facebook. Sila semak semula sambungan rangkaian anda."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Gagal memulakan kamera, sila cuba lagi."</string>
+
+    <string name="live_deleted_message">Video anda telah dipadamkan</string>
+    <string name="live_posted_message">Video anda telah disiarkan pada garis masa anda.</string>
+    <string name="live_posted_view">Lihat di Facebook</string>
+    <string name="live_process_identify">Saya faham</string>
+
+    <string name="live_login_identify">Baiklah</string>
+
+    <string name="str_phone_camera">Kamera telefon</string>
+    <string name="str_mod_camera">Moto 360 camera</string>
+    <string name="licenses_title">Lesen sumber terbuka</string>
+    <string name="licenses_detail">Butiran lesen untuk perisian sumber terbuka</string>
+    <string name="about_title">Perihal Moto Live Stream</string>
+    <string name="app_name_title">Nama aplikasi</string>
+    <string name="app_version_title">Versi aplikasi</string>
+</resources>

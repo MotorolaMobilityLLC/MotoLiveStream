@@ -1,0 +1,36 @@
+# Eclipse files
+project.properties
+.classpath
+.project
+.settings/
+
+# NetBeans files
+nbandroid/
+ant.properties
+build.properties
+local.properties
+proguard.cfg
+
+#vim files
+.*.swp
+
+#lib files
+libs/armeabi-v7a/
+libs/armeabi/
+libs/x86/
+obj/
+
+#BSON intermediate files
+bson/intermediates
+
+# Gradle out folder
+build/
+
+private/
+
+*/.idea/
+*.iml
+*.idea
+.idea/
+
+*.externalNativeBuild/

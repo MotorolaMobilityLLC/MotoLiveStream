@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto élő adatfolyam</string>
+
+    <string name="label_network_not_available">"A hálózata jelenleg nem elérhető."</string>
+    <string name="label_profile_not_available">"Facebook profiljának elérése sikertelen"</string>
+
+    <string name="dlg_public_profile_not_granted">"Nem hagyta jóvá, hogy a Moto élő adatfolyam hozzáférjen nyilvános profiljához és ismerősei listájához."</string>
+    <string name="dlg_publish_not_granted">"Nem hagyta jóvá, hogy a Moto élő adatfolyam élő videót tegyen közzé Facebook-oldalán."</string>
+    <string name="dlg_fb_login_failed">"Facebook-engedély lekérése sikertelen. Próbálja újra később."</string>
+
+    <string name="perm_required_alert_title">Engedélyek szükségesek</string>
+    <string name="perm_required_alert_msg">A Moto élő adatfolyam alkalmazásnak a készülék egyes adatainak eléréséhez engedélyre van szüksége. Válassza ki az \"Engedélyek\" lehetőséget az Alkalmazásinformáció menüben az újbóli engedélyezéshez.</string>
+    <string name="perm_required_alert_button_app_info">Alkalmazásinformáció</string>
+
+    <string name="dlg_request_notification_policy_access">"Engedélyezi, hogy a Moto élő adatfolyam alkalmazás élő adatfolyam közvetítésekor a Ne zavarjanak beállításokat módosítva némítsa a csengőhangot?"</string>
+
+    <string name="label_activity_timeline_privacy">Láthatóság kiválasztása</string>
+    <string name="label_activity_custom_friends">Meghatározott ismerősök</string>
+
+    <string name="menu_done">Kész</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_delete">Törlés</string>
+    <string name="btn_post">Közzététel</string>
+    <string name="btn_retry">Újra</string>
+    <string name="btn_exit">Kilépés</string>
+    <string name="btn_cancel">Mégse</string>
+    <string name="btn_setting">Beállítások</string>
+
+    <string name="live_description_hint">Leírás</string>
+
+    <string name="failed_getting_friend_list">Az ismerőslisták lekérése sikertelen. Próbálja újra később.</string>
+    <string name="no_friend_list_warning">Még nem hozott létre ismerőslistát.</string>
+
+    <string name="post_live_privacy_description">Tegye közzé az élő adatfolyamot Facebook-idővonalán, hogy mások is megnézhessék.</string>
+    <string name="total_live_time">Élő adásban volt <xliff:g id="DURATION">%s</xliff:g> ideig</string>
+
+    <string name="privacy_world">Nyilvános</string>
+    <string name="privacy_world_description">Bárki – attól függetlenül, hogy rendelkezik-e Facebook-fiókkal</string>
+    <string name="privacy_friends">Ismerősök</string>
+    <string name="privacy_friends_description">Ismerősök a Facebookon</string>
+    <string name="privacy_self">Csak én</string>
+    <string name="privacy_self_description">Csak én</string>
+    <string name="privacy_custom">Meghatározott ismerősök</string>
+    <string name="privacy_custom_description">Csak néhány ismerős láthatja</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">HD kikapcsolt 4K esetén</string>
+
+    <string name="live_label_go_live">Élőben a Facebookon</string>
+    <string name="live_label_count_timer">"LIVE %s"</string>
+
+    <string name="live_popup_dlg_title">Az élő adatfolyam szünetel</string>
+    <string name="live_popup_dlg_content">Szeretné folytatni az élő adatfolyamot?</string>
+    <string name="live_popup_dlg_btn_resume">Folytatás</string>
+    <string name="live_popup_dlg_btn_finish">Befejezés</string>
+
+    <string name="live_dlg_logout_message">"Jelenleg %s felhasználónévvel van bejelentkezve."</string>
+    <string name="live_dlg_btn_logout">Kijelentkezés</string>
+
+    <string name="live_popup_no_publish_permission">"Az élő videók megosztása nem engedélyezett. Kérjük, ellenőrizze, hogy nem törölte-e a Moto élő adatfolyam engedélyeit a Facebookról."</string>
+    <string name="live_popup_dlg_network_poor">"Nem sikerült élő adatfolyamot létrehozni a Facebookon. Ellenőrizze a hálózati kapcsolatát."</string>
+    <string name="live_popup_dlg_create_live_failed">"Nem sikerült élő adatfolyamot létrehozni a Facebookon. Ellenőrizze, hogy a fiókja képes-e élő adatfolyam létrehozására."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Nem sikerült élő adatfolyamot létrehozni a Facebookon. Ellenőrizze a hálózati kapcsolatát."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Nem sikerült elindítani a kamerát. Kérjük, próbálja újra."</string>
+
+    <string name="live_deleted_message">A rendszer törölte a videóját</string>
+    <string name="live_posted_message">Videóját megosztotta az idővonalán.</string>
+    <string name="live_posted_view">Megtekintés a Facebookon</string>
+    <string name="live_process_identify">Értem</string>
+
+    <string name="live_login_identify">Rendben</string>
+
+    <string name="str_phone_camera">Telefonkamera</string>
+    <string name="str_mod_camera">Moto 360 Camera</string>
+    <string name="licenses_title">Nyílt forráskódú licencek</string>
+    <string name="licenses_detail">Nyílt forráskódú szoftverlicencek részletei</string>
+    <string name="about_title">A Moto élő adatfolyam névjegye</string>
+    <string name="app_name_title">Alkalmazás neve</string>
+    <string name="app_version_title">Alkalmazás verziója</string>
+</resources>

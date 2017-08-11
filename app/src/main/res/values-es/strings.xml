@@ -1,0 +1,82 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Moto Live Stream</string>
+
+    <string name="label_network_not_available">"La red no está disponible en estos momentos."</string>
+    <string name="label_profile_not_available">"Error al obtener tu perfil de Facebook"</string>
+
+    <string name="dlg_public_profile_not_granted">"No has concedido permiso para que Moto Live Stream acceda a tu perfil público ni a tus listas de amigos personalizadas."</string>
+    <string name="dlg_publish_not_granted">"No has concedido permiso para que Moto Live Stream publique vídeos en directo en tu Facebook."</string>
+    <string name="dlg_fb_login_failed">"Error al obtener permisos de Facebook. Vuelve a intentarlo de nuevo más tarde."</string>
+
+    <string name="perm_required_alert_title">Se necesitan permisos</string>
+    <string name="perm_required_alert_msg">Moto Live Stream necesita permiso para acceder a algunos elementos de tu dispositivo. Selecciona \"Permisos\" en la información de la aplicación para volver a habilitarlo.</string>
+    <string name="perm_required_alert_button_app_info">Información de la aplicación</string>
+
+    <string name="dlg_request_notification_policy_access">"¿Deseas permitir a Moto Live Stream la modificación de los ajustes de No molestar para silenciar el tono de llamada durante el streaming en directo?"</string>
+
+    <string name="label_activity_timeline_privacy">Seleccionar privacidad</string>
+    <string name="label_activity_custom_friends">Amigos concretos</string>
+
+    <string name="menu_done">Listo</string>
+
+    <string name="btn_ok">Aceptar</string>
+    <string name="btn_delete">Eliminar</string>
+    <string name="btn_post">Publicar</string>
+    <string name="btn_retry">Reintentar</string>
+    <string name="btn_exit">Salir</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="btn_setting">Ajustes</string>
+
+    <string name="live_description_hint">Descripción</string>
+
+    <string name="failed_getting_friend_list">Error al obtener tu lista de amigos. Inténtalo de nuevo más tarde.</string>
+    <string name="no_friend_list_warning">No has creado ninguna lista de amigos todavía.</string>
+
+    <string name="post_live_privacy_description">Publica tu streaming en directo en tu biografía de Facebook para que la gente pueda volver a verlo.</string>
+    <string name="total_live_time">Has emitido en directo durante <xliff:g id="DURATION">%s</xliff:g></string>
+
+    <string name="privacy_world">Público</string>
+    <string name="privacy_world_description">Cualquiera dentro y fuera de Facebook</string>
+    <string name="privacy_friends">Amigos</string>
+    <string name="privacy_friends_description">Tus amigos de Facebook</string>
+    <string name="privacy_self">Solo yo</string>
+    <string name="privacy_self_description">Solo yo</string>
+    <string name="privacy_custom">Amigos concretos</string>
+    <string name="privacy_custom_description">Mostrar solo a algunos amigos</string>
+
+    <string name="live_settings_hq_title">4K</string>
+    <string name="live_settings_hq_summary">HD cuando se desactiva 4K</string>
+
+    <string name="live_label_go_live">En directo en Facebook</string>
+    <string name="live_label_count_timer">"EN DIRECTO %s"</string>
+
+    <string name="live_popup_dlg_title">Tu reproducción en streaming en directo se ha pausado</string>
+    <string name="live_popup_dlg_content">¿Deseas continuar con la reproducción en streaming en directo?</string>
+    <string name="live_popup_dlg_btn_resume">Reanudar</string>
+    <string name="live_popup_dlg_btn_finish">Finalizar</string>
+
+    <string name="live_dlg_logout_message">"Has iniciado sesión como %s."</string>
+    <string name="live_dlg_btn_logout">Cerrar sesión</string>
+
+    <string name="live_popup_no_publish_permission">"No hay permisos disponibles para publicar vídeos en directo. Comprueba si has eliminado los permisos concedidos por Moto Live Stream para Facebook."</string>
+    <string name="live_popup_dlg_network_poor">"Error al reproducir en streaming en directo en Facebook. Comprueba tu conectividad de red."</string>
+    <string name="live_popup_dlg_create_live_failed">"Error al ir a Facebook en directo. Comprueba si tu cuenta puede publicar streaming en directo."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Error al reproducir en streaming en directo en Facebook. Comprueba tu conectividad de red."</string>
+
+    <string name="live_popup_dlg_camera_failed">"Error al iniciar la cámara; inténtalo de nuevo."</string>
+
+    <string name="live_deleted_message">El vídeo se ha eliminado</string>
+    <string name="live_posted_message">Se ha publicado el vídeo en tu biografía.</string>
+    <string name="live_posted_view">Ver en Facebook</string>
+    <string name="live_process_identify">Entendido</string>
+
+    <string name="live_login_identify">De acuerdo</string>
+
+    <string name="str_phone_camera">Cámara del teléfono</string>
+    <string name="str_mod_camera">Moto 360 Camera</string>
+    <string name="licenses_title">Licencias de código abierto</string>
+    <string name="licenses_detail">Detalles de licencia para software de código abierto</string>
+    <string name="about_title">Acerca de Moto Live Stream</string>
+    <string name="app_name_title">Nombre de la aplicación</string>
+    <string name="app_version_title">Versión de la aplicación</string>
+</resources>

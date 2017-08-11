@@ -82,6 +82,7 @@
                 android:textSize="@dimen/text_size_medium"
                 android:textColor="@android:color/white" />
             <ImageView
+                android:id="@+id/result_chevron_icon"
                 android:layout_width="@dimen/live_user_avatar_size"
                 android:layout_height="@dimen/live_user_avatar_size"
                 android:src="@drawable/item_row_chevron_white" />
