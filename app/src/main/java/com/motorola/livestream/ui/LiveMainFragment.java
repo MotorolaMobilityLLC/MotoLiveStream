@@ -117,9 +117,12 @@ public class LiveMainFragment extends Fragment
 
     private static final int MSG_PUSH_LIVE_TIME_OUT = 0x301;
 
+    private static final int MSG_DIM_SCREEN_TIME_OUT = 0x401;
+
     private static final long CREATE_LIVE_TIME_OUT = 10000l;
     private static final long CONNECT_LIVE_TIME_OUT = 5000l;
     private static final long PUSH_LIVE_TIME_OUT = 5000l;
+    private static final long DIM_SCREEN_TIME_OUT = 60000l;
 
     private static final int MOTO_360_MOD_CAMERA = 2;
 
@@ -175,6 +178,7 @@ public class LiveMainFragment extends Fragment
     private ImageView mResultPrivacyIcon;
 
     private View mCommentLayout;
+    private RecyclerView mCommentsView;
     private ReactionView mReactionView;
     private CommentListAdapter mCommentAdapter;
 
@@ -197,6 +201,8 @@ public class LiveMainFragment extends Fragment
 
     private int mOpenCameraRetryCount = 0;
     private int mPrevAudioMode;
+
+    private boolean mIsScreenDimming = false;
 
     private final OnPagedListRetrievedListener<Comment> mLiveCommentListener =
             new OnPagedListRetrievedListener<Comment>() {
@@ -327,6 +333,11 @@ public class LiveMainFragment extends Fragment
                         mLiveStatus = LiveStatus.CONNECT_FAILED;
                     }
                     break;
+                case MSG_DIM_SCREEN_TIME_OUT:
+                    if (isDuringLive()) {
+                        tryDimScreen(true);
+                    }
+                    break;
                 default:
                     break;
             }
@@ -435,6 +446,7 @@ public class LiveMainFragment extends Fragment
 
         getInitAudioMode();
         if (isDuringLive()) {
+            tryDimScreen(false);
             //Popup a dialog to indicate user whether to resume or stop the live
             showResumeDialog();
         } else {
@@ -448,6 +460,8 @@ public class LiveMainFragment extends Fragment
     @Override
     public void onPause() {
         super.onPause();
+
+        tryDimScreen(false);
 
         if (mLiveTimer != null) {
             mLiveTimer.pauseCounting();
@@ -472,7 +486,7 @@ public class LiveMainFragment extends Fragment
             mPublisher.stopCamera();
         }
 
-        if(mPopWindow != null){
+        if (mPopWindow != null) {
             if (mPopWindow.isShowing()) {
                 mPopWindow.dismiss();
             }
@@ -570,10 +584,11 @@ public class LiveMainFragment extends Fragment
         // Live comment and reaction layout
         mCommentLayout = view.findViewById(R.id.layout_live_comments);
         mReactionView = (ReactionView) mCommentLayout.findViewById(R.id.reaction_view);
-        RecyclerView commentListView = (RecyclerView) mCommentLayout.findViewById(R.id.comment_list);
-        commentListView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        mCommentAdapter = new CommentListAdapter(commentListView);
-        commentListView.setAdapter(mCommentAdapter);
+        mCommentsView = (RecyclerView) mCommentLayout.findViewById(R.id.comment_list);
+        mCommentsView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        mCommentAdapter = new CommentListAdapter(mCommentsView);
+        mCommentsView.setAdapter(mCommentAdapter);
+        mCommentsView.setVisibility(View.GONE);
 
         //Dynamic camera button to show phone camera or camera mod
         mDynamicCamBtnLayout = view.findViewById(R.id.dynamic_cam_btn);
@@ -618,9 +633,13 @@ public class LiveMainFragment extends Fragment
             mBtnSelectCamera.setVisibility(View.GONE);
             mBtnSwitchCamera.setVisibility(View.VISIBLE);
 
-            // For normal camera, align the Camera switch button to parent bottom
             RelativeLayout.LayoutParams lp =
-                    (RelativeLayout.LayoutParams) mBtnSwitchCamera.getLayoutParams();
+                    (RelativeLayout.LayoutParams) mGoLiveLayout.getLayoutParams();
+            lp.height = getResources().getDimensionPixelOffset(R.dimen.go_live_button_panel_height_small);
+            mGoLiveLayout.setLayoutParams(lp);
+
+            // For normal camera, align the Camera switch button to parent bottom
+            lp = (RelativeLayout.LayoutParams) mBtnSwitchCamera.getLayoutParams();
             lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
             mBtnSwitchCamera.setLayoutParams(lp);
         }
@@ -897,15 +916,15 @@ public class LiveMainFragment extends Fragment
         mHandler.removeMessages(MSG_CREATE_LIVE_TIME_OUT);
         mHandler.removeMessages(MSG_CONNECT_LIVE_TIME_OUT);
 
-        if (getActivity() == null || !isResumed()) {
-            return;
-        }
-
         // Hide the loading view
         mLoadingLayout.setVisibility(View.GONE);
 
         // Stop camera encoding and publishing first
         mPublisher.stopPublish();
+
+        if (getActivity() == null || !isResumed()) {
+            return;
+        }
 
         new AlertDialog.Builder(getActivity())
                 .setMessage(R.string.live_popup_dlg_network_poor)
@@ -1052,6 +1071,8 @@ public class LiveMainFragment extends Fragment
         if (mCommentAdapter != null) {
             mCommentAdapter.clearData();
             mCommentAdapter.notifyDataSetChanged();
+
+            mCommentsView.setVisibility(View.GONE);
         }
 
         //mLoadingLayout.setVisibility(View.GONE);
@@ -1124,6 +1145,8 @@ public class LiveMainFragment extends Fragment
         mTopLayout.setVisibility(View.VISIBLE);
         mLiveTimer.startCounting();
         startUpdateInteractInfo();
+
+        handleDimScreen();
     }
 
     private void startUpdateInteractInfo() {
@@ -1150,6 +1173,11 @@ public class LiveMainFragment extends Fragment
     }
 
     private void stopLive() {
+        if (isDuringLive()) {
+            tryDimScreen(false);
+        }
+        mHandler.removeMessages(MSG_DIM_SCREEN_TIME_OUT);
+
         mLiveStatus = LiveStatus.END;
 
         mLoadingLayout.setVisibility(View.VISIBLE);
@@ -1245,6 +1273,15 @@ public class LiveMainFragment extends Fragment
     }
 
     private void startToGetViews() {
+        if (mLiveInfoCacheBean == null
+                || TextUtils.isEmpty(mLiveInfoCacheBean.getLiveStreamId())) {
+            if (mLiveViewsTimer != null) {
+                mLiveViewsTimer.cancel();
+                mLiveViewsTimer = null;
+            }
+            return;
+        }
+
         if (mLiveViewsTimer == null) {
             mLiveViewsTimer = new Timer();
         }
@@ -1269,6 +1306,15 @@ public class LiveMainFragment extends Fragment
     }
 
     private void startToGetComment() {
+        if (mLiveInfoCacheBean == null
+                || TextUtils.isEmpty(mLiveInfoCacheBean.getLiveStreamId())) {
+            if (mLiveCommentsTimer != null) {
+                mLiveCommentsTimer.cancel();
+                mLiveCommentsTimer = null;
+            }
+            return;
+        }
+
         if (mLiveCommentsTimer == null) {
             mLiveCommentsTimer = new Timer();
         }
@@ -1291,10 +1337,24 @@ public class LiveMainFragment extends Fragment
 
         // Update comment list
         mCommentAdapter.setCommentData(mLiveInfoCacheBean.getLiveComments());
-        mCommentAdapter.notifyDataSetChanged();
+        if (mCommentAdapter.getItemCount() > 0) {
+            mCommentsView.setVisibility(View.VISIBLE);
+            mCommentAdapter.notifyDataSetChanged();
+        } else {
+            mCommentsView.setVisibility(View.GONE);
+        }
     }
 
     private void startToGetReaction() {
+        if (mLiveInfoCacheBean == null
+                || TextUtils.isEmpty(mLiveInfoCacheBean.getLiveStreamId())) {
+            if (mLiveReactionsTimer != null) {
+                mLiveReactionsTimer.cancel();
+                mLiveReactionsTimer = null;
+            }
+            return;
+        }
+
         if (mLiveReactionsTimer == null) {
             mLiveReactionsTimer = new Timer();
         }
@@ -1591,6 +1651,8 @@ public class LiveMainFragment extends Fragment
     // Implementation of View.OnClickListener
     @Override
     public void onClick(View v) {
+        handleDimScreen();
+
         switch (v.getId()) {
             case R.id.layout_user_info:
                 showLogoutDialog();
@@ -1874,5 +1936,43 @@ public class LiveMainFragment extends Fragment
         DisplayMetrics dm = rootView.getResources().getDisplayMetrics();
         int heightDiff = rootView.getBottom() - r.bottom;
         return heightDiff > softKeyboardHeight * dm.density;
+    }
+
+    private void handleDimScreen() {
+        if (isDuringLive()) {
+            // Remove the existing delayed dim screen message
+            mHandler.removeMessages(MSG_DIM_SCREEN_TIME_OUT);
+            if (isScreenDimming()) {
+                tryDimScreen(false);
+            } else {
+                // Re-send the message to dim screen
+                mHandler.sendEmptyMessageDelayed(MSG_DIM_SCREEN_TIME_OUT, DIM_SCREEN_TIME_OUT);
+            }
+        }
+    }
+
+    private boolean isScreenDimming() {
+        return mIsScreenDimming;
+    }
+
+    private void tryDimScreen(boolean isDim) {
+        if (getActivity() == null) {
+            return;
+        }
+
+        mIsScreenDimming = isDim;
+
+        Window window = getActivity().getWindow();
+        if (window != null) {
+            WindowManager.LayoutParams lp = window.getAttributes();
+            lp.screenBrightness = isDim ? WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF
+                    : WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
+            window.setAttributes(lp);
+        }
+
+        if (!isDim) {
+            mHandler.removeMessages(MSG_DIM_SCREEN_TIME_OUT);
+            mHandler.sendEmptyMessageDelayed(MSG_DIM_SCREEN_TIME_OUT, DIM_SCREEN_TIME_OUT);
+        }
     }
 }

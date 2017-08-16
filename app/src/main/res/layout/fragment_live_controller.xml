@@ -91,7 +91,8 @@
         layout="@layout/live_comment_list"
         android:layout_width="match_parent"
         android:layout_height="@dimen/live_layout_comment_height"
-        android:layout_above="@id/layout_live_interact" />
+        android:layout_above="@id/layout_live_interact"
+        android:visibility="gone" />
 
     <include
         android:id="@+id/layout_live_settings"
