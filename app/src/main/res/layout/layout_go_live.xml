@@ -15,7 +15,6 @@
         android:layout_height="@dimen/go_live_button_size"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:drawablePadding="@dimen/live_layout_margin_vertical"
         android:background="@drawable/btn_golive_bg"
         android:src="@drawable/btn_golive_st" />
 

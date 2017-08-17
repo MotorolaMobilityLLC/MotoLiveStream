@@ -547,6 +547,7 @@ public class LiveMainFragment extends Fragment
         // Live 4K switch
         mLive4KSettings = mLiveSettings.findViewById(R.id.layout_4k_setting);
         m4KLiveSwitch = (Switch) mLive4KSettings.findViewById(R.id.settings_4k_switch);
+        mLive4KSettings.setOnClickListener(this);
         m4KLiveSwitch.setOnCheckedChangeListener(
                 (CompoundButton buttonView, boolean isChecked) -> {
                     swapCamera(mPublisher.getCameraId(), true);
@@ -1660,6 +1661,11 @@ public class LiveMainFragment extends Fragment
             case R.id.layout_privacy_setting:
                 startActivityForResult(new Intent(getActivity(), TimelineActivity.class),
                         REQUEST_LIVE_PRIVACY);
+                break;
+            case R.id.layout_4k_setting:
+                if (m4KLiveSwitch != null) {
+                    m4KLiveSwitch.toggle();
+                }
                 break;
             case R.id.btn_switch_camera:
                 if (mPublisher.getCameraId() < 2) {

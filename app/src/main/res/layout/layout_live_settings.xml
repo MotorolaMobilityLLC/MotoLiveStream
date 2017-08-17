@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_above="@id/layout_live_interact"
     android:paddingStart="@dimen/live_layout_settings_margin_horizontal"
     android:paddingEnd="@dimen/live_layout_settings_margin_horizontal"
+    android:paddingBottom="@dimen/live_layout_input_margin_bottom"
     android:background="@color/black_overlay">
 
     <android.support.design.widget.TextInputLayout
@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="@dimen/live_layout_input_margin_top"
-        android:layout_marginBottom="@dimen/live_layout_input_margin_bottom"
         android.support.design:hintTextAppearance="@style/HintTextAppearance">
         <android.support.design.widget.TextInputEditText
             android:id="@+id/live_description_input"

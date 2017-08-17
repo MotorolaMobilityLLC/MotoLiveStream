@@ -48,6 +48,7 @@
 
     <dimen name="button_size">40dp</dimen>
     <dimen name="go_live_button_panel_height">136dp</dimen>
+    <dimen name="go_live_button_panel_height_small">108dp</dimen>
     <dimen name="go_live_button_size">60dp</dimen>
     <dimen name="go_live_button_margin_top">24dp</dimen>
     <dimen name="go_live_button_margin_bottom">10dp</dimen>

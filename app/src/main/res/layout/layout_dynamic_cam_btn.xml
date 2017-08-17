@@ -10,62 +10,59 @@
     android:visibility="gone">
 
     <LinearLayout
+        android:id="@+id/mod_cam"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="@dimen/camera_select_item_height"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/phone_cam"
+        <ImageButton
+            android:id="@+id/btn_mod_camera"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:layout_gravity="center_vertical"
+            android:drawablePadding="@dimen/live_layout_margin_vertical"
+            android:src="@drawable/btn_360_camera_state"
+            android:background="@drawable/btn_set_camera_bg_state"
+            android:clickable="false"/>
+
+        <TextView
+            android:id="@+id/txt_mod_camera"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/camera_select_item_height"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/btn_phone_camera"
-                android:layout_width="@dimen/button_size"
-                android:layout_height="@dimen/button_size"
-                android:drawablePadding="@dimen/live_layout_margin_vertical"
-                android:src="@drawable/btn_phone_camera_state"
-                android:background="@drawable/btn_set_camera_bg_state"
-                android:layout_gravity="center_vertical"
-                android:clickable="false"/>
-
-            <TextView
-                android:id="@+id/txt_phone_camera"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="@string/str_phone_camera"
-                android:textSize="@dimen/text_size_medium"
-                android:textColor="@color/dynamic_btn_txt_clr"
-                android:paddingStart="@dimen/timeline_item_margin_start"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/mod_cam"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/camera_select_item_height"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/btn_mod_camera"
-                android:layout_width="@dimen/button_size"
-                android:layout_height="@dimen/button_size"
-                android:layout_gravity="center_vertical"
-                android:drawablePadding="@dimen/live_layout_margin_vertical"
-                android:src="@drawable/btn_360_camera_state"
-                android:background="@drawable/btn_set_camera_bg_state"
-                android:clickable="false"/>
-
-            <TextView
-                android:id="@+id/txt_mod_camera"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="@string/str_mod_camera"
-                android:textSize="@dimen/text_size_medium"
-                android:textColor="@color/dynamic_btn_txt_clr"
-                android:paddingStart="@dimen/timeline_item_margin_start"/>
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/str_mod_camera"
+            android:textSize="@dimen/text_size_medium"
+            android:textColor="@color/dynamic_btn_txt_clr"
+            android:paddingStart="@dimen/timeline_item_margin_start"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/phone_cam"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/camera_select_item_height"
+        android:layout_above="@id/mod_cam"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_phone_camera"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:drawablePadding="@dimen/live_layout_margin_vertical"
+            android:src="@drawable/btn_phone_camera_state"
+            android:background="@drawable/btn_set_camera_bg_state"
+            android:layout_gravity="center_vertical"
+            android:clickable="false"/>
+
+        <TextView
+            android:id="@+id/txt_phone_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/str_phone_camera"
+            android:textSize="@dimen/text_size_medium"
+            android:textColor="@color/dynamic_btn_txt_clr"
+            android:paddingStart="@dimen/timeline_item_margin_start"/>
+    </LinearLayout>
+
 </RelativeLayout>
