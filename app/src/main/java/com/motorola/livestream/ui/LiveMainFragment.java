@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
@@ -37,7 +38,6 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -120,10 +120,10 @@ public class LiveMainFragment extends Fragment
 
     private static final int MSG_DIM_SCREEN_TIME_OUT = 0x401;
 
-    private static final long CREATE_LIVE_TIME_OUT = 10000l;
-    private static final long CONNECT_LIVE_TIME_OUT = 5000l;
-    private static final long PUSH_LIVE_TIME_OUT = 5000l;
-    private static final long DIM_SCREEN_TIME_OUT = 60000l;
+    private static final long CREATE_LIVE_TIME_OUT = 10000L;
+    private static final long CONNECT_LIVE_TIME_OUT = 5000L;
+    private static final long PUSH_LIVE_TIME_OUT = 5000L;
+    private static final long DIM_SCREEN_TIME_OUT = 60000L;
 
     private static final int MOTO_360_MOD_CAMERA = 2;
 
@@ -159,7 +159,7 @@ public class LiveMainFragment extends Fragment
     private TextView mUserName;
     private ImageView mPrivacyIcon;
     private TextView mPrivacyTitle;
-    private EditText mLiveInfoInput;
+    private TextInputEditText mLiveInfoInput;
     private View mLive4KSettings;
     private Switch m4KLiveSwitch;
 
@@ -543,7 +543,7 @@ public class LiveMainFragment extends Fragment
         privacyLayout.setOnClickListener(this);
 
         // Live description input
-        mLiveInfoInput = (EditText) mLiveSettings.findViewById(R.id.live_description_input);
+        mLiveInfoInput = (TextInputEditText) mLiveSettings.findViewById(R.id.live_description_input);
 
         // Live 4K switch
         mLive4KSettings = mLiveSettings.findViewById(R.id.layout_4k_setting);
@@ -1077,22 +1077,7 @@ public class LiveMainFragment extends Fragment
             mCommentsView.setVisibility(View.GONE);
         }
 
-        //mLoadingLayout.setVisibility(View.GONE);
-
         mHandler.sendEmptyMessage(MSG_START_LIVE);
-        // TODO maybe need a countdown timer to indicate starting live
-//        new CountDownTimer(3100, 1000) {
-//
-//            @Override
-//            public void onTick(long millisUntilFinished) {
-//                Log.d(LOG_TAG, "onTick: " + millisUntilFinished);
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//                mHandler.sendEmptyMessage(MSG_START_LIVE);
-//            }
-//        }.start();
     }
 
     private void onLiveStart() {
@@ -1653,6 +1638,9 @@ public class LiveMainFragment extends Fragment
     // Implementation of View.OnClickListener
     @Override
     public void onClick(View v) {
+        // Clear the input edit text's focus
+        mLiveInfoInput.clearFocus();
+
         handleDimScreen();
 
         switch (v.getId()) {
@@ -1951,10 +1939,10 @@ public class LiveMainFragment extends Fragment
             mHandler.removeMessages(MSG_DIM_SCREEN_TIME_OUT);
             if (isScreenDimming()) {
                 tryDimScreen(false);
-            } else {
-                // Re-send the message to dim screen
-                mHandler.sendEmptyMessageDelayed(MSG_DIM_SCREEN_TIME_OUT, DIM_SCREEN_TIME_OUT);
             }
+
+            // Re-send the message to dim screen
+            mHandler.sendEmptyMessageDelayed(MSG_DIM_SCREEN_TIME_OUT, DIM_SCREEN_TIME_OUT);
         }
     }
 
@@ -1975,11 +1963,6 @@ public class LiveMainFragment extends Fragment
             lp.screenBrightness = isDim ? WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF
                     : WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
             window.setAttributes(lp);
-        }
-
-        if (!isDim) {
-            mHandler.removeMessages(MSG_DIM_SCREEN_TIME_OUT);
-            mHandler.sendEmptyMessageDelayed(MSG_DIM_SCREEN_TIME_OUT, DIM_SCREEN_TIME_OUT);
         }
     }
 }
