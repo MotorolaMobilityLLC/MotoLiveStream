@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ /*
+  ~  * Copyright (C) 2013-2016 Motorola Mobility LLC,
+  ~  * All Rights Reserved.
+  ~  * Motorola Mobility Confidential Restricted.
+  ~  */
+  ~
+  -->
+
+<resources>
+
+    <color name="switch_view_btn_background">#99000000</color>
+    <color name="switch_view_btn_background_stroke">#40FFFFFF</color>
+    <color name="switch_view_btn_press_background">#99F7C22D</color>
+
+</resources>

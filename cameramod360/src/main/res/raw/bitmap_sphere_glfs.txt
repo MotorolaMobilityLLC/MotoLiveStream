@@ -1,0 +1,9 @@
+precision highp float;
+uniform mat4 u_STMatrix;
+varying vec2 v_TextureCoord;
+uniform sampler2D u_Texture;
+uniform float u_Alpha;
+void main() {
+    vec4 wrappedTextureCoord = u_STMatrix * vec4(fract(v_TextureCoord), 0.0f, 1.0f);
+    gl_FragColor = texture2D(u_Texture, wrappedTextureCoord.xy) * u_Alpha;
+}

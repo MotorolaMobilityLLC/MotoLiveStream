@@ -329,6 +329,29 @@ public class FbUtil {
         ).executeAsync();
     }
 
+    public static void updateLiveStatus(final OnDataRetrievedListener<Boolean> listener,
+                                  String liveId, String status) {
+        Bundle parameters = new Bundle();
+        parameters.putString("status", status);
+
+        new GraphRequest(
+                AccessToken.getCurrentAccessToken(),
+                FbGraphPathUtil.getLivePath(liveId),
+                parameters,
+                HttpMethod.POST,
+                new GraphRequest.Callback() {
+                    @Override
+                    public void onCompleted(GraphResponse graphResponse) {
+                        if (graphResponse.getError() == null) {
+                            listener.onSuccess(true);
+                        } else {
+                            listener.onError(graphResponse.getError().getException());
+                        }
+                    }
+                }
+        ).executeAsync();
+    }
+
     public static void updateLive(final OnDataRetrievedListener<Boolean> listener,
                                   String liveId, String privacy) {
         Bundle parameters = new Bundle();

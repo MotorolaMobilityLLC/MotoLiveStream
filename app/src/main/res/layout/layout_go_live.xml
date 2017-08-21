@@ -64,6 +64,15 @@
             android:src="@drawable/btn_cam_switch"
             android:background="@drawable/btn_background" />
 
+        <ImageView
+            android:id="@+id/btn_sphere_switch"
+            android:layout_width="@dimen/mod360_button_size"
+            android:layout_height="@dimen/mod360_button_size"
+            android:layout_above="@id/btn_select_camera"
+            android:src="@drawable/ic_view_spherical"
+            android:background="@drawable/button_background"
+            android:visibility="gone" />
+
     </RelativeLayout>
 
 </RelativeLayout>

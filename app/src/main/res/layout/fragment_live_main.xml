@@ -3,10 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <net.ossrs.yasea.SrsCameraView
-        android:id="@+id/live_camera_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <!--<net.ossrs.yasea.SrsCameraView-->
+        <!--android:id="@+id/live_camera_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
+
+    <include layout="@layout/mod360_sphere_camera_view" />
 
     <include
         layout="@layout/fragment_live_controller"

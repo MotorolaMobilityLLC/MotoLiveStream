@@ -5,7 +5,8 @@ import android.media.audiofx.AcousticEchoCanceler;
 import android.media.audiofx.AutomaticGainControl;
 import android.util.Log;
 
-import com.motorola.gl.viewfinder.ViewfinderFactory.ViewfinderType;
+import com.motorola.cameramod360.iPreviewCallback;
+import com.motorola.cameramod360.iCameraOperator;
 
 import java.io.File;
 
@@ -22,7 +23,9 @@ public class SrsPublisher {
     private byte[] mPcmBuffer = new byte[4096];
     private Thread aworker;
 
-    private SrsCameraView mCameraView;
+    //private SrsCameraView mCameraView;
+    private iCameraOperator mCameraView;
+    private iPreviewCallback mPreviewCallback;
 
     private boolean sendVideoOnly = false;
     private boolean sendAudioOnly = false;
@@ -34,9 +37,9 @@ public class SrsPublisher {
     private SrsMp4Muxer mMp4Muxer;
     private SrsEncoder mEncoder;
 
-    public SrsPublisher(SrsCameraView view) {
+    public SrsPublisher(iCameraOperator view) {
         mCameraView = view;
-        mCameraView.setPreviewCallback(new SrsCameraView.PreviewCallback() {
+        mPreviewCallback = new iPreviewCallback() {
             @Override
             public void onGetRgbaFrame(byte[] data, int width, int height) {
                 calcSamplingFps();
@@ -44,7 +47,8 @@ public class SrsPublisher {
                     mEncoder.onGetRgbaFrame(data, width, height);
                 }
             }
-        });
+        };
+        mCameraView.setPreviewCallback(mPreviewCallback);
     }
 
     private void calcSamplingFps() {
@@ -75,6 +79,7 @@ public class SrsPublisher {
     }
 
     public void setCameraId(int camId) {
+        mCameraView.setPreviewCallback(mPreviewCallback);
         mCameraView.setCameraId(camId);
     }
 
@@ -291,14 +296,6 @@ public class SrsPublisher {
 
     public void setSendAudioOnly(boolean flag) {
         sendAudioOnly = flag;
-    }
-
-    public boolean switchCameraFilter(ViewfinderType type) {
-        return mCameraView.setFilter(type);
-    }
-
-    public boolean switchCameraFilter(ViewfinderType type, boolean force) {
-        return mCameraView.setFilter(type, force);
     }
 
     public void switchCameraFace(int id) {

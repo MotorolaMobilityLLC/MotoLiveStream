@@ -20,6 +20,7 @@
 
     <application
         android:allowBackup="false"
+        android:name="com.motorola.cameramod360.CamMod360App"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">

@@ -1,0 +1,32 @@
+precision mediump float;
+varying vec2 v_TextureCoord;
+uniform sampler2D u_Texture;
+uniform float u_Opacity;
+uniform vec4 u_ColorBackground;
+uniform int u_Mask;
+uniform int u_ColorChange;
+
+void main() {
+    vec4 sample = texture2D(u_Texture, v_TextureCoord);
+
+    if (u_Mask == 0) {
+        sample *= u_Opacity;
+        gl_FragColor = sample + ((1.0 - sample.a) * u_ColorBackground) ;
+    } else {
+        if(u_ColorChange == 1){
+          float dstAlpha = sample.a;
+          sample.a = u_ColorBackground.a * dstAlpha;
+          sample.rgb = u_ColorBackground.rgb * dstAlpha;
+          sample *= u_Opacity;
+          gl_FragColor = sample;
+        }else{
+        //Acquire alpha from bitmap mask and invert it
+        float alpha = 1.0 - sample.a;
+        alpha *= u_ColorBackground.a * u_Opacity;
+        alpha = clamp(alpha, 0.0, 1.0);
+
+        if (alpha < .001) discard;
+        else gl_FragColor = u_ColorBackground * alpha;
+        }
+    }
+}

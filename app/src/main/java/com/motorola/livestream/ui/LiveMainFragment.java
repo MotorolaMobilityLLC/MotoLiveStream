@@ -30,6 +30,7 @@ import android.text.style.StyleSpan;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -50,7 +51,10 @@ import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 
-import com.motorola.gl.viewfinder.ViewfinderFactory.ViewfinderType;
+import com.motorola.cameramod360.SphereCameraView;
+import com.motorola.cameramod360.SphereMediaView;
+import com.motorola.cameramod360.gl.SphereViewRenderer;
+import com.motorola.cameramod360.gl.SphereViewRenderer.ViewType;
 
 import com.motorola.livestream.R;
 import com.motorola.livestream.model.fb.Comment;
@@ -75,7 +79,6 @@ import com.motorola.livestream.viewcache.ViewCacheManager;
 import com.motorola.livestream.viewcache.fb.LiveInfoCacheBean;
 import com.motorola.livestream.viewcache.fb.TimelinePrivacyCacheBean;
 
-import net.ossrs.yasea.SrsCameraView;
 import net.ossrs.yasea.SrsEncodeHandler;
 import net.ossrs.yasea.SrsPublishListener;
 import net.ossrs.yasea.SrsPublisher;
@@ -146,6 +149,8 @@ public class LiveMainFragment extends Fragment
 
     private int mDefaultCamId = -1;
     private SrsPublisher mPublisher = null;
+    private SphereCameraView mSphereCameraView;
+    private ImageView mBtnSphereSwitch;
 
     private View mLoadingLayout;
 
@@ -436,12 +441,26 @@ public class LiveMainFragment extends Fragment
 
         initWidgets(view);
 
-        mPublisher = new SrsPublisher((SrsCameraView) view.findViewById(R.id.live_camera_view));
+        mSphereCameraView = (SphereCameraView) view.findViewById(R.id.sphere_camera_view);
+        mSphereCameraView.initSphereView(mDefaultCamId);
+        mSphereCameraView.setOnGestureListener(new SphereMediaView.OnGestureListener() {
+            @Override
+            public void onDown(MotionEvent e) {
+                handleDimScreen();
+            }
+
+            @Override
+            public boolean onSingleTap(MotionEvent e) {
+                return false;
+            }
+        });
+
+        mPublisher = new SrsPublisher(mSphereCameraView);
         mPublisher.setEncodeHandler(new SrsEncodeHandler(this));
         mPublisher.setRtmpListener(this);
         mPublisher.setRecordHandler(new SrsRecordHandler(this));
 
-        swapCamera(mDefaultCamId);
+        swapCamera(mDefaultCamId, true);
     }
 
     @Override
@@ -565,8 +584,12 @@ public class LiveMainFragment extends Fragment
         mBtnGoLive.setOnClickListener(this);
         mBtnSwitchCamera = mGoLiveLayout.findViewById(R.id.btn_switch_camera);
         mBtnSwitchCamera.setOnClickListener(this);
-        mGoLiveLayout.findViewById(R.id.btn_select_camera).setOnClickListener(this);
         mBtnSelectCamera = mGoLiveLayout.findViewById(R.id.btn_select_camera);
+        mBtnSelectCamera.setOnClickListener(this);
+        mBtnSphereSwitch = (ImageView) mGoLiveLayout.findViewById(R.id.btn_sphere_switch);
+        mBtnSphereSwitch.setOnClickListener(this);
+        mBtnSphereSwitch.setVisibility((mDefaultCamId == MOTO_360_MOD_CAMERA)
+                ? View.VISIBLE : View.GONE);
 
         mBtnExit = mGoLiveLayout.findViewById(R.id.btn_exit);
         mBtnExit.setOnClickListener(this);
@@ -1030,13 +1053,21 @@ public class LiveMainFragment extends Fragment
         mLoadingLayout.setVisibility(View.VISIBLE);
 
         mLiveStatus = LiveStatus.CREATING_LIVE;
+        final boolean isSpherical = (mPublisher.getCameraId() == MOTO_360_MOD_CAMERA);
 
         FbUtil.createUserLive(
                 new FbUtil.OnDataRetrievedListener<LiveInfo>() {
                     @Override
                     public void onSuccess(LiveInfo liveInfo) {
                         Log.d(LOG_TAG, "Create live video ok.");
-                        onLiveStreamReady(liveInfo);
+                        // The Facebook live server seems always set 360 live to UNPUBLISHED
+                        // So we need to enforce the status to LIVE_NOW before we start to live.
+                        if (isSpherical) {
+                            Log.d(LOG_TAG, "Created live video is not ready, set status to LIVE_NOW.");
+                            updateSphericalLiveStatus(liveInfo);
+                        } else {
+                            onLiveStreamReady(liveInfo);
+                        }
                     }
 
                     @Override
@@ -1063,9 +1094,43 @@ public class LiveMainFragment extends Fragment
                     }
                 },
                 currentUser.getId(), mLiveInfoInput.getText().toString(),
-                mPrivacyCacheBean.toJsonString(), (mPublisher.getCameraId() == MOTO_360_MOD_CAMERA));
+                mPrivacyCacheBean.toJsonString(), isSpherical);
         // Set 10 seconds to wait the response from Facebook server
         mHandler.sendEmptyMessageDelayed(MSG_CREATE_LIVE_TIME_OUT, CREATE_LIVE_TIME_OUT);
+    }
+
+    private void updateSphericalLiveStatus(final LiveInfo liveInfo) {
+        FbUtil.updateLiveStatus(
+                new OnDataRetrievedListener<Boolean>() {
+                    @Override
+                    public void onSuccess(Boolean data) {
+                        onLiveStreamReady(liveInfo);
+                    }
+
+                    @Override
+                    public void onError(Exception exp) {
+                        // Remove the timeout message, since it already failed
+                        mHandler.removeMessages(MSG_CREATE_LIVE_TIME_OUT);
+
+                        Log.e(LOG_TAG, "Failed to update spherical live video status!");
+                        exp.printStackTrace();
+
+                        mLoadingLayout.setVisibility(View.GONE);
+
+                        // Only show error dialog while still under CREATING_LIVE status
+                        if (mLiveStatus != LiveStatus.CREATING_LIVE) {
+                            return;
+                        }
+
+                        if (FbUtil.handleException(exp) == FbUtil.ERR_PERMISSION_NOT_GRANTED) {
+                            showCreateLiveFailedDialog(R.string.live_popup_no_publish_permission);
+                        } else {
+                            showCreateLiveFailedDialog(R.string.live_popup_dlg_create_live_failed);
+                        }
+                        muteRinger(false);
+                    }
+                },
+                liveInfo.getId(), LiveInfo.LIVE_NOW);
     }
 
     private void onLiveStreamReady(LiveInfo liveInfo) {
@@ -1527,6 +1592,10 @@ public class LiveMainFragment extends Fragment
 
         mPublisher.stopCamera();
         try {
+            if (mBtnSphereSwitch != null) {
+                mBtnSphereSwitch.setVisibility((camId == MOTO_360_MOD_CAMERA)
+                        ? View.VISIBLE : View.GONE);
+            }
             if (camId == MOTO_360_MOD_CAMERA) {
                 mPublisher.setCameraId(camId);
                 if (m4KLiveSwitch.isChecked()) {
@@ -1539,7 +1608,8 @@ public class LiveMainFragment extends Fragment
                     mPublisher.set360VideoHDMode(false);
                 }
                 mPublisher.switchCameraFace(camId);
-                mPublisher.switchCameraFilter(ViewfinderType.SPLITSCREEN, forceSwap);
+
+                mSphereCameraView.setViewType(ViewType.SPHERICAL, true);
             } else {
                 mPublisher.setCameraId(camId);
                 // Get the real screen size and set as preview resolution
@@ -1549,8 +1619,9 @@ public class LiveMainFragment extends Fragment
                 mPublisher.setPreviewResolution(screenSize.y, screenSize.x);
                 mPublisher.setOutputResolution(720, 1280);
                 mPublisher.switchCameraFace(camId);
-                mPublisher.switchCameraFilter(ViewfinderType.NONE);
                 mPublisher.setVideoHDMode();
+
+                mSphereCameraView.setViewType(ViewType.DEFAULT, true);
             }
             mOpenCameraRetryCount = 0;
         } catch (Exception e) {
@@ -1578,6 +1649,7 @@ public class LiveMainFragment extends Fragment
                 mOpenCameraRetryCount = 0;
                 showCameraFailedDialog();
             } else {
+                mPublisher.stopCamera();
                 mOpenCameraRetryCount++;
                 mHandler.sendEmptyMessageDelayed(MSG_RETRY_START_CAMERA, OPEN_CAMERA_RETRY_TIME);
             }
@@ -1725,6 +1797,9 @@ public class LiveMainFragment extends Fragment
                 } else if (mLogoutDialog != null){
                     handleLogoutDialogOnClick(v.getId());
                 }
+                break;
+            case R.id.btn_sphere_switch:
+                switchSphereViewType();
                 break;
             default:
                 break;
@@ -1912,6 +1987,21 @@ public class LiveMainFragment extends Fragment
         stopLive();
     }
     // End, Lenovo, guzy2, IKSWN-71983
+
+    private void switchSphereViewType() {
+        SphereViewRenderer.ViewType viewType = mSphereCameraView.switchViewType();
+        switch (viewType) {
+            case DEFAULT:
+                //do nothing;
+                break;
+            case SPHERICAL:
+                mBtnSphereSwitch.setImageResource(R.drawable.ic_view_spherical);
+                break;
+            case SPLITSCREEN:
+                mBtnSphereSwitch.setImageResource(R.drawable.ic_view_equirectangular);
+                break;
+        }
+    }
 
     private void setListenerToRootView() {
         final View rootView = getActivity().getWindow().getDecorView().findViewById(android.R.id.content);

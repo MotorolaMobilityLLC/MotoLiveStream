@@ -1,0 +1,17 @@
+<!--
+  ~ /*
+  ~  * Copyright (C) 2013-2016 Motorola Mobility LLC,
+  ~  * All Rights Reserved.
+  ~  * Motorola Mobility Confidential Restricted.
+  ~  */
+  ~
+  -->
+
+<resources>
+
+    <dimen name="mod360_bottom_button_vertical_margin">56dp</dimen>
+    <dimen name="mod360_bottom_button_horizontal_margin">16dp</dimen>
+    <dimen name="mod360_bottom_button_padding">8dp</dimen>
+    <dimen name="mod360_button_size">40dp</dimen>
+
+</resources>

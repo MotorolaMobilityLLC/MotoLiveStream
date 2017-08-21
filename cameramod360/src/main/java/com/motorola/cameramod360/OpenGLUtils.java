@@ -1,4 +1,10 @@
-package com.motorola.gl.utils;
+package com.motorola.cameramod360;
+
+import android.content.Context;
+import android.content.res.Resources;
+import android.opengl.GLES11Ext;
+import android.opengl.GLES20;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,12 +12,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import javax.microedition.khronos.opengles.GL10;
-
-import android.content.Context;
-import android.content.res.Resources;
-import android.opengl.GLES11Ext;
-import android.opengl.GLES20;
-import android.util.Log;
 
 public class OpenGLUtils {
 

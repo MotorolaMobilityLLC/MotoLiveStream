@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/switch_btn"
+        android:layout_width="@dimen/mod360_button_size"
+        android:layout_height="@dimen/mod360_button_size"
+        android:layout_gravity="start|bottom"
+        android:layout_marginBottom="@dimen/mod360_bottom_button_vertical_margin"
+        android:layout_marginStart="@dimen/mod360_bottom_button_horizontal_margin"
+        android:background="@drawable/button_background"
+        android:padding="@dimen/mod360_bottom_button_padding"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_view_spherical" />
+
+</merge>

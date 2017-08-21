@@ -9,13 +9,6 @@ import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
 import android.util.AttributeSet;
-import android.util.Log;
-
-import com.motorola.gl.utils.OpenGLUtils;
-import com.motorola.gl.viewfinder.DefaultViewfinder;
-import com.motorola.gl.viewfinder.OffScreenViewfinder;
-import com.motorola.gl.viewfinder.ViewfinderFactory;
-import com.motorola.gl.viewfinder.ViewfinderFactory.ViewfinderType;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -58,10 +51,6 @@ public class SrsCameraView extends GLSurfaceView implements GLSurfaceView.Render
     private ConcurrentLinkedQueue<IntBuffer> mGLIntBufferCache = new ConcurrentLinkedQueue<>();
     private PreviewCallback mPrevCb;
 
-    private DefaultViewfinder mPreviewViewfinder;
-    private ViewfinderType mViewfinderType = ViewfinderType.NONE;
-    private OffScreenViewfinder mOffScreenViewfinder = null;
-
     public SrsCameraView(Context context) {
         this(context, null);
     }
@@ -78,14 +67,6 @@ public class SrsCameraView extends GLSurfaceView implements GLSurfaceView.Render
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         GLES20.glDisable(GL10.GL_DITHER);
         GLES20.glClearColor(0, 0, 0, 0);
-
-        mPreviewViewfinder = ViewfinderFactory.initFilters(mViewfinderType);
-        mPreviewViewfinder.init(getContext().getApplicationContext());
-        mPreviewViewfinder.onInputSizeChanged(mPreviewWidth, mPreviewHeight);
-
-        mOffScreenViewfinder = new OffScreenViewfinder();
-        mOffScreenViewfinder.init(getContext().getApplicationContext());
-        mOffScreenViewfinder.onInputSizeChanged(mPreviewWidth, mPreviewHeight);
 
         mOESTextureId = OpenGLUtils.getExternalOESTextureID();
         surfaceTexture = new SurfaceTexture(mOESTextureId);
@@ -111,8 +92,6 @@ public class SrsCameraView extends GLSurfaceView implements GLSurfaceView.Render
         GLES20.glViewport(0, 0, width, height);
         mSurfaceWidth = width;
         mSurfaceHeight = height;
-        mPreviewViewfinder.onDisplaySizeChanged(width, height);
-        mOffScreenViewfinder.onDisplaySizeChanged(width, height);
 
         mOutputAspectRatio = width > height ? (float) width / height : (float) height / width;
         float aspectRatio = mOutputAspectRatio / mInputAspectRatio;
@@ -129,21 +108,12 @@ public class SrsCameraView extends GLSurfaceView implements GLSurfaceView.Render
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
         surfaceTexture.updateTexImage();
-        surfaceTexture.getTransformMatrix(mSurfaceMatrix);
 
-        Matrix.multiplyMM(mTransformMatrix, 0, mSurfaceMatrix, 0, mProjectionMatrix, 0);
-        if (mPreviewViewfinder != null) {
-            mPreviewViewfinder.setTextureTransformMatrix(mTransformMatrix);
-            mPreviewViewfinder.onDrawFrame(mOESTextureId);
-        }
-        if (mOffScreenViewfinder != null) {
-            mOffScreenViewfinder.setTextureTransformMatrix(mTransformMatrix);
-            mOffScreenViewfinder.onDrawFrame(mOESTextureId);
-        }
+        surfaceTexture.getTransformMatrix(mSurfaceMatrix);
 
         if (mIsEncoding) {
             //mGLIntBufferCache.add(mPreviewViewfinder.getGLFboBuffer());
-            mGLIntBufferCache.add(mOffScreenViewfinder.getGLFboBuffer());
+
             synchronized (writeLock) {
                 writeLock.notifyAll();
             }
@@ -169,56 +139,11 @@ public class SrsCameraView extends GLSurfaceView implements GLSurfaceView.Render
         }
         mCamera.getParameters().setPreviewSize(mPreviewWidth, mPreviewHeight);
 
-        if (mGLPreviewBuffer != null) {
-            mGLPreviewBuffer.clear();
-        }
         mGLPreviewBuffer = ByteBuffer.allocateDirect(mPreviewWidth * mPreviewHeight * 4);
         mInputAspectRatio = mPreviewWidth > mPreviewHeight ?
             (float) mPreviewWidth / mPreviewHeight : (float) mPreviewHeight / mPreviewWidth;
 
         return new int[] { mPreviewWidth, mPreviewHeight };
-    }
-
-    public boolean setFilter(final ViewfinderType type) {
-        return setFilter(type, false);
-    }
-
-    public boolean setFilter(final ViewfinderType type, final boolean force) {
-        if (mCamera == null) {
-            return false;
-        }
-
-        queueEvent(new Runnable() {
-            @Override
-            public void run() {
-                if (mViewfinderType != type || force) {
-                    mViewfinderType = type;
-
-                    if (mPreviewViewfinder != null) {
-                        mPreviewViewfinder.destroy();
-                    }
-
-                    mPreviewViewfinder = ViewfinderFactory.initFilters(type);
-                    if (mPreviewViewfinder != null) {
-                        mPreviewViewfinder.init(getContext().getApplicationContext());
-                        mPreviewViewfinder.onInputSizeChanged(mPreviewWidth, mPreviewHeight);
-                        mPreviewViewfinder.onDisplaySizeChanged(mSurfaceWidth, mSurfaceHeight);
-                    }
-
-                    if (mOffScreenViewfinder != null) {
-                        mOffScreenViewfinder.destroy();
-                    }
-                    mOffScreenViewfinder = new OffScreenViewfinder();
-                    if (mOffScreenViewfinder != null) {
-                        mOffScreenViewfinder.init(getContext().getApplicationContext());
-                        mOffScreenViewfinder.onInputSizeChanged(mPreviewWidth, mPreviewHeight);
-                        mOffScreenViewfinder.onDisplaySizeChanged(mSurfaceWidth, mSurfaceHeight);
-                    }
-                }
-            }
-        });
-        requestRender();
-        return true;
     }
 
     private void deleteTextures() {

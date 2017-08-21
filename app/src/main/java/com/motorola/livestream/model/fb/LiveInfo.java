@@ -6,6 +6,8 @@ import java.util.List;
 
 public class LiveInfo {
 
+    public static final String LIVE_NOW = "LIVE_NOW";
+
     @SerializedName("id")
     private String id;
 
@@ -28,7 +30,6 @@ public class LiveInfo {
     public void setId(String id) {
         this.id = id;
     }
-
 
     public String getStreamUrl() {
         return streamUrl;

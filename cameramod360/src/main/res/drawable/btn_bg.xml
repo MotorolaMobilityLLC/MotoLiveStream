@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="40dp"
+    android:height="40dp"
+    android:viewportHeight="40.0"
+    android:viewportWidth="40.0">
+    <path
+        android:fillColor="@color/switch_view_btn_background"
+        android:pathData="M20.02,20m-19,0a19,19 0,1 1,38 0a19,19 0,1 1,-38 0" />
+    <path
+        android:fillColor="@color/switch_view_btn_background_stroke"
+        android:pathData="M20,1A19,19 0,1 1,1 20,19 19,0 0,1 20,1m0,-1A20,20 0,1 0,40 20,20 20,0 0,0 20,0Z" />
+</vector>
