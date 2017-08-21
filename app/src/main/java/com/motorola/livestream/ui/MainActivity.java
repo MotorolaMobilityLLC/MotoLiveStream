@@ -51,11 +51,12 @@ public class MainActivity extends AbstractPermissionActivity {
         if (!Util.isNetworkConnected(getApplicationContext())) {
             new AlertDialog.Builder(this)
                     .setMessage(R.string.label_network_not_available)
-                    .setPositiveButton(R.string.btn_ok,
-                            (DialogInterface dialog, int which) -> {
-                                MainActivity.this.finish();
-                            }
-                    )
+                    .setPositiveButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            MainActivity.this.finish();
+                        }
+                    })
                     .show();
         } else {
             mCallbackManager = CallbackManager.Factory.create();
@@ -129,7 +130,7 @@ public class MainActivity extends AbstractPermissionActivity {
         }
     }
 
-    private void loginToFacebook(String permission) {
+    private void loginToFacebook(final String permission) {
         if (FbPermission.PUBLISH_ACTION.equals(permission)) {
             LoginManager.getInstance().
                     logInWithPublishPermissions(this, Collections.singletonList(permission));
@@ -174,14 +175,18 @@ public class MainActivity extends AbstractPermissionActivity {
             builder.setMessage(R.string.dlg_public_profile_not_granted);
         }
         builder.setCancelable(false)
-                .setPositiveButton(R.string.btn_retry,
-                        (DialogInterface dialog, int which) -> {
-                            mHandler.sendEmptyMessage(0);
-                    })
-                .setNegativeButton(R.string.btn_exit,
-                        (DialogInterface dialog, int which) -> {
-                            MainActivity.this.finish();
-                    })
+                .setPositiveButton(R.string.btn_retry, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mHandler.sendEmptyMessage(0);
+                    }
+                })
+                .setNegativeButton(R.string.btn_exit, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MainActivity.this.finish();
+                    }
+                })
                 .show();
     }
 
@@ -189,10 +194,12 @@ public class MainActivity extends AbstractPermissionActivity {
         new AlertDialog.Builder(this)
                 .setMessage(getString(R.string.dlg_fb_login_failed))
                 .setCancelable(false)
-                .setPositiveButton(R.string.btn_exit,
-                        (DialogInterface dialog, int which) -> {
-                            MainActivity.this.finish();
-                        })
+                .setPositiveButton(R.string.btn_exit, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MainActivity.this.finish();
+                    }
+                })
                 .show();
     }
 
@@ -200,14 +207,18 @@ public class MainActivity extends AbstractPermissionActivity {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.perm_required_alert_title)
                 .setMessage(R.string.perm_required_alert_msg)
-                .setPositiveButton(R.string.perm_required_alert_button_app_info,
-                        (DialogInterface dialog, int which) -> {
-                            jumpToAppInfo();
-                        })
-                .setOnCancelListener((DialogInterface dialog) -> {
-                            MainActivity.this.finish();
-                        }
-                )
+                .setPositiveButton(R.string.perm_required_alert_button_app_info, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        jumpToAppInfo();
+                    }
+                })
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        MainActivity.this.finish();
+                    }
+                })
                 .show();
     }
 
@@ -235,18 +246,22 @@ public class MainActivity extends AbstractPermissionActivity {
         new AlertDialog.Builder(this)
                 .setMessage(R.string.dlg_request_notification_policy_access)
                 .setCancelable(false)
-                .setPositiveButton(R.string.btn_setting,
-                        (DialogInterface dialog, int which) -> {
-                            Intent intent = new Intent(
-                                    Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
-                            startActivityForResult(intent, REQUEST_NOTIFICATION_POLICY_ACCESS);
-                        })
-                .setNegativeButton(R.string.btn_cancel,
-                        (DialogInterface dialog, int which) -> {
-                            // Begin, Lenovo, guzy2, IKSWN-73799, show dialog of requesting "Do Not Disturb" permission
-                            startLiveActivity();
-                            // End, Lenovo, guzy2, IKSWN-73799
-                        })
+                .setPositiveButton(R.string.btn_setting, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(
+                                Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
+                        startActivityForResult(intent, REQUEST_NOTIFICATION_POLICY_ACCESS);
+                    }
+                })
+                .setNegativeButton(R.string.btn_cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Begin, Lenovo, guzy2, IKSWN-73799, show dialog of requesting "Do Not Disturb" permission
+                        startLiveActivity();
+                        // End, Lenovo, guzy2, IKSWN-73799
+                    }
+                })
                 .show();
     }
 

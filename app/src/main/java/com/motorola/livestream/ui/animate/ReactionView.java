@@ -119,7 +119,9 @@ public class ReactionView extends SurfaceView implements SurfaceHolder.Callback 
 
     public void stop() {
         if (mDrawThread != null) {
-            mReactions.forEach(ReactionBean::pause);
+            for (ReactionBean reactionBean: mReactions) {
+                reactionBean.pause();
+            }
             mDrawThread.isRun = false;
             mDrawThread = null;
 
@@ -159,7 +161,9 @@ public class ReactionView extends SurfaceView implements SurfaceHolder.Callback 
                                 needRemoveList.add(reactionBean);
                             }
                         }
-                        needRemoveList.forEach(mReactions::remove);
+                        for (ReactionBean reactionBean : needRemoveList) {
+                            mReactions.remove(reactionBean);
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

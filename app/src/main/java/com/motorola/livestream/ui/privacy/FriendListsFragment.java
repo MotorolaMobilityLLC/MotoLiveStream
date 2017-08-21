@@ -42,7 +42,12 @@ public class FriendListsFragment extends Fragment {
     private final SparseArrayCompat<Boolean> mSelectedIndex = new SparseArrayCompat<>();
 
     private final BaseRecyclerViewAdapter.OnItemClickListener mOnItemClickListener =
-            (ViewGroup parent, View view, int position) -> onFriendListItemSelected(position);
+            new BaseRecyclerViewAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(ViewGroup parent, View view, int position) {
+                    onFriendListItemSelected(position);
+                }
+            };
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the

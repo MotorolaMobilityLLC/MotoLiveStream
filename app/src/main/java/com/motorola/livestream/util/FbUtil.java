@@ -64,7 +64,8 @@ public class FbUtil {
         getUserPhoto(listener, user, true);
     }
 
-    public static void getUserPhoto(OnDataRetrievedListener<User> listener, User user, boolean async) {
+    public static void getUserPhoto(final OnDataRetrievedListener<User> listener,
+                                    final User user, boolean async) {
         Bundle parameters = new Bundle();
         parameters.putBoolean("redirect", false);
 
@@ -73,23 +74,25 @@ public class FbUtil {
                 FbGraphPathUtil.getUserPhotoPath(user.getId(), 160),
                 parameters,
                 HttpMethod.GET,
-                (GraphResponse response) -> {
-                    if (response.getError() == null) {
-                        try {
-                            String userPhotoUrl = response.getJSONObject()
-                                    .getJSONObject("data").getString("url");
-                            user.setUserPhotoUrl(userPhotoUrl);
-                            listener.onSuccess(user);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            user.setUserPhotoUrl(null);
-                            listener.onError(e);
+                new GraphRequest.Callback() {
+                    @Override
+                    public void onCompleted(GraphResponse graphResponse) {
+                        if (graphResponse.getError() == null) {
+                            try {
+                                String userPhotoUrl = graphResponse.getJSONObject()
+                                        .getJSONObject("data").getString("url");
+                                user.setUserPhotoUrl(userPhotoUrl);
+                                listener.onSuccess(user);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                user.setUserPhotoUrl(null);
+                                listener.onError(e);
+                            }
+                        } else {
+                            listener.onError(graphResponse.getError().getException());
                         }
-                    } else {
-                        listener.onError(response.getError().getException());
                     }
-                }
-        );
+                });
 
         if (async) {
             request.executeAsync();
@@ -102,8 +105,8 @@ public class FbUtil {
         getFriendList(listener, userId, true);
     }
 
-    private static void getFriendList(OnListRetrievedListener<FriendList> listener, String userId,
-                                      boolean onlyUserCreated) {
+    private static void getFriendList(final OnListRetrievedListener<FriendList> listener,
+                                      String userId, boolean onlyUserCreated) {
         Bundle parameters = new Bundle();
         parameters.putString("fields", "id,name");
         if (onlyUserCreated) {
@@ -115,25 +118,29 @@ public class FbUtil {
                 FbGraphPathUtil.getFriendListsPath(userId),
                 parameters,
                 HttpMethod.GET,
-                (GraphResponse response) -> {
-                    if (response.getError() == null) {
-                        try {
-                            Type type = new TypeToken<List<FriendList>>() {}.getType();
-                            List<FriendList> friendList = new Gson().fromJson(
-                                    response.getJSONObject().getJSONArray("data").toString(), type);
-                            listener.onSuccess(friendList);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            listener.onError(e);
+                new GraphRequest.Callback() {
+                    @Override
+                    public void onCompleted(GraphResponse graphResponse) {
+                        if (graphResponse.getError() == null) {
+                            try {
+                                JSONObject responseJson = graphResponse.getJSONObject();
+                                Type type = new TypeToken<List<FriendList>>() {}.getType();
+                                List<FriendList> friendList = new Gson().fromJson(
+                                        responseJson.getJSONArray("data").toString(), type);
+                                listener.onSuccess(friendList);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                listener.onError(e);
+                            }
+                        } else {
+                            listener.onError(graphResponse.getError().getException());
                         }
-                    } else {
-                        listener.onError(response.getError().getException());
                     }
                 }
         ).executeAsync();
     }
 
-    public static void createUserLive(OnDataRetrievedListener<LiveInfo> listener, String userId,
+    public static void createUserLive(final OnDataRetrievedListener<LiveInfo> listener, String userId,
                                       String description, String privacy, boolean isSpherical) {
         Bundle parameters = new Bundle();
         parameters.putString("description", description);
@@ -146,19 +153,22 @@ public class FbUtil {
                 FbGraphPathUtil.getUserLivePath(userId),
                 parameters,
                 HttpMethod.POST,
-                (GraphResponse response) -> {
-                    if (response.getError() == null) {
-                        LiveInfo liveInfo = new Gson().fromJson(
-                                response.getJSONObject().toString(), LiveInfo.class);
-                        listener.onSuccess(liveInfo);
-                    } else {
-                        listener.onError(response.getError().getException());
+                new GraphRequest.Callback() {
+                    @Override
+                    public void onCompleted(GraphResponse graphResponse) {
+                        if (graphResponse.getError() == null) {
+                            LiveInfo liveInfo = new Gson().fromJson(
+                                    graphResponse.getJSONObject().toString(), LiveInfo.class);
+                            listener.onSuccess(liveInfo);
+                        } else {
+                            listener.onError(graphResponse.getError().getException());
+                        }
                     }
                 }
         ).executeAsync();
     }
 
-    public static void getLiveViews(OnDataRetrievedListener<LiveViews> listener, String liveId) {
+    public static void getLiveViews(final OnDataRetrievedListener<LiveViews> listener, String liveId) {
         Bundle parameters = new Bundle();
         parameters.putString("fields", "live_views,total_views");
         new GraphRequest(
@@ -166,19 +176,22 @@ public class FbUtil {
                 FbGraphPathUtil.getLivePath(liveId),
                 parameters,
                 HttpMethod.GET,
-                (GraphResponse response) -> {
-                    if (response.getError() == null) {
-                        LiveViews liveViews = new Gson().
-                                fromJson(response.getJSONObject().toString(), LiveViews.class);
-                        listener.onSuccess(liveViews);
-                    } else {
-                        listener.onError(response.getError().getException());
+                new GraphRequest.Callback() {
+                    @Override
+                    public void onCompleted(GraphResponse graphResponse) {
+                        if (graphResponse.getError() == null) {
+                            LiveViews liveViews = new Gson().
+                                    fromJson(graphResponse.getJSONObject().toString(), LiveViews.class);
+                            listener.onSuccess(liveViews);
+                        } else {
+                            listener.onError(graphResponse.getError().getException());
+                        }
                     }
                 }
         ).executeAsync();
     }
 
-    public static void getLiveComments(OnPagedListRetrievedListener<Comment> listener,
+    public static void getLiveComments(final OnPagedListRetrievedListener<Comment> listener,
                                        String liveId, int limit, Cursors cursors) {
         Bundle parameters = new Bundle();
         // Always get the total count
@@ -198,43 +211,46 @@ public class FbUtil {
                 FbGraphPathUtil.getLiveCommentsPath(liveId),
                 parameters,
                 HttpMethod.GET,
-                (GraphResponse response) -> {
-                    if (response.getError() == null) {
-                        try {
-                            Gson gson = new Gson();
-                            JSONObject responseJson = response.getJSONObject();
-                            Type type = new TypeToken<List<Comment>>() {}.getType();
-                            List<Comment> commentList = gson.fromJson(
-                                    responseJson.getJSONArray("data").toString(), type);
+                new GraphRequest.Callback() {
+                    @Override
+                    public void onCompleted(GraphResponse graphResponse) {
+                        if (graphResponse.getError() == null) {
+                            try {
+                                Gson gson = new Gson();
+                                JSONObject responseJson = graphResponse.getJSONObject();
+                                Type type = new TypeToken<List<Comment>>() {}.getType();
+                                List<Comment> commentList = gson.fromJson(
+                                        responseJson.getJSONArray("data").toString(), type);
 
-                            Cursors newCursors = null;
-                            if (responseJson.has("paging")) {
-                                JSONObject pagingJson = responseJson.getJSONObject("paging");
-                                if (pagingJson.has("cursors")) {
-                                    newCursors = gson.fromJson(
-                                            pagingJson.getJSONObject("cursors").toString(),
-                                            Cursors.class);
+                                Cursors newCursors = null;
+                                if (responseJson.has("paging")) {
+                                    JSONObject pagingJson = responseJson.getJSONObject("paging");
+                                    if (pagingJson.has("cursors")) {
+                                        newCursors = gson.fromJson(
+                                                pagingJson.getJSONObject("cursors").toString(),
+                                                Cursors.class);
+                                    }
                                 }
-                            }
 
-                            int totalCount = 0;
-                            if (responseJson.has("summary")) {
-                                JSONObject summaryJson = responseJson.getJSONObject("summary");
-                                totalCount = summaryJson.getInt("total_count");
+                                int totalCount = 0;
+                                if (responseJson.has("summary")) {
+                                    JSONObject summaryJson = responseJson.getJSONObject("summary");
+                                    totalCount = summaryJson.getInt("total_count");
+                                }
+                                listener.onSuccess(commentList, newCursors, totalCount);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                listener.onError(e);
                             }
-                            listener.onSuccess(commentList, newCursors, totalCount);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            listener.onError(e);
+                        } else {
+                            listener.onError(graphResponse.getError().getException());
                         }
-                    } else {
-                        listener.onError(response.getError().getException());
                     }
                 }
         ).executeAsync();
     }
 
-    public static void getLiveReactions(OnPagedListRetrievedListener<Reaction> listener,
+    public static void getLiveReactions(final OnPagedListRetrievedListener<Reaction> listener,
                                         String liveId, int limit, Cursors cursors) {
         Bundle parameters = new Bundle();
         if (limit > 0) {
@@ -249,45 +265,49 @@ public class FbUtil {
                 FbGraphPathUtil.getLiveReactionsPath(liveId),
                 parameters,
                 HttpMethod.GET,
-                (GraphResponse response) -> {
-                    if (response.getError() == null) {
-                        try {
-                            Gson gson = new Gson();
-                            JSONObject responseJson = response.getJSONObject();
-                            Type type = new TypeToken<List<Reaction>>() {}.getType();
-                            List<Reaction> reactionList = gson.fromJson(
-                                    responseJson.getJSONArray("data").toString(), type);
+                new GraphRequest.Callback() {
+                    @Override
+                    public void onCompleted(GraphResponse graphResponse) {
+                        if (graphResponse.getError() == null) {
+                            try {
+                                Gson gson = new Gson();
+                                JSONObject responseJson = graphResponse.getJSONObject();
+                                Type type = new TypeToken<List<Reaction>>() {}.getType();
+                                List<Reaction> reactionList = gson.fromJson(
+                                        responseJson.getJSONArray("data").toString(), type);
 
-                            int totalLikeCount = 0;
-                            for (Reaction reaction : reactionList) {
-                                if (Reaction.ReactionType.LIKE == reaction.getType()) {
-                                    totalLikeCount++;
+                                int totalLikeCount = 0;
+                                for (Reaction reaction : reactionList) {
+                                    if (Reaction.ReactionType.LIKE == reaction.getType()) {
+                                        totalLikeCount++;
+                                    }
                                 }
-                            }
 
-                            Cursors newCursors = null;
-                            if (responseJson.has("paging")) {
-                                JSONObject pagingJson = responseJson.getJSONObject("paging");
-                                if (pagingJson.has("cursors")) {
-                                    newCursors = gson.fromJson(
-                                            pagingJson.getJSONObject("cursors").toString(),
-                                            Cursors.class);
+                                Cursors newCursors = null;
+                                if (responseJson.has("paging")) {
+                                    JSONObject pagingJson = responseJson.getJSONObject("paging");
+                                    if (pagingJson.has("cursors")) {
+                                        newCursors = gson.fromJson(
+                                                pagingJson.getJSONObject("cursors").toString(),
+                                                Cursors.class);
+                                    }
                                 }
-                            }
 
-                            listener.onSuccess(reactionList, newCursors, totalLikeCount);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            listener.onError(e);
+                                listener.onSuccess(reactionList, newCursors, totalLikeCount);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                listener.onError(e);
+                            }
+                        } else {
+                            listener.onError(graphResponse.getError().getException());
                         }
-                    } else {
-                        listener.onError(response.getError().getException());
                     }
                 }
         ).executeAsync();
     }
 
-    public static void stopLiveVideo(OnDataRetrievedListener<Boolean> listener, String liveId) {
+    public static void stopLiveVideo(final OnDataRetrievedListener<Boolean> listener,
+                                     String liveId) {
         Bundle parameters = new Bundle();
         parameters.putBoolean("end_live_video", true);
 
@@ -296,18 +316,21 @@ public class FbUtil {
                 FbGraphPathUtil.getLivePath(liveId),
                 parameters,
                 HttpMethod.POST,
-                (GraphResponse response) -> {
-                    if (response.getError() == null) {
-                        listener.onSuccess(true);
-                    } else {
-                        listener.onError(response.getError().getException());
+                new GraphRequest.Callback() {
+                    @Override
+                    public void onCompleted(GraphResponse graphResponse) {
+                        if (graphResponse.getError() == null) {
+                            listener.onSuccess(true);
+                        } else {
+                            listener.onError(graphResponse.getError().getException());
+                        }
                     }
                 }
         ).executeAsync();
     }
 
-    public static void updateLive(OnDataRetrievedListener<Boolean> listener, String liveId,
-                                  String privacy) {
+    public static void updateLive(final OnDataRetrievedListener<Boolean> listener,
+                                  String liveId, String privacy) {
         Bundle parameters = new Bundle();
         parameters.putString("privacy", privacy);
 
@@ -316,46 +339,55 @@ public class FbUtil {
                 FbGraphPathUtil.getLivePath(liveId),
                 parameters,
                 HttpMethod.POST,
-                (GraphResponse response) -> {
-                    if (response.getError() == null) {
-                        listener.onSuccess(true);
-                    } else {
-                        listener.onError(response.getError().getException());
+                new GraphRequest.Callback() {
+                    @Override
+                    public void onCompleted(GraphResponse graphResponse) {
+                        if (graphResponse.getError() == null) {
+                            listener.onSuccess(true);
+                        } else {
+                            listener.onError(graphResponse.getError().getException());
+                        }
                     }
                 }
         ).executeAsync();
     }
 
-    public static void deleteLive(OnDataRetrievedListener<Boolean> listener, String liveId) {
+    public static void deleteLive(final OnDataRetrievedListener<Boolean> listener, String liveId) {
         new GraphRequest(
                 AccessToken.getCurrentAccessToken(),
                 FbGraphPathUtil.getLivePath(liveId),
                 null,
                 HttpMethod.DELETE,
-                (GraphResponse response) -> {
-                    if (listener == null) {
-                        return;
-                    }
-                    if (response.getError() == null) {
-                        listener.onSuccess(true);
-                    } else {
-                        listener.onError(response.getError().getException());
+                new GraphRequest.Callback() {
+                    @Override
+                    public void onCompleted(GraphResponse graphResponse) {
+                        if (listener == null) {
+                            return;
+                        }
+                        if (graphResponse.getError() == null) {
+                            listener.onSuccess(true);
+                        } else {
+                            listener.onError(graphResponse.getError().getException());
+                        }
                     }
                 }
         ).executeAsync();
     }
 
-    public static void deAuthorize(OnDataRetrievedListener<Boolean> listener) {
+    public static void deAuthorize(final OnDataRetrievedListener<Boolean> listener) {
         new GraphRequest(
                 AccessToken.getCurrentAccessToken(),
                 FbGraphPathUtil.getPermissionPath("me", null),
                 null,
                 HttpMethod.DELETE,
-                (GraphResponse response) -> {
-                    if (response.getError() == null) {
-                        listener.onSuccess(true);
-                    } else {
-                        listener.onError(response.getError().getException());
+                new GraphRequest.Callback() {
+                    @Override
+                    public void onCompleted(GraphResponse graphResponse) {
+                        if (graphResponse.getError() == null) {
+                            listener.onSuccess(true);
+                        } else {
+                            listener.onError(graphResponse.getError().getException());
+                        }
                     }
                 }
         ).executeAsync();

@@ -73,8 +73,12 @@ class ReactionBean {
         mMoveAnim = ValueAnimator.ofObject(new MoveEvaluator(), startPoint, endPoint);
         mMoveAnim.setDuration(3000L);
 
-        mMoveAnim.addUpdateListener((ValueAnimator animation) ->
-                mPoint = (Point) animation.getAnimatedValue());
+        mMoveAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mPoint = (Point) animation.getAnimatedValue();
+            }
+        });
 
         mMoveAnim.addListener(new ValueAnimator.AnimatorListener() {
 

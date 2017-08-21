@@ -346,17 +346,20 @@ public class LiveMainFragment extends Fragment
     };
 
     private final DialogInterface.OnClickListener mResumeDialogListener =
-            (DialogInterface dialog, int which) -> {
-                switch (which) {
-                    case DialogInterface.BUTTON_POSITIVE:
-                        resumeLive();
-                        mResumeDialog = null;
-                        break;
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        stopLive();
-                        mBtnGoLive.setSelected(false);
-                        mResumeDialog = null;
-                        break;
+            new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case DialogInterface.BUTTON_POSITIVE:
+                            resumeLive();
+                            mResumeDialog = null;
+                            break;
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            stopLive();
+                            mBtnGoLive.setSelected(false);
+                            mResumeDialog = null;
+                            break;
+                    }
                 }
             };
 
@@ -549,11 +552,12 @@ public class LiveMainFragment extends Fragment
         mLive4KSettings = mLiveSettings.findViewById(R.id.layout_4k_setting);
         m4KLiveSwitch = (Switch) mLive4KSettings.findViewById(R.id.settings_4k_switch);
         mLive4KSettings.setOnClickListener(this);
-        m4KLiveSwitch.setOnCheckedChangeListener(
-                (CompoundButton buttonView, boolean isChecked) -> {
-                    swapCamera(mPublisher.getCameraId(), true);
-                }
-        );
+        m4KLiveSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                swapCamera(mPublisher.getCameraId(), true);
+            }
+        });
 
         // Go live controller layout
         mGoLiveLayout = view.findViewById(R.id.layout_go_live);
@@ -808,11 +812,12 @@ public class LiveMainFragment extends Fragment
 
         new AlertDialog.Builder(getActivity())
                 .setMessage(R.string.live_popup_dlg_rtmp_failed)
-                .setNegativeButton(R.string.btn_ok,
-                        (DialogInterface dialog, int which) -> {
-                            stopLive();
-                        }
-                )
+                .setNegativeButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        stopLive();
+                    }
+                })
                 .setCancelable(false)
                 .show();
     }
@@ -862,7 +867,7 @@ public class LiveMainFragment extends Fragment
         }
 
         if (R.id.btn_positive == id) {
-            logoutFromFacebook(false);
+            logoutFromFacebook();
         }
     }
 
@@ -890,11 +895,12 @@ public class LiveMainFragment extends Fragment
         }
         new AlertDialog.Builder(getActivity())
                 .setMessage(R.string.live_popup_dlg_camera_failed)
-                .setNegativeButton(R.string.btn_ok,
-                        (DialogInterface dialog, int which) -> {
-                            getActivity().finish();
-                        }
-                )
+                .setNegativeButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        getActivity().finish();
+                    }
+                })
                 .setCancelable(false)
                 .show();
     }
@@ -905,11 +911,12 @@ public class LiveMainFragment extends Fragment
         }
         new AlertDialog.Builder(getActivity())
                 .setMessage(messageId)
-                .setNegativeButton(R.string.btn_exit,
-                        (DialogInterface dialog, int which) -> {
-                            getActivity().finish();
-                        }
-                )
+                .setNegativeButton(R.string.btn_exit, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        getActivity().finish();
+                    }
+                })
                 .setCancelable(false)
                 .show();
     }
@@ -930,11 +937,12 @@ public class LiveMainFragment extends Fragment
 
         new AlertDialog.Builder(getActivity())
                 .setMessage(R.string.live_popup_dlg_network_poor)
-                .setNegativeButton(R.string.btn_ok,
-                        (DialogInterface dialog, int which) -> {
-                            stopLiveForNwPoor();
-                        }
-                )
+                .setNegativeButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        stopLiveForNwPoor();
+                    }
+                })
                 .setCancelable(false)
                 .show();
     }
@@ -946,12 +954,14 @@ public class LiveMainFragment extends Fragment
 
         new AlertDialog.Builder(getActivity())
                 .setMessage(R.string.live_deleted_message)
-                .setPositiveButton(R.string.live_process_identify,
-                        (DialogInterface dialog, int which) -> {
-                            mResultLayout.setVisibility(View.GONE);
-                            refreshPreGoLiveUI();
-                            startCameraPreview();
-                        })
+                .setPositiveButton(R.string.live_process_identify, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mResultLayout.setVisibility(View.GONE);
+                        refreshPreGoLiveUI();
+                        startCameraPreview();
+                    }
+                })
                 .setCancelable(false)
                 .show();
     }
@@ -1453,7 +1463,7 @@ public class LiveMainFragment extends Fragment
         }, mLiveInfoCacheBean.getLiveStreamId(), mPrivacyCacheBean.toJsonString());
     }
 
-    private void logoutFromFacebook(boolean switchAccount) {
+    private void logoutFromFacebook() {
         if (getActivity() == null) {
             return;
         }
@@ -1464,9 +1474,6 @@ public class LiveMainFragment extends Fragment
             @Override
             public void onSuccess(Boolean data) {
                 LoginManager.getInstance().logOut();
-                if (switchAccount) {
-                    getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
-                }
                 getActivity().finish();
             }
 
@@ -1869,9 +1876,12 @@ public class LiveMainFragment extends Fragment
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mPopWindow.setOutsideTouchable(true);
         Button mBt = (Button) contentView.findViewById(R.id.btn_about_menu_popupwindow);
-        mBt.setOnClickListener(view -> {
-            startOpensourceLicense();
-            mPopWindow.dismiss();
+        mBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startOpensourceLicense();
+                mPopWindow.dismiss();
+            }
         });
 
         View flowButton = mBtnOpenSource;

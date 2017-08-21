@@ -9,7 +9,7 @@ public class ExecutorUtil {
 
     private static final Executor sExecutor = new ThreadPoolExecutor(4, 4,
             1L, TimeUnit.SECONDS,
-            new LinkedBlockingDeque<>());
+            new LinkedBlockingDeque<Runnable>());
 
     public static void executeAsync(Runnable runnable) {
         sExecutor.execute(runnable);

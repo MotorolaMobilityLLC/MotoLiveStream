@@ -10,9 +10,6 @@ android {
         targetSdkVersion 25
         versionCode getCustomVersionCode()
         versionName "${getVersionNameMajor()}"
-        jackOptions {
-            enabled true
-        }
         resConfigs getSupportedLanguages()
     }
     lintOptions {
@@ -20,10 +17,6 @@ android {
         checkAllWarnings true
         warningsAsErrors true
         disable 'MissingTranslation'
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
     sourceSets {
         main {
