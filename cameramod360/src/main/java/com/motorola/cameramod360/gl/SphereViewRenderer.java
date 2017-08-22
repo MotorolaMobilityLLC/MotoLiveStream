@@ -147,12 +147,18 @@ public class SphereViewRenderer implements GLSurfaceView.Renderer,
 
     protected float[] mMvpMatrix = new float[16];
     protected float[] mModelMatrix = new float[16];
+    protected float[] mViewMatrix = new float[16];
     protected float[] mProjectionMatrix = new float[16];
     protected float[] mTextureMatrix = new float[16];
-    protected float[] mViewMatrix = new float[16];
+
     protected float[] mSphereMatrix = new float[16];
     protected float[] mRotationMatrix = new float[16];
     protected float[] mTiltMatrix = new float[16];
+
+    // Default model, view, projection matrices to avoid using the spherical
+    protected float[] mDefaultModelMatrix = new float[16];
+    protected float[] mDefaultViewMatrix = new float[16];
+    protected float[] mDefaultProjectionMatrix = new float[16];
 
     private OffScreenFrameBuffer mOffScreenFrameBuffer;
     private IntBuffer mOffScreenByteBuffer;
@@ -512,14 +518,25 @@ public class SphereViewRenderer implements GLSurfaceView.Renderer,
     }
 
     protected void prepareDefault() {
+        float[] modelMatrix = mDefaultModelMatrix;
+        float[] viewMatrix = mDefaultViewMatrix;
+        float[] projectionMatrix = mDefaultProjectionMatrix;
+
+        if (getViewType() == ViewType.DEFAULT) {
+            // not writing to offscreen framebuffer
+            modelMatrix = mModelMatrix;
+            viewMatrix = mViewMatrix;
+            projectionMatrix = mProjectionMatrix;
+        }
+
         int viewWidth = mViewSize.getWidth();
         int viewHeight = mViewSize.getHeight();
-        Matrix.setIdentityM(mModelMatrix, 0);
-        Matrix.setIdentityM(mViewMatrix, 0);
-        Matrix.orthoM(mProjectionMatrix, 0, -viewWidth / 2, viewWidth / 2,
+        Matrix.setIdentityM(modelMatrix, 0);
+        Matrix.setIdentityM(viewMatrix, 0);
+        Matrix.orthoM(projectionMatrix, 0, -viewWidth / 2, viewWidth / 2,
                 -viewHeight / 2, viewHeight / 2, -1, 1);
-        Matrix.scaleM(mModelMatrix, 0, viewWidth / 2f, viewHeight / 2f, 0);
-        drawDefault(mModelMatrix, mViewMatrix, mProjectionMatrix);
+        Matrix.scaleM(modelMatrix, 0, viewWidth / 2f, viewHeight / 2f, 0);
+        drawDefault(modelMatrix, viewMatrix, projectionMatrix);
     }
 
     protected void drawDefault(float[] modelMatrix, float[] viewMatrix, float[] projectionMatrix) {
