@@ -277,6 +277,7 @@ public class SphereViewRenderer implements GLSurfaceView.Renderer,
 
     public void setMediaSize(int width, int height) {
         mMediaSize = new Size(width, height);
+        prepareOffscreenByteBuffer();
     }
 
     public void setViewportSize(int width, int height) {

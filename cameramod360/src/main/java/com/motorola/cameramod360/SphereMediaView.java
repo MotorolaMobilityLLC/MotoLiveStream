@@ -125,6 +125,11 @@ public abstract class SphereMediaView extends GLSurfaceView implements
         mIsSuspended = false;
     }
 
+    public void setMediaSize() {
+        Size mediaSize = getMediaSize();
+        mRenderer.setMediaSize(mediaSize.getWidth(), mediaSize.getHeight());
+    }
+
     protected void doPrepareMedia(SphereViewState viewState) {
         Size mediaSize = getMediaSize();
         mRenderer.setMediaSize(mediaSize.getWidth(), mediaSize.getHeight());

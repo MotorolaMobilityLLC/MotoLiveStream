@@ -1610,6 +1610,7 @@ public class LiveMainFragment extends Fragment
                 mPublisher.switchCameraFace(camId);
 
                 mSphereCameraView.setViewType(ViewType.SPHERICAL, true);
+                mSphereCameraView.setMediaSize();
             } else {
                 mPublisher.setCameraId(camId);
                 // Get the real screen size and set as preview resolution
@@ -1622,6 +1623,7 @@ public class LiveMainFragment extends Fragment
                 mPublisher.setVideoHDMode();
 
                 mSphereCameraView.setViewType(ViewType.DEFAULT, true);
+                mSphereCameraView.setMediaSize();
             }
             mOpenCameraRetryCount = 0;
         } catch (Exception e) {

@@ -312,76 +312,23 @@ public class SrsCameraView extends GLSurfaceView implements GLSurfaceView.Render
     }
 
     private Camera openCamera() {
-//        Camera camera;
         Camera camera = null;
-        int numCameras = 0;
+        int numCameras = Camera.getNumberOfCameras();
         Camera.CameraInfo info = new Camera.CameraInfo();
-        numCameras = Camera.getNumberOfCameras();
         if (mCamId < 0) {
-            int frontCamId = -1;
-            int backCamId = -1;
-            int modCamId = -1;
-            for (int i = 0; i < numCameras; i++) {
-                Camera.getCameraInfo(i, info);
-                if (info.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
-                    backCamId = i;
-                } else if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
-                    frontCamId = i;
-                    mCamId = i;
-//                    break;
-                } else {
-                    modCamId = i;
-                }
-
-//            if (modCamId != -1) {
-//                mCamId = modCamId;
-//            }else
-//            if (frontCamId != -1) {
-//                mCamId = frontCamId;
-//            } else if (backCamId != -1) {
-//                mCamId = backCamId;
-//            } else {
-//                mCamId = 0;
-//            }
-        }
-//        camera = Camera.open(mCamId);
             if (numCameras > 2) {
-                mCamId = 2;
-                Class[] paramInt = new Class[2];
-                paramInt[0] = Integer.TYPE;
-                paramInt[1] = Integer.TYPE;
-
-
-                try {
-                    Class cls = Class.forName("android.hardware.Camera");
-                    Method method = cls.getDeclaredMethod("openLegacy", paramInt);
-                    camera = (Camera) method.invoke(null, mCamId, 0x100);
-                } catch (NoSuchMethodException | IllegalAccessException |
-                        InvocationTargetException | ClassNotFoundException e) {
-                    camera = Camera.open(mCamId);
-                }
+                mCamId = 2; //Mod Camera
             } else {
-                camera = Camera.open(mCamId);
-            }
-        } else {
-            if (mCamId == 2) {
-                Class[] paramInt = new Class[2];
-                paramInt[0] = Integer.TYPE;
-                paramInt[1] = Integer.TYPE;
-
-                try {
-                    Class cls = Class.forName("android.hardware.Camera");
-                    Method method = cls.getDeclaredMethod("openLegacy", paramInt);
-                    camera = (Camera) method.invoke(null, mCamId, 0x100);
-                } catch (NoSuchMethodException | IllegalAccessException |
-                        InvocationTargetException | ClassNotFoundException e) {
-                    camera = Camera.open(mCamId);
+                for (int i = 0; i < numCameras; i++) {
+                    Camera.getCameraInfo(i, info);
+                    if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+                        mCamId = i;
+                        break;
+                    }
                 }
-            } else {
-                camera = Camera.open(mCamId);
             }
         }
-        return camera;
+        return Camera.open(mCamId);
     }
 
     private Camera.Size adaptPreviewResolution(Camera.Size resolution) {
