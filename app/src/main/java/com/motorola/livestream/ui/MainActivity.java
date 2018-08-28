@@ -117,10 +117,10 @@ public class MainActivity extends AbstractPermissionActivity {
     private void handleAllPermissions() {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         if (accessToken == null || accessToken.isExpired()
-                || !accessToken.getPermissions().contains(FbPermission.READ_CUSTOM_FRIEND_LIST)) {
-            loginToFacebook(FbPermission.READ_CUSTOM_FRIEND_LIST);
-        } else if (!accessToken.getPermissions().contains(FbPermission.PUBLISH_ACTION)) {
-            loginToFacebook(FbPermission.PUBLISH_ACTION);
+                || !accessToken.getPermissions().contains(FbPermission.PUBLIC_PROFILE)) {
+            loginToFacebook(FbPermission.PUBLIC_PROFILE);
+        } else if (!accessToken.getPermissions().contains(FbPermission.PUBLISH_VIDEO)) {
+            loginToFacebook(FbPermission.PUBLISH_VIDEO);
         } else {
             // Begin, Lenovo, guzy2, IKSWN-73799, show dialog of requesting "Do Not Disturb" permission
             if (checkAndRequestAppPermissions()) {
@@ -131,7 +131,7 @@ public class MainActivity extends AbstractPermissionActivity {
     }
 
     private void loginToFacebook(final String permission) {
-        if (FbPermission.PUBLISH_ACTION.equals(permission)) {
+        if (FbPermission.PUBLISH_VIDEO.equals(permission)) {
             LoginManager.getInstance().
                     logInWithPublishPermissions(this, Collections.singletonList(permission));
             LoginManager.getInstance().setDefaultAudience(DefaultAudience.FRIENDS);
@@ -169,7 +169,7 @@ public class MainActivity extends AbstractPermissionActivity {
 
     private void showCancelDialog(String permission) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        if (FbPermission.PUBLISH_ACTION.equals(permission)) {
+        if (FbPermission.PUBLISH_VIDEO.equals(permission)) {
             builder.setMessage(R.string.dlg_publish_not_granted);
         } else {
             builder.setMessage(R.string.dlg_public_profile_not_granted);

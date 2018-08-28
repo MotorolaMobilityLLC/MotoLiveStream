@@ -34,7 +34,7 @@ top_dir=${script_dir}
 
 rm -rf ${script_dir}/build
 cd ${script_dir}
-git clone ssh://gerrit.mot.com/home/repo/dev/apps/build.git -b main-n-7.1 --single-branch
+git clone ssh://gerrit.mot.com/home/repo/dev/apps/build.git -b main-o --single-branch
 if [ -d ${script_dir}/build-common ]; then
     rm -rf ${script_dir}/build-common
 fi
