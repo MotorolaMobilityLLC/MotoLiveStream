@@ -26,6 +26,10 @@ android {
             path 'src/main/cpp/Android.mk'
         }
     }
+    lintOptions {
+        abortOnError false
+        checkAllWarnings true
+    }
 }
 
 dependencies {
