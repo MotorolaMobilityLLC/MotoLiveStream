@@ -1,34 +1,48 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+/*
+* Copyright (C) 2013-2018 Motorola Mobility LLC,
+* All Rights Reserved.
+* Motorola Mobility Confidential Restricted.
+*/
+
 buildscript {
-    repositories {
-        def jenkinsURL = System.getenv("JENKINS_URL")
-        def androidHome = System.getenv("ANDROID_HOME")
-        def motoMavenRepo = new File("$androidHome/extras/moto/m2repository")
-        maven {
-            url motoMavenRepo.path
+    def androidHome = String.valueOf(System.getenv("ANDROID_HOME"))
+    if (file("$androidHome/moto-repo.gradle").exists()) {
+        apply from: "$androidHome/moto-repo.gradle"
+        repositories {
+            motoUsRepo()
+            motoCnRepo()
         }
-        if (jenkinsURL == null && !motoMavenRepo.exists()) {
+    } else {
+        repositories {
             jcenter()
+            google()
         }
     }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
 
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
 
 allprojects {
-    repositories {
-        def jenkinsURL = System.getenv("JENKINS_URL")
-        def androidHome = System.getenv("ANDROID_HOME")
-        def motoMavenRepo = new File("$androidHome/extras/moto/m2repository")
-        maven {
-            url motoMavenRepo.path
+    def androidHome = String.valueOf(System.getenv("ANDROID_HOME"))
+    if (file("$androidHome/moto-repo.gradle").exists()) {
+        apply from: "$androidHome/moto-repo.gradle"
+        repositories {
+            motoUsRepo()
+            motoCnRepo()
         }
-        if (jenkinsURL == null && !motoMavenRepo.exists()) {
+    } else {
+        repositories {
             jcenter()
+            google()
         }
     }
+}
+task wrapper(type: Wrapper) {
+    // Version used by the wrapper. If you change this string, run "gradle wrapper" to pull down
+    // the new config files.
+    gradleVersion = '4.1'
 }

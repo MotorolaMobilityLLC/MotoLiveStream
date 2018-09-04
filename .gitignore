@@ -9,6 +9,7 @@ proguard.cfg
 *-bug-report.html
 build/intermediates/
 build/generated/
+build/android-profile/
 captures/
 */.idea/
 *.iml
