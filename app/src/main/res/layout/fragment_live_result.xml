@@ -26,13 +26,14 @@
             android:textSize="@dimen/button_text_size_medium"
             android:textColor="@color/result_btn_txt_color"
             android:focusable="true"
-            android:background="@drawable/result_btn"/>
+            android:background="@drawable/result_btn"
+            android:visibility="gone"/>
 
         <Button
-            android:id="@+id/btn_post_live"
+            android:id="@+id/btn_goto_fb"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/button_height"
-            android:text="@string/btn_post"
+            android:text="@string/live_posted_view"
             android:textSize="@dimen/button_text_size_medium"
             android:textColor="@color/result_btn_txt_color"
             android:focusable="true"
@@ -59,6 +60,7 @@
             android:textSize="@dimen/text_size_medium"
             android:lineSpacingExtra="@dimen/text_line_space"
             android:layout_marginTop="@dimen/live_layout_margin"
+            android:visibility="gone"
             style="@style/TextAppearance.AppCompat.Medium.Inverse"/>
 
         <LinearLayout
@@ -66,7 +68,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="@dimen/live_layout_margin">
+            android:layout_marginTop="@dimen/live_layout_margin"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/result_privacy_icon"

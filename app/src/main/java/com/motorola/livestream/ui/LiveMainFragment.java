@@ -603,7 +603,7 @@ public class LiveMainFragment extends Fragment
 
         // Live result layout
         mResultLayout = view.findViewById(R.id.layout_live_result);
-        mResultLayout.findViewById(R.id.btn_post_live).setOnClickListener(this);
+        mResultLayout.findViewById(R.id.btn_goto_fb).setOnClickListener(this);
         mResultLayout.findViewById(R.id.btn_delete_live).setOnClickListener(this);
         View resultPrivacyView = view.findViewById(R.id.result_privacy_setting);
         resultPrivacyView.setOnClickListener(this);
@@ -1054,7 +1054,6 @@ public class LiveMainFragment extends Fragment
 
         mLiveStatus = LiveStatus.CREATING_LIVE;
         final boolean isSpherical = (mPublisher.getCameraId() == MOTO_360_MOD_CAMERA);
-
         FbUtil.createUserLive(
                 new FbUtil.OnDataRetrievedListener<LiveInfo>() {
                     @Override
@@ -1786,8 +1785,15 @@ public class LiveMainFragment extends Fragment
                 startActivityForResult(new Intent(getActivity(), TimelineActivity.class),
                         REQUEST_LIVE_RESULT_PRIVACY);
                 break;
-            case R.id.btn_post_live:
-                postLiveVideo();
+            case R.id.btn_goto_fb:
+                //postLiveVideo();
+                // The Live video is posted by default and we no longer have the permission
+                // to delete it. Instead we are taking the user to facebook where they can view
+                // and/or delete the videp
+                mResultLayout.setVisibility(View.GONE);
+                refreshPreGoLiveUI();
+                Util.jumpToFacebook(getActivity().getApplicationContext(),
+                        mLiveInfoCacheBean.getUser());
                 break;
             case R.id.btn_delete_live:
                 deleteLiveVideo();
