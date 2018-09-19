@@ -9,7 +9,7 @@
     <string name="dlg_fb_login_failed">"Nabigong makakuha ng permiso mula sa Facebook. Pakisubukang muli mamaya."</string>
 
     <string name="perm_required_alert_title">Kinakailangan ng pahintulot</string>
-    <string name="perm_required_alert_msg">Kailangan ng Moto Live Stream ng pahintulot upang ma-access ang ilang bagay sa iyong device. Piliin ang \"Mga Pahintulot\" sa App info upang ire-enable.</string>
+    <string name="perm_required_alert_msg">Kailangan ng Moto Live Stream ng pahintulot upang ma-access ang ilang bagay sa iyong device. Piliin ang \"Mga Pahintulot\" sa App info upang i-enable itong muli.</string>
     <string name="perm_required_alert_button_app_info">Impormasyon sa App</string>
 
     <string name="dlg_request_notification_policy_access">"Pahintulutan ang Moto Live Stream para baguhin ang setting ng Huwag Istorbohin para i-mute ang ringtone habang naka-live streaming?"</string>

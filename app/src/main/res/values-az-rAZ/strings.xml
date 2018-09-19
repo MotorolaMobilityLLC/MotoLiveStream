@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Moto Canlı Yayım</string>
+    <string name="app_name">Moto Live Stream</string>
 
     <string name="label_network_not_available">"Şəbəkə indi əlçatan deyil."</string>
     <string name="label_profile_not_available">"Facebook profili əldə etmək olmadıl"</string>
@@ -9,10 +9,10 @@
     <string name="dlg_fb_login_failed">"Facebook\'dan icazə əldə etmək mümkün olmadı. Daha sonra yenidən cəhd edin."</string>
 
     <string name="perm_required_alert_title">İcazə tələb edilir</string>
-    <string name="perm_required_alert_msg">Moto Live Stream cihazdakı bəzi məlumatlara çıxış icazəsi istəyir. Təkrar aktiv etmək üçün Proqram məlumatlarında \"İcazələr\" seçin.</string>
+    <string name="perm_required_alert_msg">Moto Live Stream cihazdakı bəzi məlumatlara giriş icazəsi istəyir. Təkrar aktiv etmək üçün Tətbiq məlumatlarında \"İcazələr\" bölməsini seçin.</string>
     <string name="perm_required_alert_button_app_info">Proqram məlumatı</string>
 
-    <string name="dlg_request_notification_policy_access">"Canlı yayım zamanı zəng tonunu səssiz etmək üçün Moto Live Stream-ə Narahat etmə parametrlərini dəyişmək icazəsi verilsin?"</string>
+    <string name="dlg_request_notification_policy_access">"Canlı yayım zamanı zəng melodiyasını səssiz etmək üçün Moto Live Stream\'ə Narahat etmə ayarlarını dəyişmək icazəsi verilsin?"</string>
 
     <string name="label_activity_timeline_privacy">Məxfilik seçin</string>
     <string name="label_activity_custom_friends">Xüsusi dostlar</string>
@@ -70,7 +70,7 @@
     <string name="live_posted_view">Facebook\'da bax</string>
     <string name="live_process_identify">Anladım</string>
 
-    <string name="live_login_identify">Okey</string>
+    <string name="live_login_identify">Ok</string>
 
     <string name="str_phone_camera">Telefon kamerası</string>
     <string name="str_mod_camera">Moto 360 camera</string>

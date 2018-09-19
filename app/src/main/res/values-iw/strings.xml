@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">הבאת רשימות החברים שלך נכשלה. נסה שוב מאוחר יותר.</string>
     <string name="no_friend_list_warning">עדיין לא יצרת אף רשימת חברים.</string>
 
-    <string name="post_live_privacy_description">פרסם את השידור חי בציר הזמן שלך ב-Facebook כדי שאנשים יוכלו לצפות בו.</string>
+    <string name="post_live_privacy_description">פרסם את השידור החי בציר הזמן שלך ב-Facebook כדי שאנשים יוכלו לצפות בו.</string>
     <string name="total_live_time">עלית לשידור חי למשך <xliff:g id="DURATION">%s</xliff:g></string>
 
     <string name="privacy_world">ציבורי</string>
@@ -73,7 +73,7 @@
     <string name="live_login_identify">אישור</string>
 
     <string name="str_phone_camera">מצלמת הטלפון</string>
-    <string name="str_mod_camera">Moto 360 camera</string>
+    <string name="str_mod_camera">\u200fMoto 360 camera</string>
     <string name="licenses_title">רישיונות קוד פתוח</string>
     <string name="licenses_detail">פרטי רישיון עבור תוכנת קוד פתוח</string>
     <string name="about_title">אודות Moto Live Stream</string>

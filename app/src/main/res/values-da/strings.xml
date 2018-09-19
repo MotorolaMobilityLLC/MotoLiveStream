@@ -12,7 +12,7 @@
     <string name="perm_required_alert_msg">Moto Live Stream skal have tilladelse for at få adgang til bestemte ting på din enhed. Vælg \"Tilladelser\" under Oplysninger om appen for at genaktivere.</string>
     <string name="perm_required_alert_button_app_info">Oplysninger om appen</string>
 
-    <string name="dlg_request_notification_policy_access">"Vil du tillade at Moto Live Stream ændre indstillinger for Forstyr ikke for at slå ringetonens lyd fra under livestreaming?"</string>
+    <string name="dlg_request_notification_policy_access">"Vil du tillade, at Moto Live Stream ændrer indstillinger for Forstyr ikke for at slå ringetonens lyd fra under livestreaming?"</string>
 
     <string name="label_activity_timeline_privacy">Vælg databeskyttelse</string>
     <string name="label_activity_custom_friends">Specifikke venner</string>
@@ -68,7 +68,7 @@
     <string name="live_deleted_message">Din video er blevet slettet</string>
     <string name="live_posted_message">Din video er blevet lagt op på din tidslinje.</string>
     <string name="live_posted_view">Vis på Facebook</string>
-    <string name="live_process_identify">Fundet</string>
+    <string name="live_process_identify">OK</string>
 
     <string name="live_login_identify">Okay</string>
 

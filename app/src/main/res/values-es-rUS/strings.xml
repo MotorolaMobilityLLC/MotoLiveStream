@@ -12,7 +12,7 @@
     <string name="perm_required_alert_msg">Moto Live Stream necesita permisos para acceder a ciertas funciones del dispositivo. Selecciona \"Permisos\" en la información de la aplicación para volver a habilitarlos.</string>
     <string name="perm_required_alert_button_app_info">Información de la aplicación</string>
 
-    <string name="dlg_request_notification_policy_access">"¿Deseas permitir que Moto Live Stream cambie la configuración de No molestar para silenciar el tono mientras estás en una transmisión en vivo?"</string>
+    <string name="dlg_request_notification_policy_access">"¿Deseas permitir que Moto Live Stream cambie la configuración de No interrumpir para silenciar el tono mientras estás en una transmisión en vivo?"</string>
 
     <string name="label_activity_timeline_privacy">Seleccionar privacidad</string>
     <string name="label_activity_custom_friends">Amigos específicos</string>

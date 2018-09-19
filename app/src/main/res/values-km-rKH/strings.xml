@@ -1,10 +1,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">ស្ទ្រីមផ្ទាយ​ផ្ទាល់​របស់ Moto</string>
+    <string name="app_name">Moto Live Stream</string>
 
     <string name="label_network_not_available">"អ្នកមិនមានបណ្ដាញ​ទេនៅពេលនេះ។"</string>
     <string name="label_profile_not_available">"​បរាជ័យក្នុងការ​ទទួល​កម្រង​ព័ត៌មាន Facebook ​របស់​អ្នក"</string>
 
-    <string name="dlg_public_profile_not_granted">"អ្នកមិនបានយល់ព្រមឱ្យស្ទ្រីមផ្សាយផ្ទាល់របស់ Moto ចូលប្រើទម្រង់ព័ត៌មានសាធារណៈ និងបញ្ជីមិត្តភក្តិ​ផ្ទាល់ខ្លួនរបស់អ្នកទេ។"</string>
+    <string name="dlg_public_profile_not_granted">"អ្នកមិនបានយល់ព្រមឱ្យ Moto Live Stream ចូលប្រើទម្រង់ព័ត៌មានសាធារណៈ និងបញ្ជីមិត្តភក្តិ​ផ្ទាល់ខ្លួនរបស់អ្នកទេ។"</string>
     <string name="dlg_publish_not_granted">"អ្នកមិនបានយល់ព្រមឱ្យ Moto Live Stream បង្ហោះវីដេអូផ្សាយផ្ទាល់លើ Facebook របស់អ្នកទេ។"</string>
     <string name="dlg_fb_login_failed">"បាន​បរាជ័យក្នុងការ​ទទួល​ការអនុញ្ញាតពី Facebook។ សូម​ព្យាយាម​ម្ដង​ទៀត​នៅពេល​ក្រោយ។"</string>
 

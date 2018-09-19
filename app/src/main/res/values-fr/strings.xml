@@ -9,7 +9,7 @@
     <string name="dlg_fb_login_failed">"Impossible d\'obtenir l\'autorisation de Facebook. Veuillez réessayer plus tard."</string>
 
     <string name="perm_required_alert_title">Autorisations requises</string>
-    <string name="perm_required_alert_msg">Moto Live Stream doit disposer d\'une autorisation pour accéder à certaines applications de votre appareil. Pour réactiver cette autorisation, sélectionnez Autorisations dans Informations sur l\'application.</string>
+    <string name="perm_required_alert_msg">Moto Live Stream doit disposer d\'une autorisation pour accéder à certaines applications de votre appareil. Pour réactiver cette autorisation, sélectionnez Autorisations dans Infos appli.</string>
     <string name="perm_required_alert_button_app_info">Infos appli</string>
 
     <string name="dlg_request_notification_policy_access">"Autoriser Moto Live Stream à modifier les paramètres Ne pas déranger de sorte à désactiver la sonnerie pendant une diffusion en direct ?"</string>

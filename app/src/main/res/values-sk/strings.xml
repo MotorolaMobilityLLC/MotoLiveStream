@@ -74,9 +74,9 @@
 
     <string name="str_phone_camera">Fotoaparát telefónu</string>
     <string name="str_mod_camera">Moto 360 Camera</string>
-    <string name="licenses_title">Licencie s otvoreným zdrojovým kódom</string>
+    <string name="licenses_title">Licencie Open Source</string>
     <string name="licenses_detail">Podrobné informácie o licencii k softvéru s otvoreným zdrojovým kódom</string>
-    <string name="about_title">Informácie o službe Moto Live Stream</string>
+    <string name="about_title">O službe Moto Live Stream</string>
     <string name="app_name_title">Názov aplikácie</string>
     <string name="app_version_title">Verzia aplikácie</string>
 </resources>

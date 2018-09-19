@@ -1,18 +1,18 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Moto élő adatfolyam</string>
+    <string name="app_name">Moto Live Stream</string>
 
     <string name="label_network_not_available">"A hálózata jelenleg nem elérhető."</string>
     <string name="label_profile_not_available">"Facebook profiljának elérése sikertelen"</string>
 
-    <string name="dlg_public_profile_not_granted">"Nem hagyta jóvá, hogy a Moto élő adatfolyam hozzáférjen nyilvános profiljához és ismerősei listájához."</string>
-    <string name="dlg_publish_not_granted">"Nem hagyta jóvá, hogy a Moto élő adatfolyam élő videót tegyen közzé Facebook-oldalán."</string>
+    <string name="dlg_public_profile_not_granted">"Nem hagyta jóvá, hogy a Moto Live Stream hozzáférjen nyilvános profiljához és ismerősei listájához."</string>
+    <string name="dlg_publish_not_granted">"Nem hagyta jóvá, hogy a Moto Live Stream élő videót tegyen közzé Facebook-oldalán."</string>
     <string name="dlg_fb_login_failed">"Facebook-engedély lekérése sikertelen. Próbálja újra később."</string>
 
     <string name="perm_required_alert_title">Engedélyek szükségesek</string>
-    <string name="perm_required_alert_msg">A Moto élő adatfolyam alkalmazásnak a készülék egyes adatainak eléréséhez engedélyre van szüksége. Válassza ki az \"Engedélyek\" lehetőséget az Alkalmazásinformáció menüben az újbóli engedélyezéshez.</string>
+    <string name="perm_required_alert_msg">A Moto Live Stream alkalmazásnak a készülék egyes adatainak eléréséhez engedélyre van szüksége. Válassza ki az \"Engedélyek\" lehetőséget az Alkalmazásinformáció menüben az újbóli engedélyezéshez.</string>
     <string name="perm_required_alert_button_app_info">Alkalmazásinformáció</string>
 
-    <string name="dlg_request_notification_policy_access">"Engedélyezi, hogy a Moto élő adatfolyam alkalmazás élő adatfolyam közvetítésekor a Ne zavarjanak beállításokat módosítva némítsa a csengőhangot?"</string>
+    <string name="dlg_request_notification_policy_access">"Engedélyezi, hogy a Moto Live Stream alkalmazás élő adatfolyam közvetítésekor a Ne zavarjanak beállításokat módosítva némítsa a csengőhangot?"</string>
 
     <string name="label_activity_timeline_privacy">Láthatóság kiválasztása</string>
     <string name="label_activity_custom_friends">Meghatározott ismerősök</string>
@@ -58,7 +58,7 @@
     <string name="live_dlg_logout_message">"Jelenleg %s felhasználónévvel van bejelentkezve."</string>
     <string name="live_dlg_btn_logout">Kijelentkezés</string>
 
-    <string name="live_popup_no_publish_permission">"Az élő videók megosztása nem engedélyezett. Kérjük, ellenőrizze, hogy nem törölte-e a Moto élő adatfolyam engedélyeit a Facebookról."</string>
+    <string name="live_popup_no_publish_permission">"Az élő videók megosztása nem engedélyezett. Kérjük, ellenőrizze, hogy nem törölte-e a Moto Live Stream engedélyeit a Facebookról."</string>
     <string name="live_popup_dlg_network_poor">"Nem sikerült élő adatfolyamot létrehozni a Facebookon. Ellenőrizze a hálózati kapcsolatát."</string>
     <string name="live_popup_dlg_create_live_failed">"Nem sikerült élő adatfolyamot létrehozni a Facebookon. Ellenőrizze, hogy a fiókja képes-e élő adatfolyam létrehozására."</string>
     <string name="live_popup_dlg_rtmp_failed">"Nem sikerült élő adatfolyamot létrehozni a Facebookon. Ellenőrizze a hálózati kapcsolatát."</string>
@@ -76,7 +76,7 @@
     <string name="str_mod_camera">Moto 360 Camera</string>
     <string name="licenses_title">Nyílt forráskódú licencek</string>
     <string name="licenses_detail">Nyílt forráskódú szoftverlicencek részletei</string>
-    <string name="about_title">A Moto élő adatfolyam névjegye</string>
+    <string name="about_title">A Moto Live Stream névjegye</string>
     <string name="app_name_title">Alkalmazás neve</string>
     <string name="app_version_title">Alkalmazás verziója</string>
 </resources>

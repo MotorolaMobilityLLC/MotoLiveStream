@@ -76,7 +76,7 @@
     <string name="str_mod_camera">Moto 360 Camera</string>
     <string name="licenses_title">Licence otvorenog koda</string>
     <string name="licenses_detail">Detalji o licencama za softver otvorenog koda</string>
-    <string name="about_title">Osnovni podaci o Moto Live Stream</string>
+    <string name="about_title">O Moto Live Stream-u</string>
     <string name="app_name_title">Naziv aplikacije</string>
     <string name="app_version_title">Verzija aplikacije</string>
 </resources>

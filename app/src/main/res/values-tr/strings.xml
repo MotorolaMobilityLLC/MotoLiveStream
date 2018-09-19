@@ -12,7 +12,7 @@
     <string name="perm_required_alert_msg">Cihazınızdaki bazı öğelere erişmesi için Moto Live Stream\'e izin verilmesi gerekir. Yeniden etkinleştirmek için Uygulama bilgilerinden \"İzinler\" seçeneğini belirleyin.</string>
     <string name="perm_required_alert_button_app_info">Uygulama Bilgileri</string>
 
-    <string name="dlg_request_notification_policy_access">"Canlı yayın sırasında Moto Live Stream\'in Rahatsız Etme modu ayarlarını değiştirerek zil sesini kapatmasına izin verilsin mi?"</string>
+    <string name="dlg_request_notification_policy_access">"Canlı yayın sırasında Moto Live Stream\'in Rahatsız Etmeyin ayarlarını değiştirerek zil sesini kapatmasına izin verilsin mi?"</string>
 
     <string name="label_activity_timeline_privacy">Gizliliği Seç</string>
     <string name="label_activity_custom_friends">Belirli Arkadaşlar</string>

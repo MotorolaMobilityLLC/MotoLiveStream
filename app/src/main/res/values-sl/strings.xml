@@ -12,7 +12,7 @@
     <string name="perm_required_alert_msg">Moto Live Stream potrebuje dovoljenje za dostop do nekaterih vsebin vaše naprave. V Podatkih o aplikaciji izberite \"Dovoljenja\", da to znova omogočite.</string>
     <string name="perm_required_alert_button_app_info">Podatki o programu</string>
 
-    <string name="dlg_request_notification_policy_access">"Dovoli aplikaciji Moto Live Stream, da spremeni nastavitve načina \"Ne moti\" in tako utiša ton zvonjenja med pretočnim predvajanjem v živo?"</string>
+    <string name="dlg_request_notification_policy_access">"Želite aplikaciji Moto Live Stream dovoliti, da spremeni nastavitve načina \"Ne moti\" in tako utiša ton zvonjenja med pretočnim predvajanjem v živo?"</string>
 
     <string name="label_activity_timeline_privacy">Izberite zasebnost</string>
     <string name="label_activity_custom_friends">Določeni prijatelji</string>

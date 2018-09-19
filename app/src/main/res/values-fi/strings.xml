@@ -76,7 +76,7 @@
     <string name="str_mod_camera">Moto 360 Camera</string>
     <string name="licenses_title">Avoimen lähdekoodin lisenssit</string>
     <string name="licenses_detail">Avoimen lähdekoodin ohjelmiston lisenssitiedot</string>
-    <string name="about_title">Tietoa Moto Live Streamista</string>
+    <string name="about_title">Tietoja: Moto Live Stream</string>
     <string name="app_name_title">Sovelluksen nimi</string>
     <string name="app_version_title">Sovelluksen versio</string>
 </resources>

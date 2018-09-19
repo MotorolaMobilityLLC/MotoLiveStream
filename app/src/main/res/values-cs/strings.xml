@@ -53,7 +53,7 @@
     <string name="live_popup_dlg_title">Vaše živé streamování bylo pozastaveno.</string>
     <string name="live_popup_dlg_content">Chcete pokračovat v živém streamování?</string>
     <string name="live_popup_dlg_btn_resume">Pokračovat</string>
-    <string name="live_popup_dlg_btn_finish">Dokončit</string>
+    <string name="live_popup_dlg_btn_finish">Ukončit</string>
 
     <string name="live_dlg_logout_message">"Jste přihlášeni jako %s."</string>
     <string name="live_dlg_btn_logout">Odhlásit se</string>

@@ -5,14 +5,14 @@
     <string name="label_profile_not_available">"உங்கள் Facebook ப்ரொஃபைலை பெறுவது தோல்வியுற்றது"</string>
 
     <string name="dlg_public_profile_not_granted">"Moto Live Stream, உங்கள் பொது சுயவிவரம் மற்றும் தனிப்பட்ட நண்பர்கள் பட்டியல்களை அணுகுவதை நீங்கள் அனுமதிக்கவில்லை."</string>
-    <string name="dlg_publish_not_granted">"Moto நேரலை ஒளிபரப்பு உங்கள் Facebook-இல் நேரலை வீடியோவை இடுகையிடுவதை நீங்கள் ஏற்கவில்லை."</string>
+    <string name="dlg_publish_not_granted">"Moto Live Stream உங்கள் Facebook-இல் நேரலை வீடியோவை இடுகையிடுவதை நீங்கள் ஏற்கவில்லை."</string>
     <string name="dlg_fb_login_failed">"Facebook-இல் இருந்து அனுமதிகளைப் பெறுவது தோல்வியுற்றது. பிறகு மீண்டும் முயலவும்."</string>
 
     <string name="perm_required_alert_title">அனுமதிகள் தேவை</string>
     <string name="perm_required_alert_msg">உங்கள் சாதனத்தில் சிலவற்றை அணுக, Moto Live Stream-க்கு அனுமதி தேவை. மீண்டும் இயக்க, பயன்பாட்டு தகவலில் \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுக்கவும்.</string>
     <string name="perm_required_alert_button_app_info">பயன்பாட்டுத் தகவல்</string>
 
-    <string name="dlg_request_notification_policy_access">"நேரலை ஒலிபரப்பு செய்யும் போது ரிங்டோனை ஒலித்தடுப்பதற்காக தொந்தரவு செய்ய அமைப்பை மாற்ற, Moto Live Stream-ஐ அனுமதிக்கவா?"</string>
+    <string name="dlg_request_notification_policy_access">"நேரலை ஒளிபரப்பின் போது, ரிங்டோனை ஒலித்தடுப்பதற்காக தொந்தரவு வேண்டாம் அமைப்பை மாற்ற, Moto Live Stream-ஐ அனுமதிக்கவா?"</string>
 
     <string name="label_activity_timeline_privacy">தனியுரிமை தெரிவு</string>
     <string name="label_activity_custom_friends">குறிப்பிட்ட நண்பர்கள்</string>

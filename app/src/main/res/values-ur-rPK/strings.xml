@@ -5,14 +5,14 @@
     <string name="label_profile_not_available">"آپ کی Facebook پروفائل حاصل ہونے میں ناکام"</string>
 
     <string name="dlg_public_profile_not_granted">"آپ اپنے عوامی پروفائل اور مخصوص دوستوں کی فہرست رسائی کرنے کے لیے Moto Live Stream سے متفق نہیں ہیں۔"</string>
-    <string name="dlg_publish_not_granted">"آپ اپنے Facebook پر براہ راست ویڈیو پوسٹ کرنے کے لیے Moto لائیو اسٹریم سے متفق نہیں ہیں۔"</string>
+    <string name="dlg_publish_not_granted">"آپ اپنے Facebook پر براہ راست ویڈیو پوسٹ کرنے کے لیے Moto Live Stream سے متفق نہیں ہیں۔"</string>
     <string name="dlg_fb_login_failed">"\u200fFacebook سے اجازت حاصل کرنے میں ناکام۔ براہ کرم بعد میں دوبارہ کوشش کریں۔"</string>
 
     <string name="perm_required_alert_title">اجازتوں کی ضرورت</string>
-    <string name="perm_required_alert_msg">Moto لائیو اسٹریم کو آپ کے آلہ پر کچھ چیزوں تک رسائی کے لیے اجازت کی ضرورت ہے۔ ایپ معلومات میں دوبارہ اہل کرنے کے لیے \"اجازتیں\" منتخب کریں۔</string>
+    <string name="perm_required_alert_msg">\u200fMoto Live Stream کو آپ کے آلہ پر کچھ چیزوں تک رسائی کے لیے اجازت کی ضرورت ہے۔ ایپ معلومات میں دوبارہ اہل کرنے کے لیے \"اجازتیں\" منتخب کریں۔</string>
     <string name="perm_required_alert_button_app_info">ایپ معلومات</string>
 
-    <string name="dlg_request_notification_policy_access">"براہ راست اسٹریمنگ کے دوران رنگ ٹون کی آواز بند کرنے کے لیے پریشان نہ کریں ترتیبات تبدیل کرنے کے لیے Moto لائیو اسٹریم کو اجازت دیں؟"</string>
+    <string name="dlg_request_notification_policy_access">"براہ راست اسٹریمنگ کے دوران رنگ ٹون کی آواز بند کرنے کے لیے پریشان نہ کریں ترتیبات تبدیل کرنے کے لیے Moto Live Stream کو اجازت دیں؟"</string>
 
     <string name="label_activity_timeline_privacy">رازداری منتخب کریں</string>
     <string name="label_activity_custom_friends">مخصوص دوست</string>
@@ -58,7 +58,7 @@
     <string name="live_dlg_logout_message">"آپ بطور %s لاگ ان ہیں۔"</string>
     <string name="live_dlg_btn_logout">لاگ آؤٹ کریں</string>
 
-    <string name="live_popup_no_publish_permission">"براہ راست ویڈیوز پوسٹ کرنے کے لیے کوئی اجازت دستیاب نہیں ہیں۔ براہ کرم چیک کریں کہ کہیں آپ نے Facebook کی جانب سے Moto لائیو اسٹریم کے ذریعے حاصل شدہ اجازت کو حذف تو نہیں کردیا۔"</string>
+    <string name="live_popup_no_publish_permission">"براہ راست ویڈیوز پوسٹ کرنے کے لیے کوئی اجازت دستیاب نہیں ہیں۔ براہ کرم چیک کریں کہ کہیں آپ نے Facebook کی جانب سے Moto Live Stream کے ذریعے حاصل شدہ اجازت کو حذف تو نہیں کردیا۔"</string>
     <string name="live_popup_dlg_network_poor">"\u200fFacebook پر براہ راست ہونے میں ناکام۔ براہ کرم اپنی نیٹ ورک کنیکٹوٹی چیک کریں۔"</string>
     <string name="live_popup_dlg_create_live_failed">"Facebook پر براہ راست ہونے میں ناکام۔ براہ کرم چیک کریں کہ آپ کا اکاؤنٹ براہ راست اسٹریم کے لیے اہل ہے یا نہیں۔"</string>
     <string name="live_popup_dlg_rtmp_failed">"\u200fFacebook پر براہ راست ہونے میں ناکام۔ براہ کرم اپنی نیٹ ورک کنیکٹوٹی چیک کریں۔"</string>

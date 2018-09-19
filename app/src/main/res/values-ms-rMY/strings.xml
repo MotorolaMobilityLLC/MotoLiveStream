@@ -51,7 +51,7 @@
     <string name="live_label_count_timer">"LANGSUNG %s"</string>
 
     <string name="live_popup_dlg_title">Strim langsung anda telah dijeda</string>
-    <string name="live_popup_dlg_content">Adakah anda ingin meneruskan penstriman live anda?</string>
+    <string name="live_popup_dlg_content">Adakah anda ingin meneruskan penstriman langsung anda?</string>
     <string name="live_popup_dlg_btn_resume">Sambung semula</string>
     <string name="live_popup_dlg_btn_finish">Selesai</string>
 

@@ -45,7 +45,7 @@
     <string name="privacy_custom_description">نمایش فقط برای برخی دوستان</string>
 
     <string name="live_settings_hq_title">4K</string>
-    <string name="live_settings_hq_summary">HD وقتی 4K خاموش است</string>
+    <string name="live_settings_hq_summary">HD\u200f وقتی 4K\u200f خاموش است</string>
 
     <string name="live_label_go_live">پخش مستقیم در Facebook</string>
     <string name="live_label_count_timer">"%s مستقیم"</string>

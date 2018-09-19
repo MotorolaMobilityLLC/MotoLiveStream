@@ -1,11 +1,11 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Moto Live স্ট্রিম</string>
+    <string name="app_name">Moto Live Stream</string>
 
     <string name="label_network_not_available">"আপনার নেটওয়ার্ক এখন অনুপলব্ধ।"</string>
     <string name="label_profile_not_available">"আপনার Facebook প্রোফাইল পেতে ব্যর্থ হয়েছে"</string>
 
-    <string name="dlg_public_profile_not_granted">"আপনার প্রকাশ্যে প্রোফাইল অ্যাক্সেস করতে এবং বন্ধুদের তালিকা কাস্টম করতে আপনি Moto লাইভ স্ট্রীমের সাথে সম্মত নন।"</string>
-    <string name="dlg_publish_not_granted">"আপনার Facebook-এ লাইভ ভিডিও পোস্ট করতে আপনি Moto লাইভ স্ট্রীমের সাথে সম্মত নন।"</string>
+    <string name="dlg_public_profile_not_granted">"আপনার প্রকাশ্যে প্রোফাইল অ্যাক্সেস করতে এবং বন্ধুদের তালিকা কাস্টম করতে আপনি Moto Live Stream সাথে সম্মত নন।"</string>
+    <string name="dlg_publish_not_granted">"আপনার Facebook-এ লাইভ ভিডিও পোস্ট করতে আপনি Moto Live Stream সাথে সম্মত নন।"</string>
     <string name="dlg_fb_login_failed">"Facebook থেকে অনুমতিগুলোর পেতে ব্যর্থ হয়েছে। অনুগ্রহ করে পরে আবার চেষ্টা করুন।"</string>
 
     <string name="perm_required_alert_title">অনুমতিগুলো প্রয়োজনীয়</string>
@@ -76,7 +76,7 @@
     <string name="str_mod_camera">Moto 360 Camera</string>
     <string name="licenses_title">ওপেন সোর্স লাইসেন্সগুলি</string>
     <string name="licenses_detail">ওপেন সোর্স সফ্টওয়্যারের জন্য লাইসেন্সের বিশদ</string>
-    <string name="about_title">Moto লাইভ স্ট্রিম সম্পর্কে</string>
+    <string name="about_title">" Moto Live Stream সম্পর্কে"</string>
     <string name="app_name_title">অ্যাপ্লিকেশান নাম</string>
     <string name="app_version_title">অ্যাপ সংস্করণ</string>
 </resources>

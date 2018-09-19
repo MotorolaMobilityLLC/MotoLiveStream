@@ -14,7 +14,7 @@
 
     <string name="dlg_request_notification_policy_access">"允許 Moto Live Stream 變更 [零打擾] 設定，在即時串流期間將鈴聲設為靜音?"</string>
 
-    <string name="label_activity_timeline_privacy">選取私隱權</string>
+    <string name="label_activity_timeline_privacy">選取隱私權</string>
     <string name="label_activity_custom_friends">特定朋友</string>
 
     <string name="menu_done">完成</string>
@@ -76,7 +76,7 @@
     <string name="str_mod_camera">Moto 360 Camera</string>
     <string name="licenses_title">開放原始碼授權</string>
     <string name="licenses_detail">開放原始碼軟體的授權詳細資料</string>
-    <string name="about_title">關於 Moto 即時串流</string>
+    <string name="about_title">關於 Moto Live Stream</string>
     <string name="app_name_title">應用程式名稱</string>
     <string name="app_version_title">應用程式版本</string>
 </resources>

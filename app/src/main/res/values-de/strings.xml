@@ -9,7 +9,7 @@
     <string name="dlg_fb_login_failed">"Es konnten keine Berechtigungen von Facebook abgerufen werden. Bitte später nochmals versuchen."</string>
 
     <string name="perm_required_alert_title">Berechtigungen erforderlich</string>
-    <string name="perm_required_alert_msg">Moto Live Stream benötigt die Berechtigung für den Zugriff auf einige Funktionen auf Ihrem Gerät. Wählen Sie \"Berechtigungen\" in der App-Info aus, um diese App erneut zu aktivieren.</string>
+    <string name="perm_required_alert_msg">Moto Live Stream benötigt die Berechtigung für den Zugriff auf einige Funktionen auf Ihrem Gerät. Wählen Sie \"Berechtigungen\" in der App-Info zur Reaktivierung.</string>
     <string name="perm_required_alert_button_app_info">App-Info</string>
 
     <string name="dlg_request_notification_policy_access">"Wollen Sie Moto Live Stream erlauben, die \"Nicht stören\"-Einstellungen zu ändern, um beim Livestream den Klingelton stumm zu schalten?"</string>

@@ -12,7 +12,7 @@
     <string name="perm_required_alert_msg">Moto Live Stream needs permission to access some things on your device. Select \"Permissions\" in App info to re-enable.</string>
     <string name="perm_required_alert_button_app_info">App Info</string>
 
-    <string name="dlg_request_notification_policy_access">"Allow Moto Live Stream to change Do Not Disturb settings to mute the ringtone while live streaming?"</string>
+    <string name="dlg_request_notification_policy_access">"Allow Moto Live Stream to change Do not disturb settings to mute the ringtone while live streaming?"</string>
 
     <string name="label_activity_timeline_privacy">Select privacy</string>
     <string name="label_activity_custom_friends">Specific friends</string>

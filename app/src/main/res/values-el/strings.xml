@@ -12,7 +12,7 @@
     <string name="perm_required_alert_msg">Το Moto Live Stream χρειάζεται άδεια για πρόσβαση σε ορισμένα στοιχεία της συσκευής σας. Επιλέξτε \"Άδειες\" στις πληροφορίες της εφαρμογής για νέα ενεργοποίηση.</string>
     <string name="perm_required_alert_button_app_info">Πληροφορίες εφαρμογής</string>
 
-    <string name="dlg_request_notification_policy_access">"Να επιτρέψετε στο Moto Live Stream να αλλάξει τις ρυθμίσεις Μην ενοχλείτε για σίγαση του ήχου κλήσης κατά τη ζωντανή μετάδοση ροής;"</string>
+    <string name="dlg_request_notification_policy_access">"Να επιτραπεί στο Moto Live Stream να αλλάξει τις ρυθμίσεις Μην ενοχλείτε για σίγαση του ήχου κλήσης κατά τη ζωντανή μετάδοση ροής;"</string>
 
     <string name="label_activity_timeline_privacy">Επιλέξτε απόρρητο</string>
     <string name="label_activity_custom_friends">Συγκεκριμένοι φίλοι</string>

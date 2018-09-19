@@ -45,7 +45,7 @@
     <string name="privacy_custom_description">Alleen aan sommige vrienden tonen</string>
 
     <string name="live_settings_hq_title">4K</string>
-    <string name="live_settings_hq_summary">HD als 4K uitgeschakeld is</string>
+    <string name="live_settings_hq_summary">HD als 4K is uitgeschakeld</string>
 
     <string name="live_label_go_live">Live op Facebook</string>
     <string name="live_label_count_timer">"LIVE %s"</string>

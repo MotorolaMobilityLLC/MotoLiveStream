@@ -9,10 +9,10 @@
     <string name="dlg_fb_login_failed">"Error al obtener permisos de Facebook. Vuelve a intentarlo de nuevo más tarde."</string>
 
     <string name="perm_required_alert_title">Se necesitan permisos</string>
-    <string name="perm_required_alert_msg">Moto Live Stream necesita permiso para acceder a algunos elementos de tu dispositivo. Selecciona \"Permisos\" en la información de la aplicación para volver a habilitarlo.</string>
+    <string name="perm_required_alert_msg">Moto Live Stream necesita permiso para acceder a algunos elementos de tu dispositivo. Selecciona \"Permisos\" en Información de la aplicación para volver a habilitarlos.</string>
     <string name="perm_required_alert_button_app_info">Información de la aplicación</string>
 
-    <string name="dlg_request_notification_policy_access">"¿Deseas permitir a Moto Live Stream la modificación de los ajustes de No molestar para silenciar el tono de llamada durante el streaming en directo?"</string>
+    <string name="dlg_request_notification_policy_access">"¿Permitir que Moto Live Stream modifique los ajustes de No molestar para silenciar el tono de llamada durante el streaming en directo?"</string>
 
     <string name="label_activity_timeline_privacy">Seleccionar privacidad</string>
     <string name="label_activity_custom_friends">Amigos concretos</string>

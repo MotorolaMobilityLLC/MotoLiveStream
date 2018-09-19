@@ -9,10 +9,10 @@
     <string name="dlg_fb_login_failed">"Неуспешно добивање дозволи од Facebook. Обидете се повторно подоцна."</string>
 
     <string name="perm_required_alert_title">Потребни дозволи</string>
-    <string name="perm_required_alert_msg">На Moto Live Stream му е потребна дозвола за да пристапи до одредени функции на вашиот уред. Изберете \"Дозволи\" во информациите за апликацијата за повторно да го овозможите.</string>
+    <string name="perm_required_alert_msg">На Moto Live Stream ѝ е потребна дозвола за пристап до одредени функции на уредот. Изберете „Дозволи“ во „Информации за апликацијата“ за да ја овозможите дозволата повторно.</string>
     <string name="perm_required_alert_button_app_info">Информации за апликацијата</string>
 
-    <string name="dlg_request_notification_policy_access">"Му дозволувате на Moto Live Stream да ги менува поставките Не вознемирувај за да го исклучи звукот на тонот на ѕвонење при пренесувањето во живо?"</string>
+    <string name="dlg_request_notification_policy_access">"Дали дозволувате Moto Live Stream да ги менува поставките „Не вознемирувај“ за да го исклучи звукот на тонот на ѕвонење за време на пренос во живо?"</string>
 
     <string name="label_activity_timeline_privacy">Изберете приватност</string>
     <string name="label_activity_custom_friends">Одредени пријатели</string>
@@ -44,7 +44,7 @@
     <string name="privacy_custom">Одредени пријатели</string>
     <string name="privacy_custom_description">Покажи само на некои пријатели</string>
 
-    <string name="live_settings_hq_title">4.000</string>
+    <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD кога 4K е исклучено</string>
 
     <string name="live_label_go_live">Во живо на Facebook</string>

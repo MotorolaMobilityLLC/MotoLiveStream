@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">MotoLiveStream</string>
+    <string name="app_name">Moto Live Stream</string>
 
     <string name="label_network_not_available">"Ваша мережа наразі недоступна."</string>
     <string name="label_profile_not_available">"Не вдалося отримати ваш профіль Facebook"</string>
@@ -35,7 +35,7 @@
     <string name="post_live_privacy_description">Опублікуйте трансляцію у своїй хроніці Facebook, щоб інші могли побачити її знову.</string>
     <string name="total_live_time">Тривалість трансляції: <xliff:g id="DURATION">%s</xliff:g></string>
 
-    <string name="privacy_world">Загальнодоступне</string>
+    <string name="privacy_world">Для всіх</string>
     <string name="privacy_world_description">Користувачі Facebook та Інтернету</string>
     <string name="privacy_friends">Друзі</string>
     <string name="privacy_friends_description">Ваші друзі на Facebook</string>
@@ -66,7 +66,7 @@
     <string name="live_popup_dlg_camera_failed">"Не вдалося увімкнути камеру, спробуйте пізніше."</string>
 
     <string name="live_deleted_message">Ваше відео видалено</string>
-    <string name="live_posted_message">Запис трансляції опубліковано у вашій Хроніці.</string>
+    <string name="live_posted_message">Запис трансляції опубліковано у вашій хроніці.</string>
     <string name="live_posted_view">Переглянути на Facebook</string>
     <string name="live_process_identify">Зрозуміло</string>
 

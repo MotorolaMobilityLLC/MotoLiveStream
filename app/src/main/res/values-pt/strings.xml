@@ -9,8 +9,8 @@
     <string name="dlg_fb_login_failed">"Falha ao obter permissões do Facebook. Tente novamente depois."</string>
 
     <string name="perm_required_alert_title">Permissões necessárias</string>
-    <string name="perm_required_alert_msg">O Moto Live Stream precisa de permissão para acessar alguns itens no telefone. Selecione \"Permissões\" nas informações do app para ativá-las novamente.</string>
-    <string name="perm_required_alert_button_app_info">Info do app</string>
+    <string name="perm_required_alert_msg">O Moto Live Stream precisa de permissão para acessar alguns itens no telefone. Selecione \"Permissões\" nas Informações do app para ativá-las novamente.</string>
+    <string name="perm_required_alert_button_app_info">Informações do app</string>
 
     <string name="dlg_request_notification_policy_access">"Permitir que o Moto Live Stream altere a configuração Não perturbe para silenciar o toque durante a transmissão ao vivo?"</string>
 
@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">Falha ao obter lista de amigos. Tente novamente depois.</string>
     <string name="no_friend_list_warning">Você ainda não criou nenhuma lista de amigos.</string>
 
-    <string name="post_live_privacy_description">Poste sua transmissão ao vivo na timeline do Facebook para que as pessoas possam assistir.</string>
+    <string name="post_live_privacy_description">Publique seu vídeo na linha do tempo do Facebook para que as pessoas possam assistir novamente.</string>
     <string name="total_live_time">Você ficou ao vivo por <xliff:g id="DURATION">%s</xliff:g></string>
 
     <string name="privacy_world">Público</string>
@@ -59,9 +59,9 @@
     <string name="live_dlg_btn_logout">Desconectar</string>
 
     <string name="live_popup_no_publish_permission">"Sem permissões disponíveis para postar vídeos ao vivo. Verifique se as permissões concedidas foram excluídas pelo Moto Live Stream no Facebook."</string>
-    <string name="live_popup_dlg_network_poor">"Falha ao transmitir ao vivo pelo Facebook. Verifique sua conexão de rede."</string>
+    <string name="live_popup_dlg_network_poor">"Falha ao postar uma transmissão ao vivo no Facebook. Verifique se sua rede está disponível agora."</string>
     <string name="live_popup_dlg_create_live_failed">"Falha ao transmitir ao vivo pelo Facebook. Verifique se sua conta é capaz de transmitir ao vivo."</string>
-    <string name="live_popup_dlg_rtmp_failed">"Falha ao transmitir ao vivo pelo Facebook. Verifique sua conexão de rede."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Falha ao postar uma transmissão ao vivo no Facebook. Verifique se sua rede está disponível agora."</string>
 
     <string name="live_popup_dlg_camera_failed">"Falha ao iniciar câmera. Tente novamente"</string>
 
@@ -75,8 +75,8 @@
     <string name="str_phone_camera">Câmera do telefone</string>
     <string name="str_mod_camera">Moto 360 Camera</string>
     <string name="licenses_title">Licenças de código aberto</string>
-    <string name="licenses_detail">Detalhes de licença para software de código aberto.</string>
-    <string name="about_title">Sobre Moto Live Stream</string>
+    <string name="licenses_detail">Detalhes de licença para software de código aberto</string>
+    <string name="about_title">Sobre o Moto Live Stream</string>
     <string name="app_name_title">Nome do app</string>
     <string name="app_version_title">Versão do app</string>
 </resources>

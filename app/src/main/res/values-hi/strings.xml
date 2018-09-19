@@ -1,18 +1,18 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Moto लाइव स्ट्रीम</string>
+    <string name="app_name">Moto Live Stream</string>
 
     <string name="label_network_not_available">"आपका नेटवर्क अभी अनुपलब्ध है."</string>
     <string name="label_profile_not_available">"आपकी Facebook प्रोफ़ाइल प्राप्त करने में विफल"</string>
 
-    <string name="dlg_public_profile_not_granted">"आप Moto लाइव स्ट्रीम को अपनी सार्वजनिक प्रोफ़ाइल और कस्टम मित्रों की सूचियों पर पहुंच प्राप्त करने की अनुमति देने से सहमत नही हैं."</string>
-    <string name="dlg_publish_not_granted">"आप Moto लाइव स्ट्रीम को अपने Facebook पर लाइव वीडियो पोस्ट करने की अनुमति देने से सहमत नहीं हैं."</string>
+    <string name="dlg_public_profile_not_granted">"आप Moto Live Stream को अपनी सार्वजनिक प्रोफ़ाइल और कस्टम मित्रों की सूचियों पर पहुंच प्राप्त करने की अनुमति देने से सहमत नही हैं."</string>
+    <string name="dlg_publish_not_granted">"आप Moto Live Stream को अपने Facebook पर लाइव वीडियो पोस्ट करने की अनुमति देने से सहमत नहीं हैं."</string>
     <string name="dlg_fb_login_failed">"Facebook से अनुमतियां प्राप्त करने में विफल. कृपया बाद में पुनः प्रयास करें."</string>
 
     <string name="perm_required_alert_title">अनुमतियां आवश्यक हैं</string>
-    <string name="perm_required_alert_msg">आपके उपकरण में मौजूद कुछ चीज़ों पर पहुंच प्राप्त करने के लिए Moto लाइव स्ट्रीम को अनुमति की आवश्यकता है. पुनः सक्षम करने के लिए ऐप जानकारी में \"अनुमतियां\" चुनें.</string>
+    <string name="perm_required_alert_msg">आपके उपकरण में मौजूद कुछ चीज़ों पर पहुंच प्राप्त करने के लिए Moto Live Stream को अनुमति की आवश्यकता है. पुनः सक्षम करने के लिए ऐप जानकारी में \"अनुमतियां\" चुनें.</string>
     <string name="perm_required_alert_button_app_info">एप्लिकेशन जानकारी</string>
 
-    <string name="dlg_request_notification_policy_access">"Moto लाइव स्ट्रीम को लाइव स्ट्रीम करने के दौरान रिंगटोन को म्यूट करने के लिए परेशान न करें सेटिंग बदलने की अनुमति दें?"</string>
+    <string name="dlg_request_notification_policy_access">"Moto Live Stream को लाइव स्ट्रीम करने के दौरान रिंगटोन को म्यूट करने के लिए परेशान न करें सेटिंग बदलने की अनुमति दें?"</string>
 
     <string name="label_activity_timeline_privacy">गोपनीयता चुनें</string>
     <string name="label_activity_custom_friends">विशेष मित्र</string>
@@ -58,7 +58,7 @@
     <string name="live_dlg_logout_message">"आपने %s के रूप में लॉग इन किया है."</string>
     <string name="live_dlg_btn_logout">लॉग आउट करें</string>
 
-    <string name="live_popup_no_publish_permission">"लाइव वीडियो पोस्ट करने के लिए कोई अनुमतियां उपलब्ध नहीं हैं. कृपया जांचें कि आपने Facebook से Moto लाइव स्ट्रीम द्वारा प्रदान की गई अनुमतियां हटाई तो नहीं हैं."</string>
+    <string name="live_popup_no_publish_permission">"लाइव वीडियो पोस्ट करने के लिए कोई अनुमतियां उपलब्ध नहीं हैं. कृपया जांचें कि आपने Facebook से Moto Live Stream द्वारा प्रदान की गई अनुमतियां हटाई तो नहीं हैं."</string>
     <string name="live_popup_dlg_network_poor">"Facebook पर लाइव होने में विफल. कृपया अपनी नेटवर्क कनेक्टिविटी जांचें."</string>
     <string name="live_popup_dlg_create_live_failed">"Facebook पर लाइव होने में विफल. कृपया जांचें कि आपका खाता लाइव स्ट्रीम करने में समर्थ है या नहीं."</string>
     <string name="live_popup_dlg_rtmp_failed">"Facebook पर लाइव होने में विफल. कृपया अपनी नेटवर्क कनेक्टिविटी जांचें."</string>
@@ -76,7 +76,7 @@
     <string name="str_mod_camera">Moto 360 Camera</string>
     <string name="licenses_title">ओपन सोर्स लाइसेंस</string>
     <string name="licenses_detail">ओपन सोर्स सॉफ़्टवेयर के लिए लाइसेंस विवरण</string>
-    <string name="about_title">Moto Live स्ट्रीम के बारे में</string>
+    <string name="about_title">Moto Live Stream के बारे में</string>
     <string name="app_name_title">ऐप्स का नाम</string>
     <string name="app_version_title">ऐप संस्करण</string>
 </resources>

@@ -9,10 +9,10 @@
     <string name="dlg_fb_login_failed">"Не удалось получить разрешения от Facebook. Повторите попытку позже."</string>
 
     <string name="perm_required_alert_title">Необходимы разрешения</string>
-    <string name="perm_required_alert_msg">Приложению Moto Live Stream требуется разрешение на доступ к некоторым данным на вашем устройстве. Выберите \"Разрешения\" в разделе информации о приложении, чтобы повторно разрешить.</string>
+    <string name="perm_required_alert_msg">Moto Live Stream требуется доступ к некоторым данным на устройстве. Чтобы дать разрешение, выберите \"Разрешения\" в разделе \"О приложении\".</string>
     <string name="perm_required_alert_button_app_info">О приложении</string>
 
-    <string name="dlg_request_notification_policy_access">"Разрешить Moto Live Stream изменение настроек режима \"Не беспокоить\" для отключения звука уведомления на время передачи в потоковом режиме?"</string>
+    <string name="dlg_request_notification_policy_access">"Разрешить Moto Live Stream менять настройки режима \"Не беспокоить\", чтобы отключать рингтон на время трансляции?"</string>
 
     <string name="label_activity_timeline_privacy">Настройте видимость</string>
     <string name="label_activity_custom_friends">Избранные друзья</string>
@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">Не удалось получить списки друзей. Повторите попытку позже.</string>
     <string name="no_friend_list_warning">Вы еще не создали ни одного списка друзей.</string>
 
-    <string name="post_live_privacy_description">Опубликуйте трансляцию в своей хронике Facebook, чтобы люди могли посмотреть ее снова.</string>
+    <string name="post_live_privacy_description">Опубликуйте трансляцию в своей Хронике Facebook, чтобы люди могли посмотреть ее снова.</string>
     <string name="total_live_time">Трансляция длилась <xliff:g id="DURATION">%s</xliff:g></string>
 
     <string name="privacy_world">Для всех</string>
@@ -59,9 +59,9 @@
     <string name="live_dlg_btn_logout">Выйти</string>
 
     <string name="live_popup_no_publish_permission">"Нет разрешений на публикацию видео в реальном времени. Убедитесь, что вы удалили разрешения, предоставленные Moto Live Stream, с веб-сайта Facebook или из приложения."</string>
-    <string name="live_popup_dlg_network_poor">"Не удалось начать прямую трансляцию на веб-сайте Facebook. Проверьте сетевое подключение."</string>
-    <string name="live_popup_dlg_create_live_failed">"Не удалось начать прямую трансляцию на веб-сайте Facebook. Проверьте возможность использования прямой трансляции для вашего аккаунта."</string>
-    <string name="live_popup_dlg_rtmp_failed">"Не удалось начать прямую трансляцию на веб-сайте Facebook. Проверьте сетевое подключение."</string>
+    <string name="live_popup_dlg_network_poor">"Не удалось начать трансляцию в Facebook. Проверьте сетевое подключение."</string>
+    <string name="live_popup_dlg_create_live_failed">"Не удалось начать трансляцию в Facebook. Проверьте возможность использования прямой трансляции для вашего аккаунта."</string>
+    <string name="live_popup_dlg_rtmp_failed">"Не удалось начать трансляцию в Facebook. Проверьте сетевое подключение."</string>
 
     <string name="live_popup_dlg_camera_failed">"Не удалось запустить камеру. Повторите попытку."</string>
 

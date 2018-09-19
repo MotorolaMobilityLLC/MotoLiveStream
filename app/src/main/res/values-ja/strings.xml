@@ -12,7 +12,7 @@
     <string name="perm_required_alert_msg">Moto Live Streamは、デバイス上の一部の機能やデータにアクセスするために権限が必要です。再有効化するにはアプリ情報で[許可]を選択します。</string>
     <string name="perm_required_alert_button_app_info">アプリ情報</string>
 
-    <string name="dlg_request_notification_policy_access">"Moto Live Streamによる[通知を無音化]設定の変更を許可して、ライブストリーミング中の着信音をミュートにしますか?"</string>
+    <string name="dlg_request_notification_policy_access">"Moto Live Streamによるマナーモード設定の変更を許可して、ライブストリーミング中の着信音をミュートにしますか?"</string>
 
     <string name="label_activity_timeline_privacy">プライバシーの選択</string>
     <string name="label_activity_custom_friends">一部の友達</string>
