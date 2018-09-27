@@ -1,16 +1,27 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+    <string name="perm_required_alert_title">Nepieciešamas atļaujas</string>
+    <string name="perm_required_alert_button_app_info">Informācija par programmu</string>
+
     <string name="menu_done">Gatavs</string>
 
     <string name="btn_ok">Labi</string>
     <string name="btn_delete">Dzēst</string>
     <string name="btn_post">Ievietot</string>
+    <string name="btn_retry">Mēģināt vēlreiz</string>
+    <string name="btn_exit">Iziet</string>
+    <string name="btn_cancel">Atcelt</string>
+    <string name="btn_setting">Iestatījumi</string>
 
     <string name="live_description_hint">Apraksts</string>
 
     <string name="privacy_world">Publisks</string>
     <string name="privacy_friends">Draugi</string>
+
+    <string name="live_settings_hq_title">4 KB videoklipi</string>
     <string name="live_popup_dlg_btn_resume">Atsākt</string>
     <string name="live_popup_dlg_btn_finish">Pabeigt</string>
     <string name="live_dlg_btn_logout">Atteikties</string>
+    <string name="licenses_title">Atklātā pirmkoda licences</string>
+    <string name="app_name_title">Lietotnes nosaukums</string>
 </resources>
