@@ -15,9 +15,9 @@ package com.motorola.livestream.ui;
 
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;

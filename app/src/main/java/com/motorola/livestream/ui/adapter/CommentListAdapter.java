@@ -3,11 +3,12 @@ package com.motorola.livestream.ui.adapter;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.motorola.livestream.R;
 import com.motorola.livestream.model.fb.Comment;
 import com.motorola.livestream.model.fb.User;
@@ -57,18 +58,22 @@ public class CommentListAdapter extends BaseRecyclerViewAdapter<Comment> {
 
         String userPhotoUrl = currentUser.getUserPhotoUrl();
         if (TextUtils.isEmpty(userPhotoUrl)) {
+            RequestOptions options =
+                    new RequestOptions().transform(new CircleTransform());
             Glide.with(mContext)
                     .load(R.drawable.ic_user_photo_default)
-                    .transform(new CircleTransform(mContext))
+                    .apply(options)
                     .into(imgView);
             // Cause maybe there will be a huge instant request, so we have to control them in a deque
             // avoid Facebook to process the requests simultaneously
             ExecutorUtil.executeAsync(new GetUserPhotoTask(mHandler, currentUser));
         } else {
+            RequestOptions options =
+                    new RequestOptions().placeholder(R.drawable.ic_user_photo_default)
+                            .transform(new CircleTransform());
             Glide.with(mContext)
                     .load(userPhotoUrl)
-                    .placeholder(R.drawable.ic_user_photo_default)
-                    .transform(new CircleTransform(mContext))
+                    .apply(options)
                     .into(imgView);
         }
     }

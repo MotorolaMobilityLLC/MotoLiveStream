@@ -7,7 +7,7 @@
     android:paddingBottom="@dimen/live_layout_input_margin_bottom"
     android:background="@color/black_overlay">
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         xmlns:android.support.design="http://schemas.android.com/apk/res-auto"
         android:id="@+id/layout_live_description"
         android:theme="@style/TextInputLayoutTheme"
@@ -16,7 +16,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="@dimen/live_layout_input_margin_top"
         android.support.design:hintTextAppearance="@style/HintTextAppearance">
-        <android.support.design.widget.TextInputEditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/live_description_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
             android:textSize="@dimen/text_size_medium"
             android:textColor="@android:color/white"
             android:textCursorDrawable="@drawable/edit_text_cursor"/>
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:id="@+id/layout_4k_setting"

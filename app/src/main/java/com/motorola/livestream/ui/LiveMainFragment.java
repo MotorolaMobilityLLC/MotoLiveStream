@@ -15,14 +15,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+
+import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.textfield.TextInputEditText;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -735,10 +737,12 @@ public class LiveMainFragment extends Fragment
         if (TextUtils.isEmpty(currentUser.getUserPhotoUrl())) {
             String cachedUrl = SettingsPref.getUserPhotoUrl(getActivity());
             if (!TextUtils.isEmpty(cachedUrl)) {
+                RequestOptions options =
+                        new RequestOptions().placeholder(R.drawable.ic_user_photo_default)
+                                .transform(new CircleTransform());
                 Glide.with(getActivity())
                         .load(cachedUrl)
-                        .placeholder(R.drawable.ic_user_photo_default)
-                        .transform(new CircleTransform(getActivity()))
+                        .apply(options)
                         .into(mUserAvatar);
             }
 
@@ -762,10 +766,13 @@ public class LiveMainFragment extends Fragment
                 SettingsPref.saveUserPhotoUrl(getActivity(), newUrl);
             }
 
+            RequestOptions options =
+                    new RequestOptions().placeholder(R.drawable.ic_user_photo_default)
+                            .transform(new CircleTransform());
+
             Glide.with(getActivity())
                     .load(newUrl)
-                    .placeholder(R.drawable.ic_user_photo_default)
-                    .transform(new CircleTransform(getActivity()))
+                    .apply(options)
                     .into(mUserAvatar);
         }
     }

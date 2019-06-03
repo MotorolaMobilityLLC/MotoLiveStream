@@ -1,28 +1,25 @@
 package com.motorola.livestream.util;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import androidx.annotation.NonNull;
+
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 
+import java.security.MessageDigest;
+
 public class CircleTransform extends BitmapTransformation {
 
-    public CircleTransform(Context context) {
-        super(context);
-    }
+    private static final byte[] ID_BYTES = CircleTransform.class.getName().getBytes(CHARSET);
 
     @Override
-    protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
+    protected Bitmap transform(@NonNull  BitmapPool pool, @NonNull Bitmap toTransform,
+                               int outWidth, int outHeight) {
         return circleCrop(pool, toTransform);
-    }
-
-    @Override
-    public String getId() {
-        return getClass().getName();
     }
 
     private static Bitmap circleCrop(BitmapPool pool, Bitmap source) {
@@ -38,9 +35,6 @@ public class CircleTransform extends BitmapTransformation {
         Bitmap squared = Bitmap.createBitmap(source, x, y, size, size);
 
         Bitmap result = pool.get(size, size, Bitmap.Config.ARGB_8888);
-        if (result == null) {
-            result = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
-        }
 
         Canvas canvas = new Canvas(result);
         Paint paint = new Paint();
@@ -51,4 +45,10 @@ public class CircleTransform extends BitmapTransformation {
         canvas.drawCircle(r, r, r, paint);
         return result;
     }
+
+    @Override
+    public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
+        messageDigest.update(ID_BYTES);
+    }
+
 }

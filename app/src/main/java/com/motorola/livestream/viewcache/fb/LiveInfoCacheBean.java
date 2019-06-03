@@ -38,7 +38,7 @@ public class LiveInfoCacheBean implements ViewCacheBean {
             return null;
         }
 
-        return mLiveInfo.getStreamUrl();
+        return mLiveInfo.getSecureStreamUrl();
     }
 
     public String getLiveStreamId() {

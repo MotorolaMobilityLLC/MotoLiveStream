@@ -1,6 +1,6 @@
 package com.motorola.livestream.model.fb;
 
-import android.support.v4.util.LruCache;
+import androidx.collection.LruCache;
 
 public class User {
     private String id;

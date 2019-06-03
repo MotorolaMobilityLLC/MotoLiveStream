@@ -1,7 +1,7 @@
 package com.motorola.livestream.ui.adapter;
 
-import android.support.v4.util.SparseArrayCompat;
-import android.support.v7.widget.RecyclerView;
+import androidx.collection.SparseArrayCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.motorola.livestream.R;
 import com.motorola.livestream.model.fb.FriendList;
