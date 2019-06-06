@@ -784,13 +784,7 @@ public class LiveMainFragment extends Fragment
         }
 
         mPrivacyIcon.setImageResource(mPrivacyCacheBean.getPrivacyIcon(false));
-        switch (mPrivacyCacheBean.getPrivacy()) {
-            case CUSTOM:
-                mPrivacyTitle.setText(mPrivacyCacheBean.getCustomFriendListDisplay());
-                break;
-            default:
-                mPrivacyTitle.setText(mPrivacyCacheBean.getPrivacyTitle());
-        }
+        mPrivacyTitle.setText(mPrivacyCacheBean.getPrivacyTitle());
     }
 
     private void updateLiveResultPrivacySettings() {
@@ -800,14 +794,7 @@ public class LiveMainFragment extends Fragment
         }
 
         mResultPrivacyIcon.setImageResource(mPrivacyCacheBean.getPrivacyIcon(false));
-        switch (mPrivacyCacheBean.getPrivacy()) {
-            case CUSTOM:
-                mLiveResultPrivacy.setText(
-                        mPrivacyCacheBean.getCustomFriendListDisplay());
-                break;
-            default:
-                mLiveResultPrivacy.setText(mPrivacyCacheBean.getPrivacyTitle());
-        }
+        mLiveResultPrivacy.setText(mPrivacyCacheBean.getPrivacyTitle());
     }
 
     private void handleException(Exception e) {

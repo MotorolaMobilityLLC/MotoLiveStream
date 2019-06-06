@@ -24,7 +24,6 @@ public class TimelineAdapter extends BaseRecyclerViewAdapter<TimelinePrivacy> {
         List<TimelinePrivacy> data = new ArrayList<>();
         data.add(TimelinePrivacy.PUBLIC);
         data.add(TimelinePrivacy.FRIENDS);
-        data.add(TimelinePrivacy.CUSTOM);
         data.add(TimelinePrivacy.SELF);
         addData(data);
     }
@@ -40,10 +39,6 @@ public class TimelineAdapter extends BaseRecyclerViewAdapter<TimelinePrivacy> {
                 .setText(TimelinePrivacyCacheBean.getPrivacyTitle(item));
         holder.getTextView(R.id.timeline_subtitle)
                 .setText(TimelinePrivacyCacheBean.getPrivacyDescription(item));
-
-        ImageView rightArrow = holder.getImageView(R.id.right_arrow);
-        rightArrow.setVisibility((TimelinePrivacy.CUSTOM == item)
-                ? View.VISIBLE : View.GONE);
     }
 
     public void setSelectedIndex(int selectedIndex) {

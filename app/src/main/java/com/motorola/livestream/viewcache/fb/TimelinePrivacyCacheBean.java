@@ -15,29 +15,25 @@ public class TimelinePrivacyCacheBean implements ViewCacheBean {
     private static final int[] PRIVACY_TITLE = {
             R.string.privacy_world,
             R.string.privacy_friends,
-            R.string.privacy_self,
-            R.string.privacy_custom,
+            R.string.privacy_self
     };
 
     private static final int[] PRIVACY_DESCRIPTION = {
             R.string.privacy_world_description,
             R.string.privacy_friends_description,
-            R.string.privacy_self_description,
-            R.string.privacy_custom_description,
+            R.string.privacy_self_description
     };
 
     private static final int[] PRIVACY_ICON = {
             R.drawable.privacy_scope_everyone_gray,
             R.drawable.privacy_scope_friends_gray,
-            R.drawable.privacy_scope_only_me_gray,
-            R.drawable.privacy_scope_list_gray,
+            R.drawable.privacy_scope_only_me_gray
     };
 
     private static final int[] PRIVACY_ICON_WHITE = {
             R.drawable.privacy_scope_everyone_white,
             R.drawable.privacy_scope_friends_white,
-            R.drawable.privacy_scope_only_me_white,
-            R.drawable.privacy_scope_list_white,
+            R.drawable.privacy_scope_only_me_white
     };
 
     // CUSTOM should ahead of SELF
@@ -55,12 +51,9 @@ public class TimelinePrivacyCacheBean implements ViewCacheBean {
             "CUSTOM"
     };
 
-    private static final String CUSTOM_FRIENDS_VALUE = "SOME_FRIENDS";
     private static final String EMPTY_VALUE = "";
 
     private TimelinePrivacy mPrivacy = TimelinePrivacy.FRIENDS;
-    private List<String> mCustomFriendList = new ArrayList<>();
-    private String mCustomFriendListDisplay = null;
 
     public TimelinePrivacy getPrivacy() {
         return mPrivacy;
@@ -87,38 +80,13 @@ public class TimelinePrivacyCacheBean implements ViewCacheBean {
                 : PRIVACY_ICON_WHITE[mPrivacy.ordinal()];
     }
 
-    public List<String> getCustomFriendList() {
-        return mCustomFriendList;
-    }
-
-    public void setCustomFriendList(List<String> newList) {
-        mCustomFriendList.clear();
-        if (newList != null) {
-            mCustomFriendList.addAll(newList);
-        }
-    }
-
-    public String getCustomFriendListDisplay() {
-        return mCustomFriendListDisplay;
-    }
-
-    public void setCustomFriendListDisplay(String newValue) {
-        mCustomFriendListDisplay = newValue;
-    }
-
     public String toJsonString() {
         JSONObject json = new JSONObject();
         try {
             json.put("value", PRIVACY_VALUE[mPrivacy.ordinal()]);
-            if (TimelinePrivacy.CUSTOM == mPrivacy) {
-                json.put("friends", CUSTOM_FRIENDS_VALUE);
-                json.put("allow", generateCustomFriendList());
-                json.put("deny", EMPTY_VALUE);
-            } else {
-                json.put("friends", EMPTY_VALUE);
-                json.put("allow", EMPTY_VALUE);
-                json.put("deny", EMPTY_VALUE);
-            }
+            json.put("friends", EMPTY_VALUE);
+            json.put("allow", EMPTY_VALUE);
+            json.put("deny", EMPTY_VALUE);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -128,8 +96,6 @@ public class TimelinePrivacyCacheBean implements ViewCacheBean {
     @Override
     public void clean() {
         mPrivacy = TimelinePrivacy.FRIENDS;
-        mCustomFriendList.clear();
-        mCustomFriendListDisplay = null;
     }
 
     public static int getPrivacyTitle(TimelinePrivacy privacyValue) {
@@ -142,14 +108,5 @@ public class TimelinePrivacyCacheBean implements ViewCacheBean {
 
     public static int getPrivacyIcon(TimelinePrivacy privacyValue) {
         return PRIVACY_ICON[privacyValue.ordinal()];
-    }
-
-    private String generateCustomFriendList() {
-        StringBuilder sb = new StringBuilder();
-        for (String friendListId : mCustomFriendList) {
-            sb.append(friendListId).append(",");
-        }
-        sb.deleteCharAt(sb.length() - 1);
-        return sb.toString();
     }
 }

@@ -68,12 +68,6 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/label_activity_timeline_privacy" />
         <activity
-            android:name=".ui.privacy.FriendListsActivity"
-            android:screenOrientation="portrait"
-            android:resizeableActivity="false"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/label_activity_custom_friends" />
-        <activity
             android:name=".ui.AboutInfoActivity"
             android:screenOrientation="portrait"
             android:resizeableActivity="false"

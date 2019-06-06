@@ -29,22 +29,13 @@
         android:layout_marginEnd="@dimen/timeline_fig_raw_image_margin"
         android:scaleType="centerCrop" />
 
-    <ImageView
-        android:id="@+id/right_arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:background="@drawable/item_row_chevron_gray"
-        android:visibility="gone" />
-
     <RelativeLayout
         android:id="@+id/item_text_frame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toStartOf="@id/right_arrow"
-        android:layout_toEndOf="@id/item_privacy_icon"
+        android:layout_toEndOf="@+id/item_privacy_icon"
+        android:layout_alignParentEnd="true"
         android:paddingTop="@dimen/timeline_item_margin_vertical"
         android:paddingBottom="@dimen/timeline_item_margin_vertical">
 

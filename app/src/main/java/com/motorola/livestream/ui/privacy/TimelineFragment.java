@@ -38,17 +38,9 @@ public class TimelineFragment extends Fragment {
                     mAdapter.setSelectedIndex(position);
 
                     TimelinePrivacy newPrivacy = mAdapter.getItem(position);
-                    if (TimelinePrivacy.CUSTOM == newPrivacy) {
-                        startActivityForResult(new Intent(getActivity(), FriendListsActivity.class),
-                                REQUEST_CUSTOM_FRIEND_LIST);
-                    } else {
-                        // Reset the previously selected custom friend list
-                        mPrivacyCacheBean.setCustomFriendList(null);
-                        mPrivacyCacheBean.setCustomFriendListDisplay(null);
 
-                        mPrivacyCacheBean.setPrivacy(newPrivacy);
-                        mListener.onListFragmentDone();
-                    }
+                    mPrivacyCacheBean.setPrivacy(newPrivacy);
+                    mListener.onListFragmentDone();
                 }
             };
 
@@ -97,28 +89,6 @@ public class TimelineFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (REQUEST_CUSTOM_FRIEND_LIST == requestCode) {
-            if (resultCode == RESULT_OK) {
-                Log.d(LOG_TAG, "Custom friend list set to: "
-                        + mPrivacyCacheBean.getCustomFriendListDisplay());
-                mListener.onListFragmentDone();
-            } else {
-                if (mPrivacyCacheBean.getPrivacy() != TimelinePrivacy.CUSTOM) {
-                    // Reset the previously selected custom friend list
-                    mPrivacyCacheBean.setCustomFriendList(null);
-                    mPrivacyCacheBean.setCustomFriendListDisplay(null);
-                }
-
-                // Re-select to the previously selected privacy
-                mAdapter.setSelectedIndex(mPrivacyCacheBean.getCurrentPrivacyIndex());
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
     }
 
     /**
