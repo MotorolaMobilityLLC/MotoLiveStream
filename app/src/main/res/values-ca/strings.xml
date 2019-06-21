@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">No s\'han pogut obtenir les vostres llistes d\'amics. Torneu a provar-ho més tard.</string>
     <string name="no_friend_list_warning">Encara no heu creat cap llista d\'amics.</string>
 
-    <string name="post_live_privacy_description">Publiqueu les vostres reproduccions en directe a la biografia del Facebook perquè la gent pugui veure-les.</string>
+    <string name="post_live_privacy_description">Publica les teves reproduccions en directe a la biografia del Facebook perquè la gent pugui veure-les.</string>
     <string name="total_live_time">Heu emès en directe durant <xliff:g id="DURATION">%s</xliff:g></string>
 
     <string name="privacy_world">Públic</string>
@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Els vostres amics del Facebook</string>
     <string name="privacy_self">Només jo</string>
     <string name="privacy_self_description">Només jo</string>
-    <string name="privacy_custom">Amics específics</string>
-    <string name="privacy_custom_description">Mostra-ho només a determinats amics</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD quan el 4K estigui desactivat</string>

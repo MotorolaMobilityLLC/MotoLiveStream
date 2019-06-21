@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Vaši priatelia na Facebooku</string>
     <string name="privacy_self">Len ja</string>
     <string name="privacy_self_description">Len ja</string>
-    <string name="privacy_custom">Konkrétni priatelia</string>
-    <string name="privacy_custom_description">Zobraziť len niektorým priateľom</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD, ak je možnosť 4K vypnutá</string>

@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Mga kaibigan mo sa Facebook</string>
     <string name="privacy_self">Ako lang</string>
     <string name="privacy_self_description">Ako lang</string>
-    <string name="privacy_custom">Espesipikong mga kaibigan</string>
-    <string name="privacy_custom_description">Ipakita lamang sa ilang mga kaibigan</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD kapag naka-off ang 4K</string>

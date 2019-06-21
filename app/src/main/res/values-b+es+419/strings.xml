@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">No se pudo obtener tu lista de amigos. Inténtalo de nuevo más tarde.</string>
     <string name="no_friend_list_warning">Todavía no has creado una lista de amigos.</string>
 
-    <string name="post_live_privacy_description">Publica la transmisión en vivo en tu página de inicio de Facebook para que las personas puedan verla.</string>
+    <string name="post_live_privacy_description">Publica tu transmisión en vivo en tu página de inicio de Facebook para que las personas puedan verla.</string>
     <string name="total_live_time">Tu transmisión en vivo duró <xliff:g id="DURATION">%s</xliff:g></string>
 
     <string name="privacy_world">Público</string>
@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Tus amigos de Facebook</string>
     <string name="privacy_self">Solo yo</string>
     <string name="privacy_self_description">Solo yo</string>
-    <string name="privacy_custom">Amigos específicos</string>
-    <string name="privacy_custom_description">Mostrar solo a algunos amigos</string>
 
     <string name="live_settings_hq_title">4 K</string>
     <string name="live_settings_hq_summary">Utiliza la resolución HD cuando la resolución 4K está desactivada</string>

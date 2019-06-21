@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">أصدقاؤك على Facebook</string>
     <string name="privacy_self">أنا فقط</string>
     <string name="privacy_self_description">أنا فقط</string>
-    <string name="privacy_custom">أصدقاء محددون</string>
-    <string name="privacy_custom_description">إظهار لبعض الأصدقاء فقط</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">دقة عالية HD عند توقف 4K</string>

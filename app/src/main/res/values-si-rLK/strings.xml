@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">ඔබේ මිතුරු ලැයිස්තු ලබා ගැනීමට අසමත් විය. පසුව නැවත උත්සාහ කරන්න.</string>
     <string name="no_friend_list_warning">ඔබ තවම කිසිදු මිතුරු ලැයිස්තුවක් තනා නැත.</string>
 
-    <string name="post_live_privacy_description">පුද්ගලයින්ට එය නැවත නැරඹිය හැකි වන පරිදි ඔබේ Facebook කාලරේඛාව මත ඔබේ සජීවී ප්‍රවාහය පළ කරන්න.</string>
+    <string name="post_live_privacy_description">පුද්ගලයින්ට නැවත නැරඹිය හැකි පරිදි ඔබේ Facebook කාලරේඛාවෙහි ඔබේ සජීවී ප්‍රවාහය පළ කරන්න.</string>
     <string name="total_live_time">ඔබ <xliff:g id="DURATION">%s</xliff:g> සඳහා සජීවී විය</string>
 
     <string name="privacy_world">පොදු</string>
@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Facebook මත ඔබේ මිතුරන්</string>
     <string name="privacy_self">මට පමණයි</string>
     <string name="privacy_self_description">මට පමණයි</string>
-    <string name="privacy_custom">විශේෂිත මිතුරන්</string>
-    <string name="privacy_custom_description">සමහර මිතුරන්ට පමණක් පෙන්වන්න</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">4K ක්‍රියා විරහිත විට HD</string>

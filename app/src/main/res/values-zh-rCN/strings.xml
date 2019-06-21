@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">您的好友打开 Facebook</string>
     <string name="privacy_self">只有我</string>
     <string name="privacy_self_description">只有我</string>
-    <string name="privacy_custom">特定好友</string>
-    <string name="privacy_custom_description">仅对一些好友显示</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">4K 关闭时为高清</string>

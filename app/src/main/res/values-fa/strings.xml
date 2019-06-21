@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">دوستانتان در Facebook</string>
     <string name="privacy_self">فقط من</string>
     <string name="privacy_self_description">فقط من</string>
-    <string name="privacy_custom">دوستان خاص</string>
-    <string name="privacy_custom_description">نمایش فقط برای برخی دوستان</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD\u200f وقتی 4K\u200f خاموش است</string>

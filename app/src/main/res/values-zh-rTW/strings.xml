@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">無法取得您的朋友清單。請稍後再試。</string>
     <string name="no_friend_list_warning">您尚未建立任何朋友清單。</string>
 
-    <string name="post_live_privacy_description">將即時串流發佈到您的 Facebook 時間軸，讓他人能重溫影片內容。</string>
+    <string name="post_live_privacy_description">將即時串流張貼到您的 Facebook 動態時報，讓他人能重溫影片內容。</string>
     <string name="total_live_time">您的直播時間：<xliff:g id="DURATION">%s</xliff:g></string>
 
     <string name="privacy_world">公開</string>
@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">您在 Facebook 上的朋友</string>
     <string name="privacy_self">只有我</string>
     <string name="privacy_self_description">只有我</string>
-    <string name="privacy_custom">特定朋友</string>
-    <string name="privacy_custom_description">只向某些朋友顯示</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">關閉 4K 時使用 HD</string>

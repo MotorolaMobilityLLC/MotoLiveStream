@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Prietenii de pe Facebook</string>
     <string name="privacy_self">Doar eu</string>
     <string name="privacy_self_description">Doar eu</string>
-    <string name="privacy_custom">Anumiți prieteni</string>
-    <string name="privacy_custom_description">Se afişează doar pentru anumiţi prieteni</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD când 4K este oprită</string>

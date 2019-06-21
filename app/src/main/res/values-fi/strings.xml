@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Facebook-kaverisi</string>
     <string name="privacy_self">Vain minä</string>
     <string name="privacy_self_description">Vain minä</string>
-    <string name="privacy_custom">Tietyt kaverit</string>
-    <string name="privacy_custom_description">Näytä vain joillekin kavereille</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD, kun 4K ei ole käytössä</string>

@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">Αποτυχία ανάκτησης των λιστών των φίλων σας. Προσπαθήστε ξανά αργότερα.</string>
     <string name="no_friend_list_warning">Δεν έχετε δημιουργήσει λίστες φίλων ακόμα.</string>
 
-    <string name="post_live_privacy_description">Δημοσιεύστε τη ζωντανή μετάδοση ροής στο χρονολόγιό σας στο Facebook ώστε να μπορούν οι χρήστες να την παρακολουθήσουν ξανά.</string>
+    <string name="post_live_privacy_description">Δημοσιεύστε τη live ροή στο χρονολόγιό σας στο Facebook ώστε να μπορούν οι χρήστες να την παρακολουθήσουν ξανά.</string>
     <string name="total_live_time">Κάνατε live μετάδοση για <xliff:g id="DURATION">%s</xliff:g></string>
 
     <string name="privacy_world">Δημόσιο</string>
@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Οι φίλοι σας στο Facebook</string>
     <string name="privacy_self">Μόνο εγώ</string>
     <string name="privacy_self_description">Μόνο εγώ</string>
-    <string name="privacy_custom">Συγκεκριμένοι φίλοι</string>
-    <string name="privacy_custom_description">Να εμφανίζεται μόνο σε μερικούς φίλους</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD όταν το 4K είναι απενεργοποιημένο</string>

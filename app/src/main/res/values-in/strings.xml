@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Teman Anda di Facebook</string>
     <string name="privacy_self">Hanya saya</string>
     <string name="privacy_self_description">Hanya saya</string>
-    <string name="privacy_custom">Teman tertentu</string>
-    <string name="privacy_custom_description">Hanya tunjukkan pada beberapa teman</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD saat 4K nonaktif</string>

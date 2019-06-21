@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Dina vänner på Facebook</string>
     <string name="privacy_self">Endast jag</string>
     <string name="privacy_self_description">Endast jag</string>
-    <string name="privacy_custom">Specifika vänner</string>
-    <string name="privacy_custom_description">Vissa endast för vissa vänner</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD när 4K är inaktiverat</string>

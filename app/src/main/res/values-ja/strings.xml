@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">友達リストの取得に失敗しました。後で再試行してください。</string>
     <string name="no_friend_list_warning">友達リストはまだ作成していません。</string>
 
-    <string name="post_live_privacy_description">Facebookのタイムラインにライブストリームを投稿して、後から見られるようにします。</string>
+    <string name="post_live_privacy_description">後で視聴できるようにFacebookのタイムラインにライブストリームを投稿します。</string>
     <string name="total_live_time"><xliff:g id="DURATION">%s</xliff:g>のライブストリーミングを行いました</string>
 
     <string name="privacy_world">公開</string>
@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Facebookの友達</string>
     <string name="privacy_self">自分のみ</string>
     <string name="privacy_self_description">自分のみ</string>
-    <string name="privacy_custom">一部の友達</string>
-    <string name="privacy_custom_description">一部の友達にのみ表示します</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">4Kがオフの場合はHD</string>

@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Bạn bè trên Facebook</string>
     <string name="privacy_self">Chỉ tôi</string>
     <string name="privacy_self_description">Chỉ tôi</string>
-    <string name="privacy_custom">Bạn bè cụ thể</string>
-    <string name="privacy_custom_description">Chỉ hiển thị với một số bạn bè</string>
 
     <string name="live_settings_hq_title">4k</string>
     <string name="live_settings_hq_summary">HD khi 4K tắt</string>

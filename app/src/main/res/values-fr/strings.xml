@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Vos amis sur Facebook</string>
     <string name="privacy_self">Moi uniquement</string>
     <string name="privacy_self_description">Moi uniquement</string>
-    <string name="privacy_custom">Amis spécifiques</string>
-    <string name="privacy_custom_description">Certains amis uniquement</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD lorsque 4K est désactivé</string>

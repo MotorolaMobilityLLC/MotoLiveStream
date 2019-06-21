@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">Az ismerőslisták lekérése sikertelen. Próbálja újra később.</string>
     <string name="no_friend_list_warning">Még nem hozott létre ismerőslistát.</string>
 
-    <string name="post_live_privacy_description">Tegye közzé az élő adatfolyamot Facebook-idővonalán, hogy mások is megnézhessék.</string>
+    <string name="post_live_privacy_description">Tegye közzé az élő adatfolyamot Facebook idővonalán, hogy mások is megnézhessék.</string>
     <string name="total_live_time">Élő adásban volt <xliff:g id="DURATION">%s</xliff:g> ideig</string>
 
     <string name="privacy_world">Nyilvános</string>
@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Ismerősök a Facebookon</string>
     <string name="privacy_self">Csak én</string>
     <string name="privacy_self_description">Csak én</string>
-    <string name="privacy_custom">Meghatározott ismerősök</string>
-    <string name="privacy_custom_description">Csak néhány ismerős láthatja</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD kikapcsolt 4K esetén</string>

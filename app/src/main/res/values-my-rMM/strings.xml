@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Facebook ပေါ်မှ သင့်သူငယ်ချင်းများ</string>
     <string name="privacy_self">ကျွန်ုပ်သာ</string>
     <string name="privacy_self_description">ကျွန်ုပ်သာ</string>
-    <string name="privacy_custom">သီးသန့် သူငယ်ချင်းများ</string>
-    <string name="privacy_custom_description">သူငယ်ချင်းအချို့ကိုသာ ပြသပါသည်</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">4K ပိတ်ထားသည့်အခါ HD ရရှိနိုင်သည်</string>

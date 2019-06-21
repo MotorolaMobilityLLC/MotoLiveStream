@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Twoi znajomi na Facebooku</string>
     <string name="privacy_self">Tylko ja</string>
     <string name="privacy_self_description">Tylko ja</string>
-    <string name="privacy_custom">Określeni znajomi</string>
-    <string name="privacy_custom_description">Pokaż tylko niektórym znajomym</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD, gdy 4K jest wyłączona</string>

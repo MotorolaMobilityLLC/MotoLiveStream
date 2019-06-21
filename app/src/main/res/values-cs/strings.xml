@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Vaši přátelé na Facebooku</string>
     <string name="privacy_self">Jen já</string>
     <string name="privacy_self_description">Jen já</string>
-    <string name="privacy_custom">Konkrétní přátelé</string>
-    <string name="privacy_custom_description">Zobrazit pouze některým z přátel</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD, je-li 4K vypnuté</string>

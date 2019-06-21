@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">உங்கள் நண்பர் பட்டியல்களைப் பெறுவது தோல்வியுற்றது. பிறகு மீண்டும் முயலவும்.</string>
     <string name="no_friend_list_warning">இதுவரை நீங்கள் எந்த நண்பர் பட்டியல்களையும் உருவாக்கவில்லை.</string>
 
-    <string name="post_live_privacy_description">உங்கள் நேரலை ஒளிபரப்புகளை Facebook காலக்கோட்டில் இடுகையிடவும், எனவே பிறர் அதை பிறகு பார்க்கலாம்.</string>
+    <string name="post_live_privacy_description">உங்கள் நேரலை ஒளிபரப்புகளை Facebook காலக்கோட்டில் இடுகையிடவும், எனவே மற்றவர்கள் ஒளிபரப்பு முடிந்த பின்னரும் அதனைப் பார்க்கலாம்.</string>
     <string name="total_live_time"><xliff:g id="DURATION">%s</xliff:g>-இல் நீங்கள் நேரலை செய்துள்ளீர்கள்</string>
 
     <string name="privacy_world">பொதுவானவை</string>
@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Facebook-இல் உள்ள உங்கள் நண்பர்கள்</string>
     <string name="privacy_self">நான் மட்டும்</string>
     <string name="privacy_self_description">நான் மட்டும்</string>
-    <string name="privacy_custom">குறிப்பிட்ட நண்பர்கள்</string>
-    <string name="privacy_custom_description">சில நண்பர்களிடம் மட்டும் காட்டவும்</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">4K ஆஃப் செய்யப்பட்டுள்ள போது, HD</string>

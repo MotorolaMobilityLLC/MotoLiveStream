@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">បរាជ័យក្នុងការ​ទទួល​បាន​បញ្ជី​មិត្តភក្តិ។ សូម​ព្យាយាម​ម្ដង​ទៀត​នៅពេល​ក្រោយ។</string>
     <string name="no_friend_list_warning">អ្នក​មិន​ទាន់​បានបង្កើត​បញ្ជី​មិត្តិភក្តិ​ណាមួយ​នៅ​ឡើយទេ។</string>
 
-    <string name="post_live_privacy_description">ដាក់ប្រកាស​ការ​ស្ទ្រីមផ្សាយ​ផ្ទាល់របស់អ្នក នៅលើ​បន្ទាត់ពេលវេលា​ Facebook របស់អ្នក ដើម្បីឱ្យមនុស្សទាំងឡាយអាច​មើលវា​ឡើងវិញ។</string>
+    <string name="post_live_privacy_description">បង្ហោះការផ្សាយបន្តផ្ទាល់របស់អ្នកនៅលើបន្ទាត់ពេលវេលា​Facebook របស់អ្នក ដើម្បីឱ្យគ្រប់គ្នាអាចមើលឡើងវិញ។</string>
     <string name="total_live_time">អ្នកបាន​ផ្សាយផ្ទាល់​រយៈពេល <xliff:g id="DURATION">%s</xliff:g></string>
 
     <string name="privacy_world">សាធារណៈ</string>
@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">មិត្តភក្តិ​របស់​អ្នកនៅលើ Facebook</string>
     <string name="privacy_self">តែខ្ញុំ​ប៉ុណ្ណោះ</string>
     <string name="privacy_self_description">តែខ្ញុំ​ប៉ុណ្ណោះ</string>
-    <string name="privacy_custom">មិត្តភក្តិ​ជាក់លាក់</string>
-    <string name="privacy_custom_description">បង្ហាញ​តែ​មិត្តភក្ដិ​ខ្លះៗ​ប៉ុណ្ណោះ</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD នៅពេល 4K ត្រូវបានបិទ</string>

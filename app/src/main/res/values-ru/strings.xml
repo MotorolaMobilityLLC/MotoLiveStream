@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Ваши друзья в Facebook</string>
     <string name="privacy_self">Только я</string>
     <string name="privacy_self_description">Только я</string>
-    <string name="privacy_custom">Избранные друзья</string>
-    <string name="privacy_custom_description">Показывать только некоторым друзьям</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD при выключении 4K</string>

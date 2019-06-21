@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Facebook 친구</string>
     <string name="privacy_self">나만</string>
     <string name="privacy_self_description">나만</string>
-    <string name="privacy_custom">특정 친구</string>
-    <string name="privacy_custom_description">일부 친구에게만 표시</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">4K가 꺼져 있을 때 HD 사용</string>

@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">Не вдалось отримати списки ваших друзів. Повторіть спробу пізніше.</string>
     <string name="no_friend_list_warning">Ви ще не створили жодного списку друзів.</string>
 
-    <string name="post_live_privacy_description">Опублікуйте трансляцію у своїй хроніці Facebook, щоб інші могли побачити її знову.</string>
+    <string name="post_live_privacy_description">Опублікуйте трансляцію у своїй хроніці Facebook, щоб інші могли переглянути її пізніше.</string>
     <string name="total_live_time">Тривалість трансляції: <xliff:g id="DURATION">%s</xliff:g></string>
 
     <string name="privacy_world">Для всіх</string>
@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Ваші друзі на Facebook</string>
     <string name="privacy_self">Лише я</string>
     <string name="privacy_self_description">Лише я</string>
-    <string name="privacy_custom">Вибрані друзі</string>
-    <string name="privacy_custom_description">Показати лише вибраним друзям</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD, коли вимкнено 4K</string>

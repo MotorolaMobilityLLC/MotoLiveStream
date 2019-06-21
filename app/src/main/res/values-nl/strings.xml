@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">Kan je vriendenlijst niet ophalen. Probeer het later opnieuw.</string>
     <string name="no_friend_list_warning">Je hebt nog geen vriendenlijst.</string>
 
-    <string name="post_live_privacy_description">Plaats je livestream op je tijdlijn van Facebook, zodat andere mensen je video kunnen bekijken.</string>
+    <string name="post_live_privacy_description">Post je livestream op je tijdlijn van Facebook, zodat andere mensen je video kunnen bekijken.</string>
     <string name="total_live_time">Je was <xliff:g id="DURATION">%s</xliff:g> live</string>
 
     <string name="privacy_world">Openbaar</string>
@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Je Facebook-vrienden</string>
     <string name="privacy_self">Alleen ik</string>
     <string name="privacy_self_description">Alleen ik</string>
-    <string name="privacy_custom">Specifieke vrienden</string>
-    <string name="privacy_custom_description">Alleen aan sommige vrienden tonen</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD als 4K is uitgeschakeld</string>

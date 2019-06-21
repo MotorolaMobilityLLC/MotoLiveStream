@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">החברים שלך ב-Facebook</string>
     <string name="privacy_self">רק אני</string>
     <string name="privacy_self_description">רק אני</string>
-    <string name="privacy_custom">חברים מסוימים</string>
-    <string name="privacy_custom_description">הצג רק לחברים מסוימים</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD כאשר ה-4K מושבת</string>

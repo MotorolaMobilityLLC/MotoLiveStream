@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">Arkadaş Listeleriniz alınamadı. Lütfen daha sonra tekrar deneyin.</string>
     <string name="no_friend_list_warning">Henüz Arkadaş Listesi oluşturmadınız.</string>
 
-    <string name="post_live_privacy_description">Tekrar izlenebilmesi için canlı yayınınızı Facebook zaman tünelinize gönderin.</string>
+    <string name="post_live_privacy_description">Tekrar izlenebilmesi için canlı yayınınızı Facebook zaman tünelinizde yayınlayın.</string>
     <string name="total_live_time"><xliff:g id="DURATION">%s</xliff:g> boyunca canlı yayın yaptınız</string>
 
     <string name="privacy_world">Herkese Açık</string>
@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Facebook\'taki arkadaşlarınız</string>
     <string name="privacy_self">Sadece ben</string>
     <string name="privacy_self_description">Sadece ben</string>
-    <string name="privacy_custom">Belirli arkadaşlar</string>
-    <string name="privacy_custom_description">Sadece bazı arkadaşlara göster</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">4K kapalıyken HD</string>

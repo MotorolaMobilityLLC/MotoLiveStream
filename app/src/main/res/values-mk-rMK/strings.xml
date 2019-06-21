@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">Неуспешно добивање на вашата листа со пријатели. Обидете се повторно подоцна.</string>
     <string name="no_friend_list_warning">Сè уште не сте создале списоци со пријатели.</string>
 
-    <string name="post_live_privacy_description">Објавете го преносот во живо на времепловот на Facebook за да може другите да го гледаат повторно.</string>
+    <string name="post_live_privacy_description">Објавете го вашиот пренос во живо на времепловот на Facebook за другите да може да го гледаат.</string>
     <string name="total_live_time">Бевте во живо <xliff:g id="DURATION">%s</xliff:g></string>
 
     <string name="privacy_world">Јавно</string>
@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Вашите пријатели на Facebook</string>
     <string name="privacy_self">Само јас</string>
     <string name="privacy_self_description">Само јас</string>
-    <string name="privacy_custom">Одредени пријатели</string>
-    <string name="privacy_custom_description">Покажи само на некои пријатели</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD кога 4K е исклучено</string>

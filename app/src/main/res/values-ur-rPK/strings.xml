@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">اپنے دوست کی فہرست حاصل کرنے میں ناکام۔ براہ کرم بعد میں دوبارہ کوشش کریں۔</string>
     <string name="no_friend_list_warning">آپ نے ابھی تک دوست کی کوئی بھی فہرست نہیں بنائی ہے۔</string>
 
-    <string name="post_live_privacy_description">آپ اپنے Facebook ٹائم لائن پر اپنا براہ راست ویڈیو پوسٹ کریں تاکہ لوگ اسے واپس دیکھ سکیں۔</string>
+    <string name="post_live_privacy_description">آپ اپنے Facebook ٹائم لائن پر اپنا لائیو اسٹریم پوسٹ کریں تاکہ لوگ اسے واپس دیکھ سکیں۔</string>
     <string name="total_live_time">آپ <xliff:g id="DURATION">%s</xliff:g> کے لیے براہ راست ہوئے</string>
 
     <string name="privacy_world">عوام</string>
@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">\u200fFacebook پر آپ کے دوست</string>
     <string name="privacy_self">صرف میں</string>
     <string name="privacy_self_description">صرف میں</string>
-    <string name="privacy_custom">مخصوص دوست</string>
-    <string name="privacy_custom_description">صرف کچھ ہی دوستوں کے لیے دکھائیں</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">4K بند ہونے کے وقت HD</string>

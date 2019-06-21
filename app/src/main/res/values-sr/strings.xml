@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Пријатељи на Facebook-у</string>
     <string name="privacy_self">Само ја</string>
     <string name="privacy_self_description">Само ја</string>
-    <string name="privacy_custom">Одређени пријатељи</string>
-    <string name="privacy_custom_description">Прикажи само неким пријатељима</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD када је 4K искључено</string>

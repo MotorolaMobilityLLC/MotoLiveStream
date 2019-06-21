@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Facebook dostlarınız</string>
     <string name="privacy_self">Yalnız mən</string>
     <string name="privacy_self_description">Yalnız mən</string>
-    <string name="privacy_custom">Xüsusi dostlar</string>
-    <string name="privacy_custom_description">Yalnız bir neçə dostuma göstər</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">4K sönülü olduqda HD</string>

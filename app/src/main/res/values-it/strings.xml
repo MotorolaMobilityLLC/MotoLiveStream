@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">Impossibile ottenere il tuo elenco degli amici. Riprova più tardi.</string>
     <string name="no_friend_list_warning">Non hai ancora creato un elenco di amici.</string>
 
-    <string name="post_live_privacy_description">Pubblica la diretta streaming sul tuo diario di Facebook per consentire a più persone di riguardarla.</string>
+    <string name="post_live_privacy_description">Pubblica la tua diretta streaming sul tuo diario di Facebook per consentire a più persone di riguardarla.</string>
     <string name="total_live_time">Hai trasmesso in diretta per <xliff:g id="DURATION">%s</xliff:g></string>
 
     <string name="privacy_world">Pubblico</string>
@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">I tuoi amici su Facebook</string>
     <string name="privacy_self">Solo io</string>
     <string name="privacy_self_description">Solo io</string>
-    <string name="privacy_custom">Amici specifici</string>
-    <string name="privacy_custom_description">Mostra solo ad alcuni amici</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD quando l\'opzione 4K è disattivata</string>

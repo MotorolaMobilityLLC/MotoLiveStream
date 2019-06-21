@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">เพื่อนของคุณใน Facebook</string>
     <string name="privacy_self">เฉพาะฉัน</string>
     <string name="privacy_self_description">เฉพาะฉัน</string>
-    <string name="privacy_custom">เพื่อนที่เฉพาะเจาะจง</string>
-    <string name="privacy_custom_description">แสดงให้กับเพื่อนบางคนเท่านั้น</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD เมื่อ 4K ปิดอยู่</string>

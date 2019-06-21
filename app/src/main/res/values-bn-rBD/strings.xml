@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">আপনার বন্ধুর তালিকাগুলো পেতে ব্যর্থ হয়েছে। অনুগ্রহ করে পরে আবার চেষ্টা করুন।</string>
     <string name="no_friend_list_warning">আপনি এখনো কোনো বন্ধুর তালিকা তৈরি করেন নি।</string>
 
-    <string name="post_live_privacy_description">আপনার লাইভ স্ট্রিমটি যাতে লোকেরা আবার দেখতে পায় তাই এটি আপনার Facebook টাইমলাইনে পোস্ট করুন।</string>
+    <string name="post_live_privacy_description">আপনার লাইভ স্ট্রীমটি যাতে লোকেরা আবার দেখতে পায় তাই এটি আপনার Facebook টাইমলাইনে পোস্ট করুন।</string>
     <string name="total_live_time">আপনি <xliff:g id="DURATION">%s</xliff:g> সময় ধরে লাইভ ছিলেন</string>
 
     <string name="privacy_world">সর্বজনীন</string>
@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Facebook-এ আপনার বন্ধুরা</string>
     <string name="privacy_self">শুধুমাত্র আমি</string>
     <string name="privacy_self_description">শুধুমাত্র আমি</string>
-    <string name="privacy_custom">নির্দিষ্ট বন্ধুরা</string>
-    <string name="privacy_custom_description">শুধুমাত্র কিছু বন্ধুদের দেখান</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">4K বন্ধ থাকাকালীন HD</string>

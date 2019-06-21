@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Vennene dine på Facebook</string>
     <string name="privacy_self">Bare jeg</string>
     <string name="privacy_self_description">Bare jeg</string>
-    <string name="privacy_custom">Bestemte venner</string>
-    <string name="privacy_custom_description">Bare vis til enkelte venner</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">HD når 4K er av</string>

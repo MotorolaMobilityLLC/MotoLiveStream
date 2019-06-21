@@ -41,8 +41,6 @@
     <string name="privacy_friends_description">Facebook पर आपके मित्र</string>
     <string name="privacy_self">केवल मैं</string>
     <string name="privacy_self_description">केवल मैं</string>
-    <string name="privacy_custom">विशेष मित्र</string>
-    <string name="privacy_custom_description">केवल कुछ मित्रों को दिखाएं</string>
 
     <string name="live_settings_hq_title">4K</string>
     <string name="live_settings_hq_summary">4K बंद होने पर HD</string>
