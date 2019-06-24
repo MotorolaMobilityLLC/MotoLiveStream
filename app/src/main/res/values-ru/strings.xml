@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">Не удалось получить списки друзей. Повторите попытку позже.</string>
     <string name="no_friend_list_warning">Вы еще не создали ни одного списка друзей.</string>
 
-    <string name="post_live_privacy_description">Опубликуйте трансляцию в своей Хронике Facebook, чтобы люди могли посмотреть ее снова.</string>
+    <string name="post_live_privacy_description">Опубликуйте свою трансляцию в хронике Facebook, чтобы люди могли посмотреть ее снова.</string>
     <string name="total_live_time">Трансляция длилась <xliff:g id="DURATION">%s</xliff:g></string>
 
     <string name="privacy_world">Для всех</string>

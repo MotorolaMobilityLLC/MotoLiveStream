@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">Falha ao obter lista de amigos. Tente novamente depois.</string>
     <string name="no_friend_list_warning">Você ainda não criou nenhuma lista de amigos.</string>
 
-    <string name="post_live_privacy_description">Publique seu vídeo na linha do tempo do Facebook para que as pessoas possam assistir novamente.</string>
+    <string name="post_live_privacy_description">Publique sua transmissão ao vivo na linha do tempo do Facebook para que as pessoas possam assistir.</string>
     <string name="total_live_time">Você ficou ao vivo por <xliff:g id="DURATION">%s</xliff:g></string>
 
     <string name="privacy_world">Público</string>

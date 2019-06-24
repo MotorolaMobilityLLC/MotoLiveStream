@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">Ihre Freundesliste konnte nicht abgerufen werden. Versuchen Sie es später erneut.</string>
     <string name="no_friend_list_warning">Du hast noch keine Freundesliste erstellt.</string>
 
-    <string name="post_live_privacy_description">Poste deinen Livestream in deiner Facebook Timeline, damit andere ihn sich noch einmal ansehen können.</string>
+    <string name="post_live_privacy_description">Posten Sie Ihren Livestream in Ihrer Facebook Timeline, damit andere ihn sich noch einmal ansehen können.</string>
     <string name="total_live_time">Du warst <xliff:g id="DURATION">%s</xliff:g> lang live</string>
 
     <string name="privacy_world">Öffentlich</string>

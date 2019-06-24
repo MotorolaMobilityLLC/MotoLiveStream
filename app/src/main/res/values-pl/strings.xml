@@ -32,7 +32,7 @@
     <string name="failed_getting_friend_list">Nie udało się pobrać listy Twoich znajomych. Spróbuj ponownie później.</string>
     <string name="no_friend_list_warning">Nie utworzono jeszcze żadnej listy znajomych.</string>
 
-    <string name="post_live_privacy_description">Opublikuj treści, które były przez Ciebie transmitowane na żywo, na swojej osi czasu na Facebooku, aby inni mogli je później obejrzeć.</string>
+    <string name="post_live_privacy_description">Opublikuj treści, które były przez Ciebie transmitowane na żywo, na swojej osi czasu na Facebooku, aby inni mogli je później obejrzeć..</string>
     <string name="total_live_time">Transmitowałeś(-aś) na żywo przez <xliff:g id="DURATION">%s</xliff:g></string>
 
     <string name="privacy_world">Publiczny</string>
